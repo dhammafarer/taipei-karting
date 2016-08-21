@@ -23,11 +23,17 @@ class RacesTest extends TestCase
   *
   * Test: GET /api.
   */
-  public function it_praises_the_races()
+  public function it_fetches_races()
   {
-      $this->get('/api/races')
-          ->seeJson([
-              'Races' => 'Every month!'
-          ]);
+    $this->seed('RacesTableSeeder');
+
+    $this->get('/api/races')
+        ->seeJsonStructure([
+          'data' => [
+            '*' => [
+              'name', 'date', 'time'
+            ]
+          ]
+        ]);
   }
 }

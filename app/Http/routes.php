@@ -18,7 +18,8 @@ Route::get('/', function () {
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->get('/races', function() {
-        return ['Races' => 'Every month!'];
-    });
+
+  $api->group(['namespace' => 'App\Api\V1\Controllers'], function($api) {
+    $api->get('races', 'RacesController@index');
+  });
 });
