@@ -21,5 +21,6 @@ $api->version('v1', function ($api) {
 
   $api->group(['namespace' => 'App\Api\V1\Controllers'], function($api) {
     $api->get('races', 'RacesController@index');
+    $api->get('races/{id}', 'RacesController@show');
   });
 });

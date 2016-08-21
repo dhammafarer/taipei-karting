@@ -9,16 +9,6 @@ class RacesTest extends TestCase
   use DatabaseMigrations;
 
   /**
-    * A basic test example.
-    *
-    * @return void
-    */
-  public function testExample()
-  {
-      $this->assertTrue(true);
-  }
-
-  /**
   * @test
   *
   * Test: GET /api.
@@ -36,4 +26,22 @@ class RacesTest extends TestCase
           ]
         ]);
   }
+
+  /**
+   * @test
+   *
+   * Test: GET api/races/1
+   */
+  function it_fetches_a_single_race()
+  {
+    $this->seed('RacesTableSeeder');
+
+    $this->get('/api/races/1')
+      ->seeJsonStructure([
+        'data' => [
+          'id', 'name'
+        ]
+      ]);
+  }
+
 }

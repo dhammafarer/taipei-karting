@@ -19,4 +19,16 @@ class RacesController extends BaseController
     return $this->collection($races, new RacesTransformer);
   }
 
+  public function show($id)
+  {
+    $race = Race::where('id', $id)->first();
+
+    if ($race) {
+      return $this->item($race, new RacesTransformer);
+    }
+
+    return $this->response->errorNotFound();
+  }
+
+
 }
