@@ -31,7 +31,7 @@ class RacesTest extends TestCase
         ->seeJsonStructure([
           'data' => [
             '*' => [
-              'name', 'date', 'time'
+              'name', 'description', 'date', 'time', 'venue', 'circuit', 'weather', 'photo'
             ]
           ]
         ]);

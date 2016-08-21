@@ -5,6 +5,7 @@ namespace App\Api\V1\Controllers;
 use App\Race;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Api\V1\Transformers\RacesTransformer;
 
 /**
  * @Resource('Races', uri='/races')
@@ -15,7 +16,7 @@ class RacesController extends BaseController
   {
     $races = Race::all();
 
-    return $this->response->array(['data' => $races], 200);
+    return $this->collection($races, new RacesTransformer);
   }
 
 }
