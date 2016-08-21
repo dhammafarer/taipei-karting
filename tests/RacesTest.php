@@ -17,4 +17,17 @@ class RacesTest extends TestCase
   {
       $this->assertTrue(true);
   }
+
+  /**
+  * @test
+  *
+  * Test: GET /api.
+  */
+  public function it_praises_the_races()
+  {
+      $this->get('/api/races')
+          ->seeJson([
+              'Races' => 'Every month!'
+          ]);
+  }
 }

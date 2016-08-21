@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+    $api->get('/races', function() {
+        return ['Races' => 'Every month!'];
+    });
+});
