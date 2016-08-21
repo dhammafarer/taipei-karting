@@ -20,6 +20,10 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
 
   $api->group(['namespace' => 'App\Api\V1\Controllers'], function($api) {
+    $api->post('authenticate', 'AuthenticateController@authenticate');
+    $api->post('logout', 'AuthenticateController@logout');
+    $api->get('token', 'AuthenticateController@getToken');
+
     $api->get('races', 'RacesController@index');
     $api->get('races/{id}', 'RacesController@show');
   });

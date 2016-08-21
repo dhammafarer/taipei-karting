@@ -10,15 +10,15 @@ class RacesTransformer extends TransformerAbstract
     public function transform(Race $race)
     {
         return [
-            'id'        => (int) $race->id,
-            'name'      => ucfirst($race->name),
+            'id'          => (int) $race->id,
+            'name'        => ucfirst($race->name),
             'description' => $race->description,
-            'venue' => $race->venue,
-            'circuit' => $race->circuit,
-            'date' => $race->date,
-            'time' => $race->time,
-            'weather' => $race->weather,
-            'photo' => $race->photo
+            'venue'       => $race->venue,
+            'circuit'     => $race->circuit,
+            'date'        => $race->date,
+            'time'        => $race->time,
+            'weather'     => $race->weather,
+            'photo'       => $race->photo
         ];
     }
 }

@@ -44,4 +44,18 @@ class RacesTest extends TestCase
       ]);
   }
 
+  /**
+   * @test
+   *
+   * Test: GET api/authenticate
+   */
+  function it_authenticates_a_user()
+  {
+    $user = factory(App\User::class)->create(['password' => bcrypt('secret')]);
+
+    $this->post('/api/authenticate', ['email' => $user->email, 'password' => 'secret'])
+      ->seeJsonStructure(['token']);
+  }
+
+
 }
