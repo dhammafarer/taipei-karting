@@ -72,4 +72,18 @@ class RacesTest extends TestCase
       ->seeStatusCode(201);
   }
 
+  /**
+   * @test
+   *
+   * Test: POST api/races
+   */
+  function it_401s_when_not_authorized()
+  {
+    $race = ['name' => 'TestRace', 'description' => 'Just Testing', 'date' => '1989-02-19'];
+
+    $this->post('/api/races', $race)
+      ->seeStatusCode(401);
+  }
+
+
 }
