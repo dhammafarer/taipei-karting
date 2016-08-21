@@ -57,5 +57,19 @@ class RacesTest extends TestCase
       ->seeJsonStructure(['token']);
   }
 
+  /**
+   * @test
+   *
+   * Test: POST api/races
+   */
+  function it_saves_a_race()
+  {
+    $user = factory(App\User::class)->create(['password' => bcrypt('secret')]);
+
+    $race = ['name' => 'TestRace', 'description' => 'Just Testing', 'date' => '1989-02-19'];
+
+    $this->post('/api/races', $race, $this->headers($user))
+      ->seeStatusCode(201);
+  }
 
 }

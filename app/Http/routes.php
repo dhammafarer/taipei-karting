@@ -17,14 +17,18 @@ Route::get('/', function () {
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', function ($api) {
+$api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
+  $api->post('authenticate', 'AuthenticateController@authenticate');
+  $api->post('logout', 'AuthenticateController@logout');
+  $api->get('token', 'AuthenticateController@getToken');
 
-  $api->group(['namespace' => 'App\Api\V1\Controllers'], function($api) {
-    $api->post('authenticate', 'AuthenticateController@authenticate');
-    $api->post('logout', 'AuthenticateController@logout');
-    $api->get('token', 'AuthenticateController@getToken');
+  $api->get('races', 'RacesController@index');
+  $api->get('races/{id}', 'RacesController@show');
 
-    $api->get('races', 'RacesController@index');
-    $api->get('races/{id}', 'RacesController@show');
+  $api->group(['middleware' => 'api.auth'], function($api) {
+    $api->get('authenticated_user', 'AuthenticateController@autenticatedUser');
+
+    $api->post('races', 'RacesController@store');
+    $api->delete('races/{id}', 'RacesController@destroy');
   });
 });

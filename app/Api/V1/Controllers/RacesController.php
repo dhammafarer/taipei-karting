@@ -30,5 +30,13 @@ class RacesController extends BaseController
     return $this->response->errorNotFound();
   }
 
+  public function store(Requests\StoreRaceRequest $request)
+  {
+    if (Race::Create($request->all())) {
+      return $this->response->created();
+    }
+
+    return $this->response->errorBadRequest();
+  }
 
 }
