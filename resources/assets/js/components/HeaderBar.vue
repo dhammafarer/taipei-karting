@@ -1,0 +1,22 @@
+<template>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="#" v-link="{ name: 'home' }" class="navbar-brand">TIKA</a>
+      </div>
+      <div class="navbar-collapse collapsed">
+        <ul class="nav navbar-nav">
+          <li><a href="#" v-link="{ name: 'home' }">Home</a></li>
+          <li><a href="#" v-link="{ name: 'races.index' }">Races</a></li>
+          <li><a href="#" v-link="{ name: 'drivers' }">Drivers</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</template>
+
+<style>
+  .navbar {
+    margin-bottom: 0;
+  }
+</style>
