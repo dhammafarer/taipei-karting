@@ -15,7 +15,7 @@ class RacesTableSeeder extends Seeder
     {
       Model::unguard();
 
-      DB::table('races')->delete();
+      DB::table('races')->truncate();
 
       $races = array(
         ['name' => 'Cuenca GP', 'description' => 'June Grand Prix', 'venue' => 'zhongli', 'date' => '2016-06-19', 'time' => '12:00'],
@@ -24,7 +24,6 @@ class RacesTableSeeder extends Seeder
         ['name' => 'Soviet GP', 'description' => 'March Grand Prix', 'venue' => 'zhongli', 'date' => '2016-02-15', 'time' => '10:00']
       );
 
-      // Loop through fruits above and create the record in DB
       foreach ($races as $race) {
         Race::create($race);
       }

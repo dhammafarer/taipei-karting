@@ -14,14 +14,14 @@ class RacesController extends BaseController
 {
   public function index()
   {
-    $races = Race::all();
+    $races = Race::with('records.driver')->orderBy('id', 'desc')->take(10)->get();
 
     return $this->collection($races, new RacesTransformer);
   }
 
   public function show($id)
   {
-    $race = Race::where('id', $id)->first();
+    $race = Race::with('records.driver')->where('id', $id)->first();
 
     if ($race) {
       return $this->item($race, new RacesTransformer);

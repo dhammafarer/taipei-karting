@@ -19160,16 +19160,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var fetchAllRaces = exports.fetchAllRaces = function fetchAllRaces(_ref) {
   var dispatch = _ref.dispatch;
 
-  return _race2.default.fetchAll().then(function (races) {
-    return dispatch(types.RECEIVE_RACES, races);
+  return _race2.default.fetchAll().then(function (response) {
+    return dispatch(types.RECEIVE_RACES, response.data);
   });
 };
 
 var fetchCurrentRace = exports.fetchCurrentRace = function fetchCurrentRace(_ref2, id) {
   var dispatch = _ref2.dispatch;
 
-  return _race2.default.fetch(id).then(function (race) {
-    return dispatch(types.SET_CURRENT_RACE, race);
+  return _race2.default.fetch(id).then(function (response) {
+    return dispatch(types.SET_CURRENT_RACE, response.data);
   });
 };
 
