@@ -69,7 +69,7 @@ class RacesTest extends TestCase
     $race = ['name' => 'TestRace', 'description' => 'Just Testing', 'date' => '1989-02-19'];
 
     $this->post('/api/races', $race, $this->headers($user))
-      ->seeStatusCode(201);
+      ->seeStatusCode(200);
   }
 
   /**

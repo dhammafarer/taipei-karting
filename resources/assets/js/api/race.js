@@ -11,13 +11,13 @@ export default {
       .then(response => response.json(), console.log)
   },
 
-  create (data) {
-    return Vue.http.post('races', data)
+  create (race) {
+    return Vue.http.post('races', race)
       .then(response => response.json(), console.log)
   },
 
-  update (id, data) {
-    return Vue.http.post('races/' + id, data)
+  update (id, race) {
+    return Vue.http.post('races/' + id, race)
       .then(response => response.json(), console.log)
   },
 

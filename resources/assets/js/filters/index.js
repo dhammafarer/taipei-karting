@@ -85,7 +85,7 @@ export function raceTwoPosition (a, b) {
 
 export function gridReady (race) {
   let raceGroup = race + 'Group'
-  return this.race.records.some((r) => {
+  return this.race.records.data.some((r) => {
     if (r[raceGroup]) {
       return true
     }
@@ -94,7 +94,7 @@ export function gridReady (race) {
 }
 
 export function raceComplete (race, group) {
-  return this.race.records.filter((r) => {
+  return this.race.records.data.filter((r) => {
     return r[race + 'Group'] === group
   }).some((r) => {
     return r[race] > 0

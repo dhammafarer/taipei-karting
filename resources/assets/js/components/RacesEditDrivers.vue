@@ -72,10 +72,10 @@
       }
     },
     created () {
-      this.originalIds = this.race.records.map(record => parseInt(record['driver_id']))
+      this.originalIds = this.race.records.data.map(record => record['driver_id'])
       this.selectedIds = this.originalIds.slice()
 
-      driver.fetchAll().then(drivers => this.$set('drivers', drivers) )
+      driver.fetchAll().then(response => this.$set('drivers', response.data) )
     }
   }
 </script>

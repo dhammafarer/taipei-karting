@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h3>Qualifiers: Round {{ round | capitalize }}</h3>
-    <p v-if="!race.records.length">No drivers selected</p>
+    <p v-if="!race.records.data.length">No drivers selected</p>
     <div v-else>
       <div class="row">
         <div class="col-sm-3">
@@ -11,9 +11,9 @@
           <p><strong>Fastest Lap</strong></p>
         </div>
       </div>
-      <div class="row" v-for="record in race.records">
+      <div class="row" v-for="record in race.records.data">
         <div class="col-sm-3">
-          <p>{{ record.driver.name }}</p>
+          <p>{{ record.driver.data.name }}</p>
         </div>
         <div class="col-sm-3">
           <div class="form-group">

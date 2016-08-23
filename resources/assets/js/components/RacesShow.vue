@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <section class="Races-show__banner">
+  <div v-if="$loadingRouteData">Loading...</div>
+  <div v-else class="container">
+    <section  class="Races-show__banner">
       <h3>
         {{ race.name }}
         <span class="label label-default" v-if="$route.name === 'races.edit'">Editor</span>
@@ -55,8 +56,8 @@
       }
     },
     route: {
-      data ({ to }) {
-        this.fetchCurrentRace(to.params.id)
+      data (transition) {
+        this.fetchCurrentRace(transition.to.params.id).then(transition.next)
       }
     }
   }

@@ -4,10 +4,10 @@
       <strong>Qualifiers</strong>
     </div>
     <ul class="list-group">
-      <li href="#" v-for="record in race.records | orderBy qualTime" class="list-group-item">
+      <li href="#" v-for="record in race.records.data | orderBy qualTime" class="list-group-item">
         <div class="row">
           <div class="col-sm-4">
-            {{ record.driver.name }}
+            {{ record.driver.data.name }}
           </div>
           <div class="col-sm-4">
             <span class="label"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!race.records.length">Race data is not available.</div>
+    <div v-if="!race.records.data.length">Race data is not available.</div>
 
     <div v-else>
       <div class="row">

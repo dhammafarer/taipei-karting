@@ -3,11 +3,11 @@
     <h4><span class="label label-default">Group {{ showGroup }}</span></h4>
     <div class="grid__positions">
       <div class="grid__position"
-        v-for="record in race.records | filterBy showGroup in raceGroup | orderBy byRace"
+        v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace"
         >
         <div>
           <p>{{ record.driver.name }}</p>
-          <img class="img img-circle" :src="record.driver.photo | driverPhoto">
+          <img class="img img-circle" :src="record.driver.data.photo | driverPhoto">
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
       byQualTime,
       byQualTimeReverse,
       byGroup (group) {
-        return this.race.records.some((r) => {
+        return this.race.records.data.some((r) => {
           return r[this.raceGroup] === group
         })
       }
