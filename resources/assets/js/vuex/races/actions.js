@@ -6,18 +6,20 @@ export const fetchAllRaces = ({ dispatch }) => {
     .then(response => dispatch(types.RECEIVE_RACES, response.data))
 }
 
+// used to fetch a single race directly from the database
 export const fetchCurrentRace = ({ dispatch }, id) => {
   return race.fetch(id)
     .then(response => dispatch(types.SET_CURRENT_RACE, response.data))
 }
 
-export const updateCurrentRaceId = ({ dispatch }, id) => {
-  dispatch(types.SET_CURRENT_RACE_ID, id)
-}
-
 export const createRace = ({ dispatch }, formData) => {
   return race.create(formData)
-    .then(race => dispatch(types.PREPEND_RACE, race))
+    .catch(console.log('error'))
+    .then(response => dispatch(types.ADD_RACE, response.data))
+}
+
+export const updateCurrentRaceId = ({ dispatch }, id) => {
+  dispatch(types.SET_CURRENT_RACE_ID, id)
 }
 
 export const setEditorView = ({ dispatch }, view) => {
@@ -26,7 +28,7 @@ export const setEditorView = ({ dispatch }, view) => {
 
 export const updateRace = ({ dispatch }, id, formData) => {
   return race.update(id, formData)
-    .then(race => dispatch(types.SET_CURRENT_RACE, race))
+    .then(response => dispatch(types.REPLACE_RACE, response.data))
 }
 
 export const updateRaceDrivers = ({ dispatch }, id, addedIds, removedIds) => {

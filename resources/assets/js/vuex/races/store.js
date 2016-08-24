@@ -1,6 +1,8 @@
+import R from 'ramda'
 import {
   RECEIVE_RACES,
-  PREPEND_RACE,
+  ADD_RACE,
+  REPLACE_RACE,
   SET_CURRENT_RACE,
   SET_CURRENT_RACE_ID,
   CLEAR_CURRENT_RACE,
@@ -18,14 +20,18 @@ const mutations = {
   [RECEIVE_RACES] (state, races) {
     state.all = races
   },
-  [PREPEND_RACE] (state, race) {
-    state.all.unshift(race)
+  [ADD_RACE] (state, race) {
+    state.all.push(race)
+  },
+  [REPLACE_RACE] (state, race) {
+    state.all[R.findIndex(R.propEq('id', race.id), state.all)] = race
   },
   [SET_CURRENT_RACE] (state, race) {
     state.current = race
   },
   [SET_CURRENT_RACE_ID] (state, id) {
-    state.currentId = id
+    state.currentId = null
+    state.currentId = parseInt(id)
   },
   [CLEAR_CURRENT_RACE] (state) {
     state.current = { records: [] }

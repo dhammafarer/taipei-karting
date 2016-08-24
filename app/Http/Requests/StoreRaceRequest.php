@@ -25,8 +25,7 @@ class StoreRaceRequest extends Request
     {
         return [
           'name' => 'required',
-          'description' => 'required',
-          'date' => 'required'
+          'description' => 'required'
         ];
     }
 }

@@ -27,7 +27,6 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
   //Races Routes
   $api->get('races', 'RacesController@index');
   $api->get('races/{id}', 'RacesController@show');
-  $api->post('races', 'RacesController@store');
   $api->patch('races/{id}', 'RacesController@update');
   $api->delete('races/{id}', 'RacesController@destroy');
   $api->post('races/{id}/update_drivers', 'RacesController@updateDrivers');
@@ -39,5 +38,6 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
   //Restricted routes
   $api->group(['middleware' => 'api.auth'], function($api) {
     $api->get('authenticated_user', 'AuthenticateController@autenticatedUser');
+    $api->post('races', 'RacesController@store');
   });
 });

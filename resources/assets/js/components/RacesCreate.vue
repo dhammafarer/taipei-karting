@@ -163,7 +163,6 @@
 
         this.createRace(formData)
           .then(() => this.$router.go({ name: 'races.index' }))
-        // this.$router.go({ name: 'races.index'})
       },
       cancel () {
         this.$router.go({ name: 'races.index' })
