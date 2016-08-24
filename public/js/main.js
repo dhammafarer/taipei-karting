@@ -28179,8 +28179,11 @@ var setEditorView = exports.setEditorView = function setEditorView(_ref5, view) 
 var updateRace = exports.updateRace = function updateRace(_ref6, id, formData) {
   var dispatch = _ref6.dispatch;
 
-  return _race2.default.update(id, formData).then(function (response) {
-    return dispatch(types.REPLACE_RACE, response.data);
+  return _race2.default.update(id, formData).catch(function (err) {
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
+  }).then(function (response) {
+    dispatch(types.REPLACE_RACE, response.data);
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Race data updated!', type: 'success' });
   });
 };
 

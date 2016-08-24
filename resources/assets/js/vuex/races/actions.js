@@ -32,7 +32,12 @@ export const setEditorView = ({ dispatch }, view) => {
 
 export const updateRace = ({ dispatch }, id, formData) => {
   return race.update(id, formData)
-    .then(response => dispatch(types.REPLACE_RACE, response.data))
+    .catch(err => dispatch(types.ADD_NOTIFICATION, {title: 'Error!', body: 'Something went wrong!', type: 'danger'})
+    )
+    .then(response => {
+      dispatch(types.REPLACE_RACE, response.data)
+      dispatch(types.ADD_NOTIFICATION, {title: 'Success!', body: 'Race data updated!', type: 'success'})
+    })
 }
 
 export const updateRaceDrivers = ({ dispatch }, id, addedIds, removedIds) => {
