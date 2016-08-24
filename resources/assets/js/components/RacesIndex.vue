@@ -27,22 +27,13 @@
 </template>
 
 <script>
-  import { fetchAllRaces } from '../vuex/races/actions'
   import { getAllRaces } from '../vuex/races/getters'
 
   export default {
     name: 'racesIndex',
     vuex: {
-      actions: {
-        fetchAllRaces
-      },
       getters: {
         races: getAllRaces
-      }
-    },
-    route: {
-      data () {
-        this.fetchAllRaces()
       }
     }
   }

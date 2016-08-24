@@ -32,7 +32,7 @@
 <script>
   import RacesEditDropdown from './RacesEditDropdown.vue'
   import RaceOverview from './RaceOverview.vue'
-  import { setEditorView, fetchCurrentRace } from '../vuex/races/actions'
+  import { setEditorView, fetchCurrentRace, updateCurrentRaceId } from '../vuex/races/actions'
   import { getCurrentRace } from '../vuex/races/getters'
 
   export default {
@@ -44,6 +44,7 @@
     vuex: {
       actions: {
         fetchCurrentRace,
+        updateCurrentRaceId,
         setEditorView
       },
       getters:{
@@ -57,7 +58,9 @@
     },
     route: {
       data (transition) {
-        this.fetchCurrentRace(transition.to.params.id).then(transition.next)
+        //this.fetchCurrentRace(transition.to.params.id).then(transition.next)
+        this.updateCurrentRaceId(transition.to.params.id)
+        transition.next()
       }
     }
   }

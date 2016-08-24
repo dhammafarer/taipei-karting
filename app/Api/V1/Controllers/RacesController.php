@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Controllers;
 
+use DB;
 use App\Race;
 use App\Record;
 use App\Http\Requests;
@@ -15,9 +16,9 @@ class RacesController extends BaseController
 {
   public function index()
   {
-    $races = Race::paginate(8);
+    $races = Race::all();
 
-    return $this->paginator($races, new RacesTransformer);
+    return $this->collection($races, new RacesTransformer);
   }
 
   public function show($id)

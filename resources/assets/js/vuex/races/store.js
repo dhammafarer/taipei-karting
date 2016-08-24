@@ -2,6 +2,7 @@ import {
   RECEIVE_RACES,
   PREPEND_RACE,
   SET_CURRENT_RACE,
+  SET_CURRENT_RACE_ID,
   CLEAR_CURRENT_RACE,
   SET_EDITOR_VIEW
 } from '../mutation-types'
@@ -9,6 +10,7 @@ import {
 const state = {
   all: [],
   current: { records: [] },
+  currentId: null,
   editorView: null
 }
 
@@ -21,6 +23,9 @@ const mutations = {
   },
   [SET_CURRENT_RACE] (state, race) {
     state.current = race
+  },
+  [SET_CURRENT_RACE_ID] (state, id) {
+    state.currentId = id
   },
   [CLEAR_CURRENT_RACE] (state) {
     state.current = { records: [] }

@@ -11,6 +11,10 @@ export const fetchCurrentRace = ({ dispatch }, id) => {
     .then(response => dispatch(types.SET_CURRENT_RACE, response.data))
 }
 
+export const updateCurrentRaceId = ({ dispatch }, id) => {
+  dispatch(types.SET_CURRENT_RACE_ID, id)
+}
+
 export const createRace = ({ dispatch }, formData) => {
   return race.create(formData)
     .then(race => dispatch(types.PREPEND_RACE, race))

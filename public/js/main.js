@@ -17955,16 +17955,36 @@ var _HeaderBar = require('./HeaderBar.vue');
 
 var _HeaderBar2 = _interopRequireDefault(_HeaderBar);
 
+var _actions = require('../vuex/races/actions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   store: _store2.default,
   components: {
     HeaderBar: _HeaderBar2.default
+  },
+  vuex: {
+    actions: {
+      fetchAllRaces: _actions.fetchAllRaces
+    }
+  },
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.loading = true;
+    this.fetchAllRaces().then(function () {
+      return _this.loading = false;
+    });
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <main>\n    <router-view></router-view>\n  </main>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <div v-if=\"loading\">Loading</div>\n  <main v-else=\"\">\n    <router-view></router-view>\n  </main>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -17979,7 +17999,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":38,"./HeaderBar.vue":16,"vue":9,"vue-hot-reload-api":5,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
+},{"../vuex/races/actions":35,"../vuex/store":38,"./HeaderBar.vue":16,"vue":9,"vue-hot-reload-api":5,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nDriversIndex\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -18785,23 +18805,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = require('../vuex/races/actions');
-
 var _getters = require('../vuex/races/getters');
 
 exports.default = {
   name: 'racesIndex',
   vuex: {
-    actions: {
-      fetchAllRaces: _actions.fetchAllRaces
-    },
     getters: {
       races: _getters.getAllRaces
-    }
-  },
-  route: {
-    data: function data() {
-      this.fetchAllRaces();
     }
   }
 };
@@ -18821,7 +18831,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-416fdc60", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":35,"../vuex/races/getters":36,"vue":9,"vue-hot-reload-api":5,"vueify/lib/insert-css":10}],30:[function(require,module,exports){
+},{"../vuex/races/getters":36,"vue":9,"vue-hot-reload-api":5,"vueify/lib/insert-css":10}],30:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
@@ -18853,6 +18863,7 @@ exports.default = {
   vuex: {
     actions: {
       fetchCurrentRace: _actions.fetchCurrentRace,
+      updateCurrentRaceId: _actions.updateCurrentRaceId,
       setEditorView: _actions.setEditorView
     },
     getters: {
@@ -18866,7 +18877,9 @@ exports.default = {
   },
   route: {
     data: function data(transition) {
-      this.fetchCurrentRace(transition.to.params.id).then(transition.next);
+      //this.fetchCurrentRace(transition.to.params.id).then(transition.next)
+      this.updateCurrentRaceId(transition.to.params.id);
+      transition.next();
     }
   }
 };
@@ -19132,6 +19145,7 @@ Object.defineProperty(exports, "__esModule", {
 var RECEIVE_RACES = exports.RECEIVE_RACES = 'RECEIVE_RACES';
 var PREPEND_RACE = exports.PREPEND_RACE = 'PREPEND_RACE';
 var SET_CURRENT_RACE = exports.SET_CURRENT_RACE = 'SET_CURRENT_RACE';
+var SET_CURRENT_RACE_ID = exports.SET_CURRENT_RACE_ID = 'SET_CURRENT_RACE_ID';
 var CLEAR_CURRENT_RACE = exports.CLEAR_CURRENT_RACE = 'CLEAR_CURRENT_RACE';
 var SET_EDITOR_VIEW = exports.SET_EDITOR_VIEW = 'SET_EDITOR_VIEW';
 
@@ -19141,7 +19155,7 @@ var SET_EDITOR_VIEW = exports.SET_EDITOR_VIEW = 'SET_EDITOR_VIEW';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateRaceRecords = exports.updateRaceDrivers = exports.updateRace = exports.setEditorView = exports.createRace = exports.fetchCurrentRace = exports.fetchAllRaces = undefined;
+exports.updateRaceRecords = exports.updateRaceDrivers = exports.updateRace = exports.setEditorView = exports.createRace = exports.updateCurrentRaceId = exports.fetchCurrentRace = exports.fetchAllRaces = undefined;
 
 var _race = require('../../api/race');
 
@@ -19171,38 +19185,44 @@ var fetchCurrentRace = exports.fetchCurrentRace = function fetchCurrentRace(_ref
   });
 };
 
-var createRace = exports.createRace = function createRace(_ref3, formData) {
+var updateCurrentRaceId = exports.updateCurrentRaceId = function updateCurrentRaceId(_ref3, id) {
   var dispatch = _ref3.dispatch;
+
+  dispatch(types.SET_CURRENT_RACE_ID, id);
+};
+
+var createRace = exports.createRace = function createRace(_ref4, formData) {
+  var dispatch = _ref4.dispatch;
 
   return _race2.default.create(formData).then(function (race) {
     return dispatch(types.PREPEND_RACE, race);
   });
 };
 
-var setEditorView = exports.setEditorView = function setEditorView(_ref4, view) {
-  var dispatch = _ref4.dispatch;
+var setEditorView = exports.setEditorView = function setEditorView(_ref5, view) {
+  var dispatch = _ref5.dispatch;
 
   dispatch(types.SET_EDITOR_VIEW, view);
 };
 
-var updateRace = exports.updateRace = function updateRace(_ref5, id, formData) {
-  var dispatch = _ref5.dispatch;
+var updateRace = exports.updateRace = function updateRace(_ref6, id, formData) {
+  var dispatch = _ref6.dispatch;
 
   return _race2.default.update(id, formData).then(function (race) {
     return dispatch(types.SET_CURRENT_RACE, race);
   });
 };
 
-var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_ref6, id, addedIds, removedIds) {
-  var dispatch = _ref6.dispatch;
+var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_ref7, id, addedIds, removedIds) {
+  var dispatch = _ref7.dispatch;
 
   return _race2.default.updateDrivers(id, addedIds, removedIds).then(function (race) {
     return dispatch(types.SET_CURRENT_RACE, race);
   });
 };
 
-var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_ref7, id, data) {
-  var dispatch = _ref7.dispatch;
+var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_ref8, id, data) {
+  var dispatch = _ref8.dispatch;
 
   return _race2.default.updateRecords(id, data).then(function (race) {
     return dispatch(types.SET_CURRENT_RACE, race);
@@ -19223,7 +19243,10 @@ function getAllRaces(state) {
 }
 
 function getCurrentRace(state) {
-  return state.races.current;
+  //return state.races.current
+  return state.races.all.filter(function (race) {
+    return race.id == state.races.currentId;
+  })[0];
 }
 
 function getEditorView(state) {
@@ -19246,6 +19269,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var state = {
   all: [],
   current: { records: [] },
+  currentId: null,
   editorView: null
 };
 
@@ -19255,6 +19279,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.REC
   state.all.unshift(race);
 }), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_RACE, function (state, race) {
   state.current = race;
+}), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_RACE_ID, function (state, id) {
+  state.currentId = id;
 }), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_RACE, function (state) {
   state.current = { records: [] };
 }), _defineProperty(_mutations, _mutationTypes.SET_EDITOR_VIEW, function (state, view) {
