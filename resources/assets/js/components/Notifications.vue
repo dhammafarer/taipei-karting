@@ -1,24 +1,27 @@
 <template>
   <div class="Notifications">
-    <div class="Notification" v-for="notification in notifications">
-      <span class="pull-right" @click="closeNotification(notification)">&times</span>
-      <h3>{{ notification.title }}</h3>
-      <p>{{ notification.body }}</p>
-    </div>
+
+    <notification-card
+      v-for="notification in notifications"
+      transition="slideIn"
+      :notification="notification"
+    >
+    </notification-card>
+
   </div>
 </template>
 
 <script>
+  import NotificationCard from './NotificationCard.vue'
   import { getAllNotifications } from '../vuex/notifications/getters'
-  import { closeNotification } from '../vuex/notifications/actions'
 
   export default {
+    components: {
+      NotificationCard
+    },
     vuex: {
       getters: {
         notifications: getAllNotifications
-      },
-      actions: {
-        closeNotification
       }
     }
   }
@@ -32,14 +35,24 @@
     right: 40px;
   }
 
-  .Notification {
-    padding: 0 10px 10px 10px;
-    margin-bottom: 10px;
-    background-color: darkgrey;
-    opacity: .8;
-    color: white;
-    border: 2px solid grey;
-    border-radius: 4px;
-    min-width: 250px;
+
+  .fade-transition {
+    opacity: 1;
+    trantision: opacity .3s ease;
+  }
+
+  .fade-enter, .fade-leave {
+    opacity: 0;
+  }
+
+  .slideIn-transition {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .3s ease;
+  }
+
+  .slideIn-enter, .slideIn-leave {
+    opacity: 0;
+    transform: translateX(500px);
   }
 </style>

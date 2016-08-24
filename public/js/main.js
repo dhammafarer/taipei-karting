@@ -26790,7 +26790,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"../vuex/store":43,"./HeaderBar.vue":17,"./Notifications.vue":19,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],16:[function(require,module,exports){
+},{"../vuex/races/actions":41,"../vuex/store":44,"./HeaderBar.vue":17,"./Notifications.vue":20,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],16:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nDriversIndex\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -26834,35 +26834,83 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":10,"vue-hot-reload-api":6}],19:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n.Notification {\n  padding: 0 10px 10px 10px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getters = require('../vuex/notifications/getters');
-
 var _actions = require('../vuex/notifications/actions');
 
 exports.default = {
   vuex: {
-    getters: {
-      notifications: _getters.getAllNotifications
-    },
     actions: {
       closeNotification: _actions.closeNotification
+    }
+  },
+  props: ['notification'],
+  ready: function ready() {
+    var _this = this;
+
+    if (this.notification.type === 'success') {
+      setTimeout(function () {
+        return _this.closeNotification(_this.notification);
+      }, 3000);
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notifications\">\n  <div class=\"Notification\" v-for=\"notification in notifications\">\n    <span class=\"pull-right\" @click=\"closeNotification(notification)\">×</span>\n    <h3>{{ notification.title }}</h3>\n    <p>{{ notification.body }}</p>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notification\">\n  <button class=\"pull-right\" @click=\"closeNotification(notification)\">×</button>\n  <p><strong>{{ notification.title }}</strong><br>\n  {{ notification.body }}</p>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n.Notification {\n  padding: 0 10px 10px 10px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n"] = false
+    __vueify_insert__.cache["\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-e123528a", module.exports)
+  } else {
+    hotAPI.update("_v-e123528a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../vuex/notifications/actions":38,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],20:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _NotificationCard = require('./NotificationCard.vue');
+
+var _NotificationCard2 = _interopRequireDefault(_NotificationCard);
+
+var _getters = require('../vuex/notifications/getters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    NotificationCard: _NotificationCard2.default
+  },
+  vuex: {
+    getters: {
+      notifications: _getters.getAllNotifications
+    }
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notifications\">\n\n  <notification-card v-for=\"notification in notifications\" transition=\"slideIn\" :notification=\"notification\">\n  </notification-card>\n\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -26871,7 +26919,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-b1145d10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/actions":37,"../vuex/notifications/getters":38,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],20:[function(require,module,exports){
+},{"../vuex/notifications/getters":39,"./NotificationCard.vue":19,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26904,7 +26952,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e2fa28e8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":33,"../vuex/races/getters":41,"vue":10,"vue-hot-reload-api":6}],21:[function(require,module,exports){
+},{"../filters":34,"../vuex/races/getters":42,"vue":10,"vue-hot-reload-api":6}],22:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.grid {\n  width: 90%;\n  margin: auto;\n  margin-bottom: 60px;\n}\n.grid__positions {\n  counter-reset: position;\n}\n.grid__position::before {\n  counter-increment: position;\n  content: counter(position);\n  background-color: grey;\n  color: white;\n  text-align: center;\n  padding: 0 5px;\n  position:absolute;\n  left: 0%;\n}\n.grid__position {\n  width: 40%;\n  height: 1.3em;\n  text-align: center;\n  border-color: grey;\n  border-style: solid;\n  border-width: 1px 1px 0px 0px;\n  position: relative;\n  margin-bottom: 10%;\n}\n.grid__position:first-child {\n  margin-top: 0px;\n}\n.grid__position:nth-child(odd) {\n  margin-left: 50%;\n}\n.grid__position:last-child {\n}\n\n.grid__position div {\n  width: 100%;\n  position: absolute;\n  text-align: center;\n}\n.grid__position img {\n  width: 50%;\n  margin-top: 2%;\n}\n\n.grid__position p {\n  margin: 1px auto;\n}\n")
 'use strict';
@@ -26965,7 +27013,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-9d0b4052", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":33,"../vuex/races/getters":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],22:[function(require,module,exports){
+},{"../filters":34,"../vuex/races/getters":42,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27019,7 +27067,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-17a967ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":33,"../vuex/races/getters":41,"./QualifierResults.vue":20,"./RaceGrid.vue":21,"./RaceResults.vue":23,"vue":10,"vue-hot-reload-api":6}],23:[function(require,module,exports){
+},{"../filters":34,"../vuex/races/getters":42,"./QualifierResults.vue":21,"./RaceGrid.vue":22,"./RaceResults.vue":24,"vue":10,"vue-hot-reload-api":6}],24:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.race__results img[_v-6a950016] {\n  width: 15%;\n}\n")
 'use strict';
@@ -27080,7 +27128,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-6a950016", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":33,"../vuex/races/getters":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],24:[function(require,module,exports){
+},{"../filters":34,"../vuex/races/getters":42,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],25:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Races-create__x {\n  cursor: pointer;\n}\n")
 'use strict';
@@ -27176,7 +27224,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-316e72ee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],25:[function(require,module,exports){
+},{"../vuex/races/actions":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27241,7 +27289,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-8a7ad108", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"../vuex/races/getters":41,"./RacesEditDetails.vue":26,"./RacesEditDrivers.vue":27,"./RacesEditQuals.vue":29,"./RacesEditRaces.vue":30,"vue":10,"vue-hot-reload-api":6}],26:[function(require,module,exports){
+},{"../vuex/races/actions":41,"../vuex/races/getters":42,"./RacesEditDetails.vue":27,"./RacesEditDrivers.vue":28,"./RacesEditQuals.vue":30,"./RacesEditRaces.vue":31,"vue":10,"vue-hot-reload-api":6}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27347,7 +27395,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0cac2354", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"../vuex/races/getters":41,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6}],27:[function(require,module,exports){
+},{"../vuex/races/actions":41,"../vuex/races/getters":42,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6}],28:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Driver {\n  cursor: pointer;\n}\n\n.Driver-photo {\n  opacity: .3;\n  width: 100%;\n  height: 100%;\n}\n\n.Driver-photo--selected {\n  opacity: 1;\n  border: 4px solid green;\n}\n")
 'use strict';
@@ -27442,7 +27490,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-82de8642", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver":13,"../vuex/races/actions":40,"../vuex/races/getters":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],28:[function(require,module,exports){
+},{"../api/driver":13,"../vuex/races/actions":41,"../vuex/races/getters":42,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],29:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.dropdown-container {\n  position: relative;\n}\n\n.dropdown {\n  margin-top: 5px;\n  position: absolute;\n  right: 0;\n  width: 200px;\n  z-index: 10;\n}\n")
 'use strict';
@@ -27500,7 +27548,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-57499b2d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],29:[function(require,module,exports){
+},{"../vuex/races/actions":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],30:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
@@ -27561,7 +27609,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-089179d0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"../vuex/races/getters":41,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],30:[function(require,module,exports){
+},{"../vuex/races/actions":41,"../vuex/races/getters":42,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],31:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.race__results {\n  counter-reset: position;\n}\n.driver__name::before {\n  counter-increment: position;\n  content: counter(position);\n  margin-right: 5px;\n  text-align: center;\n  color: white;\n  background-color: grey;\n  padding: 2px 6px;\n  border-radius: 2px;\n}\n\ninput{\n  background: #fff no-repeat 13px 13px;\n  border: none;\n  width: 100%;\n  line-height: 19px;\n  padding: 2px 0;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px #c4c4c4 inset;\n  text-align: center;\n  font-size: 14px;\n  color: #738289;\n  font-weight: bold;\n  outline: none;\n}\n")
 'use strict';
@@ -27625,7 +27673,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-5f828a54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":33,"../vuex/races/actions":40,"../vuex/races/getters":41,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],31:[function(require,module,exports){
+},{"../filters":34,"../vuex/races/actions":41,"../vuex/races/getters":42,"babel-runtime/core-js/json/stringify":1,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],32:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 6, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 11, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 15, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n")
 'use strict';
@@ -27660,7 +27708,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-416fdc60", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/getters":41,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],32:[function(require,module,exports){
+},{"../vuex/races/getters":42,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],33:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
@@ -27729,7 +27777,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":40,"../vuex/races/getters":41,"./RaceOverview.vue":22,"./RacesEditDropdown.vue":28,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],33:[function(require,module,exports){
+},{"../vuex/races/actions":41,"../vuex/races/getters":42,"./RaceOverview.vue":23,"./RacesEditDropdown.vue":29,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27847,7 +27895,7 @@ function raceComplete(race, group) {
   });
 }
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -27883,7 +27931,7 @@ _vue2.default.filter('racePhoto', _filters.racePhoto);
 _vue2.default.filter('driverPhoto', _filters.driverPhoto);
 _vue2.default.filter('raceRecord', _filters.raceRecord);
 
-},{"./components/App.vue":15,"./filters":33,"./router":35,"./vuex/store":43,"vue":10,"vue-resource":7}],35:[function(require,module,exports){
+},{"./components/App.vue":15,"./filters":34,"./router":36,"./vuex/store":44,"vue":10,"vue-resource":7}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27966,7 +28014,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/DriversIndex.vue":16,"./components/HomePage.vue":18,"./components/RacesCreate.vue":24,"./components/RacesEdit.vue":25,"./components/RacesIndex.vue":31,"./components/RacesShow.vue":32,"vue":10,"vue-router":8,"vue-validator":9}],36:[function(require,module,exports){
+},{"./components/DriversIndex.vue":16,"./components/HomePage.vue":18,"./components/RacesCreate.vue":25,"./components/RacesEdit.vue":26,"./components/RacesIndex.vue":32,"./components/RacesShow.vue":33,"vue":10,"vue-router":8,"vue-validator":9}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27983,7 +28031,7 @@ var SET_EDITOR_VIEW = exports.SET_EDITOR_VIEW = 'SET_EDITOR_VIEW';
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28009,7 +28057,7 @@ var closeNotification = exports.closeNotification = function closeNotification(_
     dispatch(types.REMOVE_NOTIFICATION, notification);
 };
 
-},{"../mutation-types":36}],38:[function(require,module,exports){
+},{"../mutation-types":37}],39:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28027,7 +28075,7 @@ function getAllNotifications(state) {
   return state.notifications.all;
 }
 
-},{"ramda":5}],39:[function(require,module,exports){
+},{"ramda":5}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28061,7 +28109,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":36,"ramda":5}],40:[function(require,module,exports){
+},{"../mutation-types":37,"ramda":5}],41:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28102,10 +28150,10 @@ var createRace = exports.createRace = function createRace(_ref3, formData) {
   var dispatch = _ref3.dispatch;
 
   return _race2.default.create(formData).catch(function (err) {
-    return dispatch(types.ADD_NOTIFICATION, { title: 'Fail!', body: 'No new race, bud' });
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Fail!', body: 'No new race, bud', type: 'danger' });
   }).then(function (response) {
     dispatch(types.ADD_RACE, response.data);
-    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'New race created!' });
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'New race created!', type: 'success' });
   });
 };
 
@@ -28145,7 +28193,7 @@ var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_
   });
 };
 
-},{"../../api/race":14,"../mutation-types":36}],41:[function(require,module,exports){
+},{"../../api/race":14,"../mutation-types":37}],42:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28174,7 +28222,7 @@ function getEditorView(state) {
   return state.races.editorView;
 }
 
-},{"ramda":5}],42:[function(require,module,exports){
+},{"ramda":5}],43:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28222,7 +28270,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":36,"ramda":5}],43:[function(require,module,exports){
+},{"../mutation-types":37,"ramda":5}],44:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28257,6 +28305,6 @@ exports.default = new _vuex2.default.Store({
   }
 });
 
-},{"./notifications/store":39,"./races/store":42,"vue":10,"vuex":12}]},{},[34]);
+},{"./notifications/store":40,"./races/store":43,"vue":10,"vuex":12}]},{},[35]);
 
 //# sourceMappingURL=main.js.map
