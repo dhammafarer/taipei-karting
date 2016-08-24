@@ -26747,6 +26747,8 @@ var _Notifications2 = _interopRequireDefault(_Notifications);
 
 var _actions = require('../vuex/races/actions');
 
+var _actions2 = require('../vuex/notifications/actions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -26757,7 +26759,9 @@ exports.default = {
   },
   vuex: {
     actions: {
-      fetchAllRaces: _actions.fetchAllRaces
+      fetchAllRaces: _actions.fetchAllRaces,
+      addNotification: _actions2.addNotification,
+      closeNotification: _actions2.closeNotification
     }
   },
   data: function data() {
@@ -26768,14 +26772,17 @@ exports.default = {
   created: function created() {
     var _this = this;
 
+    var notification = { title: 'Loading', body: '', type: 'loading' };
+    this.addNotification(notification);
     this.loading = true;
     this.fetchAllRaces().then(function () {
-      return _this.loading = false;
+      _this.closeNotification(notification);
+      _this.loading = false;
     });
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <notifications></notifications>\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <div v-if=\"loading\">Loading</div>\n  <main v-else=\"\">\n    <router-view></router-view>\n  </main>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <notifications></notifications>\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <main v-if=\"!loading\">\n    <router-view></router-view>\n  </main>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -26790,7 +26797,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":41,"../vuex/store":44,"./HeaderBar.vue":17,"./Notifications.vue":20,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],16:[function(require,module,exports){
+},{"../vuex/notifications/actions":38,"../vuex/races/actions":41,"../vuex/store":44,"./HeaderBar.vue":17,"./Notifications.vue":20,"vue":10,"vue-hot-reload-api":6,"vueify/lib/insert-css":11}],16:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nDriversIndex\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -26834,7 +26841,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":10,"vue-hot-reload-api":6}],19:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26862,13 +26869,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notification\" :class=\"'Notification--' + notification.type\">\n  <button class=\"pull-right\" @click=\"closeNotification(notification)\">×</button>\n  <p><strong>{{ notification.title }}</strong><br>\n  {{ notification.body }}</p>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<div class=\"Notification\" :class=\"'Notification--' + notification.type\">\n\n  <button class=\"pull-right Notification__close-button\" v-if=\"notification.type === 'danger'\" @click=\"closeNotification(notification)\">\n  <span class=\"glyphicon glyphicon-remove\"></span>\n  </button>\n\n  <strong>{{ notification.title }}</strong> {{ notification.body }}\n\n</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n"] = false
+    __vueify_insert__.cache["\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -28034,9 +28041,9 @@ var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.closeNotification = exports.add = undefined;
+exports.closeNotification = exports.addNotification = undefined;
 
 var _mutationTypes = require('../mutation-types');
 
@@ -28044,16 +28051,17 @@ var types = _interopRequireWildcard(_mutationTypes);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var add = exports.add = function add(_ref, notification) {
-    var dispatch = _ref.dispatch;
+var addNotification = exports.addNotification = function addNotification(_ref, notification) {
+  var dispatch = _ref.dispatch;
 
-    dispatch(types.ADD_NOTIFICATION, notification);
+  console.log('adding notification');
+  dispatch(types.ADD_NOTIFICATION, notification);
 };
 
 var closeNotification = exports.closeNotification = function closeNotification(_ref2, notification) {
-    var dispatch = _ref2.dispatch;
+  var dispatch = _ref2.dispatch;
 
-    dispatch(types.REMOVE_NOTIFICATION, notification);
+  dispatch(types.REMOVE_NOTIFICATION, notification);
 };
 
 },{"../mutation-types":37}],39:[function(require,module,exports){
@@ -28094,7 +28102,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var state = {
-  all: [{ title: 'Hi!', body: 'Application loaded!', type: 'success' }]
+  all: [{ title: 'Fail!', body: 'Just Testing.', type: 'danger' }]
 };
 
 var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.ADD_NOTIFICATION, function (state, notification) {

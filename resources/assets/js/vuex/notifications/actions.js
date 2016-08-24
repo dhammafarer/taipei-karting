@@ -1,6 +1,7 @@
 import * as types from '../mutation-types'
 
-export const add = ({ dispatch }, notification) => {
+export const addNotification = ({ dispatch }, notification) => {
+  console.log('adding notification')
     dispatch(types.ADD_NOTIFICATION, notification)
 }
 

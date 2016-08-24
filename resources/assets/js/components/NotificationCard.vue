@@ -1,9 +1,18 @@
 <template>
+
   <div class="Notification" :class="'Notification--' + notification.type">
-    <button class="pull-right" @click="closeNotification(notification)">&times</button>
-    <p><strong>{{ notification.title }}</strong><br>
-    {{ notification.body }}</p>
+
+    <button class="pull-right Notification__close-button"
+      v-if="notification.type === 'danger'"
+      @click="closeNotification(notification)"
+    >
+    <span class="glyphicon glyphicon-remove"></span>
+    </button>
+
+    <strong>{{ notification.title }}</strong> {{ notification.body }}
+
   </div>
+
 </template>
 
 <script>
@@ -28,7 +37,7 @@
 
 <style>
   .Notification {
-    padding: 5px;
+    padding: 15px;
     margin-bottom: 10px;
     background-color: darkgrey;
     opacity: .8;
@@ -44,5 +53,11 @@
 
   .Notification--danger {
     background-color: rgba(226,112,35,.8);
+  }
+
+  .Notification__close-button {
+    outline: none;
+    background-color: transparent;
+    border: none;
   }
 </style>
