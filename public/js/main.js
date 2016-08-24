@@ -26834,7 +26834,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":10,"vue-hot-reload-api":6}],19:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26850,6 +26850,7 @@ exports.default = {
     }
   },
   props: ['notification'],
+  computed: {},
   ready: function ready() {
     var _this = this;
 
@@ -26861,13 +26862,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notification\">\n  <button class=\"pull-right\" @click=\"closeNotification(notification)\">×</button>\n  <p><strong>{{ notification.title }}</strong><br>\n  {{ notification.body }}</p>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Notification\" :class=\"'Notification--' + notification.type\">\n  <button class=\"pull-right\" @click=\"closeNotification(notification)\">×</button>\n  <p><strong>{{ notification.title }}</strong><br>\n  {{ notification.body }}</p>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 2px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n"] = false
+    __vueify_insert__.cache["\n.Notification {\n  padding: 5px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -27754,8 +27755,6 @@ exports.default = {
   },
   route: {
     data: function data(transition) {
-      //this.fetchCurrentRace(transition.to.params.id).then(transition.next)
-      console.log('setting current id');
       this.updateCurrentRaceId(transition.to.params.id);
       transition.next();
     }
@@ -28214,7 +28213,6 @@ function getAllRaces(state) {
 }
 
 function getCurrentRace(state) {
-  console.log('getting current race');
   return _ramda2.default.find(_ramda2.default.propEq('id', state.races.currentId), state.races.all);
 }
 

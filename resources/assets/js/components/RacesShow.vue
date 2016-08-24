@@ -58,8 +58,6 @@
     },
     route: {
       data (transition) {
-        //this.fetchCurrentRace(transition.to.params.id).then(transition.next)
-        console.log('setting current id')
         this.updateCurrentRaceId(transition.to.params.id)
         transition.next()
       }
