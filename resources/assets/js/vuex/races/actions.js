@@ -14,8 +14,12 @@ export const fetchCurrentRace = ({ dispatch }, id) => {
 
 export const createRace = ({ dispatch }, formData) => {
   return race.create(formData)
-    .catch(console.log('error'))
-    .then(response => dispatch(types.ADD_RACE, response.data))
+    .catch(err => dispatch(types.ADD_NOTIFICATION, {title: 'Fail!', body: 'No new race, bud'})
+    )
+    .then(response => {
+      dispatch(types.ADD_RACE, response.data)
+      dispatch(types.ADD_NOTIFICATION, {title: 'Success!', body: 'New race created!'})
+    })
 }
 
 export const updateCurrentRaceId = ({ dispatch }, id) => {

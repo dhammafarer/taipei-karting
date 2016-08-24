@@ -1,5 +1,6 @@
 <template>
   <div id="root">
+    <notifications></notifications>
     <header>
       <header-bar></header-bar>
     </header>
@@ -13,12 +14,14 @@
 <script>
   import store from '../vuex/store'
   import HeaderBar from './HeaderBar.vue'
+  import Notifications from './Notifications.vue'
   import { fetchAllRaces } from '../vuex/races/actions'
 
   export default {
     store: store,
     components: {
-      HeaderBar
+      HeaderBar,
+      Notifications
     },
     vuex: {
       actions: {

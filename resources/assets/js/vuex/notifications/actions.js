@@ -1,6 +1,9 @@
 import * as types from '../mutation-types'
 
-export const fetchAllRaces = ({ dispatch }) => {
-  return race.fetchAll()
-    .then(response => dispatch(types.RECEIVE_RACES, response.data))
+export const add = ({ dispatch }, notification) => {
+    dispatch(types.ADD_NOTIFICATION, notification)
+}
+
+export const closeNotification = ({ dispatch }, notification) => {
+    dispatch(types.REMOVE_NOTIFICATION, notification)
 }

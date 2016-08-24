@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import races from './races/store'
-import races from './notifications/store'
+import notifications from './notifications/store'
 
 Vue.use(Vuex)
 

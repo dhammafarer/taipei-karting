@@ -1,5 +1,5 @@
 import R from 'ramda'
 
-export function getAllRaces (state) {
-  return state.races.all
+export function getAllNotifications (state) {
+  return state.notifications.all
 }
