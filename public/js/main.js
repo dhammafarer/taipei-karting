@@ -27110,6 +27110,7 @@ exports.default = {
       this.createRace(formData).then(function () {
         return _this.$router.go({ name: 'races.index' });
       });
+      // this.$router.go({ name: 'races.index'})
     },
     cancel: function cancel() {
       this.$router.go({ name: 'races.index' });
