@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueValidator from 'vue-validator'
-import HomePage from './components/HomePage.vue'
-import RacesIndex from './components/RacesIndex.vue'
-import RacesShow from './components/RacesShow.vue'
-import RacesEdit from './components/RacesEdit.vue'
-import RacesCreate from './components/RacesCreate.vue'
-import DriversIndex from './components/DriversIndex.vue'
 
 Vue.use(VueRouter)
 Vue.use(VueValidator)
@@ -16,32 +10,48 @@ const router = new VueRouter()
 router.map({
   '/': {
     name: 'home',
-    component: HomePage
+    component: require('./components/HomePage.vue')
   },
   '/races': {
     name: 'races.index',
-    component: RacesIndex,
+    component: require('./components/RacesIndex.vue'),
     subRoutes: {
       '/create': {
         name: 'races.create',
-        component: RacesCreate
+        component: require('./components/RacesCreate.vue')
       }
     }
   },
   '/race/:id': {
     name: 'races.show',
-    component: RacesShow,
+    component: require('./components/RacesShow.vue'),
     subRoutes: {
       '/edit': {
         name: 'races.edit',
-        component: RacesEdit
+        component: require('./components/RacesEdit.vue')
       }
     }
   },
   '/drivers': {
-    name: 'drivers',
-    component: DriversIndex
-  }
+    name: 'drivers.index',
+    component: require('./components/DriversIndex.vue'),
+    subRoutes: {
+      '/create': {
+        name: 'drivers.create',
+        component: require('./components/DriversCreate.vue')
+      }
+    }
+  },
+  '/driver/:id': {
+    name: 'drivers.show',
+    component: require('./components/DriversShow.vue'),
+    subRoutes: {
+      '/edit': {
+        name: 'drivers.edit',
+        component: require('./components/DriversEdit.vue')
+      }
+    }
+  },
 })
 
 export default router

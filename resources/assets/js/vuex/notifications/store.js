@@ -5,7 +5,7 @@ import {
 } from '../mutation-types'
 
 const state = {
-  all: [{title: 'Fail!', body: 'Just Testing.', type: 'danger'}]
+  all: []
 }
 
 const mutations = {

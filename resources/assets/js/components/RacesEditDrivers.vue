@@ -91,8 +91,8 @@
     height: 100%;
   }
 
-  .Driver-photo--selected {
+  .Driver-photo--selected, .Driver-photo:hover {
     opacity: 1;
-    border: 4px solid green;
+    border: 4px solid darkgrey;
   }
 </style>

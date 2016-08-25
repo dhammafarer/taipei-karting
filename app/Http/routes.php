@@ -34,7 +34,11 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
 
   //Drivers Routes
   $api->get('drivers', 'DriversController@index');
-  //$api->get('races/{id}', 'RacesController@show');
+  $api->get('drivers/{id}', 'DriversController@show');
+  $api->post('drivers', 'DriversController@store');
+  $api->patch('drivers/{id}', 'DriversController@update');
+  $api->delete('drivers/{id}', 'DriversController@destroy');
+  $api->post('drivers/check-name', 'DriversController@checkName');
 
   //Restricted routes
   $api->group(['middleware' => 'api.auth'], function($api) {

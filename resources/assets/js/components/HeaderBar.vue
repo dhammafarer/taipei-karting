@@ -8,7 +8,7 @@
         <ul class="nav navbar-nav">
           <li><a href="#" v-link="{ name: 'home' }">Home</a></li>
           <li><a href="#" v-link="{ name: 'races.index' }">Races</a></li>
-          <li><a href="#" v-link="{ name: 'drivers' }">Drivers</a></li>
+          <li><a href="#" v-link="{ name: 'drivers.index' }">Drivers</a></li>
         </ul>
       </div>
     </div>

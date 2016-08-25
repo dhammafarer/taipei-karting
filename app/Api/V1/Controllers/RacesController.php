@@ -132,4 +132,15 @@ class RacesController extends BaseController
     return response()->json($race);
   }
 
+  public function destroy($id)
+  {
+    try {
+      $driver = Race::find($id);
+      $driver->delete();
+
+      return $this->response->noContent();
+    } catch (\Exception $e) {
+      return $this->response->errorInternal();
+    }
+  }
 }
