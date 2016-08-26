@@ -27875,6 +27875,16 @@ exports.default = {
       return response.json();
     });
   },
+  create: function create(driver) {
+    return _vue2.default.http.post('drivers', driver).then(function (response) {
+      return response.json();
+    });
+  },
+  update: function update(id, driver) {
+    return _vue2.default.http.post('drivers/' + id, driver).then(function (response) {
+      return response.json();
+    });
+  },
   checkName: function checkName(name) {
     return _vue2.default.http.post('drivers/check-name', { name: name });
     console.log('checking name').then(function (response) {
@@ -28082,42 +28092,53 @@ var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var _getters = require('../vuex/drivers/getters');
-
-var _actions = require('../vuex/races/actions');
-
-var _countries = require('../utilities/countries');
-
-var _countries2 = _interopRequireDefault(_countries);
-
 var _ramda = require('ramda');
 
 var _ramda2 = _interopRequireDefault(_ramda);
 
-var _driver = require('../api/driver.js');
+var _driver = require('../api/driver');
 
 var _driver2 = _interopRequireDefault(_driver);
+
+var _getters = require('../vuex/drivers/getters');
+
+var _actions = require('../vuex/drivers/actions');
+
+var _countries = require('../utilities/countries');
+
+var _countries2 = _interopRequireDefault(_countries);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   vuex: {
     actions: {
-      createRace: _actions.createRace
+      createDriver: _actions.createDriver,
+      updateDriver: _actions.updateDriver
     },
     getters: {
-      driver: _getters.getCurrentDriver
+      currentDriver: _getters.getCurrentDriver
     }
   },
   validators: {
     unique: function unique(val) {
-      console.log('checking unique');
       this.vm.checking = true;
       return _driver2.default.checkName(val.trim()).then(this.vm.checking = false).catch(function (json) {
         return _promise2.default.reject(new ValidationError(json.message));
       });
     }
   },
+  props: ['show'],
+  data: function data() {
+    return {
+      driver: {},
+      countries: _countries2.default,
+      checking: false,
+      formAttempted: false,
+      photoError: ''
+    };
+  },
+
   computed: {
     showErrors: function showErrors() {
       return this.formAttempted && this.$validation.invalid ? true : false;
@@ -28126,16 +28147,6 @@ exports.default = {
       return this.$validation.invalid;
     }
   },
-  props: ['driver', 'show'],
-  data: function data() {
-    return {
-      countries: _countries2.default,
-      checking: false,
-      formAttempted: false,
-      photoError: ''
-    };
-  },
-
   methods: {
     validatePhoto: function validatePhoto() {
       var photo = document.getElementById('photo-upload').files[0];
@@ -28166,25 +28177,36 @@ exports.default = {
       var photo = document.getElementById('photo-upload').files[0];
       var formData = new FormData();
 
-      formData.append('name', this.race.name);
-      formData.append('description', this.race.description);
-      formData.append('venue', this.race.venue);
-      formData.append('date', this.race.date);
-      formData.append('time', this.race.time);
+      formData.append('name', this.driver.name.trim());
+      formData.append('country', this.driver.country);
+      formData.append('month', this.driver.month);
       if (this.validatePhoto()) formData.append('photo', photo, photo.name);
 
-      this.createRace(formData).then(function () {
-        return _this.$router.go({ name: 'drivers.index' });
-      });
+      if (this.$route.name === 'drivers.create') {
+        this.createDriver(formData).then(function () {
+          return _this.$router.go({ name: 'drivers.index' });
+        });
+      }
+      if (this.$route.name === 'drivers.show') {
+        // Laravel cannot handle patch request with files
+        formData.append('_method', 'patch');
+
+        this.updateDriver(this.driver.id, formData).then(function () {
+          return _this.show = false;
+        });
+      }
     },
     cancel: function cancel() {
-      if (this.$route.name === 'drivers.show') return this.show = false;
       if (this.$route.name === 'drivers.create') return this.$router.go({ name: 'drivers.index' });
+      if (this.$route.name === 'drivers.show') return this.show = false;
     }
+  },
+  created: function created() {
+    this.driver = _ramda2.default.clone(this.currentDriver);
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<validator name=\"validation\">\n  <div class=\"form-horizontal\">\n\n    <!-- Driver Name -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n      <label for=\"name\" class=\"col-sm-2\">Name</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" class=\"form-control\" placeholder=\"Race name\" v-model=\"driver.name\" v-validate:name=\"{ required: { rule: true }, minlength: { rule: 2 }, maxlength: { rule: 20 }, unique: { rule: true, initial: 'off' } }\">\n        <span v-if=\"checking\" class=\"help-block\">checking...</span>\n        <div v-if=\"showErrors || $validation.name.touched\">\n          <span v-if=\"$validation.name.required\" class=\"help-block\">This field is required</span>\n          <span v-if=\"$validation.name.minlength\" class=\"help-block\">Please enter at least 2 characters</span>\n          <span v-if=\"$validation.name.maxlength\" class=\"help-block\">Please enter at most 20 characters</span>\n          <span v-if=\"$validation.name.unique\" class=\"help-block\">This name is not available</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Country -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.country.invalid &amp;&amp; ($validation.country.touched || showErrors) }\">\n      <label for=\"date\" class=\"col-sm-2\">Country</label>\n      <div class=\"col-sm-6\">\n        <select class=\"form-control\" v-model=\"driver.country\" v-validate:country=\"{ minlength: 1 }\">\n          <option v-if=\"$route.name === 'drivers.create'\" disabled=\"\" selected=\"\" value=\"\">Select Country</option>\n          <option v-for=\"country in countries\" value=\"{{ country.ccode }}\">{{ country.cname }}</option>\n        </select>\n        <div v-if=\"showErrors || $validation.country.touched\">\n          <span v-if=\"$validation.country.minlength\" class=\"help-block\">This field is required</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Country -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n      <label for=\"name\" class=\"col-sm-2\">Birthday Month</label>\n      <div class=\"col-sm-10\">\n        <input type=\"number\" min=\"0\" max=\"12\" class=\"form-control\" placeholder=\"month\" v-model=\"driver.month\" v-validate:month=\"{ required: true, min: 0, max: 12 }\">\n        <div v-if=\"showErrors || $validation.name.touched\">\n          <span v-if=\"$validation.name.min\" class=\"help-block\">Please enter a number between 0 and 12</span>\n          <span v-if=\"$validation.name.max\" class=\"help-block\">Please enter a number between 0 and 12</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Photo -->\n    <div class=\"form-group\" :class=\"{ 'has-error': photoError }\">\n      <label for=\"photo\" class=\"col-sm-2\">Photo</label>\n      <div class=\"col-sm-10\">\n        <button class=\"btn btn-default btn-sm\" @click=\"driver.photo = ''\" v-show=\"driver.photo\">Remove photo</button>\n        <input type=\"file\" class=\"form-control\" id=\"photo-upload\" v-else=\"\" @change=\"validatePhoto\">\n        <span class=\"help-block\">{{ photoError }}</span>\n      </div>\n    </div>\n\n    <!-- Buttons -->\n    <div class=\"col-sm-10 col-sm-offset-2\">\n      <button @click=\"save\" class=\"btn btn-primary\" :class=\"{ 'disabled': $validation.invalid }\">Save</button>\n      <button @click=\"cancel\" class=\"btn btn-default\">Cancel</button>\n    </div>\n\n  </div>\n</validator>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<validator name=\"validation\">\n  <div class=\"form-horizontal\">\n\n    <!-- Driver Name -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n      <label for=\"name\" class=\"col-sm-2\">Name</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" class=\"form-control\" placeholder=\"Driver name\" v-model=\"driver.name\" v-validate:name=\"{\n            required: { rule: true },\n            pattern: { rule: '/\\\\w{2,}/' },\n            maxlength: { rule: 20 },\n            unique: { rule: true, initial: 'off' }\n          }\">\n        <span v-if=\"checking\" class=\"help-block\">checking...</span>\n        <div v-if=\"showErrors || $validation.name.touched\">\n          <span v-if=\"$validation.name.required\" class=\"help-block\">This field is required</span>\n          <span v-if=\"$validation.name.pattern\" class=\"help-block\">Please enter at least 2 characters</span>\n          <span v-if=\"$validation.name.maxlength\" class=\"help-block\">Please enter at most 20 characters</span>\n          <span v-if=\"$validation.name.unique\" class=\"help-block\">This name is not available</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Country -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.country.invalid &amp;&amp; ($validation.country.touched || showErrors) }\">\n      <label for=\"date\" class=\"col-sm-2\">Country</label>\n      <div class=\"col-sm-6\">\n        <select class=\"form-control\" v-model=\"driver.country\" v-validate:country=\"{ minlength: 1 }\">\n          <option v-if=\"$route.name === 'drivers.create'\" disabled=\"\" selected=\"\" value=\"\">Select Country</option>\n          <option v-for=\"country in countries\" value=\"{{ country.ccode }}\">{{ country.cname }}</option>\n        </select>\n        <div v-if=\"showErrors || $validation.country.touched\">\n          <span v-if=\"$validation.country.minlength\" class=\"help-block\">This field is required</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Country -->\n    <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n      <label for=\"name\" class=\"col-sm-2\">Birthday Month</label>\n      <div class=\"col-sm-10\">\n        <input type=\"number\" min=\"0\" max=\"12\" class=\"form-control\" placeholder=\"month\" v-model=\"driver.month\" v-validate:month=\"{ required: true, min: 0, max: 12 }\">\n        <div v-if=\"showErrors || $validation.name.touched\">\n          <span v-if=\"$validation.name.min\" class=\"help-block\">Please enter a number between 0 and 12</span>\n          <span v-if=\"$validation.name.max\" class=\"help-block\">Please enter a number between 0 and 12</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Driver Photo -->\n    <div class=\"form-group\" :class=\"{ 'has-error': photoError }\">\n      <label for=\"photo\" class=\"col-sm-2\">Photo</label>\n      <div class=\"col-sm-10\">\n        <button class=\"btn btn-default btn-sm\" @click=\"driver.photo = ''\" v-show=\"driver.photo\">\n          Remove photo\n        </button>\n        <input type=\"file\" class=\"form-control\" id=\"photo-upload\" v-else=\"\" @change=\"validatePhoto\">\n        <span class=\"help-block\">{{ photoError }}</span>\n      </div>\n    </div>\n\n    <!-- Buttons -->\n    <div class=\"col-sm-10 col-sm-offset-2\">\n      <button class=\"btn btn-primary\" :class=\"{ 'disabled': $validation.invalid }\" @click=\"save\">\n        Save\n      </button>\n      <button @click=\"cancel\" class=\"btn btn-default\">Cancel</button>\n    </div>\n\n  </div>\n</validator>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -28195,7 +28217,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f25ca32e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver.js":77,"../utilities/countries":105,"../vuex/drivers/getters":107,"../vuex/races/actions":113,"babel-runtime/core-js/promise":2,"ramda":69,"vue":74,"vue-hot-reload-api":70}],83:[function(require,module,exports){
+},{"../api/driver":77,"../utilities/countries":105,"../vuex/drivers/actions":106,"../vuex/drivers/getters":107,"babel-runtime/core-js/promise":2,"ramda":69,"vue":74,"vue-hot-reload-api":70}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28258,7 +28280,8 @@ exports.default = {
   },
   vuex: {
     actions: {
-      fetchCurrentDriver: _actions.fetchCurrentDriver
+      fetchCurrentDriver: _actions.fetchCurrentDriver,
+      clearCurrentDriver: _actions.clearCurrentDriver
     },
     getters: {
       driver: _getters.getCurrentDriver
@@ -28268,6 +28291,9 @@ exports.default = {
     return {
       showEdit: false
     };
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.clearCurrentDriver();
   },
 
   route: {
@@ -28813,7 +28839,7 @@ exports.default = {
   },
   data: function data() {
     return {
-      race: '',
+      race: {},
       formAttempted: false,
       photoError: ''
     };
@@ -29505,7 +29531,7 @@ exports.default = [{ 'ccode': 'AF', 'cname': 'Afghanistan' }, { 'ccode': 'AX', '
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
+exports.updateDriver = exports.createDriver = exports.clearCurrentDriver = exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
 
 var _driver = require('../../api/driver');
 
@@ -29532,6 +29558,34 @@ var fetchCurrentDriver = exports.fetchCurrentDriver = function fetchCurrentDrive
 
   return _driver2.default.fetch(id).then(function (response) {
     return dispatch(types.SET_CURRENT_DRIVER, response.data);
+  });
+};
+
+var clearCurrentDriver = exports.clearCurrentDriver = function clearCurrentDriver(_ref3) {
+  var dispatch = _ref3.dispatch;
+
+  return dispatch(types.CLEAR_CURRENT_DRIVER);
+};
+
+var createDriver = exports.createDriver = function createDriver(_ref4, formData) {
+  var dispatch = _ref4.dispatch;
+
+  return _driver2.default.create(formData).catch(function (err) {
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'The driver could not be saved.', type: 'danger' });
+  }).then(function (response) {
+    dispatch(types.ADD_DRIVER, response.data);
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Driver has been created!', type: 'success' });
+  });
+};
+
+var updateDriver = exports.updateDriver = function updateDriver(_ref5, id, formData) {
+  var dispatch = _ref5.dispatch;
+
+  return _driver2.default.update(id, formData).catch(function (err) {
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to update driver data.', type: 'danger' });
+  }).then(function (response) {
+    dispatch(types.REPLACE_DRIVER, response.data);
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Driver data updated.', type: 'success' });
   });
 };
 
@@ -29577,15 +29631,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var driverObj = { name: '', country: '', month: '', photo: '' };
 var state = {
   all: [],
-  current: {}
+  current: driverObj
 };
 
 var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.RECEIVE_DRIVERS, function (state, drivers) {
   state.all = drivers;
+}), _defineProperty(_mutations, _mutationTypes.ADD_DRIVER, function (state, driver) {
+  state.all.push(driver);
+}), _defineProperty(_mutations, _mutationTypes.REPLACE_DRIVER, function (state, driver) {
+  state.all[_ramda2.default.findIndex(_ramda2.default.propEq('id', driver.id), state.all)] = driver;
+  state.current = driver;
 }), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_DRIVER, function (state, driver) {
   state.current = driver;
+}), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_DRIVER, function (state) {
+  state.current = driverObj;
 }), _mutations);
 
 exports.default = {
@@ -29608,7 +29670,10 @@ var CLEAR_CURRENT_RACE = exports.CLEAR_CURRENT_RACE = 'CLEAR_CURRENT_RACE';
 var SET_EDITOR_VIEW = exports.SET_EDITOR_VIEW = 'SET_EDITOR_VIEW';
 
 var RECEIVE_DRIVERS = exports.RECEIVE_DRIVERS = 'RECEIVE_DRIVERS';
+var ADD_DRIVER = exports.ADD_DRIVER = 'ADD_DRIVER';
+var REPLACE_DRIVER = exports.REPLACE_DRIVER = 'REPLACE_DRIVER';
 var SET_CURRENT_DRIVER = exports.SET_CURRENT_DRIVER = 'SET_CURRENT_DRIVER';
+var CLEAR_CURRENT_DRIVER = exports.CLEAR_CURRENT_DRIVER = 'CLEAR_CURRENT_DRIVER';
 
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';

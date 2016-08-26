@@ -161,7 +161,7 @@
     },
     data () {
       return {
-        race: '',
+        race: {},
         formAttempted: false,
         photoError: ''
       }

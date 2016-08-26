@@ -3,17 +3,24 @@
     <div class="form-horizontal">
 
       <!-- Driver Name -->
-      <div class="form-group" :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }">
+      <div class="form-group"
+        :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }"
+      >
         <label for="name" class="col-sm-2">Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Race name"
+          <input type="text" class="form-control" placeholder="Driver name"
             v-model="driver.name"
-            v-validate:name="{ required: { rule: true }, minlength: { rule: 2 }, maxlength: { rule: 20 }, unique: { rule: true, initial: 'off' } }"
+            v-validate:name="{
+              required: { rule: true },
+              pattern: { rule: '/\\w{2,}/' },
+              maxlength: { rule: 20 },
+              unique: { rule: true, initial: 'off' }
+            }"
           >
           <span v-if="checking" class="help-block">checking...</span>
           <div v-if="showErrors || $validation.name.touched">
             <span v-if="$validation.name.required" class="help-block">This field is required</span>
-            <span v-if="$validation.name.minlength" class="help-block">Please enter at least 2 characters</span>
+            <span v-if="$validation.name.pattern" class="help-block">Please enter at least 2 characters</span>
             <span v-if="$validation.name.maxlength" class="help-block">Please enter at most 20 characters</span>
             <span v-if="$validation.name.unique" class="help-block">This name is not available</span>
           </div>
@@ -21,7 +28,9 @@
       </div>
 
       <!-- Driver Country -->
-      <div class="form-group" :class="{ 'has-error': $validation.country.invalid && ($validation.country.touched || showErrors) }">
+      <div class="form-group"
+        :class="{ 'has-error': $validation.country.invalid && ($validation.country.touched || showErrors) }"
+      >
         <label for="date" class="col-sm-2">Country</label>
         <div class="col-sm-6">
           <select class="form-control"
@@ -38,7 +47,9 @@
       </div>
 
       <!-- Driver Country -->
-      <div class="form-group" :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }">
+      <div class="form-group"
+        :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }"
+      >
         <label for="name" class="col-sm-2">Birthday Month</label>
         <div class="col-sm-10">
           <input type="number" min="0" max="12" class="form-control" placeholder="month"
@@ -56,7 +67,12 @@
       <div class="form-group" :class="{ 'has-error': photoError }">
         <label for="photo" class="col-sm-2">Photo</label>
         <div class="col-sm-10">
-          <button class="btn btn-default btn-sm" @click="driver.photo = ''" v-show="driver.photo">Remove photo</button>
+          <button class="btn btn-default btn-sm"
+            @click="driver.photo = ''"
+            v-show="driver.photo"
+          >
+            Remove photo
+          </button>
           <input type="file" class="form-control" id="photo-upload"
             v-else
             @change="validatePhoto"
@@ -67,7 +83,12 @@
 
       <!-- Buttons -->
       <div class="col-sm-10 col-sm-offset-2">
-        <button @click="save" class="btn btn-primary" :class="{ 'disabled': $validation.invalid }">Save</button>
+        <button class="btn btn-primary"
+          :class="{ 'disabled': $validation.invalid }"
+          @click="save"
+        >
+          Save
+        </button>
         <button @click="cancel" class="btn btn-default">Cancel</button>
       </div>
 
@@ -76,27 +97,37 @@
 </template>
 
 <script>
-  import { getCurrentDriver } from '../vuex/drivers/getters'
-  import { createRace } from '../vuex/races/actions'
-  import countries from '../utilities/countries'
   import R from 'ramda'
-  import driver from '../api/driver.js'
+  import driver from '../api/driver'
+  import { getCurrentDriver } from '../vuex/drivers/getters'
+  import { createDriver, updateDriver } from '../vuex/drivers/actions'
+  import countries from '../utilities/countries'
 
   export default {
     vuex: {
       actions: {
-        createRace
+        createDriver,
+        updateDriver
       },
       getters: {
-        driver: getCurrentDriver
+        currentDriver: getCurrentDriver
       }
     },
     validators: {
       unique (val) {
-        console.log('checking unique')
         this.vm.checking = true
         return driver.checkName(val.trim()).then(this.vm.checking = false)
           .catch(json => Promise.reject(new ValidationError(json.message)))
+      }
+    },
+    props: ['show'],
+    data () {
+      return {
+        driver: {},
+        countries: countries,
+        checking: false,
+        formAttempted: false,
+        photoError: ''
       }
     },
     computed: {
@@ -105,15 +136,6 @@
       },
       formInvalid () {
         return this.$validation.invalid
-      }
-    },
-    props: ['driver', 'show'],
-    data () {
-      return {
-        countries: countries,
-        checking: false,
-        formAttempted: false,
-        photoError: ''
       }
     },
     methods: {
@@ -144,20 +166,28 @@
         let photo = document.getElementById('photo-upload').files[0]
         let formData = new FormData()
 
-        formData.append('name', this.race.name)
-        formData.append('description', this.race.description)
-        formData.append('venue', this.race.venue)
-        formData.append('date', this.race.date)
-        formData.append('time', this.race.time)
+        formData.append('name', this.driver.name.trim())
+        formData.append('country', this.driver.country)
+        formData.append('month', this.driver.month)
         if (this.validatePhoto()) formData.append('photo', photo, photo.name)
 
-        this.createRace(formData)
-          .then(() => this.$router.go({ name: 'drivers.index' }))
+        if (this.$route.name === 'drivers.create') {
+          this.createDriver(formData).then(() => this.$router.go({ name: 'drivers.index' }))
+        }
+        if (this.$route.name === 'drivers.show') {
+          // Laravel cannot handle patch request with files
+          formData.append('_method', 'patch')
+
+          this.updateDriver(this.driver.id, formData).then(() => this.show = false)
+        }
       },
       cancel () {
-        if (this.$route.name === 'drivers.show') return this.show = false
         if (this.$route.name === 'drivers.create') return this.$router.go({ name: 'drivers.index' })
+        if (this.$route.name === 'drivers.show') return this.show = false
       }
+    },
+    created () {
+      this.driver = R.clone(this.currentDriver)
     }
   }
 </script>

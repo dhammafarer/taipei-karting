@@ -26,7 +26,7 @@
 
 <script>
   import { getCurrentDriver } from '../vuex/drivers/getters'
-  import { fetchCurrentDriver } from '../vuex/drivers/actions'
+  import { fetchCurrentDriver, clearCurrentDriver } from '../vuex/drivers/actions'
   import DriversEdit from './DriversEdit.vue'
 
   export default {
@@ -36,7 +36,8 @@
     },
     vuex: {
       actions: {
-        fetchCurrentDriver
+        fetchCurrentDriver,
+        clearCurrentDriver
       },
       getters: {
         driver: getCurrentDriver
@@ -46,6 +47,9 @@
       return {
         showEdit: false
       }
+    },
+    beforeDestroy () {
+      this.clearCurrentDriver()
     },
     route: {
       data (transition) {

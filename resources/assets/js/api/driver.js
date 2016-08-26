@@ -11,6 +11,16 @@ export default {
       .then(response => response.json())
   },
 
+  create (driver) {
+    return Vue.http.post('drivers', driver)
+      .then(response => response.json())
+  },
+
+  update (id, driver) {
+    return Vue.http.post('drivers/' + id, driver)
+      .then(response => response.json())
+  },
+
   checkName (name) {
     return Vue.http.post('drivers/check-name', { name: name })
       console.log('checking name')

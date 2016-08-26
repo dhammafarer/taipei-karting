@@ -34,7 +34,7 @@ class DriversController extends BaseController
       if ($request->hasFile('photo')) {
         $file = $request->file('photo');
         $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/races/', $filename);
+        $file->move(public_path() . '/img/drivers/', $filename);
       }
 
       $driver = Driver::create([
@@ -53,7 +53,7 @@ class DriversController extends BaseController
   public function update(Requests\StoreDriverRequest $request, $id)
   {
     try {
-      $driver = Race::findOrFail($id);
+      $driver = Driver::findOrFail($id);
 
       // Check if the user has removed a photo
       $filename = ($request->photo === '') ? '' : $request->photo;
@@ -61,7 +61,7 @@ class DriversController extends BaseController
       if ($request->hasFile('photo')) {
         $file = $request->file('photo');
         $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/races/', $filename);
+        $file->move(public_path() . '/img/drivers/', $filename);
       }
 
       $driver->name = $request->name;
@@ -70,7 +70,7 @@ class DriversController extends BaseController
       $driver->photo = $filename;
       $driver->save();
 
-      return $this->item($driver, new RacesTransformer);
+      return $this->item($driver, new DriversTransformer);
     } catch (\Exception $e) {
       return $this->response->errorBadRequest();
     }
