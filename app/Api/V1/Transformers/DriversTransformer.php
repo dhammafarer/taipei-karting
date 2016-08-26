@@ -13,6 +13,7 @@ class DriversTransformer extends TransformerAbstract
             'id'          => (int) $driver->id,
             'name'        => $driver->name,
             'country'     => $driver->country,
+            'month'       => $driver->month,
             'photo'       => $driver->photo
         ];
     }

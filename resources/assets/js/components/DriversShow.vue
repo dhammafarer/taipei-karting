@@ -4,8 +4,8 @@
 
       <div class="row">
 
-        <button class="btn btn-default" v-link="{ name: 'drivers.edit', params: { id: driver.id } }">Edit</button>
-        <div class="col-sm-2">
+        <button class="btn btn-default" @click="showEdit = true">Edit</button>
+        <div class="col-sm-1">
           <img class="Driver-photo img img-thumbnail" :src="driver.photo | driverPhoto">
         </div>
         <div class="col-sm-2">
@@ -16,23 +16,40 @@
 
       <router-view></router-view>
 
+      <div v-if="showEdit">
+        <drivers-edit :show.sync="showEdit" :driver.sync="driver"></drivers-edit>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
-  import driver from '../api/driver'
+  import { getCurrentDriver } from '../vuex/drivers/getters'
+  import { fetchCurrentDriver } from '../vuex/drivers/actions'
+  import DriversEdit from './DriversEdit.vue'
+
   export default {
     name: 'DriversIndex',
+    components: {
+      DriversEdit
+    },
+    vuex: {
+      actions: {
+        fetchCurrentDriver
+      },
+      getters: {
+        driver: getCurrentDriver
+      }
+    },
     data () {
       return {
-        driver: []
+        showEdit: false
       }
     },
     route: {
       data (transition) {
-        console.log('getting a driver')
-        driver.fetch(transition.to.params.id).then(response => this.$set('driver', response.data))
+        this.fetchCurrentDriver(transition.to.params.id)
       }
     }
   }

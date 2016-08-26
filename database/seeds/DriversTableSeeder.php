@@ -18,15 +18,15 @@ class DriversTableSeeder extends Seeder
       DB::table('drivers')->truncate();
 
       $drivers = array(
-        ['name' => 'German',   'country' => 'VEN', 'photo' => 'German.jpg'],
-        ['name' => 'Felipe',   'country' => 'ESP', 'photo' => 'Felipe.jpg'],
-        ['name' => 'Fernando', 'country' => 'ESP', 'photo' => 'Fernando.jpg'],
-        ['name' => 'Pawel',    'country' => 'POL', 'photo' => 'Pawel.jpg'],
-        ['name' => 'Marcelo',  'country' => 'BRA', 'photo' => 'Marcelo.jpg'],
-        ['name' => 'Robson',   'country' => 'BRA', 'photo' => 'Robson.jpg'],
-        ['name' => 'Javier',   'country' => 'ESP', 'photo' => 'Javier.jpg'],
-        ['name' => 'Deniz',    'country' => 'TUR', 'photo' => 'Deniz.jpg'],
-        ['name' => 'Alberto',  'country' => 'ESP', 'photo' => 'Alberto.jpg'],
+        ['name' => 'German',   'country' => 'VN', 'month'=> 1, 'photo' => 'German.jpg'],
+        ['name' => 'Felipe',   'country' => 'ES', 'month'=> 1, 'photo' => 'Felipe.jpg'],
+        ['name' => 'Fernando', 'country' => 'ES', 'month'=> 1, 'photo' => 'Fernando.jpg'],
+        ['name' => 'Pawel',    'country' => 'PL', 'month'=> 2, 'photo' => 'Pawel.jpg'],
+        ['name' => 'Marcelo',  'country' => 'BR', 'month'=> 2, 'photo' => 'Marcelo.jpg'],
+        ['name' => 'Robson',   'country' => 'BR', 'month'=> 2, 'photo' => 'Robson.jpg'],
+        ['name' => 'Javier',   'country' => 'ES', 'month'=> 3, 'photo' => 'Javier.jpg'],
+        ['name' => 'Deniz',    'country' => 'TR', 'month'=> 3, 'photo' => 'Deniz.jpg'],
+        ['name' => 'Alberto',  'country' => 'ES', 'month'=> 4, 'photo' => 'Alberto.jpg'],
       );
 
       foreach ($drivers as $driver)
