@@ -66,7 +66,7 @@ class DriversController extends BaseController
 
       $driver->name = $request->name;
       $driver->country = $request->country;
-      $driver->month = $request->country;
+      $driver->month = $request->month;
       $driver->photo = $filename;
       $driver->save();
 

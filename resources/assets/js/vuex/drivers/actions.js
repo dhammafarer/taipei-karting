@@ -38,3 +38,17 @@ export const updateDriver = ({ dispatch }, id, formData) => {
         {title: 'Success!', body: 'Driver data updated.', type: 'success'})
     })
 }
+
+export const deleteDriver = ({ dispatch }, data) => {
+  return driver.destroy(data.id)
+    .catch(err => {
+      dispatch(types.ADD_NOTIFICATION,
+        {title: 'Error!', body: 'Failed to delete driver.', type: 'danger'})
+      }
+    )
+    .then(response => {
+      dispatch(types.DELETE_DRIVER, data)
+      dispatch(types.ADD_NOTIFICATION,
+        {title: 'Success!', body: 'Driver has been deleted.', type: 'success'})
+    })
+}

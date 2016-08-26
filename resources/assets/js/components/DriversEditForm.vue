@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <!-- Driver Country -->
+      <!-- Driver Month -->
       <div class="form-group"
         :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }"
       >

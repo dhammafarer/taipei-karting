@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div class="Drivers-Edit">
+    <div class="modal-container">
       <div class="panel panel-default">
 
         <div class="panel-heading">
@@ -30,13 +30,6 @@
 </script>
 
 <style>
-  .Drivers-Edit {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-  }
-
   .modal-mask {
     position: fixed;
     top: 0;
@@ -46,5 +39,12 @@
     height: 100%;
     background-color: rgba(0,0,0,.5);
     transition: opacity .3s ease;
+  }
+
+  .modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
   }
 </style>

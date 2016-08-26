@@ -3,6 +3,7 @@ import {
   RECEIVE_DRIVERS,
   ADD_DRIVER,
   REPLACE_DRIVER,
+  DELETE_DRIVER,
   SET_CURRENT_DRIVER,
   CLEAR_CURRENT_DRIVER
 } from '../mutation-types'
@@ -23,6 +24,9 @@ const mutations = {
   [REPLACE_DRIVER] (state, driver) {
     state.all[R.findIndex(R.propEq('id', driver.id), state.all)] = driver
     state.current = driver
+  },
+  [DELETE_DRIVER] (state, driver) {
+    state.all.splice(state.all.indexOf(driver), 1)
   },
   [SET_CURRENT_DRIVER] (state, driver) {
     state.current = driver

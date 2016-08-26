@@ -21,6 +21,10 @@ export default {
       .then(response => response.json())
   },
 
+  destroy (id) {
+    return Vue.http.delete('drivers/' + id)
+  },
+
   checkName (name) {
     return Vue.http.post('drivers/check-name', { name: name })
       console.log('checking name')
