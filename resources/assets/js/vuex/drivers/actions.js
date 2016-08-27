@@ -49,6 +49,6 @@ export const deleteDriver = ({ dispatch }, data) => {
     .then(response => {
       dispatch(types.DELETE_DRIVER, data)
       dispatch(types.ADD_NOTIFICATION,
-        {title: 'Success!', body: 'Driver has been deleted.', type: 'success'})
+        {title: 'Success!', body: data.name + ' has been deleted.', type: 'success'})
     })
 }

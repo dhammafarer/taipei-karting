@@ -28018,7 +28018,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/actions":112,"../vuex/races/actions":115,"../vuex/store":118,"./HeaderBar.vue":85,"./Notifications.vue":89,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],80:[function(require,module,exports){
+},{"../vuex/notifications/actions":113,"../vuex/races/actions":116,"../vuex/store":119,"./HeaderBar.vue":86,"./Notifications.vue":90,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],80:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28049,7 +28049,54 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-229d1b37", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./DriversEditForm.vue":82,"vue":74,"vue-hot-reload-api":70}],81:[function(require,module,exports){
+},{"./DriversEditForm.vue":83,"vue":74,"vue-hot-reload-api":70}],81:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Modal = require('./Modal.vue');
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+var _getters = require('../vuex/drivers/getters');
+
+var _actions = require('../vuex/drivers/actions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    MyModal: _Modal2.default
+  },
+  vuex: {
+    actions: {
+      deleteDriver: _actions.deleteDriver
+    },
+    getters: {
+      driver: _getters.getCurrentDriver
+    }
+  },
+  methods: {
+    removeDriver: function removeDriver() {
+      this.deleteDriver(this.driver).then(this.$router.go({ name: 'drivers.index' }));
+    }
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<my-modal>\n  <button class=\"btn btn-danger\" slot=\"trigger\">Delete Driver</button>\n\n  <span slot=\"title\">Delete Driver</span>\n\n  <p slot=\"body\">Are you sure you want to permanently delete <strong>{{ driver.name }}</strong>?</p>\n\n  <button slot=\"ok\" class=\"btn btn-danger\" @click=\"removeDriver\">Yes</button>\n  <button slot=\"cancel\" class=\"btn btn-default\">Cancel</button>\n</my-modal>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-f1927cd2", module.exports)
+  } else {
+    hotAPI.update("_v-f1927cd2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../vuex/drivers/actions":109,"../vuex/drivers/getters":110,"./Modal.vue":88,"vue":74,"vue-hot-reload-api":70}],82:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.modal-mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n\n.modal-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n")
 'use strict';
@@ -28087,7 +28134,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-3ae0be05", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./DriversEditForm.vue":82,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],82:[function(require,module,exports){
+},{"./DriversEditForm.vue":83,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28223,7 +28270,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f25ca32e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver":77,"../utilities/countries":107,"../vuex/drivers/actions":108,"../vuex/drivers/getters":109,"babel-runtime/core-js/promise":2,"ramda":69,"vue":74,"vue-hot-reload-api":70}],83:[function(require,module,exports){
+},{"../api/driver":77,"../utilities/countries":108,"../vuex/drivers/actions":109,"../vuex/drivers/getters":110,"babel-runtime/core-js/promise":2,"ramda":69,"vue":74,"vue-hot-reload-api":70}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28262,7 +28309,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-62eebc67", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/actions":108,"../vuex/drivers/getters":109,"vue":74,"vue-hot-reload-api":70}],84:[function(require,module,exports){
+},{"../vuex/drivers/actions":109,"../vuex/drivers/getters":110,"vue":74,"vue-hot-reload-api":70}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28277,18 +28324,22 @@ var _DriversEdit = require('./DriversEdit.vue');
 
 var _DriversEdit2 = _interopRequireDefault(_DriversEdit);
 
+var _DriversDeleteModal = require('./DriversDeleteModal.vue');
+
+var _DriversDeleteModal2 = _interopRequireDefault(_DriversDeleteModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'DriversIndex',
   components: {
-    DriversEdit: _DriversEdit2.default
+    DriversEdit: _DriversEdit2.default,
+    DriversDeleteModal: _DriversDeleteModal2.default
   },
   vuex: {
     actions: {
       fetchCurrentDriver: _actions.fetchCurrentDriver,
-      clearCurrentDriver: _actions.clearCurrentDriver,
-      deleteDriver: _actions.deleteDriver
+      clearCurrentDriver: _actions.clearCurrentDriver
     },
     getters: {
       driver: _getters.getCurrentDriver
@@ -28296,15 +28347,8 @@ exports.default = {
   },
   data: function data() {
     return {
-      showEdit: false,
-      promptDelete: false
+      showEdit: false
     };
-  },
-
-  methods: {
-    removeDriver: function removeDriver() {
-      this.deleteDriver(this.driver).then(this.$router.go({ name: 'drivers.index' }));
-    }
   },
   beforeDestroy: function beforeDestroy() {
     this.clearCurrentDriver();
@@ -28317,7 +28361,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Driver-Show\">\n  <div class=\"container\">\n\n    <div class=\"row\">\n\n      <button class=\"btn btn-default\" @click=\"showEdit = true\">Edit</button>\n      <button class=\"btn btn-danger\" @click=\"promptDelete = true\">Delete</button>\n      <div class=\"col-sm-1\">\n        <img class=\"Driver-photo img img-thumbnail\" :src=\"driver.photo | driverPhoto\">\n      </div>\n      <div class=\"col-sm-2\">\n        <h3>{{ driver.name }}</h3>\n        <p>{{ driver.country }}</p>\n      </div>\n    </div>\n\n    <div class=\"modal-delete\" v-if=\"promptDelete\">\n      <div class=\"modal-mask\">\n        <div class=\"modal-container\">\n          <div class=\"panel panel-default\">\n\n            <div class=\"panel-heading\">\n              <h3 class=\"panel-title\">\n                Delete Driver\n              </h3>\n            </div>\n\n            <div class=\"panel-body\">\n              <p>Are you sure you want to delete this driver?</p>\n              <button class=\"btn btn-primary\" @click=\"removeDriver\">Yes</button>\n              <button class=\"btn btn-danger\" @click=\"promptDelete = false\">Cancel</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div v-if=\"showEdit\">\n      <drivers-edit :show.sync=\"showEdit\" :driver.sync=\"driver\"></drivers-edit>\n    </div>\n\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Driver-Show\">\n  <div class=\"container\">\n\n    <div class=\"row\">\n\n      <button class=\"btn btn-default\" @click=\"showEdit = true\">Edit</button>\n      <drivers-delete-modal></drivers-delete-modal>\n\n      <div class=\"col-sm-1\">\n        <img class=\"Driver-photo img img-thumbnail\" :src=\"driver.photo | driverPhoto\">\n      </div>\n      <div class=\"col-sm-2\">\n        <h3>{{ driver.name }}</h3>\n        <p>{{ driver.country }}</p>\n      </div>\n    </div>\n\n    <div v-if=\"showEdit\">\n      <drivers-edit :show.sync=\"showEdit\" :driver.sync=\"driver\"></drivers-edit>\n    </div>\n\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -28328,7 +28372,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-719d0d10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/actions":108,"../vuex/drivers/getters":109,"./DriversEdit.vue":81,"vue":74,"vue-hot-reload-api":70}],85:[function(require,module,exports){
+},{"../vuex/drivers/actions":109,"../vuex/drivers/getters":110,"./DriversDeleteModal.vue":81,"./DriversEdit.vue":82,"vue":74,"vue-hot-reload-api":70}],86:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.navbar {\n  margin-bottom: 0;\n}\n")
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <a href=\"#\" v-link=\"{ name: 'home' }\" class=\"navbar-brand\">TIKA</a>\n    </div>\n    <div class=\"navbar-collapse collapsed\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\" v-link=\"{ name: 'home' }\">Home</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'races.index' }\">Races</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'drivers.index' }\">Drivers</a></li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
@@ -28346,7 +28390,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7cd813d6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],86:[function(require,module,exports){
+},{"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],87:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nHello from home\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -28358,9 +28402,9 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-342f26ae", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":74,"vue-hot-reload-api":70}],87:[function(require,module,exports){
+},{"vue":74,"vue-hot-reload-api":70}],88:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Modal__mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n\n.Modal__container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Modal__mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28392,7 +28436,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Modal__mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n\n.Modal__container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n"] = false
+    __vueify_insert__.cache["\n.Modal__mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -28401,7 +28445,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-46aa44bd", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],88:[function(require,module,exports){
+},{"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],89:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none;\n}\n")
 'use strict';
@@ -28446,7 +28490,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e123528a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/actions":112,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],89:[function(require,module,exports){
+},{"../vuex/notifications/actions":113,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],90:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
 'use strict';
@@ -28489,7 +28533,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-b1145d10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/getters":113,"./NotificationCard.vue":88,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],90:[function(require,module,exports){
+},{"../vuex/notifications/getters":114,"./NotificationCard.vue":89,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28522,7 +28566,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e2fa28e8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":104,"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70}],91:[function(require,module,exports){
+},{"../filters":105,"../vuex/races/getters":117,"vue":74,"vue-hot-reload-api":70}],92:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.grid {\n  width: 90%;\n  margin: auto;\n  margin-bottom: 60px;\n}\n.grid__positions {\n  counter-reset: position;\n}\n.grid__position::before {\n  counter-increment: position;\n  content: counter(position);\n  background-color: grey;\n  color: white;\n  text-align: center;\n  padding: 0 5px;\n  position:absolute;\n  left: 0%;\n}\n.grid__position {\n  width: 40%;\n  height: 1.3em;\n  text-align: center;\n  border-color: grey;\n  border-style: solid;\n  border-width: 1px 1px 0px 0px;\n  position: relative;\n  margin-bottom: 10%;\n}\n.grid__position:first-child {\n  margin-top: 0px;\n}\n.grid__position:nth-child(odd) {\n  margin-left: 50%;\n}\n.grid__position:last-child {\n}\n\n.grid__position div {\n  width: 100%;\n  position: absolute;\n  text-align: center;\n}\n.grid__position img {\n  width: 50%;\n  margin-top: 2%;\n}\n\n.grid__position p {\n  margin: 1px auto;\n}\n")
 'use strict';
@@ -28583,7 +28627,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-9d0b4052", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":104,"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],92:[function(require,module,exports){
+},{"../filters":105,"../vuex/races/getters":117,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28637,7 +28681,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-17a967ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":104,"../vuex/races/getters":116,"./QualifierResults.vue":90,"./RaceGrid.vue":91,"./RaceResults.vue":93,"vue":74,"vue-hot-reload-api":70}],93:[function(require,module,exports){
+},{"../filters":105,"../vuex/races/getters":117,"./QualifierResults.vue":91,"./RaceGrid.vue":92,"./RaceResults.vue":94,"vue":74,"vue-hot-reload-api":70}],94:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.race__results img[_v-6a950016] {\n  width: 15%;\n}\n")
 'use strict';
@@ -28698,7 +28742,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-6a950016", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":104,"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],94:[function(require,module,exports){
+},{"../filters":105,"../vuex/races/getters":117,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],95:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Races-create__x {\n  cursor: pointer;\n}\n")
 'use strict';
@@ -28794,7 +28838,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-316e72ee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],95:[function(require,module,exports){
+},{"../vuex/races/actions":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],96:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28841,7 +28885,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7e2ab780", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"../vuex/races/getters":116,"./Modal.vue":87,"vue":74,"vue-hot-reload-api":70}],96:[function(require,module,exports){
+},{"../vuex/races/actions":116,"../vuex/races/getters":117,"./Modal.vue":88,"vue":74,"vue-hot-reload-api":70}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28906,7 +28950,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-8a7ad108", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"../vuex/races/getters":116,"./RacesEditDetails.vue":97,"./RacesEditDrivers.vue":98,"./RacesEditQuals.vue":100,"./RacesEditRaces.vue":101,"vue":74,"vue-hot-reload-api":70}],97:[function(require,module,exports){
+},{"../vuex/races/actions":116,"../vuex/races/getters":117,"./RacesEditDetails.vue":98,"./RacesEditDrivers.vue":99,"./RacesEditQuals.vue":101,"./RacesEditRaces.vue":102,"vue":74,"vue-hot-reload-api":70}],98:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29012,7 +29056,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0cac2354", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"../vuex/races/getters":116,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70}],98:[function(require,module,exports){
+},{"../vuex/races/actions":116,"../vuex/races/getters":117,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70}],99:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Driver {\n  cursor: pointer;\n}\n\n.Driver-photo {\n  opacity: .3;\n  width: 100%;\n  height: 100%;\n}\n\n.Driver-photo--selected, .Driver-photo:hover {\n  opacity: 1;\n  border: 4px solid darkgrey;\n}\n")
 'use strict';
@@ -29107,7 +29151,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-82de8642", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver":77,"../vuex/races/actions":115,"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],99:[function(require,module,exports){
+},{"../api/driver":77,"../vuex/races/actions":116,"../vuex/races/getters":117,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],100:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Edit-menu {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: darkgrey;\n  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);\n  overflow-y: auto;\n}\n\n.Mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0,0,0,.5);\n}\n\n.Edit-menu__list {\n  z-index: 9999;\n}\n\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 300px;\n}\n\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0;\n}\n")
 'use strict';
@@ -29177,7 +29221,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-57499b2d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"./RacesDeleteModal.vue":95,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],100:[function(require,module,exports){
+},{"../vuex/races/actions":116,"./RacesDeleteModal.vue":96,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],101:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
@@ -29238,7 +29282,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-089179d0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"../vuex/races/getters":116,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],101:[function(require,module,exports){
+},{"../vuex/races/actions":116,"../vuex/races/getters":117,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],102:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.race__results {\n  counter-reset: position;\n}\n.driver__name::before {\n  counter-increment: position;\n  content: counter(position);\n  margin-right: 5px;\n  text-align: center;\n  color: white;\n  background-color: grey;\n  padding: 2px 6px;\n  border-radius: 2px;\n}\n\ninput{\n  background: #fff no-repeat 13px 13px;\n  border: none;\n  width: 100%;\n  line-height: 19px;\n  padding: 2px 0;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px #c4c4c4 inset;\n  text-align: center;\n  font-size: 14px;\n  color: #738289;\n  font-weight: bold;\n  outline: none;\n}\n")
 'use strict';
@@ -29302,7 +29346,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-5f828a54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":104,"../vuex/races/actions":115,"../vuex/races/getters":116,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],102:[function(require,module,exports){
+},{"../filters":105,"../vuex/races/actions":116,"../vuex/races/getters":117,"babel-runtime/core-js/json/stringify":1,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],103:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 6, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 11, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 15, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n")
 'use strict';
@@ -29337,7 +29381,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-416fdc60", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],103:[function(require,module,exports){
+},{"../vuex/races/getters":117,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],104:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
@@ -29409,7 +29453,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":115,"../vuex/races/getters":116,"./RaceOverview.vue":92,"./RacesDeleteModal.vue":95,"./RacesEditDropdown.vue":99,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],104:[function(require,module,exports){
+},{"../vuex/races/actions":116,"../vuex/races/getters":117,"./RaceOverview.vue":93,"./RacesDeleteModal.vue":96,"./RacesEditDropdown.vue":100,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29527,7 +29571,7 @@ function raceComplete(race, group) {
   });
 }
 
-},{}],105:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -29563,7 +29607,7 @@ _vue2.default.filter('racePhoto', _filters.racePhoto);
 _vue2.default.filter('driverPhoto', _filters.driverPhoto);
 _vue2.default.filter('raceRecord', _filters.raceRecord);
 
-},{"./components/App.vue":79,"./filters":104,"./router":106,"./vuex/store":118,"vue":74,"vue-resource":71}],106:[function(require,module,exports){
+},{"./components/App.vue":79,"./filters":105,"./router":107,"./vuex/store":119,"vue":74,"vue-resource":71}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29638,7 +29682,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/DriversCreate.vue":80,"./components/DriversEdit.vue":81,"./components/DriversIndex.vue":83,"./components/DriversShow.vue":84,"./components/HomePage.vue":86,"./components/RacesCreate.vue":94,"./components/RacesEdit.vue":96,"./components/RacesIndex.vue":102,"./components/RacesShow.vue":103,"vue":74,"vue-router":72,"vue-validator":73}],107:[function(require,module,exports){
+},{"./components/DriversCreate.vue":80,"./components/DriversEdit.vue":82,"./components/DriversIndex.vue":84,"./components/DriversShow.vue":85,"./components/HomePage.vue":87,"./components/RacesCreate.vue":95,"./components/RacesEdit.vue":97,"./components/RacesIndex.vue":103,"./components/RacesShow.vue":104,"vue":74,"vue-router":72,"vue-validator":73}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29646,7 +29690,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = [{ 'ccode': 'AF', 'cname': 'Afghanistan' }, { 'ccode': 'AX', 'cname': 'Aland Islands' }, { 'ccode': 'AL', 'cname': 'Albania' }, { 'ccode': 'DZ', 'cname': 'Algeria' }, { 'ccode': 'AS', 'cname': 'American Samoa' }, { 'ccode': 'AD', 'cname': 'Andorra' }, { 'ccode': 'AO', 'cname': 'Angola' }, { 'ccode': 'AI', 'cname': 'Anguilla' }, { 'ccode': 'AQ', 'cname': 'Antarctica' }, { 'ccode': 'AG', 'cname': 'Antigua And Barbuda' }, { 'ccode': 'AR', 'cname': 'Argentina' }, { 'ccode': 'AM', 'cname': 'Armenia' }, { 'ccode': 'AW', 'cname': 'Aruba' }, { 'ccode': 'AU', 'cname': 'Australia' }, { 'ccode': 'AT', 'cname': 'Austria' }, { 'ccode': 'AZ', 'cname': 'Azerbaijan' }, { 'ccode': 'BS', 'cname': 'Bahamas' }, { 'ccode': 'BH', 'cname': 'Bahrain' }, { 'ccode': 'BD', 'cname': 'Bangladesh' }, { 'ccode': 'BB', 'cname': 'Barbados' }, { 'ccode': 'BY', 'cname': 'Belarus' }, { 'ccode': 'BE', 'cname': 'Belgium' }, { 'ccode': 'BZ', 'cname': 'Belize' }, { 'ccode': 'BJ', 'cname': 'Benin' }, { 'ccode': 'BM', 'cname': 'Bermuda' }, { 'ccode': 'BT', 'cname': 'Bhutan' }, { 'ccode': 'BO', 'cname': 'Bolivia' }, { 'ccode': 'BA', 'cname': 'Bosnia And Herzegovina' }, { 'ccode': 'BW', 'cname': 'Botswana' }, { 'ccode': 'BV', 'cname': 'Bouvet Island' }, { 'ccode': 'BR', 'cname': 'Brazil' }, { 'ccode': 'IO', 'cname': 'British Indian Ocean Territory' }, { 'ccode': 'BN', 'cname': 'Brunei Darussalam' }, { 'ccode': 'BG', 'cname': 'Bulgaria' }, { 'ccode': 'BF', 'cname': 'Burkina Faso' }, { 'ccode': 'BI', 'cname': 'Burundi' }, { 'ccode': 'KH', 'cname': 'Cambodia' }, { 'ccode': 'CM', 'cname': 'Cameroon' }, { 'ccode': 'CA', 'cname': 'Canada' }, { 'ccode': 'CV', 'cname': 'Cape Verde' }, { 'ccode': 'KY', 'cname': 'Cayman Islands' }, { 'ccode': 'CF', 'cname': 'Central African Republic' }, { 'ccode': 'TD', 'cname': 'Chad' }, { 'ccode': 'CL', 'cname': 'Chile' }, { 'ccode': 'CN', 'cname': 'China' }, { 'ccode': 'CX', 'cname': 'Christmas Island' }, { 'ccode': 'CC', 'cname': 'Cocos (Keeling) Islands' }, { 'ccode': 'CO', 'cname': 'Colombia' }, { 'ccode': 'KM', 'cname': 'Comoros' }, { 'ccode': 'CG', 'cname': 'Congo' }, { 'ccode': 'CD', 'cname': 'Congo, Democratic Republic' }, { 'ccode': 'CK', 'cname': 'Cook Islands' }, { 'ccode': 'CR', 'cname': 'Costa Rica' }, { 'ccode': 'CI', 'cname': 'Cote D\'Ivoire' }, { 'ccode': 'HR', 'cname': 'Croatia' }, { 'ccode': 'CU', 'cname': 'Cuba' }, { 'ccode': 'CY', 'cname': 'Cyprus' }, { 'ccode': 'CZ', 'cname': 'Czech Republic' }, { 'ccode': 'DK', 'cname': 'Denmark' }, { 'ccode': 'DJ', 'cname': 'Djibouti' }, { 'ccode': 'DM', 'cname': 'Dominica' }, { 'ccode': 'DO', 'cname': 'Dominican Republic' }, { 'ccode': 'EC', 'cname': 'Ecuador' }, { 'ccode': 'EG', 'cname': 'Egypt' }, { 'ccode': 'SV', 'cname': 'El Salvador' }, { 'ccode': 'GQ', 'cname': 'Equatorial Guinea' }, { 'ccode': 'ER', 'cname': 'Eritrea' }, { 'ccode': 'EE', 'cname': 'Estonia' }, { 'ccode': 'ET', 'cname': 'Ethiopia' }, { 'ccode': 'FK', 'cname': 'Falkland Islands (Malvinas)' }, { 'ccode': 'FO', 'cname': 'Faroe Islands' }, { 'ccode': 'FJ', 'cname': 'Fiji' }, { 'ccode': 'FI', 'cname': 'Finland' }, { 'ccode': 'FR', 'cname': 'France' }, { 'ccode': 'GF', 'cname': 'French Guiana' }, { 'ccode': 'PF', 'cname': 'French Polynesia' }, { 'ccode': 'TF', 'cname': 'French Southern Territories' }, { 'ccode': 'GA', 'cname': 'Gabon' }, { 'ccode': 'GM', 'cname': 'Gambia' }, { 'ccode': 'GE', 'cname': 'Georgia' }, { 'ccode': 'DE', 'cname': 'Germany' }, { 'ccode': 'GH', 'cname': 'Ghana' }, { 'ccode': 'GI', 'cname': 'Gibraltar' }, { 'ccode': 'GR', 'cname': 'Greece' }, { 'ccode': 'GL', 'cname': 'Greenland' }, { 'ccode': 'GD', 'cname': 'Grenada' }, { 'ccode': 'GP', 'cname': 'Guadeloupe' }, { 'ccode': 'GU', 'cname': 'Guam' }, { 'ccode': 'GT', 'cname': 'Guatemala' }, { 'ccode': 'GG', 'cname': 'Guernsey' }, { 'ccode': 'GN', 'cname': 'Guinea' }, { 'ccode': 'GW', 'cname': 'Guinea-Bissau' }, { 'ccode': 'GY', 'cname': 'Guyana' }, { 'ccode': 'HT', 'cname': 'Haiti' }, { 'ccode': 'HM', 'cname': 'Heard Island & Mcdonald Islands' }, { 'ccode': 'VA', 'cname': 'Holy See (Vatican City State)' }, { 'ccode': 'HN', 'cname': 'Honduras' }, { 'ccode': 'HK', 'cname': 'Hong Kong' }, { 'ccode': 'HU', 'cname': 'Hungary' }, { 'ccode': 'IS', 'cname': 'Iceland' }, { 'ccode': 'IN', 'cname': 'India' }, { 'ccode': 'ID', 'cname': 'Indonesia' }, { 'ccode': 'IR', 'cname': 'Iran, Islamic Republic Of' }, { 'ccode': 'IQ', 'cname': 'Iraq' }, { 'ccode': 'IE', 'cname': 'Ireland' }, { 'ccode': 'IM', 'cname': 'Isle Of Man' }, { 'ccode': 'IL', 'cname': 'Israel' }, { 'ccode': 'IT', 'cname': 'Italy' }, { 'ccode': 'JM', 'cname': 'Jamaica' }, { 'ccode': 'JP', 'cname': 'Japan' }, { 'ccode': 'JE', 'cname': 'Jersey' }, { 'ccode': 'JO', 'cname': 'Jordan' }, { 'ccode': 'KZ', 'cname': 'Kazakhstan' }, { 'ccode': 'KE', 'cname': 'Kenya' }, { 'ccode': 'KI', 'cname': 'Kiribati' }, { 'ccode': 'KR', 'cname': 'Korea' }, { 'ccode': 'KW', 'cname': 'Kuwait' }, { 'ccode': 'KG', 'cname': 'Kyrgyzstan' }, { 'ccode': 'LA', 'cname': 'Lao People\'s Democratic Republic' }, { 'ccode': 'LV', 'cname': 'Latvia' }, { 'ccode': 'LB', 'cname': 'Lebanon' }, { 'ccode': 'LS', 'cname': 'Lesotho' }, { 'ccode': 'LR', 'cname': 'Liberia' }, { 'ccode': 'LY', 'cname': 'Libyan Arab Jamahiriya' }, { 'ccode': 'LI', 'cname': 'Liechtenstein' }, { 'ccode': 'LT', 'cname': 'Lithuania' }, { 'ccode': 'LU', 'cname': 'Luxembourg' }, { 'ccode': 'MO', 'cname': 'Macao' }, { 'ccode': 'MK', 'cname': 'Macedonia' }, { 'ccode': 'MG', 'cname': 'Madagascar' }, { 'ccode': 'MW', 'cname': 'Malawi' }, { 'ccode': 'MY', 'cname': 'Malaysia' }, { 'ccode': 'MV', 'cname': 'Maldives' }, { 'ccode': 'ML', 'cname': 'Mali' }, { 'ccode': 'MT', 'cname': 'Malta' }, { 'ccode': 'MH', 'cname': 'Marshall Islands' }, { 'ccode': 'MQ', 'cname': 'Martinique' }, { 'ccode': 'MR', 'cname': 'Mauritania' }, { 'ccode': 'MU', 'cname': 'Mauritius' }, { 'ccode': 'YT', 'cname': 'Mayotte' }, { 'ccode': 'MX', 'cname': 'Mexico' }, { 'ccode': 'FM', 'cname': 'Micronesia, Federated States Of' }, { 'ccode': 'MD', 'cname': 'Moldova' }, { 'ccode': 'MC', 'cname': 'Monaco' }, { 'ccode': 'MN', 'cname': 'Mongolia' }, { 'ccode': 'ME', 'cname': 'Montenegro' }, { 'ccode': 'MS', 'cname': 'Montserrat' }, { 'ccode': 'MA', 'cname': 'Morocco' }, { 'ccode': 'MZ', 'cname': 'Mozambique' }, { 'ccode': 'MM', 'cname': 'Myanmar' }, { 'ccode': 'NA', 'cname': 'Namibia' }, { 'ccode': 'NR', 'cname': 'Nauru' }, { 'ccode': 'NP', 'cname': 'Nepal' }, { 'ccode': 'NL', 'cname': 'Netherlands' }, { 'ccode': 'AN', 'cname': 'Netherlands Antilles' }, { 'ccode': 'NC', 'cname': 'New Caledonia' }, { 'ccode': 'NZ', 'cname': 'New Zealand' }, { 'ccode': 'NI', 'cname': 'Nicaragua' }, { 'ccode': 'NE', 'cname': 'Niger' }, { 'ccode': 'NG', 'cname': 'Nigeria' }, { 'ccode': 'NU', 'cname': 'Niue' }, { 'ccode': 'NF', 'cname': 'Norfolk Island' }, { 'ccode': 'MP', 'cname': 'Northern Mariana Islands' }, { 'ccode': 'NO', 'cname': 'Norway' }, { 'ccode': 'OM', 'cname': 'Oman' }, { 'ccode': 'PK', 'cname': 'Pakistan' }, { 'ccode': 'PW', 'cname': 'Palau' }, { 'ccode': 'PS', 'cname': 'Palestinian Territory, Occupied' }, { 'ccode': 'PA', 'cname': 'Panama' }, { 'ccode': 'PG', 'cname': 'Papua New Guinea' }, { 'ccode': 'PY', 'cname': 'Paraguay' }, { 'ccode': 'PE', 'cname': 'Peru' }, { 'ccode': 'PH', 'cname': 'Philippines' }, { 'ccode': 'PN', 'cname': 'Pitcairn' }, { 'ccode': 'PL', 'cname': 'Poland' }, { 'ccode': 'PT', 'cname': 'Portugal' }, { 'ccode': 'PR', 'cname': 'Puerto Rico' }, { 'ccode': 'QA', 'cname': 'Qatar' }, { 'ccode': 'RE', 'cname': 'Reunion' }, { 'ccode': 'RO', 'cname': 'Romania' }, { 'ccode': 'RU', 'cname': 'Russian Federation' }, { 'ccode': 'RW', 'cname': 'Rwanda' }, { 'ccode': 'BL', 'cname': 'Saint Barthelemy' }, { 'ccode': 'SH', 'cname': 'Saint Helena' }, { 'ccode': 'KN', 'cname': 'Saint Kitts And Nevis' }, { 'ccode': 'LC', 'cname': 'Saint Lucia' }, { 'ccode': 'MF', 'cname': 'Saint Martin' }, { 'ccode': 'PM', 'cname': 'Saint Pierre And Miquelon' }, { 'ccode': 'VC', 'cname': 'Saint Vincent And Grenadines' }, { 'ccode': 'WS', 'cname': 'Samoa' }, { 'ccode': 'SM', 'cname': 'San Marino' }, { 'ccode': 'ST', 'cname': 'Sao Tome And Principe' }, { 'ccode': 'SA', 'cname': 'Saudi Arabia' }, { 'ccode': 'SN', 'cname': 'Senegal' }, { 'ccode': 'RS', 'cname': 'Serbia' }, { 'ccode': 'SC', 'cname': 'Seychelles' }, { 'ccode': 'SL', 'cname': 'Sierra Leone' }, { 'ccode': 'SG', 'cname': 'Singapore' }, { 'ccode': 'SK', 'cname': 'Slovakia' }, { 'ccode': 'SI', 'cname': 'Slovenia' }, { 'ccode': 'SB', 'cname': 'Solomon Islands' }, { 'ccode': 'SO', 'cname': 'Somalia' }, { 'ccode': 'ZA', 'cname': 'South Africa' }, { 'ccode': 'GS', 'cname': 'South Georgia And Sandwich Isl.' }, { 'ccode': 'ES', 'cname': 'Spain' }, { 'ccode': 'LK', 'cname': 'Sri Lanka' }, { 'ccode': 'SD', 'cname': 'Sudan' }, { 'ccode': 'SR', 'cname': 'Suriname' }, { 'ccode': 'SJ', 'cname': 'Svalbard And Jan Mayen' }, { 'ccode': 'SZ', 'cname': 'Swaziland' }, { 'ccode': 'SE', 'cname': 'Sweden' }, { 'ccode': 'CH', 'cname': 'Switzerland' }, { 'ccode': 'SY', 'cname': 'Syrian Arab Republic' }, { 'ccode': 'TW', 'cname': 'Taiwan' }, { 'ccode': 'TJ', 'cname': 'Tajikistan' }, { 'ccode': 'TZ', 'cname': 'Tanzania' }, { 'ccode': 'TH', 'cname': 'Thailand' }, { 'ccode': 'TL', 'cname': 'Timor-Leste' }, { 'ccode': 'TG', 'cname': 'Togo' }, { 'ccode': 'TK', 'cname': 'Tokelau' }, { 'ccode': 'TO', 'cname': 'Tonga' }, { 'ccode': 'TT', 'cname': 'Trinidad And Tobago' }, { 'ccode': 'TN', 'cname': 'Tunisia' }, { 'ccode': 'TR', 'cname': 'Turkey' }, { 'ccode': 'TM', 'cname': 'Turkmenistan' }, { 'ccode': 'TC', 'cname': 'Turks And Caicos Islands' }, { 'ccode': 'TV', 'cname': 'Tuvalu' }, { 'ccode': 'UG', 'cname': 'Uganda' }, { 'ccode': 'UA', 'cname': 'Ukraine' }, { 'ccode': 'AE', 'cname': 'United Arab Emirates' }, { 'ccode': 'GB', 'cname': 'United Kingdom' }, { 'ccode': 'US', 'cname': 'United States' }, { 'ccode': 'UM', 'cname': 'United States Outlying Islands' }, { 'ccode': 'UY', 'cname': 'Uruguay' }, { 'ccode': 'UZ', 'cname': 'Uzbekistan' }, { 'ccode': 'VU', 'cname': 'Vanuatu' }, { 'ccode': 'VE', 'cname': 'Venezuela' }, { 'ccode': 'VN', 'cname': 'Viet Nam' }, { 'ccode': 'VG', 'cname': 'Virgin Islands, British' }, { 'ccode': 'VI', 'cname': 'Virgin Islands, U.S.' }, { 'ccode': 'WF', 'cname': 'Wallis And Futuna' }, { 'ccode': 'EH', 'cname': 'Western Sahara' }, { 'ccode': 'YE', 'cname': 'Yemen' }, { 'ccode': 'ZM', 'cname': 'Zambia' }, { 'ccode': 'ZW', 'cname': 'Zimbabwe' }];
 
-},{}],108:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29717,11 +29761,11 @@ var deleteDriver = exports.deleteDriver = function deleteDriver(_ref6, data) {
     dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to delete driver.', type: 'danger' });
   }).then(function (response) {
     dispatch(types.DELETE_DRIVER, data);
-    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Driver has been deleted.', type: 'success' });
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: data.name + ' has been deleted.', type: 'success' });
   });
 };
 
-},{"../../api/driver":77,"../mutation-types":111}],109:[function(require,module,exports){
+},{"../../api/driver":77,"../mutation-types":112}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29744,7 +29788,7 @@ function getCurrentDriver(state) {
   return state.drivers.current;
 }
 
-},{"ramda":69}],110:[function(require,module,exports){
+},{"ramda":69}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29789,7 +29833,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":111,"ramda":69}],111:[function(require,module,exports){
+},{"../mutation-types":112,"ramda":69}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29814,7 +29858,7 @@ var CLEAR_CURRENT_DRIVER = exports.CLEAR_CURRENT_DRIVER = 'CLEAR_CURRENT_DRIVER'
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 
-},{}],112:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29841,7 +29885,7 @@ var closeNotification = exports.closeNotification = function closeNotification(_
   dispatch(types.REMOVE_NOTIFICATION, notification);
 };
 
-},{"../mutation-types":111}],113:[function(require,module,exports){
+},{"../mutation-types":112}],114:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29859,7 +29903,7 @@ function getAllNotifications(state) {
   return state.notifications.all;
 }
 
-},{"ramda":69}],114:[function(require,module,exports){
+},{"ramda":69}],115:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29893,7 +29937,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":111,"ramda":69}],115:[function(require,module,exports){
+},{"../mutation-types":112,"ramda":69}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29991,7 +30035,7 @@ var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_
   });
 };
 
-},{"../../api/race":78,"../mutation-types":111}],116:[function(require,module,exports){
+},{"../../api/race":78,"../mutation-types":112}],117:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30019,7 +30063,7 @@ function getEditorView(state) {
   return state.races.editorView;
 }
 
-},{"ramda":69}],117:[function(require,module,exports){
+},{"ramda":69}],118:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30069,7 +30113,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":111,"ramda":69}],118:[function(require,module,exports){
+},{"../mutation-types":112,"ramda":69}],119:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30109,6 +30153,6 @@ exports.default = new _vuex2.default.Store({
   }
 });
 
-},{"./drivers/store":110,"./notifications/store":114,"./races/store":117,"vue":74,"vuex":76}]},{},[105]);
+},{"./drivers/store":111,"./notifications/store":115,"./races/store":118,"vue":74,"vuex":76}]},{},[106]);
 
 //# sourceMappingURL=main.js.map

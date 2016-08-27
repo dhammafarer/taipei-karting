@@ -66,12 +66,8 @@
     height: 100%;
     background-color: rgba(0,0,0,.5);
     transition: opacity .3s ease;
-  }
-
-  .Modal__container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
