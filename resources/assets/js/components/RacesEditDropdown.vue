@@ -1,16 +1,16 @@
 <template>
   <div>
 
-    <button class="btn btn-sm btn-default dropbtn"
+    <button class="btn btn-sm btn-default"
       v-show="$route.name === 'races.show'"
-      @click="toggleDropdown"
+      @click.stop="openMenu"
       >
       Edit Race
     </button>
 
-    <div v-if="editDropdown === true" transition="fade" class="Edit-panel__mask"></div>
-    <section v-if="editDropdown === true" transition="slideFromRight" class="Edit-panel">
-      <div class="Edit-panel__list">
+    <div v-if="menu  === true" transition="fade" class="Mask"></div>
+    <section v-if="menu === true" transition="slideFromRight" class="Edit-menu">
+      <div class="Edit-menu__list">
         <div class="list-group">
           <a @click="setEditorView('details')" v-link="linkEdit" class="list-group-item" href="#">Details</a>
           <a @click="setEditorView('drivers')" v-link="linkEdit" class="list-group-item" href="#">Drivers</a>
@@ -41,7 +41,7 @@
     },
     data () {
       return {
-        editDropdown: false
+        menu: false
       }
     },
     computed: {
@@ -50,26 +50,26 @@
       }
     },
     methods: {
-      toggleDropdown (e) {
-        e.stopPropagation()
-        this.editDropdown = !this.editDropdown
+      openMenu () {
         let body = document.querySelector('body')
         body.style.overflow = 'hidden'
-        let self = this
         let handler = function(e) {
           e.stopPropagation()
-          if (e.target !== document.querySelector('dropdown-container')) self.editDropdown = false
-          document.removeEventListener('click', handler)
           body.style.overflow = 'auto'
-        }
-        document.addEventListener('click', handler)
+          if (e.target === document.querySelector('.Mask')) {
+            this.menu = false
+            body.removeEventListener('click', handler)
+          }
+        }.bind(this)
+        this.menu = true
+        body.addEventListener('click', handler)
       }
     }
   }
 </script>
 
 <style>
-  .Edit-panel {
+  .Edit-menu {
     position: fixed;
     height: 100%;
     top: 0;
@@ -80,7 +80,7 @@
     overflow-y: auto;
   }
 
-  .Edit-panel__mask {
+  .Mask {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -90,7 +90,7 @@
     background-color: rgba(0,0,0,.5);
   }
 
-  .Edit-panel__list {
+  .Edit-menu__list {
     z-index: 9999;
   }
 

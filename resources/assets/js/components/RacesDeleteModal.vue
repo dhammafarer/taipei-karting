@@ -1,19 +1,13 @@
 <template>
   <my-modal>
-    <div class="panel panel-default">
+    <button class="btn btn-danger" slot="trigger">Test</button>
 
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          Delete Race
-        </h3>
-      </div>
+    <span slot="title">Delete Race</span>
 
-      <div class="panel-body">
-        <p>Are you sure you want to delete this race?</p>
-        <button class="btn btn-primary" @click="removeRace">Yes</button>
-        <button class="btn btn-danger" @click="modal = false">Cancel</button>
-      </div>
-    </div>
+    <p slot="body">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>
+
+    <button slot="ok" class="btn btn-danger" @click="removeRace">Yes</button>
+    <button slot="cancel" class="btn btn-default">Cancel</button>
   </my-modal>
 </template>
 

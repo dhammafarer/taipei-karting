@@ -1,12 +1,33 @@
 <template>
   <div>
 
-    <button class="btn btn-danger" @click.stop="openModal">Delete Race</button>
+    <div @click.stop="openModal">
+      <slot name="trigger"></slot>
+    </div>
 
     <div class="Modal" v-if="modal">
       <div class="Modal__mask">
         <div class="Modal__container">
-          <slot></slot>
+          <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <slot name="title"></slot>
+              </h3>
+            </div>
+
+            <div class="panel-body">
+              <slot name="body"></slot>
+            </div>
+
+            <div class="panel-footer">
+                <slot name="ok"></slot>
+                <span @click="modal = false">
+                  <slot name="cancel"></slot>
+                </span>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

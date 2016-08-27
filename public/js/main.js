@@ -28386,7 +28386,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <button class=\"btn btn-danger\" @click.stop=\"openModal\">Delete Race</button>\n\n  <div class=\"Modal\" v-if=\"modal\">\n    <div class=\"Modal__mask\">\n      <div class=\"Modal__container\">\n        <slot></slot>\n      </div>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <div @click.stop=\"openModal\">\n    <slot name=\"trigger\"></slot>\n  </div>\n\n  <div class=\"Modal\" v-if=\"modal\">\n    <div class=\"Modal__mask\">\n      <div class=\"Modal__container\">\n        <div class=\"panel panel-default\">\n\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\">\n              <slot name=\"title\"></slot>\n            </h3>\n          </div>\n\n          <div class=\"panel-body\">\n            <slot name=\"body\"></slot>\n          </div>\n\n          <div class=\"panel-footer\">\n              <slot name=\"ok\"></slot>\n              <span @click=\"modal = false\">\n                <slot name=\"cancel\"></slot>\n              </span>\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -28830,7 +28830,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<my-modal>\n  <div class=\"panel panel-default\">\n\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">\n        Delete Race\n      </h3>\n    </div>\n\n    <div class=\"panel-body\">\n      <p>Are you sure you want to delete this race?</p>\n      <button class=\"btn btn-primary\" @click=\"removeRace\">Yes</button>\n      <button class=\"btn btn-danger\" @click=\"modal = false\">Cancel</button>\n    </div>\n  </div>\n</my-modal>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<my-modal>\n  <button class=\"btn btn-danger\" slot=\"trigger\">Test</button>\n\n  <span slot=\"title\">Delete Race</span>\n\n  <p slot=\"body\">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>\n\n  <button slot=\"ok\" class=\"btn btn-danger\" @click=\"removeRace\">Yes</button>\n  <button slot=\"cancel\" class=\"btn btn-default\">Cancel</button>\n</my-modal>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -29109,7 +29109,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../api/driver":77,"../vuex/races/actions":115,"../vuex/races/getters":116,"vue":74,"vue-hot-reload-api":70,"vueify/lib/insert-css":75}],99:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Edit-panel {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: darkgrey;\n  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);\n  overflow-y: auto;\n}\n\n.Edit-panel__mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0,0,0,.5);\n}\n\n.Edit-panel__list {\n  z-index: 9999;\n}\n\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 300px;\n}\n\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Edit-menu {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: darkgrey;\n  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);\n  overflow-y: auto;\n}\n\n.Mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0,0,0,.5);\n}\n\n.Edit-menu__list {\n  z-index: 9999;\n}\n\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 300px;\n}\n\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29135,7 +29135,7 @@ exports.default = {
   },
   data: function data() {
     return {
-      editDropdown: false
+      menu: false
     };
   },
 
@@ -29145,30 +29145,30 @@ exports.default = {
     }
   },
   methods: {
-    toggleDropdown: function toggleDropdown(e) {
-      e.stopPropagation();
-      this.editDropdown = !this.editDropdown;
+    openMenu: function openMenu() {
       var body = document.querySelector('body');
       body.style.overflow = 'hidden';
-      var self = this;
-      var handler = function handler(e) {
+      var handler = function (e) {
         e.stopPropagation();
-        if (e.target !== document.querySelector('dropdown-container')) self.editDropdown = false;
-        document.removeEventListener('click', handler);
         body.style.overflow = 'auto';
-      };
-      document.addEventListener('click', handler);
+        if (e.target === document.querySelector('.Mask')) {
+          this.menu = false;
+          body.removeEventListener('click', handler);
+        }
+      }.bind(this);
+      this.menu = true;
+      body.addEventListener('click', handler);
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <button class=\"btn btn-sm btn-default dropbtn\" v-show=\"$route.name === 'races.show'\" @click=\"toggleDropdown\">\n    Edit Race\n  </button>\n\n  <div v-if=\"editDropdown === true\" transition=\"fade\" class=\"Edit-panel__mask\"></div>\n  <section v-if=\"editDropdown === true\" transition=\"slideFromRight\" class=\"Edit-panel\">\n    <div class=\"Edit-panel__list\">\n      <div class=\"list-group\">\n        <a @click=\"setEditorView('details')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Details</a>\n        <a @click=\"setEditorView('drivers')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Drivers</a>\n        <a @click=\"setEditorView('qualOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Qual</a>\n        <a @click=\"setEditorView('qualTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Qual</a>\n        <a @click=\"setEditorView('raceOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Race</a>\n        <a @click=\"setEditorView('raceTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Race</a>\n      </div>\n      <races-delete-modal></races-delete-modal>\n    </div>\n  </section>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <button class=\"btn btn-sm btn-default\" v-show=\"$route.name === 'races.show'\" @click.stop=\"openMenu\">\n    Edit Race\n  </button>\n\n  <div v-if=\"menu  === true\" transition=\"fade\" class=\"Mask\"></div>\n  <section v-if=\"menu === true\" transition=\"slideFromRight\" class=\"Edit-menu\">\n    <div class=\"Edit-menu__list\">\n      <div class=\"list-group\">\n        <a @click=\"setEditorView('details')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Details</a>\n        <a @click=\"setEditorView('drivers')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Drivers</a>\n        <a @click=\"setEditorView('qualOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Qual</a>\n        <a @click=\"setEditorView('qualTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Qual</a>\n        <a @click=\"setEditorView('raceOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Race</a>\n        <a @click=\"setEditorView('raceTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Race</a>\n      </div>\n      <races-delete-modal></races-delete-modal>\n    </div>\n  </section>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Edit-panel {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: darkgrey;\n  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);\n  overflow-y: auto;\n}\n\n.Edit-panel__mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0,0,0,.5);\n}\n\n.Edit-panel__list {\n  z-index: 9999;\n}\n\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 300px;\n}\n\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0;\n}\n"] = false
+    __vueify_insert__.cache["\n.Edit-menu {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: darkgrey;\n  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);\n  overflow-y: auto;\n}\n\n.Mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0,0,0,.5);\n}\n\n.Edit-menu__list {\n  z-index: 9999;\n}\n\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 300px;\n}\n\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -29394,7 +29394,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"$loadingRouteData\">Loading...</div>\n<div v-else=\"\" class=\"container\">\n  <section class=\"Races-show__banner\">\n    <h3>\n      {{ race.name }}\n      <span class=\"label label-default\" v-if=\"$route.name === 'races.edit'\">Editor</span>\n    </h3>\n  </section>\n\n  <hr>\n\n  <div class=\"pull-right\">\n    <races-edit-dropdown></races-edit-dropdown>\n    <races-delete-modal></races-delete-modal>\n  </div>\n\n  <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n    Back to Race\n  </button>\n\n  <router-view></router-view>\n\n  <section v-if=\"$route.name === 'races.show'\">\n    <race-overview></race-overview>\n  </section>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"$loadingRouteData\">Loading...</div>\n<div v-else=\"\" class=\"container\">\n  <section class=\"Races-show__banner\">\n    <h3>\n      {{ race.name }}\n      <span class=\"label label-default\" v-if=\"$route.name === 'races.edit'\">Editor</span>\n    </h3>\n  </section>\n\n  <hr>\n\n  <div class=\"pull-right\">\n    <races-edit-dropdown></races-edit-dropdown>\n  </div>\n\n  <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n    Back to Race\n  </button>\n\n  <router-view></router-view>\n\n  <section v-if=\"$route.name === 'races.show'\">\n    <race-overview></race-overview>\n  </section>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

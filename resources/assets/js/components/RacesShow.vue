@@ -12,7 +12,6 @@
 
     <div class="pull-right">
       <races-edit-dropdown></races-edit-dropdown>
-      <races-delete-modal></races-delete-modal>
     </div>
 
     <button class="pull-right btn btn-sm btn-default"
