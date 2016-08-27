@@ -12,6 +12,7 @@
 
     <div class="pull-right">
       <races-edit-dropdown></races-edit-dropdown>
+      <races-delete-modal></races-delete-modal>
     </div>
 
     <button class="pull-right btn btn-sm btn-default"
@@ -31,6 +32,7 @@
 
 <script>
   import RacesEditDropdown from './RacesEditDropdown.vue'
+  import RacesDeleteModal from './RacesDeleteModal.vue'
   import RaceOverview from './RaceOverview.vue'
   import { setEditorView, fetchCurrentRace, updateCurrentRaceId } from '../vuex/races/actions'
   import { getCurrentRace } from '../vuex/races/getters'
@@ -39,6 +41,7 @@
     name: 'RacesShow',
     components: {
       RacesEditDropdown,
+      RacesDeleteModal,
       RaceOverview
     },
     vuex: {

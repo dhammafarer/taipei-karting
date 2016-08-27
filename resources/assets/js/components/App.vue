@@ -48,4 +48,7 @@
 </script>
 
 <style>
+  html {
+    overflow-y: scroll;
+  }
 </style>

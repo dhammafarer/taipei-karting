@@ -88,6 +88,18 @@ class RacesController extends BaseController
     }
   }
 
+  public function destroy($id)
+  {
+    try {
+      $race = Race::find($id);
+      $race->delete();
+
+      return $this->response->noContent();
+    } catch (\Exception $e) {
+      return $this->response->errorInternal();
+    }
+  }
+
   public function updateDrivers(Request $request, $id)
   {
     $addedIds = $request->addedIds;
@@ -130,17 +142,5 @@ class RacesController extends BaseController
     $race = Race::findOrFail($id);
 
     return response()->json($race);
-  }
-
-  public function destroy($id)
-  {
-    try {
-      $driver = Race::find($id);
-      $driver->delete();
-
-      return $this->response->noContent();
-    } catch (\Exception $e) {
-      return $this->response->errorInternal();
-    }
   }
 }

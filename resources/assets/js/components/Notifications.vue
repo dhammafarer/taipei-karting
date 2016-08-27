@@ -35,7 +35,6 @@
     right: 40px;
   }
 
-
   .fade-transition {
     opacity: 1;
     trantision: opacity .3s ease;

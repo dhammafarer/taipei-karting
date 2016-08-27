@@ -21,6 +21,10 @@ export default {
       .then(response => response.json())
   },
 
+  destroy (id) {
+    return Vue.http.delete('races/' + id)
+  },
+
   updateDrivers (id, addedIds, removedIds) {
     return Vue.http.post('races/' + id + '/updateDrivers', { addedIds: addedIds, removedIds: removedIds })
       .then(response => response.json())

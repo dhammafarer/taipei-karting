@@ -40,6 +40,20 @@ export const updateRace = ({ dispatch }, id, formData) => {
     })
 }
 
+export const deleteRace = ({ dispatch }, data) => {
+  return race.destroy(data.id)
+    .catch(err => {
+      dispatch(types.ADD_NOTIFICATION,
+        {title: 'Error!', body: 'Failed to delete race.', type: 'danger'})
+      }
+    )
+    .then(response => {
+      dispatch(types.DELETE_RACE, data)
+      dispatch(types.ADD_NOTIFICATION,
+        {title: 'Success!', body: 'Race has been deleted.', type: 'success'})
+    })
+}
+
 export const updateRaceDrivers = ({ dispatch }, id, addedIds, removedIds) => {
   return race.updateDrivers(id, addedIds, removedIds)
     .then(race => dispatch(types.SET_CURRENT_RACE, race))

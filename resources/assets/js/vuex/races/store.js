@@ -3,6 +3,7 @@ import {
   RECEIVE_RACES,
   ADD_RACE,
   REPLACE_RACE,
+  DELETE_RACE,
   SET_CURRENT_RACE,
   SET_CURRENT_RACE_ID,
   CLEAR_CURRENT_RACE,
@@ -25,6 +26,9 @@ const mutations = {
   },
   [REPLACE_RACE] (state, race) {
     state.all[R.findIndex(R.propEq('id', race.id), state.all)] = race
+  },
+  [DELETE_RACE] (state, race) {
+    state.all.splice(state.all.indexOf(race), 1)
   },
   [SET_CURRENT_RACE] (state, race) {
     state.current = race
