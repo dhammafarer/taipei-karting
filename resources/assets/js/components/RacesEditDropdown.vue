@@ -8,16 +8,16 @@
       Edit Race
     </button>
 
-    <div v-if="menu  === true" transition="fade" class="Mask"></div>
+    <div v-if="menu  === true" transition="fade" @click="menu = false" class="Mask"></div>
     <section v-if="menu === true" transition="slideFromRight" class="Edit-menu">
       <div class="Edit-menu__list">
         <div class="list-group">
-          <a @click="setEditorView('details')" v-link="linkEdit" class="list-group-item" href="#">Details</a>
-          <a @click="setEditorView('drivers')" v-link="linkEdit" class="list-group-item" href="#">Drivers</a>
-          <a @click="setEditorView('qualOne')" v-link="linkEdit" class="list-group-item" href="#">1st Qual</a>
-          <a @click="setEditorView('qualTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Qual</a>
-          <a @click="setEditorView('raceOne')" v-link="linkEdit" class="list-group-item" href="#">1st Race</a>
-          <a @click="setEditorView('raceTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Race</a>
+          <a @click="setEditor('details')" v-link="linkEdit" class="list-group-item" href="#">Details</a>
+          <a @click="setEditor('drivers')" v-link="linkEdit" class="list-group-item" href="#">Drivers</a>
+          <a @click="setEditor('qualOne')" v-link="linkEdit" class="list-group-item" href="#">1st Qual</a>
+          <a @click="setEditor('qualTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Qual</a>
+          <a @click="setEditor('raceOne')" v-link="linkEdit" class="list-group-item" href="#">1st Race</a>
+          <a @click="setEditor('raceTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Race</a>
         </div>
         <races-delete-modal></races-delete-modal>
       </div>
@@ -50,19 +50,12 @@
       }
     },
     methods: {
+      setEditor (view) {
+        this.setEditorView(view)
+        this.menu = false
+      },
       openMenu () {
-        let body = document.querySelector('body')
-        body.style.overflow = 'hidden'
-        let handler = function(e) {
-          e.stopPropagation()
-          body.style.overflow = 'auto'
-          if (e.target === document.querySelector('.Mask')) {
-            this.menu = false
-            body.removeEventListener('click', handler)
-          }
-        }.bind(this)
         this.menu = true
-        body.addEventListener('click', handler)
       }
     }
   }

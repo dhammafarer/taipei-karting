@@ -6,6 +6,7 @@
 
         <button class="btn btn-default" @click="showEdit = true">Edit</button>
         <drivers-delete-modal></drivers-delete-modal>
+        <drivers-edit-modal></drivers-edit-modal>
 
         <div class="col-sm-1">
           <img class="Driver-photo img img-thumbnail" :src="driver.photo | driverPhoto">
@@ -28,12 +29,14 @@
   import { getCurrentDriver } from '../vuex/drivers/getters'
   import { fetchCurrentDriver, clearCurrentDriver } from '../vuex/drivers/actions'
   import DriversEdit from './DriversEdit.vue'
+  import DriversEditModal from './DriversEditModal.vue'
   import DriversDeleteModal from './DriversDeleteModal.vue'
 
   export default {
     name: 'DriversIndex',
     components: {
       DriversEdit,
+      DriversEditModal,
       DriversDeleteModal
     },
     vuex: {
