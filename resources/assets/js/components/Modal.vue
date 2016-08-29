@@ -1,11 +1,6 @@
 <template>
-  <div class="Modal">
-
-    <div @click.stop="openModal">
-      <slot name="trigger"></slot>
-    </div>
-
-    <div class="Modal__mask" v-if="modal">
+  <div class="Modal" v-if="show">
+    <div class="Modal__mask" @click="show = false">
       <div class="Modal__container">
         <div class="panel panel-default">
 
@@ -20,10 +15,7 @@
           </div>
 
           <div class="panel-footer">
-              <slot name="ok"></slot>
-              <span @click="modal = false">
-                <slot name="cancel"></slot>
-              </span>
+            <slot name="footer"></slot>
           </div>
 
         </div>
@@ -35,22 +27,10 @@
 
 <script>
   export default {
-    data () {
-      return {
-        modal: false
-      }
-    },
-    methods: {
-      openModal() {
-        let body = document.querySelector('body')
-        let handler = function (e) {
-          if (e.target === document.querySelector('.Modal__mask')) {
-            body.removeEventListener('click', handler)
-            this.modal = false
-          }
-        }.bind(this)
-        this.modal = true
-        body.addEventListener('click', handler)
+    props: {
+      show: {
+        type: Boolean,
+        default: false
       }
     }
   }

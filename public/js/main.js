@@ -28445,34 +28445,21 @@ if (module.hot) {(function () {  module.hot.accept()
 },{"vue":74,"vue-hot-reload-api":70}],89:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Modal {\n  display: inline-block;\n}\n\n.Modal__mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n")
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  data: function data() {
-    return {
-      modal: false
-    };
-  },
-
-  methods: {
-    openModal: function openModal() {
-      var body = document.querySelector('body');
-      var handler = function (e) {
-        if (e.target === document.querySelector('.Modal__mask')) {
-          body.removeEventListener('click', handler);
-          this.modal = false;
-        }
-      }.bind(this);
-      this.modal = true;
-      body.addEventListener('click', handler);
+  props: {
+    show: {
+      type: Boolean,
+      default: false
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Modal\">\n\n  <div @click.stop=\"openModal\">\n    <slot name=\"trigger\"></slot>\n  </div>\n\n  <div class=\"Modal__mask\" v-if=\"modal\">\n    <div class=\"Modal__container\">\n      <div class=\"panel panel-default\">\n\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">\n            <slot name=\"title\"></slot>\n          </h3>\n        </div>\n\n        <div class=\"panel-body\">\n          <slot name=\"body\"></slot>\n        </div>\n\n        <div class=\"panel-footer\">\n            <slot name=\"ok\"></slot>\n            <span @click=\"modal = false\">\n              <slot name=\"cancel\"></slot>\n            </span>\n        </div>\n\n      </div>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Modal\" v-if=\"show\">\n  <div class=\"Modal__mask\" @click=\"show = false\">\n    <div class=\"Modal__container\">\n      <div class=\"panel panel-default\">\n\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">\n            <slot name=\"title\"></slot>\n          </h3>\n        </div>\n\n        <div class=\"panel-body\">\n          <slot name=\"body\"></slot>\n        </div>\n\n        <div class=\"panel-footer\">\n          <slot name=\"footer\"></slot>\n        </div>\n\n      </div>\n    </div>\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -28909,6 +28896,12 @@ exports.default = {
       race: _getters.getCurrentRace
     }
   },
+  data: function data() {
+    return {
+      modal: false
+    };
+  },
+
   methods: {
     removeRace: function removeRace() {
       this.deleteRace(this.race).then(this.$router.go({ name: 'races.index' }));
@@ -28916,7 +28909,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<my-modal>\n  <button class=\"btn btn-danger\" slot=\"trigger\">Test</button>\n\n  <span slot=\"title\">Delete Race</span>\n\n  <p slot=\"body\">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>\n\n  <button slot=\"ok\" class=\"btn btn-danger\" @click=\"removeRace\">Yes</button>\n  <button slot=\"cancel\" class=\"btn btn-default\">Cancel</button>\n</my-modal>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <button class=\"btn btn-danger\" @click=\"modal = true\">Delete Race</button>\n  <my-modal :show=\"modal\">\n    <span slot=\"title\">Delete Race</span>\n\n    <p slot=\"body\">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>\n\n    <span slot=\"footer\">\n      <button class=\"btn btn-danger\" @click=\"removeRace\">Yes</button>\n      <button class=\"btn btn-default\" @click=\"modal = false\">Cancel</button>\n    </span>\n  </my-modal>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -29473,7 +29466,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"$loadingRouteData\">Loading...</div>\n<div v-else=\"\" class=\"container\">\n  <section class=\"Races-show__banner\">\n    <h3>\n      {{ race.name }}\n      <span class=\"label label-default\" v-if=\"$route.name === 'races.edit'\">Editor</span>\n    </h3>\n  </section>\n\n  <hr>\n\n  <div class=\"pull-right\">\n    <races-edit-dropdown></races-edit-dropdown>\n  </div>\n\n  <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n    Back to Race\n  </button>\n\n  <router-view></router-view>\n\n  <section v-if=\"$route.name === 'races.show'\">\n    <race-overview></race-overview>\n  </section>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div v-if=\"$loadingRouteData\">Loading...</div>\n  <div v-else=\"\" class=\"container\">\n    <section class=\"Races-show__banner\">\n      <h3>\n        {{ race.name }}\n        <span class=\"label label-default\" v-if=\"$route.name === 'races.edit'\">Editor</span>\n      </h3>\n    </section>\n\n    <hr>\n\n    <div class=\"pull-right\">\n      <races-edit-dropdown></races-edit-dropdown>\n    </div>\n\n    <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n      Back to Race\n    </button>\n\n    <router-view></router-view>\n\n    <section v-if=\"$route.name === 'races.show'\">\n      <race-overview></race-overview>\n    </section>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

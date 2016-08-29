@@ -1,14 +1,17 @@
 <template>
-  <my-modal>
-    <button class="btn btn-danger" slot="trigger">Test</button>
+  <div>
+    <button class="btn btn-danger" @click="modal = true">Delete Race</button>
+    <my-modal :show="modal">
+      <span slot="title">Delete Race</span>
 
-    <span slot="title">Delete Race</span>
+      <p slot="body">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>
 
-    <p slot="body">Are you sure you want to permanently delete <strong>{{ race.name }}</strong>?</p>
-
-    <button slot="ok" class="btn btn-danger" @click="removeRace">Yes</button>
-    <button slot="cancel" class="btn btn-default">Cancel</button>
-  </my-modal>
+      <span slot="footer">
+        <button class="btn btn-danger" @click="removeRace">Yes</button>
+        <button class="btn btn-default" @click="modal = false">Cancel</button>
+      </span>
+    </my-modal>
+  </div>
 </template>
 
 <script>
@@ -26,6 +29,11 @@
       },
       getters: {
         race: getCurrentRace
+      }
+    },
+    data () {
+      return {
+        modal: false
       }
     },
     methods: {
