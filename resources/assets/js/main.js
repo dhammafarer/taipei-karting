@@ -6,7 +6,8 @@ import App from './components/App.vue'
 import { racePhoto, driverPhoto, raceRecord } from './filters'
 
 Vue.use(VueResource)
-Vue.http.options.root = 'http://localhost:3000/api'
+//Vue.http.options.root = 'http://localhost:3000/api'
+Vue.http.options.root = 'http://tika.app/api'
 
 router.start(App, 'app')
 

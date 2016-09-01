@@ -5,6 +5,7 @@ namespace App\Api\V1\Controllers;
 use DB;
 use App\Race;
 use App\Record;
+use App\Events\RaceUpdated;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Api\V1\Transformers\RacesTransformer;
@@ -81,6 +82,8 @@ class RacesController extends BaseController
       $race->weather = $request->weather;
       $race->photo = $filename;
       $race->save();
+
+      event(new RaceUpdated($race));
 
       return $this->item($race, new RacesTransformer);
     } catch (\Exception $e) {

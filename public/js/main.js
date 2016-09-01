@@ -29627,7 +29627,8 @@ var _filters = require('./filters');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
-_vue2.default.http.options.root = 'http://localhost:3000/api';
+//Vue.http.options.root = 'http://localhost:3000/api'
+_vue2.default.http.options.root = 'http://tika.app/api';
 
 _router2.default.start(_App2.default, 'app');
 
