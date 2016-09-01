@@ -11,10 +11,11 @@
 </template>
 
 <script>
+  import io from 'socket.io-client'
   import store from '../vuex/store'
   import HeaderBar from './HeaderBar.vue'
   import Notifications from './Notifications.vue'
-  import { fetchAllRaces } from '../vuex/races/actions'
+  import { fetchAllRaces, socketRaceUpdated } from '../vuex/races/actions'
   import { addNotification, closeNotification } from '../vuex/notifications/actions'
 
   export default {
@@ -26,6 +27,7 @@
     vuex: {
       actions: {
         fetchAllRaces,
+        socketRaceUpdated,
         addNotification,
         closeNotification
       }
@@ -42,6 +44,12 @@
       this.fetchAllRaces().then(() => {
         this.closeNotification(notification)
         this.loading = false
+      })
+    },
+    ready () {
+      let socket = io('http://192.168.10.10:5000')
+      socket.on('races-channel:App\\Events\\RaceUpdated', (data) => {
+        this.socketRaceUpdated(data)
       })
     }
   }

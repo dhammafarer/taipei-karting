@@ -26,6 +26,10 @@ const mutations = {
   },
   [REPLACE_RACE] (state, race) {
     state.all[R.findIndex(R.propEq('id', race.id), state.all)] = race
+    if (state.currentId === race.id) {
+      state.currentId = null
+      state.currentId = parseInt(race.id)
+    }
   },
   [DELETE_RACE] (state, race) {
     state.all.splice(state.all.indexOf(race), 1)

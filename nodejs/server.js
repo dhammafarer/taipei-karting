@@ -10,7 +10,7 @@ server.listen(5000, function () {
 
 redis.subscribe('races-channel')
 redis.on('message', function (channel, message) {
-  console.log('event received')
-  console.log(channel, message)
+  message = JSON.parse(message)
+  io.emit(channel + ':' + message.event, message.data)
 })
 

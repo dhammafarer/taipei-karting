@@ -63,3 +63,9 @@ export const updateRaceRecords = ({ dispatch }, id, data) => {
   return race.updateRecords(id, data)
     .then(race => dispatch(types.SET_CURRENT_RACE, race))
 }
+
+// Socket.io actions
+export const socketRaceUpdated = ({ dispatch }, data) => {
+  return race.fetch(data.race.id)
+    .then(response => dispatch(types.REPLACE_RACE, response.data))
+}
