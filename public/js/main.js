@@ -35233,10 +35233,6 @@ exports.default = {
       console.log('refreshing jwt');
       localStorage.setItem('jwt', json.token);
       _this2.user.authenticated = true;
-    }).catch(function (err) {
-      console.log('error in refreshing');
-      //this.logout()
-      //return router.go('login')
     });
   }
 };
@@ -35785,7 +35781,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":118,"vue-hot-reload-api":114}],135:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-container {\n  text-align: center; }\n\n/* line 5, stdin */\n.submit {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  outline: none;\n  cursor: pointer;\n  border: 3px solid #000;\n  width: 100px;\n  height: 40px;\n  border-radius: 40px;\n  background-color: #fff;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 17, stdin */\n  .submit:hover {\n    background-color: #000;\n    color: #fff; }\n  /* line 21, stdin */\n  .submit:active {\n    letter-spacing: 2px; }\n\n/* line 26, stdin */\n.loading {\n  width: 40px;\n  font-size: 0;\n  border-left-color: gray;\n  -webkit-animation: rotating 2s 0.25s linear infinite;\n          animation: rotating 2s 0.25s linear infinite; }\n  /* line 31, stdin */\n  .loading:after {\n    content: \"\"; }\n  /* line 34, stdin */\n  .loading:hover {\n    color: black;\n    background: white; }\n\n@-webkit-keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n")
+var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-container {\n  text-align: center; }\n\n/* line 5, stdin */\n.submit {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  outline: none;\n  border: 3px solid #000;\n  width: 100px;\n  height: 40px;\n  border-radius: 40px;\n  background-color: #fff;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 16, stdin */\n  .submit:hover {\n    background-color: #000;\n    color: #fff; }\n  /* line 20, stdin */\n  .submit:active {\n    letter-spacing: 2px; }\n\n/* line 25, stdin */\n.loading {\n  width: 40px;\n  font-size: 0;\n  border-left-color: gray;\n  -webkit-animation: rotating 2s 0.25s linear infinite;\n          animation: rotating 2s 0.25s linear infinite; }\n  /* line 30, stdin */\n  .loading:after {\n    content: \"\"; }\n  /* line 33, stdin */\n  .loading:hover {\n    color: black;\n    background: white; }\n\n/* line 39, stdin */\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n  /* line 42, stdin */\n  .disabled:hover {\n    background-color: white;\n    color: black; }\n\n@-webkit-keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35842,7 +35838,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["/* line 2, stdin */\n.btn-container {\n  text-align: center; }\n\n/* line 5, stdin */\n.submit {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  outline: none;\n  cursor: pointer;\n  border: 3px solid #000;\n  width: 100px;\n  height: 40px;\n  border-radius: 40px;\n  background-color: #fff;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 17, stdin */\n  .submit:hover {\n    background-color: #000;\n    color: #fff; }\n  /* line 21, stdin */\n  .submit:active {\n    letter-spacing: 2px; }\n\n/* line 26, stdin */\n.loading {\n  width: 40px;\n  font-size: 0;\n  border-left-color: gray;\n  -webkit-animation: rotating 2s 0.25s linear infinite;\n          animation: rotating 2s 0.25s linear infinite; }\n  /* line 31, stdin */\n  .loading:after {\n    content: \"\"; }\n  /* line 34, stdin */\n  .loading:hover {\n    color: black;\n    background: white; }\n\n@-webkit-keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n"] = false
+    __vueify_insert__.cache["/* line 2, stdin */\n.btn-container {\n  text-align: center; }\n\n/* line 5, stdin */\n.submit {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  outline: none;\n  border: 3px solid #000;\n  width: 100px;\n  height: 40px;\n  border-radius: 40px;\n  background-color: #fff;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 16, stdin */\n  .submit:hover {\n    background-color: #000;\n    color: #fff; }\n  /* line 20, stdin */\n  .submit:active {\n    letter-spacing: 2px; }\n\n/* line 25, stdin */\n.loading {\n  width: 40px;\n  font-size: 0;\n  border-left-color: gray;\n  -webkit-animation: rotating 2s 0.25s linear infinite;\n          animation: rotating 2s 0.25s linear infinite; }\n  /* line 30, stdin */\n  .loading:after {\n    content: \"\"; }\n  /* line 33, stdin */\n  .loading:hover {\n    color: black;\n    background: white; }\n\n/* line 39, stdin */\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n  /* line 42, stdin */\n  .disabled:hover {\n    background-color: white;\n    color: black; }\n\n@-webkit-keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotating {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36241,7 +36237,8 @@ exports.default = {
     return {
       race: { name: '', description: '', venue: '', date: '', time: '', photo: '' },
       formAttempted: false,
-      photoError: ''
+      photoError: '',
+      loading: false
     };
   },
 
@@ -36271,6 +36268,7 @@ exports.default = {
         this.formAttempted = true;
         return false;
       }
+      this.loading = true;
 
       var photo = document.getElementById('photo-upload').files[0];
       var formData = new FormData();
@@ -36284,6 +36282,8 @@ exports.default = {
 
       this.createRace(formData).then(function () {
         return _this.$router.go({ name: 'races.index' });
+      }).catch(function () {
+        return _this.loading = false;
       });
     },
     cancel: function cancel() {
@@ -36292,7 +36292,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races-create\">\n  <div class=\"panel panel-default\">\n\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">\n        Create New Race\n        <span @click=\"cancel\" class=\"Races-create__x pull-right\">×</span>\n      </h3>\n    </div>\n\n    <div class=\"panel-body\">\n\n      <validator name=\"validation\">\n        <div class=\"form-horizontal\">\n\n          <!-- Race Name -->\n          <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n            <label for=\"name\" class=\"col-sm-2\">Name</label>\n            <div class=\"col-sm-10\">\n              <input type=\"text\" class=\"form-control\" placeholder=\"Race name\" v-model=\"race.name\" v-validate:name=\"{ required: true, minlength: 4, maxlength: 20 }\">\n              <div v-if=\"showErrors || $validation.name.touched\">\n                <span v-if=\"$validation.name.required\" class=\"help-block\">This field is required</span>\n                <span v-if=\"$validation.name.minlength\" class=\"help-block\">Please enter at least 4 characters</span>\n                <span v-if=\"$validation.name.maxlength\" class=\"help-block\">Please enter at most 20 characters</span>\n              </div>\n            </div>\n          </div>\n\n          <!-- Race Description -->\n          <div class=\"form-group\" :class=\"{ 'has-error': $validation.description.invalid &amp;&amp; ($validation.description.touched || showErrors) }\">\n            <label for=\"description\" class=\"col-sm-2\">Description</label>\n            <div class=\"col-sm-10\">\n              <textarea class=\"form-control\" rows=\"3\" placeholder=\"Race description\" v-model=\"race.description\" v-validate:description=\"{ maxlength: 60 }\">                </textarea>\n              <div v-if=\"showErrors || $validation.description.touched\">\n                <span v-if=\"$validation.description.maxlength\" class=\"help-block\">Please enter at most 60 characters</span>\n              </div>\n            </div>\n          </div>\n\n          <!-- Race Venue -->\n          <div class=\"form-group\">\n            <label for=\"date\" class=\"col-sm-2\">Venue</label>\n            <div class=\"col-sm-6\">\n              <select type=\"date\" class=\"form-control\" placeholder=\"Race date\" v-model=\"race.venue\">\n                <option selected=\"\" value=\"zhongli\">Zhongli</option>\n                <option value=\"other\">Other</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Race Date -->\n          <div class=\"form-group\">\n            <label for=\"date\" class=\"col-sm-2\">Date</label>\n            <div class=\"col-sm-6\">\n              <input type=\"date\" class=\"form-control\" placeholder=\"Race date\" v-model=\"race.date\">\n            </div>\n          </div>\n\n          <!-- Race Time -->\n          <div class=\"form-group\">\n            <label for=\"time\" class=\"col-sm-2\">Time</label>\n            <div class=\"col-sm-6\">\n              <input type=\"time\" class=\"form-control\" placeholder=\"Race time\" v-model=\"race.time\">\n            </div>\n          </div>\n\n          <!-- Race Photo -->\n          <div class=\"form-group\" :class=\"{ 'has-error': photoError }\">\n            <label for=\"photo\" class=\"col-sm-2\">Photo</label>\n            <div class=\"col-sm-10\">\n              <input @change=\"validatePhoto\" type=\"file\" class=\"form-control\" id=\"photo-upload\">\n              <span class=\"help-block\">{{ photoError }}</span>\n            </div>\n          </div>\n\n          <!-- Buttons -->\n          <div class=\"col-sm-10 col-sm-offset-2\">\n            <button @click=\"saveRace\" class=\"btn btn-primary\" :class=\"{ 'disabled': $validation.invalid }\">Save</button>\n            <button @click=\"cancel\" class=\"btn btn-default\">Cancel</button>\n          </div>\n\n        </div>\n      </validator>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races-create\">\n  <div class=\"panel panel-default\">\n\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">\n        Create New Race\n        <span @click=\"cancel\" class=\"Races-create__x pull-right\">×</span>\n      </h3>\n    </div>\n\n    <div class=\"panel-body\">\n\n      <validator name=\"validation\">\n        <div class=\"form-horizontal\">\n\n          <!-- Race Name -->\n          <div class=\"form-group\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; ($validation.name.touched || showErrors) }\">\n            <label for=\"name\" class=\"col-sm-2\">Name</label>\n            <div class=\"col-sm-10\">\n              <input type=\"text\" class=\"form-control\" placeholder=\"Race name\" v-model=\"race.name\" v-validate:name=\"{ required: true, minlength: 4, maxlength: 20 }\">\n              <div v-if=\"showErrors || $validation.name.touched\">\n                <span v-if=\"$validation.name.required\" class=\"help-block\">This field is required</span>\n                <span v-if=\"$validation.name.minlength\" class=\"help-block\">Please enter at least 4 characters</span>\n                <span v-if=\"$validation.name.maxlength\" class=\"help-block\">Please enter at most 20 characters</span>\n              </div>\n            </div>\n          </div>\n\n          <!-- Race Description -->\n          <div class=\"form-group\" :class=\"{ 'has-error': $validation.description.invalid &amp;&amp; ($validation.description.touched || showErrors) }\">\n            <label for=\"description\" class=\"col-sm-2\">Description</label>\n            <div class=\"col-sm-10\">\n              <textarea class=\"form-control\" rows=\"3\" placeholder=\"Race description\" v-model=\"race.description\" v-validate:description=\"{ maxlength: 60 }\">                </textarea>\n              <div v-if=\"showErrors || $validation.description.touched\">\n                <span v-if=\"$validation.description.maxlength\" class=\"help-block\">Please enter at most 60 characters</span>\n              </div>\n            </div>\n          </div>\n\n          <!-- Race Venue -->\n          <div class=\"form-group\">\n            <label for=\"date\" class=\"col-sm-2\">Venue</label>\n            <div class=\"col-sm-6\">\n              <select type=\"date\" class=\"form-control\" placeholder=\"Race date\" v-model=\"race.venue\">\n                <option selected=\"\" value=\"zhongli\">Zhongli</option>\n                <option value=\"other\">Other</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Race Date -->\n          <div class=\"form-group\">\n            <label for=\"date\" class=\"col-sm-2\">Date</label>\n            <div class=\"col-sm-6\">\n              <input type=\"date\" class=\"form-control\" placeholder=\"Race date\" v-model=\"race.date\">\n            </div>\n          </div>\n\n          <!-- Race Time -->\n          <div class=\"form-group\">\n            <label for=\"time\" class=\"col-sm-2\">Time</label>\n            <div class=\"col-sm-6\">\n              <input type=\"time\" class=\"form-control\" placeholder=\"Race time\" v-model=\"race.time\">\n            </div>\n          </div>\n\n          <!-- Race Photo -->\n          <div class=\"form-group\" :class=\"{ 'has-error': photoError }\">\n            <label for=\"photo\" class=\"col-sm-2\">Photo</label>\n            <div class=\"col-sm-10\">\n              <input @change=\"validatePhoto\" type=\"file\" class=\"form-control\" id=\"photo-upload\">\n              <span class=\"help-block\">{{ photoError }}</span>\n            </div>\n          </div>\n\n          <!-- Buttons -->\n          <div class=\"col-sm-10 col-sm-offset-2\">\n            <button @click=\"saveRace\" class=\"submit\" :class=\"{ 'loading': loading }\">Save</button>\n            <button @click=\"cancel\" class=\"btn btn-default\">Cancel</button>\n          </div>\n\n        </div>\n      </validator>\n    </div>\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37088,12 +37088,24 @@ _vue2.default.http.interceptors.push(function (request, next) {
     if (response.status === 401) {
       return _auth2.default.refreshToken().then(function () {
         return _vue2.default.http(request);
+      }).catch(function (err) {
+        _auth2.default.logout();
+        return _router2.default.go('/login');
       });
     }
   });
 });
 
 _router2.default.start(_App2.default, 'app');
+
+_router2.default.beforeEach(function (transition) {
+  if (transition.to.auth) {
+    if (!_auth2.default.user.authenticated) {
+      transition.redirect('/login');
+    }
+  }
+  transition.next();
+});
 
 _vue2.default.filter('racePhoto', _filters.racePhoto);
 _vue2.default.filter('driverPhoto', _filters.driverPhoto);
@@ -37140,7 +37152,8 @@ router.map({
     subRoutes: {
       '/create': {
         name: 'races.create',
-        component: require('./components/RacesCreate.vue')
+        component: require('./components/RacesCreate.vue'),
+        auth: true
       }
     }
   },
@@ -37150,7 +37163,8 @@ router.map({
     subRoutes: {
       '/edit': {
         name: 'races.edit',
-        component: require('./components/RacesEdit.vue')
+        component: require('./components/RacesEdit.vue'),
+        auth: true
       }
     }
   },
@@ -37160,7 +37174,8 @@ router.map({
     subRoutes: {
       '/create': {
         name: 'drivers.create',
-        component: require('./components/DriversCreate.vue')
+        component: require('./components/DriversCreate.vue'),
+        auth: true
       }
     }
   },
@@ -37170,7 +37185,8 @@ router.map({
     subRoutes: {
       '/edit': {
         name: 'drivers.edit',
-        component: require('./components/DriversEdit.vue')
+        component: require('./components/DriversEdit.vue'),
+        auth: true
       }
     }
   }

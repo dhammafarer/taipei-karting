@@ -23,15 +23,28 @@ Vue.http.interceptors.push((request, next) => {
   next((response) => {
     if (response.status === 401) {
       return auth.refreshToken()
-      .then(() => {
-        return Vue.http(request)
-      })
+        .then(() => {
+          return Vue.http(request)
+        })
+        .catch(err => {
+          auth.logout()
+          return router.go('/login')
+        })
     }
   })
 })
 
 
 router.start(App, 'app')
+
+router.beforeEach((transition) => {
+  if (transition.to.auth) {
+    if (!auth.user.authenticated) {
+      transition.redirect('/login')
+    }
+  }
+  transition.next()
+})
 
 Vue.filter('racePhoto', racePhoto)
 Vue.filter('driverPhoto', driverPhoto)

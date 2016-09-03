@@ -73,7 +73,6 @@
   .submit {
     appearance: none;
     outline: none;
-    cursor: pointer;
     border: 3px solid #000;
     width: 100px;
     height: 40px;
@@ -102,6 +101,15 @@
     &:hover {
       color: black;
       background: white;
+    }
+  }
+
+  .disabled {
+    opacity: .5;
+    cursor: not-allowed !important;
+    &:hover {
+      background-color: white;
+      color: black;
     }
   }
 

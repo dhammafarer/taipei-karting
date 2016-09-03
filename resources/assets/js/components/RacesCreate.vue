@@ -89,7 +89,7 @@
 
             <!-- Buttons -->
             <div class="col-sm-10 col-sm-offset-2">
-              <button @click="saveRace" class="btn btn-primary" :class="{ 'disabled': $validation.invalid }">Save</button>
+              <button @click="saveRace" class="submit" :class="{ 'loading': loading }">Save</button>
               <button @click="cancel" class="btn btn-default">Cancel</button>
             </div>
 
@@ -123,7 +123,8 @@
       return {
         race: { name: '', description: '', venue: '', date:'', time:'', photo: '' },
         formAttempted: false,
-        photoError: ''
+        photoError: '',
+        loading: false
       }
     },
     methods: {
@@ -150,6 +151,7 @@
           this.formAttempted = true
           return false
         }
+        this.loading = true
 
         let photo = document.getElementById('photo-upload').files[0]
         let formData = new FormData()
@@ -163,6 +165,7 @@
 
         this.createRace(formData)
           .then(() => this.$router.go({ name: 'races.index' }))
+          .catch(() => this.loading = false)
       },
       cancel () {
         this.$router.go({ name: 'races.index' })

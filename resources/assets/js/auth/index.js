@@ -35,10 +35,5 @@ export default {
         localStorage.setItem('jwt', json.token)
         this.user.authenticated = true
       })
-      .catch(err => {
-        console.log('error in refreshing')
-        //this.logout()
-        //return router.go('login')
-      })
   }
 }

@@ -27,22 +27,23 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
   //Races Routes
   $api->get('races', 'RacesController@index');
   $api->get('races/{id}', 'RacesController@show');
-  $api->post('races', 'RacesController@store');
-  $api->patch('races/{id}', 'RacesController@update');
-  $api->delete('races/{id}', 'RacesController@destroy');
-  $api->post('races/{id}/update_drivers', 'RacesController@updateDrivers');
 
   //Drivers Routes
-  //$api->get('drivers', 'DriversController@index');
+  $api->get('drivers', 'DriversController@index');
   $api->get('drivers/{id}', 'DriversController@show');
-  $api->post('drivers', 'DriversController@store');
-  $api->patch('drivers/{id}', 'DriversController@update');
-  $api->delete('drivers/{id}', 'DriversController@destroy');
-  $api->post('drivers/check-name', 'DriversController@checkName');
 
   //Restricted routes
   $api->group(['middleware' => 'api.auth'], function($api) {
     $api->get('authenticated_user', 'AuthenticateController@autenticatedUser');
-  $api->get('drivers', 'DriversController@index');
+    //Races
+    $api->post('races', 'RacesController@store');
+    $api->patch('races/{id}', 'RacesController@update');
+    $api->delete('races/{id}', 'RacesController@destroy');
+    $api->post('races/{id}/update_drivers', 'RacesController@updateDrivers');
+    //Drivers
+    $api->post('drivers', 'DriversController@store');
+    $api->patch('drivers/{id}', 'DriversController@update');
+    $api->delete('drivers/{id}', 'DriversController@destroy');
+    $api->post('drivers/check-name', 'DriversController@checkName');
   });
 });

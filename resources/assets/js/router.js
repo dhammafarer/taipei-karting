@@ -22,7 +22,8 @@ router.map({
     subRoutes: {
       '/create': {
         name: 'races.create',
-        component: require('./components/RacesCreate.vue')
+        component: require('./components/RacesCreate.vue'),
+        auth: true
       }
     }
   },
@@ -32,7 +33,8 @@ router.map({
     subRoutes: {
       '/edit': {
         name: 'races.edit',
-        component: require('./components/RacesEdit.vue')
+        component: require('./components/RacesEdit.vue'),
+        auth: true
       }
     }
   },
@@ -42,7 +44,8 @@ router.map({
     subRoutes: {
       '/create': {
         name: 'drivers.create',
-        component: require('./components/DriversCreate.vue')
+        component: require('./components/DriversCreate.vue'),
+        auth: true
       }
     }
   },
@@ -52,7 +55,8 @@ router.map({
     subRoutes: {
       '/edit': {
         name: 'drivers.edit',
-        component: require('./components/DriversEdit.vue')
+        component: require('./components/DriversEdit.vue'),
+        auth: true
       }
     }
   },
