@@ -28,7 +28,7 @@
     computed: {
     },
     ready () {
-      if (this.notification.type === 'success') {
+      if (this.notification.type === 'success' || this.notification.type === 'danger') {
         setTimeout(() => this.closeNotification(this.notification), 3000)
       }
     }

@@ -12,6 +12,10 @@ router.map({
     name: 'home',
     component: require('./components/HomePage.vue')
   },
+  '/login': {
+    name: 'login',
+    component: require('./components/LoginPage.vue')
+  },
   '/races': {
     name: 'races.index',
     component: require('./components/RacesIndex.vue'),

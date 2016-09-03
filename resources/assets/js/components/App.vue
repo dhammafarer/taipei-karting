@@ -12,6 +12,7 @@
 
 <script>
   import io from 'socket.io-client'
+  import auth from '../auth'
   import store from '../vuex/store'
   import HeaderBar from './HeaderBar.vue'
   import Notifications from './Notifications.vue'
@@ -51,6 +52,8 @@
       socket.on('races-channel:App\\Events\\RaceUpdated', (data) => {
         this.socketRaceUpdated(data)
       })
+
+      auth.checkAuth()
     }
   }
 </script>

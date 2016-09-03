@@ -33,7 +33,7 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
   $api->post('races/{id}/update_drivers', 'RacesController@updateDrivers');
 
   //Drivers Routes
-  $api->get('drivers', 'DriversController@index');
+  //$api->get('drivers', 'DriversController@index');
   $api->get('drivers/{id}', 'DriversController@show');
   $api->post('drivers', 'DriversController@store');
   $api->patch('drivers/{id}', 'DriversController@update');
@@ -43,5 +43,6 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
   //Restricted routes
   $api->group(['middleware' => 'api.auth'], function($api) {
     $api->get('authenticated_user', 'AuthenticateController@autenticatedUser');
+  $api->get('drivers', 'DriversController@index');
   });
 });
