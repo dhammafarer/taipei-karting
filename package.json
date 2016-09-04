@@ -26,6 +26,7 @@
     "karma-sinon-stub-promise": "^1.0.0",
     "karma-spec-reporter": "0.0.26",
     "laravel-elixir": "^5.0.0",
+    "laravel-elixir-browser-sync-simple": "^2.1.0",
     "laravel-elixir-vueify": "^1.0.3",
     "mocha": "^3.0.0",
     "phantomjs-prebuilt": "^2.1.9",

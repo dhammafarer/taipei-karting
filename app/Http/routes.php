@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', ['namespace' => 'App\Api\V1\Controllers'], function ($api) {
+$api->version('v1', ['middleware' => 'cors', 'namespace' => 'App\Api\V1\Controllers'], function ($api) {
 
   // Authentication Routes
   $api->post('authenticate', 'AuthenticateController@authenticate');

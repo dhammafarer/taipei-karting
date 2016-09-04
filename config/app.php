@@ -151,6 +151,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Package Service Providers...

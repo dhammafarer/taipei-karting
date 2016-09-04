@@ -14,7 +14,6 @@ require('laravel-elixir-vueify');
 
 elixir(function(mix) {
     mix.browserify('main.js')
-      //.sass('app.scss')
-      //.browserSync({proxy: 'localhost:8000'});
-      .browserSync();
+      .sass('app.scss')
+      .browserSync({ proxy: 'tika.app' });
 });
