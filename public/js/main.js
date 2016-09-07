@@ -35239,7 +35239,7 @@ exports.default = {
 
 },{"../router":156,"vue":118}],125:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nhtml {\n  overflow-y: scroll;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\nhtml {\n  overflow-y: scroll;\n}\n\n.slideInOut-transition {\n  opacity: 1;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.slideInOut-enter, .slideInOut-leave {\n  opacity: 0;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35314,13 +35314,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <notifications></notifications>\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <main v-if=\"!loading\">\n    <router-view></router-view>\n  </main>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <notifications></notifications>\n  <header>\n    <header-bar></header-bar>\n  </header>\n  <main v-if=\"!loading\">\n    <router-view transition-mode=\"out-in\" transition=\"slideInOut\"></router-view>\n  </main>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\nhtml {\n  overflow-y: scroll;\n}\n"] = false
+    __vueify_insert__.cache["\nhtml {\n  overflow-y: scroll;\n}\n\n.slideInOut-transition {\n  opacity: 1;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.slideInOut-enter, .slideInOut-leave {\n  opacity: 0;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -35725,7 +35725,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/drivers/actions":158,"../vuex/drivers/getters":159,"./DriversDeleteModal.vue":127,"./DriversEdit.vue":128,"./DriversEditModal.vue":130,"vue":118,"vue-hot-reload-api":114}],133:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.navbar {\n  margin-bottom: 0;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nbody {\n  margin-top: 50px !important; }\n\n/* line 8, stdin */\n.Navigation {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  border-bottom: 1px solid #8B8C8E;\n  margin-bottom: 0;\n  background-color: #363837;\n  z-index: 99; }\n\n/* line 19, stdin */\n.Navigation__List {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around; }\n\n/* line 27, stdin */\n.Navigation__List-item {\n  text-align: center;\n  padding: 10px 0; }\n\n/* line 32, stdin */\n.Navigation__Link {\n  color: #8B8C8E;\n  font-size: 1.4em;\n  -webkit-transition: color .3s ease;\n  transition: color .3s ease; }\n  /* line 36, stdin */\n  .Navigation__Link:hover {\n    color: white; }\n\n/* line 47, stdin */\n.Navigation__Text {\n  display: none; }\n\n/* line 51, stdin */\n.v-link-active {\n  color: white !important; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35748,17 +35748,18 @@ exports.default = {
   methods: {
     logout: function logout() {
       _auth2.default.logout();
+      this.$router.go('/');
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <a href=\"#\" v-link=\"{ name: 'home' }\" class=\"navbar-brand\">TIKA</a>\n    </div>\n    <div class=\"navbar-collapse collapsed\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\" v-link=\"{ name: 'home' }\">Home</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'races.index' }\">Races</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'drivers.index' }\">Drivers</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'login' }\" v-if=\"!user.authenticated\">Login</a></li>\n        <li><a href=\"#\" v-link=\"{ name: 'home' }\" @click=\"logout\" v-if=\"user.authenticated\">Logout</a></li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"Navigation\">\n  <div class=\"container\">\n    <ul class=\"Navigation__List\">\n      <li class=\"Navigation__List-item\">\n        <a class=\"Navigation__Link\" href=\"#\" v-link=\"{ name: 'home', exact: true }\">\n          <span class=\"Navigation__Icon icon-home\" title=\"Home\"></span>\n          <span class=\"Navigation__Text\">Home</span>\n        </a>\n      </li>\n      <li class=\"Navigation__List-item\">\n        <a class=\"Navigation__Link\" href=\"#\" v-link=\"{ name: 'races.index' }\">\n          <span class=\"Navigation__Icon icon-gauge-1\" title=\"Races\"></span>\n          <span class=\"Navigation__Text\">Races</span>\n        </a>\n      </li>\n      <li class=\"Navigation__List-item\">\n        <a class=\"Navigation__Link\" href=\"#\" v-link=\"{ name: 'drivers.index' }\">\n          <span class=\"Navigation__Icon icon-helmet\" title=\"Drivers\"></span>\n          <span class=\"Navigation__Text\">Drivers</span>\n        </a>\n      </li>\n      <li class=\"Navigation__List-item\" v-if=\"!user.authenticated\">\n        <a class=\"Navigation__Link\" href=\"#\" v-link=\"{ name: 'login' }\">\n          <span class=\"Navigation__Icon icon-login\" title=\"Login\"></span>\n          <span class=\"Navigation__Text\">Login</span>\n        </a>\n      </li>\n      <li class=\"Navigation__List-item\" v-if=\"user.authenticated\">\n        <a class=\"Navigation__Link\" href=\"#\" @click=\"logout\">\n          <span class=\"Navigation__Icon icon-logout\" title=\"Logout\"></span>\n          <span class=\"Navigation__Text\">Logout</span>\n        </a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.navbar {\n  margin-bottom: 0;\n}\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nbody {\n  margin-top: 50px !important; }\n\n/* line 8, stdin */\n.Navigation {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  border-bottom: 1px solid #8B8C8E;\n  margin-bottom: 0;\n  background-color: #363837;\n  z-index: 99; }\n\n/* line 19, stdin */\n.Navigation__List {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around; }\n\n/* line 27, stdin */\n.Navigation__List-item {\n  text-align: center;\n  padding: 10px 0; }\n\n/* line 32, stdin */\n.Navigation__Link {\n  color: #8B8C8E;\n  font-size: 1.4em;\n  -webkit-transition: color .3s ease;\n  transition: color .3s ease; }\n  /* line 36, stdin */\n  .Navigation__Link:hover {\n    color: white; }\n\n/* line 47, stdin */\n.Navigation__Text {\n  display: none; }\n\n/* line 51, stdin */\n.v-link-active {\n  color: white !important; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -35832,7 +35833,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Log In</h2>\n  <p>Log in to your account</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input type=\"text\" class=\"form-control\" placeholder=\"Enter your email\" v-model=\"credentials.email\">\n  </div>\n  <div class=\"form-group\">\n    <input type=\"password\" class=\"form-control\" placeholder=\"Enter your password\" v-model=\"credentials.password\">\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"submit\" :class=\"{ 'loading': loading  }\" @click=\"submit\">Access</button>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Log In</h2>\n  <p>Log in to your account</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input type=\"email\" class=\"form-control\" placeholder=\"Enter your email\" v-model=\"credentials.email\">\n  </div>\n  <div class=\"form-group\">\n    <input type=\"password\" class=\"form-control\" placeholder=\"Enter your password\" v-model=\"credentials.password\">\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"submit\" :class=\"{ 'loading': loading  }\" @click=\"submit\">Access</button>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -35912,7 +35913,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],138:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 15, stdin */\n.Notification--success {\n  background-color: #0A6350;\n  opacity: .7; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #7D4140;\n  opacity: .7; }\n\n/* line 25, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35946,7 +35947,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px;\n}\n\n.Notification--success {\n  background-color: rgba(124,178,71,.8);\n}\n\n.Notification--danger {\n  background-color: rgba(226,112,35,.8);\n}\n\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none;\n}\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 15, stdin */\n.Notification--success {\n  background-color: #0A6350;\n  opacity: .7; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #7D4140;\n  opacity: .7; }\n\n/* line 25, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36834,7 +36835,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container\">\n\n  <div class=\"col-sm-8\">\n\n    <h3>\n      Races\n      <button v-show=\"$route.name === 'races.index'\" transition=\"fade\" class=\"pull-right btn btn-primary btn-sm\" v-link=\"{ name: 'races.create' }\">Create New</button>\n    </h3>\n    <hr>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <div class=\"list-group\">\n      <a class=\"list-group-item\" href=\"#\" v-for=\"race in races\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n        <img class=\"img img-responsive pull-left\" :src=\"race.photo | racePhoto\" width=\"50px\" height=\"50px\">\n        <h4>{{ race.name }}</h4>\n      </a>\n    </div>\n\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n\n    <div class=\"col-sm-8\">\n\n      <h3>\n        Races\n        <button v-show=\"$route.name === 'races.index'\" transition=\"fade\" class=\"pull-right btn btn-primary btn-sm\" v-link=\"{ name: 'races.create' }\">Create New</button>\n      </h3>\n      <hr>\n\n      <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n      <div class=\"list-group\">\n        <a class=\"list-group-item\" href=\"#\" v-for=\"race in races\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n          <img class=\"img img-responsive pull-left\" :src=\"race.photo | racePhoto\" width=\"50px\" height=\"50px\">\n          <h4>{{ race.name }}</h4>\n        </a>\n      </div>\n\n    </div>\n\n  </div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36851,7 +36852,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/races/getters":166,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],153:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.5);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 37, stdin */\n.Race__Circuit {\n  height: 150px; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36895,7 +36896,7 @@ exports.default = {
   },
   computed: {
     racePhoto: function racePhoto() {
-      return this.$options.filters.racePhoto(this.race.photo);
+      return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')';
     }
   },
   route: {
@@ -36906,13 +36907,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div v-if=\"$loadingRouteData\">Loading...</div>\n  <div v-else=\"\" class=\"container\">\n    <section class=\"Races-show__banner\">\n      <h3>\n        {{ race.name }}\n        <span class=\"label label-default\" v-if=\"$route.name === 'races.edit'\">Editor</span>\n      </h3>\n    </section>\n\n    <hr>\n\n    <div class=\"pull-right\">\n      <races-edit-dropdown></races-edit-dropdown>\n    </div>\n\n    <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n      Back to Race\n    </button>\n\n    <router-view></router-view>\n\n    <section v-if=\"$route.name === 'races.show'\">\n      <race-overview></race-overview>\n    </section>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <section class=\"Race__cover\">\n        <div class=\"Race__cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__mask\">\n            <div class=\"container\">\n              <div>\n                <div class=\"col-sm-3 Race__Birthdays\">\n                  <span>Birthday Month Of:</span>\n                </div>\n                <div class=\"col-sm-6 Race__Details\">\n                  <span class=\"Race__Name\">{{ race.name }}</span>\n                  <span>April 17, Zhongli</span>\n                  <img class=\"Race__Circuit\" src=\"/img/races/race--default.png\" alt=\"\">\n                </div>\n                <div class=\"col-sm-3 Race__Edit\">\n                  <races-edit-dropdown class=\"pull-right\"></races-edit-dropdown>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.5);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 37, stdin */\n.Race__Circuit {\n  height: 150px; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36938,7 +36939,7 @@ exports.gridReady = gridReady;
 exports.raceComplete = raceComplete;
 function racePhoto(photo) {
   var path = '/img/races/';
-  var defaultPhoto = 'race--default.png';
+  var defaultPhoto = 'race--default.jpg';
 
   if (!photo) return path + defaultPhoto;
   return path + photo;
@@ -37071,8 +37072,8 @@ var _filters = require('./filters');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
-//Vue.http.options.root = 'http://localhost:3000/api'
-_vue2.default.http.options.root = 'http://tika.app/api';
+_vue2.default.http.options.root = 'http://192.168.1.81:3000/api';
+//Vue.http.options.root = 'http://tika.app/api'
 
 _vue2.default.http.interceptors.push(function (request, next) {
   var token = localStorage.getItem('jwt');

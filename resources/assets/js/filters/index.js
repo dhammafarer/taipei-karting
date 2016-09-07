@@ -1,6 +1,6 @@
 export function racePhoto (photo) {
   let path = '/img/races/'
-  let defaultPhoto = 'race--default.png'
+  let defaultPhoto = 'race--default.jpg'
 
   if (!photo) return path + defaultPhoto
   return path + photo

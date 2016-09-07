@@ -7,8 +7,8 @@ import App from './components/App.vue'
 import { racePhoto, driverPhoto, raceRecord } from './filters'
 
 Vue.use(VueResource)
-//Vue.http.options.root = 'http://localhost:3000/api'
-Vue.http.options.root = 'http://tika.app/api'
+Vue.http.options.root = 'http://192.168.1.81:3000/api'
+//Vue.http.options.root = 'http://tika.app/api'
 
 Vue.http.interceptors.push((request, next) => {
   let token = localStorage.getItem('jwt')

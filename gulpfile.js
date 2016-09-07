@@ -14,6 +14,8 @@ require('laravel-elixir-vueify');
 
 elixir(function(mix) {
     mix.browserify('main.js')
-      .sass('app.scss')
+      .sass([ 'app.scss', '../../../node_modules/font-awesome/scss/font-awesome.scss' ])
+      .styles(['../../../public/css/app.css', 'fontello/fontello.css'])
+      .copy( 'resources/assets/fonts/fontello', 'public/font' )
       .browserSync({ proxy: 'tika.app' });
 });

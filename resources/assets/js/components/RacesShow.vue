@@ -1,33 +1,46 @@
 <template>
   <div>
     <div v-if="$loadingRouteData">Loading...</div>
-    <div v-else class="container">
-      <section  class="Races-show__banner">
-        <h3>
-          {{ race.name }}
-          <span class="label label-default" v-if="$route.name === 'races.edit'">Editor</span>
-        </h3>
+
+    <div v-else class="Race">
+
+      <section class="Race__cover">
+        <div class="Race__cover-photo" :style="{ backgroundImage: racePhoto }">
+          <div class="Race__mask">
+            <div class="container">
+              <div >
+                <div class="col-sm-3 Race__Birthdays">
+                  <span>Birthday Month Of:</span>
+                </div>
+                <div class="col-sm-6 Race__Details">
+                  <span class="Race__Name">{{ race.name }}</span>
+                  <span>April 17, Zhongli</span>
+                  <img class="Race__Circuit"src="/img/races/race--default.png" alt="">
+                </div>
+                <div class="col-sm-3 Race__Edit">
+                  <races-edit-dropdown class="pull-right"></races-edit-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <hr>
+      <div class="container">
 
-      <div class="pull-right">
-        <races-edit-dropdown></races-edit-dropdown>
+        <button class="pull-right btn btn-sm btn-default"
+          v-show="$route.name === 'races.edit'"
+          v-link="{ name: 'races.show', params: {id: race.id} }"
+          >
+          Back to Race
+        </button>
+
+        <router-view></router-view>
+
+        <section v-if="$route.name === 'races.show'">
+          <race-overview></race-overview>
+        </section>
       </div>
-
-      <button class="pull-right btn btn-sm btn-default"
-        v-show="$route.name === 'races.edit'"
-        v-link="{ name: 'races.show', params: {id: race.id} }"
-        >
-        Back to Race
-      </button>
-
-      <router-view></router-view>
-
-      <section v-if="$route.name === 'races.show'">
-        <race-overview></race-overview>
-      </section>
-    </div>
   </div>
 </template>
 
@@ -57,7 +70,7 @@
     },
     computed: {
       racePhoto () {
-        return this.$options.filters.racePhoto(this.race.photo)
+        return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')'
       }
     },
     route: {
@@ -69,5 +82,43 @@
   }
 </script>
 
-<style>
+<style lang="sass">
+  @import 'resources/assets/sass/_variables.scss';
+
+  .Race {
+    position: relative;
+  }
+  .Race__cover-photo {
+    height: calc(100vh - 50px);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-color: #999;
+    z-index: 1;
+  }
+  .Race__mask {
+    background-color: rgba(0,0,0,.5);
+    height: calc(100vh - 50px);
+  }
+
+  .Race__Details {
+    height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    color: white;
+  }
+
+  .Race__Name {
+    color: white;
+    font-size: 4em;
+    font-family: $title-font;
+    line-height: 1em;
+  }
+
+  .Race__Circuit {
+    height: 150px;
+  }
 </style>

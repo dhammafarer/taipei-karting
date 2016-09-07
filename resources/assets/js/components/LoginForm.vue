@@ -7,7 +7,7 @@
       </div>
       <div class="form-group">
         <input
-          type="text"
+          type="email"
           class="form-control"
           placeholder="Enter your email"
           v-model="credentials.email"

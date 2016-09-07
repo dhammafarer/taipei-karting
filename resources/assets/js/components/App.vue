@@ -5,7 +5,7 @@
       <header-bar></header-bar>
     </header>
     <main v-if="!loading">
-      <router-view></router-view>
+      <router-view transition-mode="out-in" transition="slideInOut"></router-view>
     </main>
   </div>
 </template>
@@ -61,5 +61,13 @@
 <style>
   html {
     overflow-y: scroll;
+  }
+
+  .slideInOut-transition {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+  .slideInOut-enter, .slideInOut-leave {
+    opacity: 0;
   }
 </style>

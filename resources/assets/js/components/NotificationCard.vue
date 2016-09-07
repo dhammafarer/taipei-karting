@@ -35,7 +35,9 @@
   }
 </script>
 
-<style>
+<style lang="sass">
+  @import 'resources/assets/sass/_variables.scss';
+
   .Notification {
     padding: 15px;
     margin-bottom: 10px;
@@ -48,11 +50,13 @@
   }
 
   .Notification--success {
-    background-color: rgba(124,178,71,.8);
+    background-color: $green;
+    opacity: .7;
   }
 
   .Notification--danger {
-    background-color: rgba(226,112,35,.8);
+    background-color: $red;
+    opacity: .7;
   }
 
   .Notification__close-button {

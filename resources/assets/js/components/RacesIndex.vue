@@ -1,28 +1,29 @@
 <template>
-  <div class="container">
+  <div class="Races">
 
-    <div class="col-sm-8">
+      <div class="col-sm-8">
 
-      <h3>
-        Races
-        <button v-show="$route.name === 'races.index'" transition="fade" class="pull-right btn btn-primary btn-sm" v-link="{ name: 'races.create' }">Create New</button>
-      </h3>
-      <hr>
+        <h3>
+          Races
+          <button v-show="$route.name === 'races.index'" transition="fade" class="pull-right btn btn-primary btn-sm" v-link="{ name: 'races.create' }">Create New</button>
+        </h3>
+        <hr>
 
-      <router-view transition transition-mode="out-in" class="view"></router-view>
+        <router-view transition transition-mode="out-in" class="view"></router-view>
 
-      <div class="list-group">
-        <a class="list-group-item" href="#"
-          v-for="race in races"
-          v-link="{ name: 'races.show', params: { id: race.id } }"
-        >
-          <img class="img img-responsive pull-left" :src="race.photo | racePhoto" width="50px" height="50px">
-          <h4>{{ race.name }}</h4>
-        </a>
+        <div class="list-group">
+          <a class="list-group-item" href="#"
+            v-for="race in races"
+            v-link="{ name: 'races.show', params: { id: race.id } }"
+            >
+            <img class="img img-responsive pull-left" :src="race.photo | racePhoto" width="50px" height="50px">
+            <h4>{{ race.name }}</h4>
+          </a>
+        </div>
+
       </div>
 
     </div>
-
   </div>
 </template>
 
