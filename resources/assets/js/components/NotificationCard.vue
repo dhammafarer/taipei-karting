@@ -50,12 +50,12 @@
   }
 
   .Notification--success {
-    background-color: $green;
+    background-color: $success;
     opacity: .7;
   }
 
   .Notification--danger {
-    background-color: $red;
+    background-color: $danger;
     opacity: .7;
   }
 
