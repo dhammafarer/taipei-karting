@@ -1,3 +1,5 @@
+let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 export function racePhoto (photo) {
   let path = '/img/races/'
   let defaultPhoto = 'race--default.jpg'
@@ -14,14 +16,22 @@ export function driverPhoto (photo) {
   return path + photo
 }
 
-export function dateGP (value) {
+export function monthYear (value) {
   if (!value) return ''
   let date = new Date(value)
-  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   let year = new String(date.getFullYear())
   let gpDate = months[date.getMonth()] + ' ' + year
 
   return gpDate
+}
+
+export function monthDay (value) {
+  if (!value) return ''
+  let date = new Date(value)
+  let day = new String(date.getDate())
+  date = months[date.getMonth()] + ' ' + day
+
+  return date
 }
 
 export function raceRecord (value) {

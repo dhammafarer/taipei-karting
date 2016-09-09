@@ -4948,10 +4948,78 @@ button.close {
   min-height: 40px;
   font-size: 1.2em; }
 
+.Btn--reverse {
+  border-color: white;
+  background-color: transparent;
+  color: white; }
+  .Btn--reverse:hover {
+    background-color: white;
+    color: #565656; }
+
 .Btn--danger {
   border-color: #FF3B3F;
   background-color: #FF3B3F;
   color: white; }
+
+.Race {
+  position: relative; }
+
+.Race__Cover-photo {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-color: #999;
+  z-index: 1; }
+
+.Race__Mask {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.Race__Details {
+  width: 80%;
+  margin: 0 auto;
+  padding: 70px 0 20px 0;
+  text-align: center;
+  color: white; }
+
+.Race__Name {
+  color: white;
+  text-align: center;
+  font-size: 4em;
+  font-family: "Baloo Tamma", serif;
+  line-height: 1em; }
+
+.Race__Circuit {
+  position: relative; }
+
+.Race__Circuit-map {
+  height: 150px;
+  position: relative; }
+
+.Race__Circuit-type {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.Race__Edit {
+  position: absolute;
+  top: 15px;
+  right: 5%;
+  z-index: 3; }
+
+.Race__Date {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center; }
+
+.Race__Date span {
+  background-color: #F7882F;
+  border-radius: 4px;
+  padding: 3px 5px;
+  margin-right: 8px; }
+  .Race__Date span:last-child {
+    margin-right: 0; }
 
 @charset "UTF-8";
 /*!
@@ -7128,12 +7196,12 @@ button.close {
 
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?96191296');
-  src: url('../font/fontello.eot?96191296#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?96191296') format('woff2'),
-       url('../font/fontello.woff?96191296') format('woff'),
-       url('../font/fontello.ttf?96191296') format('truetype'),
-       url('../font/fontello.svg?96191296#fontello') format('svg');
+  src: url('../font/fontello.eot?72553265');
+  src: url('../font/fontello.eot?72553265#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?72553265') format('woff2'),
+       url('../font/fontello.woff?72553265') format('woff'),
+       url('../font/fontello.ttf?72553265') format('truetype'),
+       url('../font/fontello.svg?72553265#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -7143,7 +7211,7 @@ button.close {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?96191296#fontello') format('svg');
+    src: url('../font/fontello.svg?72553265#fontello') format('svg');
   }
 }
 */
@@ -7216,8 +7284,13 @@ button.close {
 .icon-clock:before { content: '\e81e'; } /* '' */
 .icon-clock-1:before { content: '\e81f'; } /* '' */
 .icon-warning:before { content: '\e820'; } /* '' */
+.icon-doc-text:before { content: '\e821'; } /* '' */
+.icon-user-1:before { content: '\e822'; } /* '' */
+.icon-users-1:before { content: '\e823'; } /* '' */
 .icon-spin5:before { content: '\e838'; } /* '' */
 .icon-gauge-1:before { content: '\f0e4'; } /* '' */
 .icon-flag-checkered:before { content: '\f11e'; } /* '' */
 .icon-birthday:before { content: '\f1fd'; } /* '' */
+.icon-user-plus:before { content: '\f234'; } /* '' */
+.icon-user-times:before { content: '\f235'; } /* '' */
 /*# sourceMappingURL=all.css.map */

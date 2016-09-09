@@ -32,7 +32,12 @@
 .icon-clock:before { content: '\e81e'; } /* '' */
 .icon-clock-1:before { content: '\e81f'; } /* '' */
 .icon-warning:before { content: '\e820'; } /* '' */
+.icon-doc-text:before { content: '\e821'; } /* '' */
+.icon-user-1:before { content: '\e822'; } /* '' */
+.icon-users-1:before { content: '\e823'; } /* '' */
 .icon-spin5:before { content: '\e838'; } /* '' */
 .icon-gauge-1:before { content: '\f0e4'; } /* '' */
 .icon-flag-checkered:before { content: '\f11e'; } /* '' */
 .icon-birthday:before { content: '\f1fd'; } /* '' */
+.icon-user-plus:before { content: '\f234'; } /* '' */
+.icon-user-times:before { content: '\f235'; } /* '' */

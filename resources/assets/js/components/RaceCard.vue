@@ -5,8 +5,8 @@
   >
     <div class="Race-Mask">
       <div class="Race-Card__Details">
+        <span class="Race-Card__Date">{{ race.date | monthYear }}</span>
         <span class="Race-Card__Name">{{ race.name }}</span>
-        <span class="Race-Card__Date">{{ race.date | dateGP }}</span>
       </div>
     </div>
   </div>

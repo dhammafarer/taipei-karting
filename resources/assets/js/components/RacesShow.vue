@@ -4,13 +4,15 @@
 
     <div v-else class="Race">
 
-      <section class="Race__Cover">
+      <races-edit-dropdown :menu.sync="menu"></races-edit-dropdown>
+
+      <section v-if="$route.name === 'races.show'" class="Race__Cover">
         <div class="Race__Cover-photo" :style="{ backgroundImage: racePhoto }">
           <div class="Race__Mask">
             <div class="container">
 
               <div class="Race__Edit">
-                <races-edit-dropdown></races-edit-dropdown>
+                <button class="Btn Btn--reverse" @click="menu = true">Edit Race</button>
               </div>
 
               <div class="col-sm-6 Race__Details">
@@ -18,11 +20,15 @@
                 <span class="Race__Name">{{ race.name }}</span>
 
                 <div class="Race__Date">
-                  <span>{{ race.date }}</span>
-                  <span>{{ race.venue }}</span>
+                  <span class="icon-calendar">{{ race.date | monthDay }}</span>
+                  <span class="icon-clock">{{ race.time }}</span>
+                  <span class="icon-location">{{ race.venue | capitalize }}</span>
                 </div>
 
-                <img class="Race__Circuit"src="/img/circuits/Circuit--default.svg" alt="">
+                <div v-if="race.circuit" class="Race__Circuit">
+                  <img class="Race__Circuit-map" src="/img/circuits/Circuit--default.svg" alt="">
+                  <span class="Race__Circuit-type">{{ race.circuit }}</span>
+                </div>
 
               </div>
 
@@ -74,6 +80,11 @@
         race: getCurrentRace
       }
     },
+    data () {
+      return {
+        menu: false
+      }
+    },
     computed: {
       racePhoto () {
         return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')'
@@ -87,48 +98,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  @import 'resources/assets/sass/_variables.scss';
-
-  .Race {
-    position: relative;
-  }
-
-  .Race__Cover-photo {
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
-    background-color: #999;
-    z-index: 1;
-  }
-  .Race__Mask {
-    background-color: rgba(0,0,0,.3);
-  }
-
-  .Race__Details {
-    padding: 70px 0 20px 0;
-    text-align: center;
-    color: white;
-  }
-
-  .Race__Name {
-    color: white;
-    text-align: center;
-    font-size: 4em;
-    font-family: $title-font;
-    line-height: 1em;
-  }
-
-  .Race__Circuit {
-    height: 150px;
-  }
-
-  .Race__Edit {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 333;
-  }
-</style>

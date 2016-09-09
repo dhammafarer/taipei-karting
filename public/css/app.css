@@ -4948,10 +4948,78 @@ button.close {
   min-height: 40px;
   font-size: 1.2em; }
 
+.Btn--reverse {
+  border-color: white;
+  background-color: transparent;
+  color: white; }
+  .Btn--reverse:hover {
+    background-color: white;
+    color: #565656; }
+
 .Btn--danger {
   border-color: #FF3B3F;
   background-color: #FF3B3F;
   color: white; }
+
+.Race {
+  position: relative; }
+
+.Race__Cover-photo {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-color: #999;
+  z-index: 1; }
+
+.Race__Mask {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.Race__Details {
+  width: 80%;
+  margin: 0 auto;
+  padding: 70px 0 20px 0;
+  text-align: center;
+  color: white; }
+
+.Race__Name {
+  color: white;
+  text-align: center;
+  font-size: 4em;
+  font-family: "Baloo Tamma", serif;
+  line-height: 1em; }
+
+.Race__Circuit {
+  position: relative; }
+
+.Race__Circuit-map {
+  height: 150px;
+  position: relative; }
+
+.Race__Circuit-type {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.Race__Edit {
+  position: absolute;
+  top: 15px;
+  right: 5%;
+  z-index: 3; }
+
+.Race__Date {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center; }
+
+.Race__Date span {
+  background-color: #F7882F;
+  border-radius: 4px;
+  padding: 3px 5px;
+  margin-right: 8px; }
+  .Race__Date span:last-child {
+    margin-right: 0; }
 
 @charset "UTF-8";
 /*!

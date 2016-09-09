@@ -1,29 +1,22 @@
 <template>
   <div>
 
-    <button class="btn btn-sm btn-default"
-      v-show="$route.name === 'races.show'"
-      @click.stop="openMenu"
-      >
-      Edit Race
-    </button>
-
-    <div v-if="menu  === true" transition="fade" @click="menu = false" class="Mask"></div>
+    <div v-if="menu  === true" transition="fade" @click="closeMenu" class="Mask"></div>
     <section v-if="menu === true" transition="slideFromRight" class="Edit-menu">
       <div class="container">
         <div class="Edit-menu__Close">
-          <button class="Btn" @click="menu = false">
+          <button class="Btn" @click="closeMenu">
             <span class="icon-cancel-outline"></span>
           </button>
         </div>
         <div class="Edit-menu__list">
           <div class="list-group">
-            <a @click="setEditor('details')" v-link="linkEdit" class="list-group-item" href="#">Details</a>
-            <a @click="setEditor('drivers')" v-link="linkEdit" class="list-group-item" href="#">Drivers</a>
-            <a @click="setEditor('qualOne')" v-link="linkEdit" class="list-group-item" href="#">1st Qual</a>
-            <a @click="setEditor('qualTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Qual</a>
-            <a @click="setEditor('raceOne')" v-link="linkEdit" class="list-group-item" href="#">1st Race</a>
-            <a @click="setEditor('raceTwo')" v-link="linkEdit" class="list-group-item" href="#">2nd Race</a>
+            <a @click="setEditor('details')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-doc-text"></span>Details</a>
+            <a @click="setEditor('drivers')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-user-plus"></span>Drivers</a>
+            <a @click="setEditor('qualOne')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-stopwatch"></span>1st Qual</a>
+            <a @click="setEditor('qualTwo')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-stopwatch"></span>2nd Qual</a>
+            <a @click="setEditor('raceOne')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-flag-checkered"></span>1st Race</a>
+            <a @click="setEditor('raceTwo')" v-link="linkEdit" class="list-group-item" href="#"><span class="icon-flag-checkered"></span>2nd Race</a>
           </div>
 
           <races-delete-modal></races-delete-modal>
@@ -48,11 +41,7 @@
         setEditorView
       }
     },
-    data () {
-      return {
-        menu: false
-      }
-    },
+    props: [ 'menu' ],
     computed: {
       linkEdit () {
         return { name: 'races.edit', params: { id: this.$route.params.id } }
@@ -61,13 +50,19 @@
     methods: {
       setEditor (view) {
         this.setEditorView(view)
-        this.menu = false
+        this.closeMenu()
       },
       openMenu () {
         this.menu = true
+        document.querySelector('html').style.overflow = 'hidden'
+      },
+      closeMenu () {
+        this.menu = false
+        document.querySelector('html').style.overflow = 'scroll'
       }
     }
   }
+
 </script>
 
 <style lang="sass">

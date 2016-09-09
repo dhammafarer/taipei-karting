@@ -36057,7 +36057,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\" :style=\"{ backgroundImage: racePhoto }\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n      <span class=\"Race-Card__Date\">{{ race.date | dateGP }}</span>\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\" :style=\"{ backgroundImage: racePhoto }\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Date\">{{ race.date | monthYear }}</span>\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36693,12 +36693,7 @@ exports.default = {
       setEditorView: _actions.setEditorView
     }
   },
-  data: function data() {
-    return {
-      menu: false
-    };
-  },
-
+  props: ['menu'],
   computed: {
     linkEdit: function linkEdit() {
       return { name: 'races.edit', params: { id: this.$route.params.id } };
@@ -36707,15 +36702,20 @@ exports.default = {
   methods: {
     setEditor: function setEditor(view) {
       this.setEditorView(view);
-      this.menu = false;
+      this.closeMenu();
     },
     openMenu: function openMenu() {
       this.menu = true;
+      document.querySelector('html').style.overflow = 'hidden';
+    },
+    closeMenu: function closeMenu() {
+      this.menu = false;
+      document.querySelector('html').style.overflow = 'scroll';
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <button class=\"btn btn-sm btn-default\" v-show=\"$route.name === 'races.show'\" @click.stop=\"openMenu\">\n    Edit Race\n  </button>\n\n  <div v-if=\"menu  === true\" transition=\"fade\" @click=\"menu = false\" class=\"Mask\"></div>\n  <section v-if=\"menu === true\" transition=\"slideFromRight\" class=\"Edit-menu\">\n    <div class=\"container\">\n      <div class=\"Edit-menu__Close\">\n        <button class=\"Btn\" @click=\"menu = false\">\n          <span class=\"icon-cancel-outline\"></span>\n        </button>\n      </div>\n      <div class=\"Edit-menu__list\">\n        <div class=\"list-group\">\n          <a @click=\"setEditor('details')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Details</a>\n          <a @click=\"setEditor('drivers')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">Drivers</a>\n          <a @click=\"setEditor('qualOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Qual</a>\n          <a @click=\"setEditor('qualTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Qual</a>\n          <a @click=\"setEditor('raceOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">1st Race</a>\n          <a @click=\"setEditor('raceTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\">2nd Race</a>\n        </div>\n\n        <races-delete-modal></races-delete-modal>\n\n      </div>\n    </div>\n  </section>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <div v-if=\"menu  === true\" transition=\"fade\" @click=\"closeMenu\" class=\"Mask\"></div>\n  <section v-if=\"menu === true\" transition=\"slideFromRight\" class=\"Edit-menu\">\n    <div class=\"container\">\n      <div class=\"Edit-menu__Close\">\n        <button class=\"Btn\" @click=\"closeMenu\">\n          <span class=\"icon-cancel-outline\"></span>\n        </button>\n      </div>\n      <div class=\"Edit-menu__list\">\n        <div class=\"list-group\">\n          <a @click=\"setEditor('details')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-doc-text\"></span>Details</a>\n          <a @click=\"setEditor('drivers')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-user-plus\"></span>Drivers</a>\n          <a @click=\"setEditor('qualOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-stopwatch\"></span>1st Qual</a>\n          <a @click=\"setEditor('qualTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-stopwatch\"></span>2nd Qual</a>\n          <a @click=\"setEditor('raceOne')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-flag-checkered\"></span>1st Race</a>\n          <a @click=\"setEditor('raceTwo')\" v-link=\"linkEdit\" class=\"list-group-item\" href=\"#\"><span class=\"icon-flag-checkered\"></span>2nd Race</a>\n        </div>\n\n        <races-delete-modal></races-delete-modal>\n\n      </div>\n    </div>\n  </section>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36914,8 +36914,6 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../vuex/races/getters":167,"./RaceCard.vue":141,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],154:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 8, stdin */\n.Race__Cover-photo {\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__Mask {\n  background-color: rgba(0, 0, 0, 0.3); }\n\n/* line 20, stdin */\n.Race__Details {\n  padding: 70px 0 20px 0;\n  text-align: center;\n  color: white; }\n\n/* line 26, stdin */\n.Race__Name {\n  color: white;\n  text-align: center;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 34, stdin */\n.Race__Circuit {\n  height: 150px; }\n\n/* line 38, stdin */\n.Race__Edit {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  z-index: 333; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36957,6 +36955,12 @@ exports.default = {
       race: _getters.getCurrentRace
     }
   },
+  data: function data() {
+    return {
+      menu: false
+    };
+  },
+
   computed: {
     racePhoto: function racePhoto() {
       return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')';
@@ -36970,22 +36974,18 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <section class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Edit\">\n                <races-edit-dropdown></races-edit-dropdown>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span>{{ race.date }}</span>\n                  <span>{{ race.venue }}</span>\n                </div>\n\n                <img class=\"Race__Circuit\" src=\"/img/circuits/Circuit--default.svg\" alt=\"\">\n\n              </div>\n\n\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"menu = true\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay }}</span>\n                  <span class=\"icon-clock\">{{ race.time }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\">\n                  <img class=\"Race__Circuit-map\" src=\"/img/circuits/Circuit--default.svg\" alt=\"\">\n                  <span class=\"Race__Circuit-type\">{{ race.circuit }}</span>\n                </div>\n\n              </div>\n\n\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 8, stdin */\n.Race__Cover-photo {\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__Mask {\n  background-color: rgba(0, 0, 0, 0.3); }\n\n/* line 20, stdin */\n.Race__Details {\n  padding: 70px 0 20px 0;\n  text-align: center;\n  color: white; }\n\n/* line 26, stdin */\n.Race__Name {\n  color: white;\n  text-align: center;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 34, stdin */\n.Race__Circuit {\n  height: 150px; }\n\n/* line 38, stdin */\n.Race__Edit {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  z-index: 333; }\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-471352ef", module.exports)
   } else {
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":166,"../vuex/races/getters":167,"./RaceOverview.vue":143,"./RacesDeleteModal.vue":146,"./RacesEditDropdown.vue":150,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],155:[function(require,module,exports){
+},{"../vuex/races/actions":166,"../vuex/races/getters":167,"./RaceOverview.vue":143,"./RacesDeleteModal.vue":146,"./RacesEditDropdown.vue":150,"vue":118,"vue-hot-reload-api":114}],155:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36993,7 +36993,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.racePhoto = racePhoto;
 exports.driverPhoto = driverPhoto;
-exports.dateGP = dateGP;
+exports.monthYear = monthYear;
+exports.monthDay = monthDay;
 exports.raceRecord = raceRecord;
 exports.searchFor = searchFor;
 exports.byQualTime = byQualTime;
@@ -37002,6 +37003,8 @@ exports.raceOnePosition = raceOnePosition;
 exports.raceTwoPosition = raceTwoPosition;
 exports.gridReady = gridReady;
 exports.raceComplete = raceComplete;
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 function racePhoto(photo) {
   var path = '/img/races/';
   var defaultPhoto = 'race--default.jpg';
@@ -37018,14 +37021,22 @@ function driverPhoto(photo) {
   return path + photo;
 }
 
-function dateGP(value) {
+function monthYear(value) {
   if (!value) return '';
   var date = new Date(value);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var year = new String(date.getFullYear());
   var gpDate = months[date.getMonth()] + ' ' + year;
 
   return gpDate;
+}
+
+function monthDay(value) {
+  if (!value) return '';
+  var date = new Date(value);
+  var day = new String(date.getDate());
+  date = months[date.getMonth()] + ' ' + day;
+
+  return date;
 }
 
 function raceRecord(value) {
@@ -37201,7 +37212,8 @@ _router2.default.beforeEach(function (transition) {
 _vue2.default.filter('racePhoto', _filters.racePhoto);
 _vue2.default.filter('driverPhoto', _filters.driverPhoto);
 _vue2.default.filter('raceRecord', _filters.raceRecord);
-_vue2.default.filter('dateGP', _filters.dateGP);
+_vue2.default.filter('monthDay', _filters.monthDay);
+_vue2.default.filter('monthYear', _filters.monthYear);
 
 },{"./auth":124,"./components/App.vue":125,"./filters":155,"./router":157,"./vuex/store":169,"vue":118,"vue-resource":115}],157:[function(require,module,exports){
 'use strict';
