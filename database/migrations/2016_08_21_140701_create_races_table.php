@@ -15,13 +15,13 @@ class CreateRacesTable extends Migration
         Schema::create('races', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('venue')->nullable();
-            $table->string('circuit')->nullable();
-            $table->date('date')->nullable();
-            $table->time('time')->nullable();
-            $table->string('weather')->nullable();
-            $table->string('photo')->nullable();
+            $table->text('description')->default('');
+            $table->string('venue')->default('');
+            $table->string('circuit')->default('');
+            $table->date('date')->default('');
+            $table->time('time')->default('');
+            $table->string('weather')->default('');
+            $table->string('photo')->default('');
             $table->timestamps();
         });
     }

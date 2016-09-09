@@ -17,7 +17,7 @@ class CreateDriversTable extends Migration
             $table->string('name')->unique();
             $table->string('country');
             $table->tinyInteger('month');
-            $table->string('photo')->nullable();
+            $table->string('photo')->default('');
             $table->timestamps();
         });
     }
