@@ -4,23 +4,29 @@
 
     <div v-else class="Race">
 
-      <section class="Race__cover">
-        <div class="Race__cover-photo" :style="{ backgroundImage: racePhoto }">
-          <div class="Race__mask">
+      <section class="Race__Cover">
+        <div class="Race__Cover-photo" :style="{ backgroundImage: racePhoto }">
+          <div class="Race__Mask">
             <div class="container">
-              <div >
-                <div class="col-sm-3 Race__Birthdays">
-                  <span>Birthday Month Of:</span>
-                </div>
-                <div class="col-sm-6 Race__Details">
-                  <span class="Race__Name">{{ race.name }}</span>
-                  <span>April 17, Zhongli</span>
-                  <img class="Race__Circuit"src="/img/circuits/Circuit--default.png" alt="">
-                </div>
-                <div class="col-sm-3 Race__Edit">
-                  <races-edit-dropdown class="pull-right"></races-edit-dropdown>
-                </div>
+
+              <div class="Race__Edit">
+                <races-edit-dropdown></races-edit-dropdown>
               </div>
+
+              <div class="col-sm-6 Race__Details">
+
+                <span class="Race__Name">{{ race.name }}</span>
+
+                <div class="Race__Date">
+                  <span>{{ race.date }}</span>
+                  <span>{{ race.venue }}</span>
+                </div>
+
+                <img class="Race__Circuit"src="/img/circuits/Circuit--default.svg" alt="">
+
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -88,8 +94,8 @@
   .Race {
     position: relative;
   }
-  .Race__cover-photo {
-    height: calc(100vh - 50px);
+
+  .Race__Cover-photo {
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -97,17 +103,13 @@
     background-color: #999;
     z-index: 1;
   }
-  .Race__mask {
+  .Race__Mask {
     background-color: rgba(0,0,0,.3);
-    height: calc(100vh - 50px);
   }
 
   .Race__Details {
-    height: calc(100vh - 50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
+    padding: 70px 0 20px 0;
+    text-align: center;
     color: white;
   }
 
@@ -121,5 +123,12 @@
 
   .Race__Circuit {
     height: 150px;
+  }
+
+  .Race__Edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 333;
   }
 </style>

@@ -4928,6 +4928,31 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.Btn {
+  outline: none;
+  padding: 2px 4px;
+  background-color: white;
+  border: 2px solid #565656;
+  border-radius: 5px;
+  transition: all .3s ease; }
+  .Btn:active {
+    background-color: #565656;
+    color: white; }
+
+.Btn--active {
+  background-color: #565656;
+  color: white; }
+
+.Btn--large {
+  min-width: 40px;
+  min-height: 40px;
+  font-size: 1.2em; }
+
+.Btn--danger {
+  border-color: #FF3B3F;
+  background-color: #FF3B3F;
+  color: white; }
+
 @charset "UTF-8";
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome

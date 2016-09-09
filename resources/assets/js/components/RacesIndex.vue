@@ -1,27 +1,43 @@
 <template>
   <div class="Races">
+    <div class="container">
 
-      <div class="col-sm-8">
+      <section class="Races__Banner">
 
-        <h3>
-          Races
-          <button v-show="$route.name === 'races.index'" transition="fade" class="pull-right btn btn-primary btn-sm" v-link="{ name: 'races.create' }">Create New</button>
-        </h3>
-        <hr>
+        <div class="Races__Toolbar">
+          <div class="Races__Title">Races</div>
 
-        <router-view transition transition-mode="out-in" class="view"></router-view>
+          <div class="Races__Buttons">
+            <button class="Btn Btn--large" :class="{ 'Btn--active': seasons }" @click="seasons = !seasons">
+              <span class="icon-calendar"></span>
+            </button>
+            <button class="Btn Btn--large" :class="{ 'Btn--active': search }" @click="search = !search">
+              <span class="icon-search"></span>
+            </button>
+            <button class="Btn Btn--large" :class="{ 'Btn--active': $route.name === 'races.create' }"
+              v-link="linkCreate"
+              >
+              <span class="icon-plus"></span>
+            </button>
 
-        <div class="list-group">
-          <a class="list-group-item" href="#"
-            v-for="race in races"
-            v-link="{ name: 'races.show', params: { id: race.id } }"
-            >
-            <img class="img img-responsive pull-left" :src="race.photo | racePhoto" width="50px" height="50px">
-            <h4>{{ race.name }}</h4>
-          </a>
+          </div>
         </div>
 
-      </div>
+        <div class="Races__Seasons" v-if="seasons">
+          <button class="Btn" :class="{ 'Btn--active': seasonYear === '' }" @click="seasonYear = ''">All</button>
+          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2016' }" @click="seasonYear = '2016'">2016</button>
+          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2015' }" @click="seasonYear = '2015'">2015</button>
+        </div>
+
+        <div class="Races__Search" v-if="search">
+          <input type="text" value="" placeholder="Search Races" v-model="searchString">
+        </div>
+
+      </section>
+
+      <router-view transition transition-mode="out-in" class="view"></router-view>
+
+      <race-card v-for="race in races | filterBy searchString | filterBy seasonYear" :race="race"></race-card>
 
     </div>
   </div>
@@ -29,18 +45,37 @@
 
 <script>
   import { getAllRaces } from '../vuex/races/getters'
+  import RaceCard from './RaceCard.vue'
 
   export default {
     name: 'racesIndex',
+    components: { RaceCard },
     vuex: {
       getters: {
         races: getAllRaces
+      }
+    },
+    data () {
+      return {
+        seasons: false,
+        search: false,
+        searchString: '',
+        seasonYear: ''
+      }
+    },
+    computed: {
+      linkCreate () {
+        let linkTo = this.$route.name === 'races.create' ? 'races.index' : 'races.create'
+
+        return { name: linkTo }
       }
     }
   }
 </script>
 
 <style lang="sass">
+  @import 'resources/assets/sass/_variables.scss';
+
   .view {
     max-height: 1000px;
     transition: max-height .3s ease-in;
@@ -56,5 +91,31 @@
 
   .fade-enter, .fade-leave {
     opacity: 0;
+  }
+
+  .Races__Banner {
+    color: $tertiary-color;
+    padding: 10px 10px;
+    margin: 10px 0;
+  }
+
+  .Races__Toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Races__Title {
+    font-weight: bold;
+    font-size: 1.6em;
+  }
+
+  .Races__Seasons {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .Races__Search {
+    margin-top: 8px;
   }
 </style>

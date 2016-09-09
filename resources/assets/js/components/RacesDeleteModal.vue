@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn btn-danger" @click="modal = true">Delete Race</button>
+    <button class="Btn Btn--danger" @click="modal = true">Delete Race</button>
     <my-modal :show="modal">
       <span slot="title">Delete Race</span>
 

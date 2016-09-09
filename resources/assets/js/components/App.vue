@@ -67,6 +67,6 @@
 
   body {
     font-family: $body-font;
-    background-color: #EFEFEF;
+    background-color: $body-color;
   }
 </style>

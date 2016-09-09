@@ -4,7 +4,7 @@ import router from './router'
 import store from './vuex/store'
 import auth from './auth'
 import App from './components/App.vue'
-import { racePhoto, driverPhoto, raceRecord } from './filters'
+import { racePhoto, driverPhoto, raceRecord, dateGP } from './filters'
 
 Vue.use(VueResource)
 Vue.http.options.root = 'http://192.168.1.81:3000/api'
@@ -49,3 +49,4 @@ router.beforeEach((transition) => {
 Vue.filter('racePhoto', racePhoto)
 Vue.filter('driverPhoto', driverPhoto)
 Vue.filter('raceRecord', raceRecord)
+Vue.filter('dateGP', dateGP)

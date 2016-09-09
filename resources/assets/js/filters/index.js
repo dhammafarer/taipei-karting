@@ -14,11 +14,36 @@ export function driverPhoto (photo) {
   return path + photo
 }
 
+export function dateGP (value) {
+  if (!value) return ''
+  let date = new Date(value)
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  let year = new String(date.getFullYear())
+  let gpDate = months[date.getMonth()] + ' ' + year
+
+  return gpDate
+}
+
 export function raceRecord (value) {
   if (!value || value === "0") {
     return 'n/a'
   }
   return value
+}
+
+export function searchFor (value, searchString) {
+  let result = []
+  if (!searchString) return value
+
+  searchString = searchString.trim().toLowerCase()
+
+  result = value.filter((item) => {
+    if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+      return item;
+    }
+  })
+
+  return result
 }
 
 export function byQualTime (a, b) {

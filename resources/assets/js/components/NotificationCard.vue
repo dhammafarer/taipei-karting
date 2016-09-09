@@ -9,6 +9,8 @@
     <span class="glyphicon glyphicon-remove"></span>
     </button>
 
+    <span v-if="notification.type === 'success'" class="icon-ok"></span>
+    <span v-if="notification.type === 'danger'" class="icon-warning"></span>
     <strong>{{ notification.title }}</strong> {{ notification.body }}
 
   </div>
@@ -49,15 +51,15 @@
   }
 
   .Notification--success {
-    background-color: $success;
-    color: darken($success, 50%);
-    border: 1px solid darken($success, 50%);
+    background-color: $success-color;
+    color: darken($success-color, 50%);
+    border: 1px solid darken($success-color, 50%);
   }
 
   .Notification--danger {
-    background-color: $danger;
+    background-color: $danger-color;
     color: white;
-    border: 1px solid darken($danger, 30%);
+    border: 1px solid darken($danger-color, 30%);
   }
 
   .Notification__close-button {

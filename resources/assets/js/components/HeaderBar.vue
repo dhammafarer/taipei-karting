@@ -1,7 +1,7 @@
 <template>
   <nav class="Navigation">
     <div class="Navigation__Banner">
-      <div class="container">TIKA
+      <div class="container">Taipei Karting
       </div>
     </div>
     <div class="container">
@@ -62,7 +62,6 @@
     ready () {
       let navList = document.querySelector('.Navigation__List')
       window.addEventListener('scroll', function(e) {
-        if (window.pageYOffset > 50) console.log('Hi')
         if (window.pageYOffset > 50) navList.classList.add('Navigation__List--fixed')
         else navList.classList.remove('Navigation__List--fixed')
       })
@@ -87,6 +86,7 @@
     padding: 10px;
     height: 50px;
     text-align: center;
+    text-transform: uppercase;
     font-size: 24px;
     font-family: $title-font;
     letter-spacing: 3px;

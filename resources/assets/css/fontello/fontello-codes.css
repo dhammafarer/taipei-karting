@@ -1,6 +1,7 @@
 
 .icon-gauge:before { content: '\e800'; } /* '' */
 .icon-steering-wheel:before { content: '\e801'; } /* '' */
+.icon-search:before { content: '\e802'; } /* '' */
 .icon-home:before { content: '\e803'; } /* '' */
 .icon-trophy:before { content: '\e804'; } /* '' */
 .icon-users:before { content: '\e805'; } /* '' */
@@ -10,6 +11,7 @@
 .icon-rain:before { content: '\e809'; } /* '' */
 .icon-cloud-sun:before { content: '\e80a'; } /* '' */
 .icon-drizzle:before { content: '\e80b'; } /* '' */
+.icon-plus-outline:before { content: '\e80c'; } /* '' */
 .icon-location-outline:before { content: '\e80d'; } /* '' */
 .icon-location:before { content: '\e80e'; } /* '' */
 .icon-stopwatch:before { content: '\e80f'; } /* '' */
@@ -23,5 +25,14 @@
 .icon-login:before { content: '\e817'; } /* '' */
 .icon-logout:before { content: '\e818'; } /* '' */
 .icon-helmet:before { content: '\e819'; } /* '' */
+.icon-plus:before { content: '\e81a'; } /* '' */
+.icon-cancel:before { content: '\e81b'; } /* '' */
+.icon-ok:before { content: '\e81c'; } /* '' */
+.icon-calendar:before { content: '\e81d'; } /* '' */
+.icon-clock:before { content: '\e81e'; } /* '' */
+.icon-clock-1:before { content: '\e81f'; } /* '' */
+.icon-warning:before { content: '\e820'; } /* '' */
 .icon-spin5:before { content: '\e838'; } /* '' */
 .icon-gauge-1:before { content: '\f0e4'; } /* '' */
+.icon-flag-checkered:before { content: '\f11e'; } /* '' */
+.icon-birthday:before { content: '\f1fd'; } /* '' */
