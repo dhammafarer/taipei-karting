@@ -58,16 +58,15 @@
   }
 </script>
 
-<style>
+<style lang="sass">
+  @import 'resources/assets/sass/_variables.scss';
+
   html {
     overflow-y: scroll;
   }
 
-  .slideInOut-transition {
-    opacity: 1;
-    transition: opacity .3s ease;
-  }
-  .slideInOut-enter, .slideInOut-leave {
-    opacity: 0;
+  body {
+    font-family: $body-font;
+    background-color: #EFEFEF;
   }
 </style>

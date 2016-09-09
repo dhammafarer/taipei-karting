@@ -35239,7 +35239,7 @@ exports.default = {
 
 },{"../router":156,"vue":118}],125:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nhtml {\n  overflow-y: scroll;\n}\n\n.slideInOut-transition {\n  opacity: 1;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.slideInOut-enter, .slideInOut-leave {\n  opacity: 0;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nhtml {\n  overflow-y: scroll; }\n\n/* line 8, stdin */\nbody {\n  font-family: Montserrat, sans-serif;\n  background-color: #EFEFEF; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35320,7 +35320,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\nhtml {\n  overflow-y: scroll;\n}\n\n.slideInOut-transition {\n  opacity: 1;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.slideInOut-enter, .slideInOut-leave {\n  opacity: 0;\n}\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nhtml {\n  overflow-y: scroll; }\n\n/* line 8, stdin */\nbody {\n  font-family: Montserrat, sans-serif;\n  background-color: #EFEFEF; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -35725,7 +35725,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/drivers/actions":158,"../vuex/drivers/getters":159,"./DriversDeleteModal.vue":127,"./DriversEdit.vue":128,"./DriversEditModal.vue":130,"vue":118,"vue-hot-reload-api":114}],133:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nmain {\n  padding-top: 40px; }\n\n/* line 8, stdin */\n.Navigation {\n  position: relative;\n  width: 100%;\n  margin-bottom: 0;\n  z-index: 99; }\n\n/* line 15, stdin */\n.Navigation__Banner {\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n  font-size: 20px;\n  letter-spacing: 3px;\n  color: white;\n  background-color: #363837; }\n\n/* line 25, stdin */\n.Navigation__List {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  background-color: #434544;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  box-shadow: 0px 2px 2px #666; }\n\n/* line 39, stdin */\n.Navigation__List--fixed {\n  position: fixed;\n  top: 0;\n  left: 0; }\n\n/* line 45, stdin */\n.Navigation__List-item {\n  padding: 5px 0;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  border-bottom: 3px solid transparent;\n  color: #686c6a;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 53, stdin */\n  .Navigation__List-item.v-link-active {\n    border-bottom: 3px solid white; }\n  /* line 56, stdin */\n  .Navigation__List-item:hover .Navigation__Link {\n    color: white; }\n  /* line 59, stdin */\n  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item.v-link-active .Navigation__Icon {\n    color: white; }\n\n/* line 64, stdin */\n.Navigation__Link {\n  font-size: 1.4em; }\n\n/* line 71, stdin */\n.Navigation__Icon {\n  color: #686c6a; }\n\n/* line 75, stdin */\n.Navigation__Text {\n  display: none; }\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nmain {\n  padding-top: 40px; }\n\n/* line 8, stdin */\n.Navigation {\n  position: relative;\n  width: 100%;\n  margin-bottom: 0;\n  z-index: 99; }\n\n/* line 15, stdin */\n.Navigation__Banner {\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n  font-size: 24px;\n  font-family: \"Baloo Tamma\", serif;\n  letter-spacing: 3px;\n  color: white;\n  background-color: #6B7A8F; }\n\n/* line 26, stdin */\n.Navigation__List {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  background-color: #79879b;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  box-shadow: 0px 2px 2px #666; }\n\n/* line 40, stdin */\n.Navigation__List--fixed {\n  position: fixed;\n  top: 0;\n  left: 0; }\n\n/* line 46, stdin */\n.Navigation__List-item {\n  padding: 5px 0;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  border-bottom: 3px solid transparent;\n  color: #a5aebb;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 54, stdin */\n  .Navigation__List-item.v-link-active {\n    border-bottom: 3px solid white; }\n  /* line 57, stdin */\n  .Navigation__List-item:hover .Navigation__Link {\n    color: white; }\n  /* line 60, stdin */\n  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item.v-link-active .Navigation__Icon {\n    color: white; }\n\n/* line 65, stdin */\n.Navigation__Link {\n  font-size: 1.4em; }\n\n/* line 69, stdin */\n.Navigation__Icon {\n  -webkit-transition: color .3s ease;\n  transition: color .3s ease;\n  color: #556172; }\n\n/* line 74, stdin */\n.Navigation__Text {\n  display: none; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35768,7 +35768,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nmain {\n  padding-top: 40px; }\n\n/* line 8, stdin */\n.Navigation {\n  position: relative;\n  width: 100%;\n  margin-bottom: 0;\n  z-index: 99; }\n\n/* line 15, stdin */\n.Navigation__Banner {\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n  font-size: 20px;\n  letter-spacing: 3px;\n  color: white;\n  background-color: #363837; }\n\n/* line 25, stdin */\n.Navigation__List {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  background-color: #434544;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  box-shadow: 0px 2px 2px #666; }\n\n/* line 39, stdin */\n.Navigation__List--fixed {\n  position: fixed;\n  top: 0;\n  left: 0; }\n\n/* line 45, stdin */\n.Navigation__List-item {\n  padding: 5px 0;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  border-bottom: 3px solid transparent;\n  color: #686c6a;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 53, stdin */\n  .Navigation__List-item.v-link-active {\n    border-bottom: 3px solid white; }\n  /* line 56, stdin */\n  .Navigation__List-item:hover .Navigation__Link {\n    color: white; }\n  /* line 59, stdin */\n  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item.v-link-active .Navigation__Icon {\n    color: white; }\n\n/* line 64, stdin */\n.Navigation__Link {\n  font-size: 1.4em; }\n\n/* line 71, stdin */\n.Navigation__Icon {\n  color: #686c6a; }\n\n/* line 75, stdin */\n.Navigation__Text {\n  display: none; }\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nmain {\n  padding-top: 40px; }\n\n/* line 8, stdin */\n.Navigation {\n  position: relative;\n  width: 100%;\n  margin-bottom: 0;\n  z-index: 99; }\n\n/* line 15, stdin */\n.Navigation__Banner {\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n  font-size: 24px;\n  font-family: \"Baloo Tamma\", serif;\n  letter-spacing: 3px;\n  color: white;\n  background-color: #6B7A8F; }\n\n/* line 26, stdin */\n.Navigation__List {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  background-color: #79879b;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  box-shadow: 0px 2px 2px #666; }\n\n/* line 40, stdin */\n.Navigation__List--fixed {\n  position: fixed;\n  top: 0;\n  left: 0; }\n\n/* line 46, stdin */\n.Navigation__List-item {\n  padding: 5px 0;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  border-bottom: 3px solid transparent;\n  color: #a5aebb;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 54, stdin */\n  .Navigation__List-item.v-link-active {\n    border-bottom: 3px solid white; }\n  /* line 57, stdin */\n  .Navigation__List-item:hover .Navigation__Link {\n    color: white; }\n  /* line 60, stdin */\n  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item.v-link-active .Navigation__Icon {\n    color: white; }\n\n/* line 65, stdin */\n.Navigation__Link {\n  font-size: 1.4em; }\n\n/* line 69, stdin */\n.Navigation__Icon {\n  -webkit-transition: color .3s ease;\n  transition: color .3s ease;\n  color: #556172; }\n\n/* line 74, stdin */\n.Navigation__Text {\n  display: none; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -35922,7 +35922,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],138:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 15, stdin */\n.Notification--success {\n  background-color: #0A6350;\n  opacity: .7; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #7D4140;\n  opacity: .7; }\n\n/* line 25, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 14, stdin */\n.Notification--success {\n  background-color: #CAEBF2;\n  color: #258498;\n  border: 1px solid #258498; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #FF3B3F;\n  color: white;\n  border: 1px solid #a10003; }\n\n/* line 26, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35956,7 +35956,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border: 1px solid grey;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 15, stdin */\n.Notification--success {\n  background-color: #0A6350;\n  opacity: .7; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #7D4140;\n  opacity: .7; }\n\n/* line 25, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Notification {\n  padding: 15px;\n  margin-bottom: 10px;\n  background-color: darkgrey;\n  opacity: .8;\n  color: white;\n  border-radius: 4px;\n  min-width: 250px; }\n\n/* line 14, stdin */\n.Notification--success {\n  background-color: #CAEBF2;\n  color: #258498;\n  border: 1px solid #258498; }\n\n/* line 20, stdin */\n.Notification--danger {\n  background-color: #FF3B3F;\n  color: white;\n  border: 1px solid #a10003; }\n\n/* line 26, stdin */\n.Notification__close-button {\n  outline: none;\n  background-color: transparent;\n  border: none; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -35967,7 +35967,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/notifications/actions":162,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],139:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  bottom: 0;\n  right: 0;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35999,7 +35999,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 50px;\n  right: 40px;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n"] = false
+    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  bottom: 0;\n  right: 0;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36861,7 +36861,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/races/getters":166,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],153:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.5);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 37, stdin */\n.Race__Circuit {\n  height: 150px; }\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.3);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  text-align: center;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 38, stdin */\n.Race__Circuit {\n  height: 150px; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36916,13 +36916,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <section class=\"Race__cover\">\n        <div class=\"Race__cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__mask\">\n            <div class=\"container\">\n              <div>\n                <div class=\"col-sm-3 Race__Birthdays\">\n                  <span>Birthday Month Of:</span>\n                </div>\n                <div class=\"col-sm-6 Race__Details\">\n                  <span class=\"Race__Name\">{{ race.name }}</span>\n                  <span>April 17, Zhongli</span>\n                  <img class=\"Race__Circuit\" src=\"/img/races/race--default.png\" alt=\"\">\n                </div>\n                <div class=\"col-sm-3 Race__Edit\">\n                  <races-edit-dropdown class=\"pull-right\"></races-edit-dropdown>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <section class=\"Race__cover\">\n        <div class=\"Race__cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__mask\">\n            <div class=\"container\">\n              <div>\n                <div class=\"col-sm-3 Race__Birthdays\">\n                  <span>Birthday Month Of:</span>\n                </div>\n                <div class=\"col-sm-6 Race__Details\">\n                  <span class=\"Race__Name\">{{ race.name }}</span>\n                  <span>April 17, Zhongli</span>\n                  <img class=\"Race__Circuit\" src=\"/img/circuits/Circuit--default.png\" alt=\"\">\n                </div>\n                <div class=\"col-sm-3 Race__Edit\">\n                  <races-edit-dropdown class=\"pull-right\"></races-edit-dropdown>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.5);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 37, stdin */\n.Race__Circuit {\n  height: 150px; }\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race {\n  position: relative; }\n\n/* line 7, stdin */\n.Race__cover-photo {\n  height: calc(100vh - 50px);\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n  background-color: #999;\n  z-index: 1; }\n\n/* line 16, stdin */\n.Race__mask {\n  background-color: rgba(0, 0, 0, 0.3);\n  height: calc(100vh - 50px); }\n\n/* line 21, stdin */\n.Race__Details {\n  height: calc(100vh - 50px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -ms-flex-flow: column;\n      flex-flow: column;\n  color: white; }\n\n/* line 30, stdin */\n.Race__Name {\n  color: white;\n  text-align: center;\n  font-size: 4em;\n  font-family: \"Baloo Tamma\", serif;\n  line-height: 1em; }\n\n/* line 38, stdin */\n.Race__Circuit {\n  height: 150px; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -37156,24 +37156,24 @@ router.map({
     name: 'login',
     component: require('./components/LoginPage.vue')
   },
-  '/races': {
-    name: 'races.index',
-    component: require('./components/RacesIndex.vue'),
-    subRoutes: {
-      '/create': {
-        name: 'races.create',
-        component: require('./components/RacesCreate.vue'),
-        auth: true
-      }
-    }
-  },
-  '/race/:id': {
+  '/races/:id': {
     name: 'races.show',
     component: require('./components/RacesShow.vue'),
     subRoutes: {
       '/edit': {
         name: 'races.edit',
         component: require('./components/RacesEdit.vue'),
+        auth: true
+      }
+    }
+  },
+  '/races': {
+    name: 'races.index',
+    component: require('./components/RacesIndex.vue'),
+    subRoutes: {
+      'races/create': {
+        name: 'races.create',
+        component: require('./components/RacesCreate.vue'),
         auth: true
       }
     }

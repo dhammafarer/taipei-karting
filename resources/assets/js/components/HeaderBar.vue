@@ -87,7 +87,8 @@
     padding: 10px;
     height: 50px;
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
+    font-family: $title-font;
     letter-spacing: 3px;
     color: white;
     background-color: $primary-color;
@@ -136,11 +137,9 @@
     font-size: 1.4em;
   }
 
-  .Navigation__Brand {
-  }
-
   .Navigation__Icon {
-    color: lighten($primary-color, 20%);
+    transition: color .3s ease;
+    color: darken($primary-color, 10%);
   }
 
   .Navigation__Text {

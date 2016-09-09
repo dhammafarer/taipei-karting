@@ -44,19 +44,20 @@
     background-color: darkgrey;
     opacity: .8;
     color: white;
-    border: 1px solid grey;
     border-radius: 4px;
     min-width: 250px;
   }
 
   .Notification--success {
     background-color: $success;
-    opacity: .7;
+    color: darken($success, 50%);
+    border: 1px solid darken($success, 50%);
   }
 
   .Notification--danger {
     background-color: $danger;
-    opacity: .7;
+    color: white;
+    border: 1px solid darken($danger, 30%);
   }
 
   .Notification__close-button {

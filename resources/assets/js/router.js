@@ -16,24 +16,24 @@ router.map({
     name: 'login',
     component: require('./components/LoginPage.vue')
   },
-  '/races': {
-    name: 'races.index',
-    component: require('./components/RacesIndex.vue'),
-    subRoutes: {
-      '/create': {
-        name: 'races.create',
-        component: require('./components/RacesCreate.vue'),
-        auth: true
-      }
-    }
-  },
-  '/race/:id': {
+  '/races/:id': {
     name: 'races.show',
     component: require('./components/RacesShow.vue'),
     subRoutes: {
       '/edit': {
         name: 'races.edit',
         component: require('./components/RacesEdit.vue'),
+        auth: true
+      }
+    }
+  },
+  '/races': {
+    name: 'races.index',
+    component: require('./components/RacesIndex.vue'),
+    subRoutes: {
+      'races/create': {
+        name: 'races.create',
+        component: require('./components/RacesCreate.vue'),
         auth: true
       }
     }

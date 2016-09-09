@@ -15,7 +15,7 @@
                 <div class="col-sm-6 Race__Details">
                   <span class="Race__Name">{{ race.name }}</span>
                   <span>April 17, Zhongli</span>
-                  <img class="Race__Circuit"src="/img/races/race--default.png" alt="">
+                  <img class="Race__Circuit"src="/img/circuits/Circuit--default.png" alt="">
                 </div>
                 <div class="col-sm-3 Race__Edit">
                   <races-edit-dropdown class="pull-right"></races-edit-dropdown>
@@ -98,7 +98,7 @@
     z-index: 1;
   }
   .Race__mask {
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.3);
     height: calc(100vh - 50px);
   }
 
@@ -113,6 +113,7 @@
 
   .Race__Name {
     color: white;
+    text-align: center;
     font-size: 4em;
     font-family: $title-font;
     line-height: 1em;

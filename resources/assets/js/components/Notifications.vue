@@ -31,8 +31,9 @@
   .Notifications {
     position: fixed;
     z-index: 9999;
-    top: 50px;
-    right: 40px;
+    bottom: 0;
+    right: 0;
+    width: 80%;
   }
 
   .fade-transition {
