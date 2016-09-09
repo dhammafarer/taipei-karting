@@ -36974,7 +36974,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"menu = true\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay }}</span>\n                  <span class=\"icon-clock\">{{ race.time }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\">\n                  <img class=\"Race__Circuit-map\" src=\"/img/circuits/Circuit--default.svg\" alt=\"\">\n                  <span class=\"Race__Circuit-type\">{{ race.circuit }}</span>\n                </div>\n\n              </div>\n\n\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"menu = true\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\">\n                  <img class=\"Race__Circuit-map\" src=\"/img/circuits/Circuit--default.svg\" alt=\"\">\n                  <span class=\"Race__Circuit-type\">{{ race.circuit }}</span>\n                </div>\n\n              </div>\n\n\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36995,6 +36995,7 @@ exports.racePhoto = racePhoto;
 exports.driverPhoto = driverPhoto;
 exports.monthYear = monthYear;
 exports.monthDay = monthDay;
+exports.tba = tba;
 exports.raceRecord = raceRecord;
 exports.searchFor = searchFor;
 exports.byQualTime = byQualTime;
@@ -37022,7 +37023,7 @@ function driverPhoto(photo) {
 }
 
 function monthYear(value) {
-  if (!value) return '';
+  if (!value) return value;
   var date = new Date(value);
   var year = new String(date.getFullYear());
   var gpDate = months[date.getMonth()] + ' ' + year;
@@ -37031,12 +37032,18 @@ function monthYear(value) {
 }
 
 function monthDay(value) {
-  if (!value) return '';
+  if (!value) return value;
   var date = new Date(value);
   var day = new String(date.getDate());
   date = months[date.getMonth()] + ' ' + day;
 
   return date;
+}
+
+function tba(value) {
+  if (!value) return 'TBA';
+
+  return value;
 }
 
 function raceRecord(value) {
@@ -37214,6 +37221,7 @@ _vue2.default.filter('driverPhoto', _filters.driverPhoto);
 _vue2.default.filter('raceRecord', _filters.raceRecord);
 _vue2.default.filter('monthDay', _filters.monthDay);
 _vue2.default.filter('monthYear', _filters.monthYear);
+_vue2.default.filter('tba', _filters.tba);
 
 },{"./auth":124,"./components/App.vue":125,"./filters":155,"./router":157,"./vuex/store":169,"vue":118,"vue-resource":115}],157:[function(require,module,exports){
 'use strict';

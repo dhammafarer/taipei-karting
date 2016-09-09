@@ -17,7 +17,7 @@ export function driverPhoto (photo) {
 }
 
 export function monthYear (value) {
-  if (!value) return ''
+  if (!value) return value
   let date = new Date(value)
   let year = new String(date.getFullYear())
   let gpDate = months[date.getMonth()] + ' ' + year
@@ -26,12 +26,18 @@ export function monthYear (value) {
 }
 
 export function monthDay (value) {
-  if (!value) return ''
+  if (!value) return value
   let date = new Date(value)
   let day = new String(date.getDate())
   date = months[date.getMonth()] + ' ' + day
 
   return date
+}
+
+export function tba (value) {
+  if (!value) return 'TBA'
+
+  return value
 }
 
 export function raceRecord (value) {

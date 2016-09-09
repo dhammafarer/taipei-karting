@@ -4,7 +4,7 @@ import router from './router'
 import store from './vuex/store'
 import auth from './auth'
 import App from './components/App.vue'
-import { racePhoto, driverPhoto, raceRecord, monthDay, monthYear } from './filters'
+import { racePhoto, driverPhoto, raceRecord, monthDay, monthYear, tba } from './filters'
 
 Vue.use(VueResource)
 Vue.http.options.root = 'http://192.168.1.81:3000/api'
@@ -51,3 +51,4 @@ Vue.filter('driverPhoto', driverPhoto)
 Vue.filter('raceRecord', raceRecord)
 Vue.filter('monthDay', monthDay)
 Vue.filter('monthYear', monthYear)
+Vue.filter('tba', tba)

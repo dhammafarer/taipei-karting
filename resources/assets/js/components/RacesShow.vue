@@ -20,9 +20,9 @@
                 <span class="Race__Name">{{ race.name }}</span>
 
                 <div class="Race__Date">
-                  <span class="icon-calendar">{{ race.date | monthDay }}</span>
-                  <span class="icon-clock">{{ race.time }}</span>
-                  <span class="icon-location">{{ race.venue | capitalize }}</span>
+                  <span class="icon-calendar">{{ race.date | monthDay | tba }}</span>
+                  <span class="icon-clock">{{ race.time | tba }}</span>
+                  <span class="icon-location">{{ race.venue | capitalize | tba }}</span>
                 </div>
 
                 <div v-if="race.circuit" class="Race__Circuit">
