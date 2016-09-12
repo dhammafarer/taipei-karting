@@ -36905,6 +36905,15 @@ exports.default = {
   },
 
   computed: {
+    filteredRaces: function filteredRaces() {
+      var _this = this;
+
+      return this.races.filter(function (race) {
+        return race.name.toLowerCase().indexOf(_this.searchString.trim().toLowerCase()) > -1;
+      }).filter(function (race) {
+        return race.date.toLowerCase().indexOf(_this.seasonYear.trim().toLowerCase()) > -1;
+      });
+    },
     linkCreate: function linkCreate() {
       var linkTo = this.$route.name === 'races.create' ? 'races.index' : 'races.create';
 
@@ -36913,7 +36922,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-if=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search\" v-if=\"search\">\n        <input type=\"text\" value=\"\" placeholder=\"Search Races\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in races | filterBy searchString | filterBy seasonYear\" :race=\"race\"></race-card>\n\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races {{ seasonYear }}</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-if=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search\" v-if=\"search\">\n        <input type=\"text\" value=\"\" placeholder=\"Race Name\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in filteredRaces\" :race=\"race\"></race-card>\n\n    <div v-if=\"filteredRaces.length === 0\">No races match these criteria.</div>\n\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

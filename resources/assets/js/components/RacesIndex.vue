@@ -5,7 +5,7 @@
       <section class="Races__Banner">
 
         <div class="Races__Toolbar">
-          <div class="Races__Title">Races</div>
+          <div class="Races__Title">Races {{ seasonYear }}</div>
 
           <div class="Races__Buttons">
             <button class="Btn Btn--large" :class="{ 'Btn--active': seasons }" @click="seasons = !seasons">
@@ -30,14 +30,16 @@
         </div>
 
         <div class="Races__Search" v-if="search">
-          <input type="text" value="" placeholder="Search Races" v-model="searchString">
+          <input type="text" value="" placeholder="Race Name" v-model="searchString">
         </div>
 
       </section>
 
       <router-view transition transition-mode="out-in" class="view"></router-view>
 
-      <race-card v-for="race in races | filterBy searchString | filterBy seasonYear" :race="race"></race-card>
+      <race-card v-for="race in filteredRaces" :race="race"></race-card>
+
+      <div v-if="filteredRaces.length === 0">No races match these criteria.</div>
 
     </div>
   </div>
@@ -64,6 +66,11 @@
       }
     },
     computed: {
+      filteredRaces () {
+        return this.races
+          .filter(race => race.name.toLowerCase().indexOf(this.searchString.trim().toLowerCase()) > -1)
+          .filter(race => race.date.toLowerCase().indexOf(this.seasonYear.trim().toLowerCase()) > -1)
+      },
       linkCreate () {
         let linkTo = this.$route.name === 'races.create' ? 'races.index' : 'races.create'
 
