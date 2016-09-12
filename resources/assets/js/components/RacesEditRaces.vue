@@ -118,19 +118,4 @@
     padding: 2px 6px;
     border-radius: 2px;
   }
-
-  input{
-    background: #fff no-repeat 13px 13px;
-    border: none;
-    width: 100%;
-    line-height: 19px;
-    padding: 2px 0;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px #c4c4c4 inset;
-    text-align: center;
-    font-size: 14px;
-    color: #738289;
-    font-weight: bold;
-    outline: none;
-  }
 </style>

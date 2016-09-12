@@ -30,7 +30,7 @@
         </div>
 
         <div class="Races__Search" v-if="search">
-          <input type="text" value="" placeholder="Race Name" v-model="searchString">
+          <input class="new-input" type="text" value="" placeholder="Race Name" v-model="searchString">
         </div>
 
       </section>
@@ -60,7 +60,7 @@
     data () {
       return {
         seasons: false,
-        search: false,
+        search: true,
         searchString: '',
         seasonYear: ''
       }
@@ -124,5 +124,14 @@
 
   .Races__Search {
     margin-top: 8px;
+  }
+
+  .new-input {
+    appearance: none;
+    border: 1px solid $primary-color;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: white;
+    outline: none;
   }
 </style>
