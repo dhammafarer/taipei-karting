@@ -87,6 +87,11 @@
               </div>
             </div>
 
+            <!-- Photo Preview -->
+            <div class="Photo-preview" v-if="photoPreview">
+              <img :src="photoPreview" alt="Photo preview...">
+            </div>
+
             <!-- Buttons -->
             <div class="col-sm-10 col-sm-offset-2">
               <button @click="saveRace" class="submit" :class="{ 'loading': loading }">Save</button>
@@ -124,6 +129,7 @@
         race: { name: '', description: '', venue: '', date:'', time:'', photo: '' },
         formAttempted: false,
         photoError: '',
+        photoPreview: '',
         loading: false
       }
     },
@@ -138,13 +144,23 @@
           this.photoError = 'Uploaded file must be an image'
           return false
         }
-        if (photo && photo.size > 2048000) {
-          this.photoError = 'Maximum file size is 2MB'
+        if (photo && photo.size > 1024000) {
+          this.photoError = 'Maximum file size is 1MB'
           console.log(this.photoError)
           return false
         }
 
+        this.previewPhoto()
         return true
+      },
+      previewPhoto () {
+        let photo = document.getElementById('photo-upload').files[0]
+        let reader = new FileReader()
+        reader.addEventListener('load', () => this.photoPreview = reader.result)
+        if (photo) {
+          console.log('reading photo')
+          reader.readAsDataURL(photo)
+        }
       },
       saveRace () {
         if (this.formInvalid) {
@@ -170,12 +186,21 @@
       cancel () {
         this.$router.go({ name: 'races.index' })
       }
-    }
+    },
   }
 </script>
 
 <style>
   .Races-create__x {
     cursor: pointer;
+  }
+
+  .Photo-preview {
+    text-align: center;
+  }
+
+  .Photo-preview img {
+    max-height: 200px;
+    max-width: 100%;
   }
 </style>

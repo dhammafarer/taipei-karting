@@ -4998,8 +4998,11 @@ button.close {
 
 .Race__Circuit-type {
   position: absolute;
-  top: 0;
-  right: 0; }
+  top: 30px;
+  right: 25%;
+  background-color: #565656;
+  border-radius: 4px;
+  padding: 3px 5px; }
 
 .Race__Edit {
   position: absolute;
