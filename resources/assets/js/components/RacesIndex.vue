@@ -23,14 +23,18 @@
           </div>
         </div>
 
-        <div class="Races__Seasons" v-if="seasons">
+        <div class="Races__Seasons" v-show="seasons">
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '' }" @click="seasonYear = ''">All</button>
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '2016' }" @click="seasonYear = '2016'">2016</button>
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '2015' }" @click="seasonYear = '2015'">2015</button>
         </div>
 
-        <div class="Races__Search" v-if="search">
-          <input class="new-input" type="text" value="" placeholder="Race Name" v-model="searchString">
+        <div class="Races__Search Floated-form" v-show="search">
+          <label transition="floatUp" v-show="searchString">Search Name</label>
+          <input type="text" placeholder="Search Name"
+            :class="{'has-input': searchString}"
+            v-model="searchString"
+          >
         </div>
 
       </section>
@@ -60,7 +64,7 @@
     data () {
       return {
         seasons: false,
-        search: true,
+        search: false,
         searchString: '',
         seasonYear: ''
       }
@@ -117,21 +121,17 @@
     font-size: 1.6em;
   }
 
-  .Races__Seasons {
-    text-align: center;
+  .Races__Seasons, .Races__Search {
     margin-top: 8px;
   }
 
-  .Races__Search {
-    margin-top: 8px;
+  .floatUp-transition {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all .3s ease;
   }
-
-  .new-input {
-    appearance: none;
-    border: 1px solid $primary-color;
-    border-radius: 3px;
-    padding: 5px;
-    background-color: white;
-    outline: none;
+  .floatUp-enter, .floatUp-leave {
+    transform: translateY(4px);
+    opacity: 0;
   }
 </style>

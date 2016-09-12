@@ -5024,6 +5024,32 @@ button.close {
   .Race__Date span:last-child {
     margin-right: 0; }
 
+.Floated-form {
+  position: relative; }
+  .Floated-form input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #565656;
+    border-radius: 3px;
+    padding: 7px;
+    height: 45px;
+    background-color: white;
+    outline: none;
+    font-size: 1em;
+    width: 100%;
+    transition: padding .3s ease; }
+    .Floated-form input:focus {
+      border-color: #F7882F; }
+    .Floated-form input.has-input {
+      padding-top: 20px; }
+  .Floated-form label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: .8em;
+    color: #6B7A8F; }
+
 @charset "UTF-8";
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome

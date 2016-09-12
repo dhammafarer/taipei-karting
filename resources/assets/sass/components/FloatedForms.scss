@@ -1,0 +1,30 @@
+.Floated-form {
+  position: relative;
+
+  input {
+    appearance: none;
+    border: 1px solid $tertiary-color;
+    border-radius: 3px;
+    padding: 7px;
+    height: 45px;
+    background-color: white;
+    outline: none;
+    font-size: 1em;
+    width: 100%;
+    transition: padding .3s ease;
+    &:focus {
+      border-color: $secondary-color;
+    }
+    &.has-input {
+      padding-top: 20px;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: .8em;
+    color: $primary-color;
+  }
+}
