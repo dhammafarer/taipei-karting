@@ -5,5 +5,5 @@ export function getAllDrivers (state) {
 }
 
 export function getCurrentDriver (state) {
-  return state.drivers.current
+  return R.find(R.propEq('id', state.drivers.currentId), state.drivers.all)
 }

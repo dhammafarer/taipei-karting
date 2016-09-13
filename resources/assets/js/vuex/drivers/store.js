@@ -3,6 +3,7 @@ import {
   RECEIVE_DRIVERS,
   ADD_DRIVER,
   REPLACE_DRIVER,
+  SET_CURRENT_DRIVER_ID,
   DELETE_DRIVER,
   SET_CURRENT_DRIVER,
   CLEAR_CURRENT_DRIVER
@@ -12,6 +13,7 @@ const driverObj = { name: '', country: '', month: '', photo: '' }
 const state = {
   all: [],
   current: driverObj,
+  currentId: null,
 }
 
 const mutations = {
@@ -24,6 +26,10 @@ const mutations = {
   [REPLACE_DRIVER] (state, driver) {
     state.all[R.findIndex(R.propEq('id', driver.id), state.all)] = driver
     state.current = driver
+  },
+  [SET_CURRENT_DRIVER_ID] (state, id) {
+    state.currentId = null
+    state.currentId = parseInt(id)
   },
   [DELETE_DRIVER] (state, driver) {
     state.all.splice(state.all.indexOf(driver), 1)

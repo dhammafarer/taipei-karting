@@ -17,6 +17,7 @@
   import HeaderBar from './HeaderBar.vue'
   import Notifications from './Notifications.vue'
   import { fetchAllRaces, socketRaceUpdated } from '../vuex/races/actions'
+  import { fetchAllDrivers } from '../vuex/drivers/actions'
   import { addNotification, closeNotification } from '../vuex/notifications/actions'
 
   export default {
@@ -29,6 +30,7 @@
       actions: {
         fetchAllRaces,
         socketRaceUpdated,
+        fetchAllDrivers,
         addNotification,
         closeNotification
       }
@@ -42,10 +44,11 @@
       let notification = { title: 'Loading', body: '', type: 'loading' }
       this.addNotification(notification)
       this.loading = true
-      this.fetchAllRaces().then(() => {
-        this.closeNotification(notification)
-        this.loading = false
-      })
+      Promise.all([this.fetchAllRaces(), this.fetchAllDrivers()])
+        .then(() => {
+          this.closeNotification(notification)
+          this.loading = false
+        })
     },
     ready () {
       let socket = io('http://192.168.10.10:5000')

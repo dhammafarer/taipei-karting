@@ -25,6 +25,7 @@
 
         <div class="Races__Seasons" v-show="seasons">
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '' }" @click="seasonYear = ''">All</button>
+          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2017' }" @click="seasonYear = '2017'">2017</button>
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '2016' }" @click="seasonYear = '2016'">2016</button>
           <button class="Btn" :class="{ 'Btn--active': seasonYear === '2015' }" @click="seasonYear = '2015'">2015</button>
         </div>
@@ -80,6 +81,10 @@
 
         return { name: linkTo }
       }
+    },
+    ready () {
+      let date = new Date()
+      this.seasonYear = date.getFullYear() + ''
     }
   }
 </script>

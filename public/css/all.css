@@ -5019,12 +5019,12 @@ button.close {
   z-index: 1; }
 
 .Race__Mask {
-  background-color: rgba(0, 0, 0, 0.3); }
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%; }
 
 .Race__Details {
   width: 80%;
-  margin: 0 auto;
-  padding: 70px 0 20px 0;
+  margin: 40px auto 10px auto;
   text-align: center;
   color: white; }
 
@@ -5047,7 +5047,7 @@ button.close {
 .Race__Circuit-type {
   position: absolute;
   top: 20%;
-  right: 15%;
+  right: 12%;
   background-color: #565656;
   border-radius: 4px;
   padding: 3px 5px; }
@@ -5071,6 +5071,27 @@ button.close {
   margin-right: 8px; }
   .Race__Date span:last-child {
     margin-right: 0; }
+
+.Race__Birthdays {
+  padding-top: 5px; }
+
+.Race__Birthday-driver {
+  display: inline-block;
+  position: relative; }
+  .Race__Birthday-driver img {
+    width: 50px;
+    margin: 5px;
+    border: 2px solid white;
+    border-radius: 50%; }
+  .Race__Birthday-driver span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: white;
+    color: #565656;
+    font-size: .9em; }
 
 .Floated-form {
   position: relative;

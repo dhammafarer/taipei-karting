@@ -31,8 +31,8 @@
   .Notifications {
     position: fixed;
     z-index: 9999;
-    bottom: 0;
-    right: 0;
+    top: 100px;
+    right: 20px;
     width: 80%;
   }
 

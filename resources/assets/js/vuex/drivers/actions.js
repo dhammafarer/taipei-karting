@@ -15,6 +15,10 @@ export const clearCurrentDriver = ({ dispatch }) => {
   return dispatch(types.CLEAR_CURRENT_DRIVER)
 }
 
+export const updateCurrentDriverId = ({ dispatch }, id) => {
+  dispatch(types.SET_CURRENT_DRIVER_ID, id)
+}
+
 export const createDriver = ({ dispatch }, formData) => {
   return driver.create(formData)
     .catch(err => dispatch(types.ADD_NOTIFICATION,

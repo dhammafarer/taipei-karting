@@ -11,6 +11,15 @@
           <div class="Race__Mask">
             <div class="container">
 
+              <div class="Race__Birthdays">
+                <div class="Race__Birthday-driver" v-for="driver in birthdayDrivers">
+                  <a href="#" v-link="{ name: 'drivers.show', params: { id: driver.id } }">
+                    <span class="icon-birthday"></span>
+                    <img :src="driver.photo | driverPhoto" :alt="driver.name">
+                  </a>
+                </div>
+              </div>
+
               <div class="Race__Edit">
                 <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
               </div>
@@ -29,12 +38,13 @@
                   <span class="Race__Circuit-type">Track {{ race.circuit }}</span>
                 </div>
 
-              </div>
+              </div><!-- Race Details -->
 
 
-            </div>
-          </div>
-        </div>
+            </div><!-- container -->
+
+          </div><!-- Race__Mask -->
+        </div><!-- Race__Cover-Photo -->
       </section>
 
       <div class="container">
@@ -59,8 +69,9 @@
   import RacesEditDropdown from './RacesEditDropdown.vue'
   import RacesDeleteModal from './RacesDeleteModal.vue'
   import RaceOverview from './RaceOverview.vue'
-  import { setEditorView, fetchCurrentRace, updateCurrentRaceId } from '../vuex/races/actions'
+  import { setEditorView, updateCurrentRaceId } from '../vuex/races/actions'
   import { getCurrentRace } from '../vuex/races/getters'
+  import { getAllDrivers } from '../vuex/drivers/getters'
 
   export default {
     name: 'RacesShow',
@@ -71,12 +82,12 @@
     },
     vuex: {
       actions: {
-        fetchCurrentRace,
         updateCurrentRaceId,
         setEditorView
       },
       getters:{
-        race: getCurrentRace
+        race: getCurrentRace,
+        drivers: getAllDrivers
       }
     },
     data () {
@@ -87,6 +98,12 @@
     computed: {
       racePhoto () {
         return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')'
+      },
+      birthdayDrivers () {
+        let raceDate = new Date(this.race.date)
+        let month = raceDate.getMonth() + 1
+        let drivers = this.race.records.data.map(record => record.driver.data)
+        return drivers.filter(driver => driver.month === month.toString())
       }
     },
     methods: {
@@ -103,3 +120,6 @@
     }
   }
 </script>
+
+<style lang="sass">
+</style>

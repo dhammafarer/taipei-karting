@@ -12,12 +12,12 @@
 }
 .Race__Mask {
   background-color: rgba(0,0,0,.3);
+  width: 100%;
 }
 
 .Race__Details {
   width: 80%;
-  margin: 0 auto;
-  padding: 70px 0 20px 0;
+  margin: 40px auto 10px auto;
   text-align: center;
   color: white;
 }
@@ -43,7 +43,7 @@
 .Race__Circuit-type {
   position: absolute;
   top: 20%;
-  right: 15%;
+  right: 12%;
   background-color: $tertiary-color;
   border-radius: 4px;
   padding: 3px 5px;
@@ -68,5 +68,30 @@
   margin-right: 8px;
   &:last-child {
     margin-right: 0;
+  }
+}
+
+.Race__Birthdays {
+  padding-top: 5px;
+}
+
+.Race__Birthday-driver {
+  display: inline-block;
+  position: relative;
+  & img {
+    width: 50px;
+    margin: 5px;
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+  & span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: white;
+    color: $tertiary-color;
+    font-size: .9em;
   }
 }

@@ -35246,6 +35246,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
@@ -35268,7 +35272,9 @@ var _Notifications2 = _interopRequireDefault(_Notifications);
 
 var _actions = require('../vuex/races/actions');
 
-var _actions2 = require('../vuex/notifications/actions');
+var _actions2 = require('../vuex/drivers/actions');
+
+var _actions3 = require('../vuex/notifications/actions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35282,8 +35288,9 @@ exports.default = {
     actions: {
       fetchAllRaces: _actions.fetchAllRaces,
       socketRaceUpdated: _actions.socketRaceUpdated,
-      addNotification: _actions2.addNotification,
-      closeNotification: _actions2.closeNotification
+      fetchAllDrivers: _actions2.fetchAllDrivers,
+      addNotification: _actions3.addNotification,
+      closeNotification: _actions3.closeNotification
     }
   },
   data: function data() {
@@ -35297,7 +35304,7 @@ exports.default = {
     var notification = { title: 'Loading', body: '', type: 'loading' };
     this.addNotification(notification);
     this.loading = true;
-    this.fetchAllRaces().then(function () {
+    _promise2.default.all([this.fetchAllRaces(), this.fetchAllDrivers()]).then(function () {
       _this.closeNotification(notification);
       _this.loading = false;
     });
@@ -35329,7 +35336,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../auth":124,"../vuex/notifications/actions":163,"../vuex/races/actions":166,"../vuex/store":169,"./HeaderBar.vue":133,"./Notifications.vue":139,"socket.io-client":102,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],126:[function(require,module,exports){
+},{"../auth":124,"../vuex/drivers/actions":159,"../vuex/notifications/actions":163,"../vuex/races/actions":166,"../vuex/store":169,"./HeaderBar.vue":133,"./Notifications.vue":139,"babel-runtime/core-js/promise":4,"socket.io-client":102,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],126:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35623,23 +35630,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = require('../vuex/drivers/actions');
-
 var _getters = require('../vuex/drivers/getters');
 
 exports.default = {
   name: 'DriversIndex',
   vuex: {
-    actions: {
-      fetchAllDrivers: _actions.fetchAllDrivers
-    },
     getters: {
       drivers: _getters.getAllDrivers
-    }
-  },
-  route: {
-    data: function data() {
-      this.fetchAllDrivers();
     }
   }
 };
@@ -35655,7 +35652,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-62eebc67", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/actions":159,"../vuex/drivers/getters":160,"vue":118,"vue-hot-reload-api":114}],132:[function(require,module,exports){
+},{"../vuex/drivers/getters":160,"vue":118,"vue-hot-reload-api":114}],132:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35689,8 +35686,7 @@ exports.default = {
   },
   vuex: {
     actions: {
-      fetchCurrentDriver: _actions.fetchCurrentDriver,
-      clearCurrentDriver: _actions.clearCurrentDriver
+      updateCurrentDriverId: _actions.updateCurrentDriverId
     },
     getters: {
       driver: _getters.getCurrentDriver
@@ -35701,13 +35697,11 @@ exports.default = {
       showEdit: false
     };
   },
-  beforeDestroy: function beforeDestroy() {
-    this.clearCurrentDriver();
-  },
 
   route: {
     data: function data(transition) {
-      this.fetchCurrentDriver(transition.to.params.id);
+      this.updateCurrentDriverId(transition.to.params.id);
+      transition.next();
     }
   }
 };
@@ -35960,7 +35954,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/notifications/actions":163,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],139:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  bottom: 0;\n  right: 0;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 100px;\n  right: 20px;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35992,7 +35986,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  bottom: 0;\n  right: 0;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n"] = false
+    __vueify_insert__.cache["\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 100px;\n  right: 20px;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36909,10 +36903,14 @@ exports.default = {
 
       return { name: linkTo };
     }
+  },
+  ready: function ready() {
+    var date = new Date();
+    this.seasonYear = date.getFullYear() + '';
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races {{ seasonYear }}</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-show=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in filteredRaces\" :race=\"race\"></race-card>\n\n    <div v-if=\"filteredRaces.length === 0\">No races match these criteria.</div>\n\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races {{ seasonYear }}</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-show=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2017' }\" @click=\"seasonYear = '2017'\">2017</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in filteredRaces\" :race=\"race\"></race-card>\n\n    <div v-if=\"filteredRaces.length === 0\">No races match these criteria.</div>\n\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36950,6 +36948,8 @@ var _actions = require('../vuex/races/actions');
 
 var _getters = require('../vuex/races/getters');
 
+var _getters2 = require('../vuex/drivers/getters');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -36961,12 +36961,12 @@ exports.default = {
   },
   vuex: {
     actions: {
-      fetchCurrentRace: _actions.fetchCurrentRace,
       updateCurrentRaceId: _actions.updateCurrentRaceId,
       setEditorView: _actions.setEditorView
     },
     getters: {
-      race: _getters.getCurrentRace
+      race: _getters.getCurrentRace,
+      drivers: _getters2.getAllDrivers
     }
   },
   data: function data() {
@@ -36978,6 +36978,16 @@ exports.default = {
   computed: {
     racePhoto: function racePhoto() {
       return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')';
+    },
+    birthdayDrivers: function birthdayDrivers() {
+      var raceDate = new Date(this.race.date);
+      var month = raceDate.getMonth() + 1;
+      var drivers = this.race.records.data.map(function (record) {
+        return record.driver.data;
+      });
+      return drivers.filter(function (driver) {
+        return driver.month === month.toString();
+      });
     }
   },
   methods: {
@@ -36994,7 +37004,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div>\n\n\n            </div>\n          </div>\n        </div>\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Birthdays\">\n                <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                  <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                    <span class=\"icon-birthday\"></span>\n                    <img :src=\"driver.photo | driverPhoto\" :alt=\"driver.name\">\n                  </a>\n                </div>\n              </div>\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div><!-- Race Details -->\n\n\n            </div><!-- container -->\n\n          </div><!-- Race__Mask -->\n        </div><!-- Race__Cover-Photo -->\n      </section>\n\n      <div class=\"container\">\n\n        <button class=\"pull-right btn btn-sm btn-default\" v-show=\"$route.name === 'races.edit'\" v-link=\"{ name: 'races.show', params: {id: race.id} }\">\n          Back to Race\n        </button>\n\n        <router-view></router-view>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37005,7 +37015,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":166,"../vuex/races/getters":167,"./RaceOverview.vue":143,"./RacesDeleteModal.vue":146,"./RacesEditDropdown.vue":150,"vue":118,"vue-hot-reload-api":114}],155:[function(require,module,exports){
+},{"../vuex/drivers/getters":160,"../vuex/races/actions":166,"../vuex/races/getters":167,"./RaceOverview.vue":143,"./RacesDeleteModal.vue":146,"./RacesEditDropdown.vue":150,"vue":118,"vue-hot-reload-api":114}],155:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37340,7 +37350,7 @@ exports.default = [{ 'ccode': 'AF', 'cname': 'Afghanistan' }, { 'ccode': 'AX', '
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteDriver = exports.updateDriver = exports.createDriver = exports.clearCurrentDriver = exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
+exports.deleteDriver = exports.updateDriver = exports.createDriver = exports.updateCurrentDriverId = exports.clearCurrentDriver = exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
 
 var _driver = require('../../api/driver');
 
@@ -37376,8 +37386,14 @@ var clearCurrentDriver = exports.clearCurrentDriver = function clearCurrentDrive
   return dispatch(types.CLEAR_CURRENT_DRIVER);
 };
 
-var createDriver = exports.createDriver = function createDriver(_ref4, formData) {
+var updateCurrentDriverId = exports.updateCurrentDriverId = function updateCurrentDriverId(_ref4, id) {
   var dispatch = _ref4.dispatch;
+
+  dispatch(types.SET_CURRENT_DRIVER_ID, id);
+};
+
+var createDriver = exports.createDriver = function createDriver(_ref5, formData) {
+  var dispatch = _ref5.dispatch;
 
   return _driver2.default.create(formData).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'The driver could not be saved.', type: 'danger' });
@@ -37387,8 +37403,8 @@ var createDriver = exports.createDriver = function createDriver(_ref4, formData)
   });
 };
 
-var updateDriver = exports.updateDriver = function updateDriver(_ref5, id, formData) {
-  var dispatch = _ref5.dispatch;
+var updateDriver = exports.updateDriver = function updateDriver(_ref6, id, formData) {
+  var dispatch = _ref6.dispatch;
 
   return _driver2.default.update(id, formData).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to update driver data.', type: 'danger' });
@@ -37398,8 +37414,8 @@ var updateDriver = exports.updateDriver = function updateDriver(_ref5, id, formD
   });
 };
 
-var deleteDriver = exports.deleteDriver = function deleteDriver(_ref6, data) {
-  var dispatch = _ref6.dispatch;
+var deleteDriver = exports.deleteDriver = function deleteDriver(_ref7, data) {
+  var dispatch = _ref7.dispatch;
 
   return _driver2.default.destroy(data.id).catch(function (err) {
     dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to delete driver.', type: 'danger' });
@@ -37429,7 +37445,7 @@ function getAllDrivers(state) {
 }
 
 function getCurrentDriver(state) {
-  return state.drivers.current;
+  return _ramda2.default.find(_ramda2.default.propEq('id', state.drivers.currentId), state.drivers.all);
 }
 
 },{"ramda":101}],161:[function(require,module,exports){
@@ -37454,7 +37470,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var driverObj = { name: '', country: '', month: '', photo: '' };
 var state = {
   all: [],
-  current: driverObj
+  current: driverObj,
+  currentId: null
 };
 
 var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.RECEIVE_DRIVERS, function (state, drivers) {
@@ -37464,6 +37481,9 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.REC
 }), _defineProperty(_mutations, _mutationTypes.REPLACE_DRIVER, function (state, driver) {
   state.all[_ramda2.default.findIndex(_ramda2.default.propEq('id', driver.id), state.all)] = driver;
   state.current = driver;
+}), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_DRIVER_ID, function (state, id) {
+  state.currentId = null;
+  state.currentId = parseInt(id);
 }), _defineProperty(_mutations, _mutationTypes.DELETE_DRIVER, function (state, driver) {
   state.all.splice(state.all.indexOf(driver), 1);
 }), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_DRIVER, function (state, driver) {
@@ -37497,6 +37517,7 @@ var ADD_DRIVER = exports.ADD_DRIVER = 'ADD_DRIVER';
 var REPLACE_DRIVER = exports.REPLACE_DRIVER = 'REPLACE_DRIVER';
 var DELETE_DRIVER = exports.DELETE_DRIVER = 'DELETE_DRIVER';
 var SET_CURRENT_DRIVER = exports.SET_CURRENT_DRIVER = 'SET_CURRENT_DRIVER';
+var SET_CURRENT_DRIVER_ID = exports.SET_CURRENT_DRIVER_ID = 'SET_CURRENT_DRIVER_ID';
 var CLEAR_CURRENT_DRIVER = exports.CLEAR_CURRENT_DRIVER = 'CLEAR_CURRENT_DRIVER';
 
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';

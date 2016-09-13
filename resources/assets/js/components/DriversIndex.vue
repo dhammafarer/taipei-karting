@@ -27,21 +27,12 @@
 </template>
 
 <script>
-  import { fetchAllDrivers } from '../vuex/drivers/actions'
   import { getAllDrivers } from '../vuex/drivers/getters'
   export default {
     name: 'DriversIndex',
     vuex: {
-      actions: {
-        fetchAllDrivers
-      },
       getters: {
         drivers: getAllDrivers
-      }
-    },
-    route: {
-      data () {
-        this.fetchAllDrivers()
       }
     }
   }
