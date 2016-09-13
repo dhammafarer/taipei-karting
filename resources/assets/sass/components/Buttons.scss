@@ -36,3 +36,54 @@
   background-color: $danger-color;
   color: white;
 }
+
+.Btn--submit {
+  appearance: none;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border-width: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all .3s ease;
+  &:hover {
+    background-color: $secondary-color;
+    color: #fff;
+  }
+  &:active {
+    letter-spacing: 2px;
+  }
+}
+
+.loading {
+  width: 40px;
+  font-size:0;
+  border-left-color: gray;
+  border-width: 3px;
+  border-radius: 50%;
+  animation: rotating 2s 0.25s linear infinite;
+  &:after {
+    content:"";
+  }
+  &:hover {
+    color: $tertiary-color;
+    background-color: transparent;
+  }
+}
+
+.disabled {
+  opacity: .5;
+  cursor: not-allowed !important;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes rotating {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

@@ -1,12 +1,18 @@
 .Floated-form {
   position: relative;
+  margin-bottom: 10px;
+  &.has-error .form-field {
+    border-color: $danger-color;
+    padding-top: 20px;
+  }
+  &.has-error label {
+    color: $danger-color;
+  }
 
-  input {
-    appearance: none;
+ .form-field {
     border: 1px solid $tertiary-color;
     border-radius: 3px;
     padding: 7px;
-    height: 45px;
     background-color: white;
     outline: none;
     font-size: 1em;
@@ -20,11 +26,21 @@
     }
   }
 
+  input.form-field, select.form-field {
+    height: 45px;
+  }
+
+  input[type=file] {
+    padding-top: 22px;
+    height: 50px;
+  }
+
   label {
     position: absolute;
     top: 6px;
     left: 8px;
     font-size: .8em;
+    font-weight: bold;
     color: $primary-color;
   }
 }

@@ -12,7 +12,7 @@
             <div class="container">
 
               <div class="Race__Edit">
-                <button class="Btn Btn--reverse" @click="menu = true">Edit Race</button>
+                <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
               </div>
 
               <div class="col-sm-6 Race__Details">
@@ -25,9 +25,8 @@
                   <span class="icon-location">{{ race.venue | capitalize | tba }}</span>
                 </div>
 
-                <div v-if="race.circuit" class="Race__Circuit">
-                  <img class="Race__Circuit-map" src="/img/circuits/Circuit--default.svg" alt="">
-                  <span class="Race__Circuit-type">{{ race.circuit }}</span>
+                <div v-if="race.circuit" class="Race__Circuit" :style="{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }">
+                  <span class="Race__Circuit-type">Track {{ race.circuit }}</span>
                 </div>
 
               </div>
@@ -88,6 +87,12 @@
     computed: {
       racePhoto () {
         return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')'
+      }
+    },
+    methods: {
+      openMenu () {
+        this.menu = true
+        document.querySelector('html').style.overflow = 'hidden'
       }
     },
     route: {

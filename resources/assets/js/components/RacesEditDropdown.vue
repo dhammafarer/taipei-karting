@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div v-if="menu  === true" transition="fade" @click="closeMenu" class="Mask"></div>
+    <div v-if="menu === true" transition="fade" @click="closeMenu" class="Mask"></div>
     <section v-if="menu === true" transition="slideFromRight" class="Edit-menu">
       <div class="container">
         <div class="Edit-menu__Close">
@@ -51,10 +51,6 @@
       setEditor (view) {
         this.setEditorView(view)
         this.closeMenu()
-      },
-      openMenu () {
-        this.menu = true
-        document.querySelector('html').style.overflow = 'hidden'
       },
       closeMenu () {
         this.menu = false

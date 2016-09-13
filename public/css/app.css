@@ -4961,6 +4961,52 @@ button.close {
   background-color: #FF3B3F;
   color: white; }
 
+.Btn--submit {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border-width: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all .3s ease; }
+  .Btn--submit:hover {
+    background-color: #F7882F;
+    color: #fff; }
+  .Btn--submit:active {
+    letter-spacing: 2px; }
+
+.loading {
+  width: 40px;
+  font-size: 0;
+  border-left-color: gray;
+  border-width: 3px;
+  border-radius: 50%;
+  animation: rotating 2s 0.25s linear infinite; }
+  .loading:after {
+    content: ""; }
+  .loading:hover {
+    color: #565656;
+    background-color: transparent; }
+
+.disabled {
+  opacity: .5;
+  cursor: not-allowed !important; }
+  .disabled:hover {
+    background-color: white;
+    color: black; }
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
 .Race {
   position: relative; }
 
@@ -4990,16 +5036,18 @@ button.close {
   line-height: 1em; }
 
 .Race__Circuit {
-  position: relative; }
-
-.Race__Circuit-map {
+  position: relative;
   height: 150px;
-  position: relative; }
+  max-width: 300px;
+  margin: 0 auto;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat; }
 
 .Race__Circuit-type {
   position: absolute;
-  top: 30px;
-  right: 25%;
+  top: 20%;
+  right: 15%;
   background-color: #565656;
   border-radius: 4px;
   padding: 3px 5px; }
@@ -5025,29 +5073,37 @@ button.close {
     margin-right: 0; }
 
 .Floated-form {
-  position: relative; }
-  .Floated-form input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  position: relative;
+  margin-bottom: 10px; }
+  .Floated-form.has-error .form-field {
+    border-color: #FF3B3F;
+    padding-top: 20px; }
+  .Floated-form.has-error label {
+    color: #FF3B3F; }
+  .Floated-form .form-field {
     border: 1px solid #565656;
     border-radius: 3px;
     padding: 7px;
-    height: 45px;
     background-color: white;
     outline: none;
     font-size: 1em;
     width: 100%;
     transition: padding .3s ease; }
-    .Floated-form input:focus {
+    .Floated-form .form-field:focus {
       border-color: #F7882F; }
-    .Floated-form input.has-input {
+    .Floated-form .form-field.has-input {
       padding-top: 20px; }
+  .Floated-form input.form-field, .Floated-form select.form-field {
+    height: 45px; }
+  .Floated-form input[type=file] {
+    padding-top: 22px;
+    height: 50px; }
   .Floated-form label {
     position: absolute;
     top: 6px;
     left: 8px;
     font-size: .8em;
+    font-weight: bold;
     color: #6B7A8F; }
 
 @charset "UTF-8";

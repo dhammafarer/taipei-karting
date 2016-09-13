@@ -31,7 +31,7 @@
 
         <div class="Races__Search Floated-form" v-show="search">
           <label transition="floatUp" v-show="searchString">Search Name</label>
-          <input type="text" placeholder="Search Name"
+          <input type="text" class="form-field" placeholder="Search Name"
             :class="{'has-input': searchString}"
             v-model="searchString"
           >

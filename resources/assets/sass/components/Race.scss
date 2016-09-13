@@ -32,17 +32,18 @@
 
 .Race__Circuit {
   position: relative;
-}
-
-.Race__Circuit-map {
   height: 150px;
-  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .Race__Circuit-type {
   position: absolute;
-  top: 30px;
-  right: 25%;
+  top: 20%;
+  right: 15%;
   background-color: $tertiary-color;
   border-radius: 4px;
   padding: 3px 5px;

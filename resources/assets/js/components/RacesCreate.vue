@@ -12,79 +12,92 @@
       <div class="panel-body">
 
         <validator name="validation">
-          <div class="form-horizontal">
 
             <!-- Race Name -->
-            <div class="form-group" :class="{ 'has-error': $validation.name.invalid && ($validation.name.touched || showErrors) }">
-              <label for="name" class="col-sm-2">Name</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Race name"
-                  v-model="race.name"
-                  v-validate:name="{ required: true, minlength: 4, maxlength: 20 }"
-                >
-                <div v-if="showErrors || $validation.name.touched">
-                  <span v-if="$validation.name.required" class="help-block">This field is required</span>
-                  <span v-if="$validation.name.minlength" class="help-block">Please enter at least 4 characters</span>
-                  <span v-if="$validation.name.maxlength" class="help-block">Please enter at most 20 characters</span>
-                </div>
-              </div>
+            <div class="Floated-form" :class="{ 'has-error': $validation.name.invalid}">
+              <label v-if="race.name || $validation.name.invalid" transition="floatUp">
+                Name
+                <span v-if="$validation.name.required"> is required</span>
+                <span v-else>
+                  <span v-if="$validation.name.minlength"> must be at least 4 characters</span>
+                  <span v-if="$validation.name.maxlength"> must be at most 20 characters</span>
+                </span>
+              </label>
+              <input class="form-field" type="text" placeholder="Race name"
+                :class="{ 'has-input': race.name }"
+                initial="off"
+                detect-change="off"
+                v-model="race.name"
+                v-validate:name="{ required: true, minlength: 4, maxlength: 20 }"
+              >
             </div>
 
             <!-- Race Description -->
-            <div class="form-group" :class="{ 'has-error': $validation.description.invalid && ($validation.description.touched || showErrors) }">
-              <label for="description" class="col-sm-2">Description</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" rows="3" placeholder="Race description"
-                  v-model="race.description"
-                  v-validate:description="{ maxlength: 60 }"
-                >
-                </textarea>
-                <div v-if="showErrors || $validation.description.touched">
-                  <span v-if="$validation.description.maxlength" class="help-block">Please enter at most 60 characters</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Race Venue -->
-            <div class="form-group">
-              <label for="date" class="col-sm-2">Venue</label>
-              <div class="col-sm-6">
-                <select type="date" class="form-control" placeholder="Race date"
-                  v-model="race.venue"
-                >
-                  <option selected value="zhongli">Zhongli</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+            <div class="Floated-form" :class="{ 'has-error': $validation.description.invalid }">
+              <label v-if="race.description || $validation.description.invalid" transition="floatUp">
+                Description
+                <span v-if="$validation.description.required"> is required</span>
+                <span v-else>
+                  <span v-if="$validation.description.maxlength"> must be at most 60 characters</span>
+                </span>
+              </label>
+              <textarea class="form-field" rows="3" placeholder="Race description"
+                :class="{ 'has-input': race.description }"
+                initial="off"
+                detect-change="off"
+                v-model="race.description"
+                v-validate:description="{ required: true, maxlength: 60 }"
+              >
+              </textarea>
             </div>
 
             <!-- Race Date -->
-            <div class="form-group">
-              <label for="date" class="col-sm-2">Date</label>
-              <div class="col-sm-6">
-                <input type="date" class="form-control" placeholder="Race date"
-                  v-model="race.date"
-                >
-              </div>
+            <div class="Floated-form">
+              <label v-if="race.date">
+                Date
+              </label>
+              <input class="form-field" type="text" placeholder="Race date"
+                :class="{ 'has-input': race.date }"
+                onfocus="this.type = 'date'"
+                onblur="this.type = 'text'"
+                v-model="race.date"
+              >
             </div>
 
             <!-- Race Time -->
-            <div class="form-group">
-              <label for="time" class="col-sm-2">Time</label>
-              <div class="col-sm-6">
-                <input type="time" class="form-control" placeholder="Race time"
-                  v-model="race.time"
-                >
-              </div>
+            <div class="Floated-form">
+              <label v-if="race.time">
+                Time
+              </label>
+              <input class="form-field" type="text" placeholder="Race time"
+                :class="{ 'has-input': race.time }"
+                onfocus="this.type = 'time'"
+                onblur="this.type = 'text'"
+                v-model="race.time"
+              >
+            </div>
+
+            <!-- Race Venue -->
+            <div class="Floated-form">
+              <label v-if="race.venu" transition="floatUp">
+                Venue
+              </label>
+              <select type="date" class="form-field"
+                v-model="race.venue"
+              >
+                <option disabled value="">Venue</option>
+                <option value="zhongli">Zhongli</option>
+                <option value="other">Other</option>
+              </select>
             </div>
 
             <!-- Race Photo -->
-            <div class="form-group" :class="{ 'has-error': photoError }">
-              <label for="photo" class="col-sm-2">Photo</label>
-              <div class="col-sm-10">
-                <input @change="validatePhoto" type="file" class="form-control" id="photo-upload">
-                <span class="help-block">{{ photoError }}</span>
-              </div>
+            <div class="Floated-form" :class="{ 'has-error': photoError }">
+              <label for="photo">
+                Photo
+                <span>{{ photoError }}</span>
+              </label>
+              <input @change="validatePhoto" class="form-field has-input" type="file" id="photo-upload">
             </div>
 
             <!-- Photo Preview -->
@@ -93,12 +106,8 @@
             </div>
 
             <!-- Buttons -->
-            <div class="col-sm-10 col-sm-offset-2">
-              <button @click="saveRace" class="submit" :class="{ 'loading': loading }">Save</button>
-              <button @click="cancel" class="btn btn-default">Cancel</button>
-            </div>
+            <button @click="saveRace" class="Btn Btn--submit" :class="{ 'loading': loading }">Save</button>
 
-          </div>
         </validator>
       </div>
     </div>
@@ -141,11 +150,11 @@
 
         if (!photo) return false
         if (photo && !photo.type.match('image.*')) {
-          this.photoError = 'Uploaded file must be an image'
+          this.photoError = ' must be an image'
           return false
         }
         if (photo && photo.size > 1024000) {
-          this.photoError = 'Maximum file size is 1MB'
+          this.photoError = ' must be smaller than 1MB'
           console.log(this.photoError)
           return false
         }

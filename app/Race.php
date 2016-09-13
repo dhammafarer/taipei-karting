@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
-    protected $fillable = ['name', 'description', 'date', 'time', 'photo'];
+    protected $fillable = ['name', 'description', 'date', 'venue', 'time', 'photo'];
 
     public function records()
     {
