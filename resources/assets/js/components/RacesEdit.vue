@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="Races__Banner">
+      <div class="Races__Title">{{ race.name }}</div>
+      <span>Race Editor</span>
+      <div class="Races-Edit__Button">
+        <button class="Btn" v-link="{ name: 'races.show', params: { id: $route.params.id } }">To Race</button>
+      </div>
+    </div>
+
     <section v-show="view === null">
       <div class="list-group">
         <a class="list-group-item" @click="setEditorView('details')">Details</a>
@@ -27,7 +35,7 @@
   import RacesEditQuals from './RacesEditQuals.vue'
   import RacesEditRaces from './RacesEditRaces.vue'
   import { setEditorView } from '../vuex/races/actions'
-  import { getEditorView } from '../vuex/races/getters'
+  import { getCurrentRace, getEditorView } from '../vuex/races/getters'
 
   export default {
     name: 'RacesEdit',
@@ -44,7 +52,8 @@
         setEditorView
       },
       getters: {
-        view: getEditorView
+        view: getEditorView,
+        race: getCurrentRace
       }
     },
     route: {

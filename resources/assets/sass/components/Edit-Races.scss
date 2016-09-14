@@ -1,0 +1,24 @@
+.Edit-Races {
+  counter-reset: position;
+}
+
+.Edit-Races__Card {
+  border: 1px solid $tertiary-color;
+}
+
+.Edit-Races__Standing::before {
+  counter-increment: position;
+  content: counter(position);
+}
+
+.Edit-Races__Name {
+}
+
+.Edit-Races__Controls {
+}
+
+.Edit-Races__Groups {
+}
+
+.Edit-Races__Position {
+}

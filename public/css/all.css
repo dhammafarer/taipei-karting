@@ -4930,6 +4930,7 @@ button.close {
 
 .Btn {
   outline: none;
+  min-width: 40px;
   padding: 2px 4px;
   background-color: white;
   border: 2px solid #565656;
@@ -4938,10 +4939,14 @@ button.close {
   .Btn:active {
     background-color: #565656;
     color: white; }
+  .Btn:hover {
+    background-color: #e6e6e6; }
 
 .Btn--active {
   background-color: #565656;
   color: white; }
+  .Btn--active:hover {
+    background-color: #3d3d3d; }
 
 .Btn--large {
   min-width: 40px;
@@ -4960,6 +4965,8 @@ button.close {
   border-color: #FF3B3F;
   background-color: #FF3B3F;
   color: white; }
+  .Btn--danger:hover {
+    background-color: #ff080d; }
 
 .Btn--submit {
   -webkit-appearance: none;
@@ -5027,6 +5034,41 @@ button.close {
 
 .Panel__Body {
   padding: 10px; }
+
+.form-field {
+  border: 1px solid #565656;
+  border-radius: 3px;
+  padding: 7px;
+  background-color: white;
+  outline: none;
+  font-size: 1em;
+  width: 100%;
+  transition: padding .3s ease; }
+  .form-field:focus {
+    border-color: #F7882F; }
+
+.Floated-form {
+  position: relative;
+  margin-bottom: 10px; }
+  .Floated-form.has-error .form-field {
+    border-color: #FF3B3F;
+    padding-top: 20px; }
+  .Floated-form.has-error label {
+    color: #FF3B3F; }
+  .Floated-form .form-field.has-input {
+    padding-top: 20px; }
+  .Floated-form input.form-field, .Floated-form select.form-field {
+    height: 45px; }
+  .Floated-form input[type=file] {
+    padding-top: 22px;
+    height: 50px; }
+  .Floated-form label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: .8em;
+    font-weight: bold;
+    color: #6B7A8F; }
 
 .Race {
   position: relative; }
@@ -5118,39 +5160,20 @@ button.close {
     color: #565656;
     font-size: .9em; }
 
-.Floated-form {
-  position: relative;
-  margin-bottom: 10px; }
-  .Floated-form.has-error .form-field {
-    border-color: #FF3B3F;
-    padding-top: 20px; }
-  .Floated-form.has-error label {
-    color: #FF3B3F; }
-  .Floated-form .form-field {
-    border: 1px solid #565656;
-    border-radius: 3px;
-    padding: 7px;
-    background-color: white;
-    outline: none;
-    font-size: 1em;
-    width: 100%;
-    transition: padding .3s ease; }
-    .Floated-form .form-field:focus {
-      border-color: #F7882F; }
-    .Floated-form .form-field.has-input {
-      padding-top: 20px; }
-  .Floated-form input.form-field, .Floated-form select.form-field {
-    height: 45px; }
-  .Floated-form input[type=file] {
-    padding-top: 22px;
-    height: 50px; }
-  .Floated-form label {
-    position: absolute;
-    top: 6px;
-    left: 8px;
-    font-size: .8em;
-    font-weight: bold;
-    color: #6B7A8F; }
+.Races-Edit__Button {
+  position: absolute;
+  top: 33%;
+  right: 0; }
+
+.Edit-Races {
+  counter-reset: position; }
+
+.Edit-Races__Card {
+  border: 1px solid #565656; }
+
+.Edit-Races__Standing::before {
+  counter-increment: position;
+  content: counter(position); }
 
 @charset "UTF-8";
 /*!

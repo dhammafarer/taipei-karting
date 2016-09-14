@@ -136,24 +136,34 @@ class RacesController extends BaseController
 
   public function updateRecords(Request $request, $id)
   {
-    $records = $request->records;
+    DB::beginTransaction();
 
-    foreach($records as $record) {
-      DB::table('records')
-        ->where('race_id', $id)
-        ->where('driver_id', $record['driver_id'])
-        ->update([
-          'qualOne' => $record['qualOne'],
-          'qualTwo' => $record['qualTwo'],
-          'raceOne' => $record['raceOne'],
-          'raceOneGroup' => $record['raceOneGroup'],
-          'raceTwo' => $record['raceTwo'],
-          'raceTwoGroup' => $record['raceTwoGroup']
-        ]);
+    try {
+      $records = $request->records['data'];
+
+      foreach($records as $record) {
+        DB::table('records')
+          ->where('race_id', $id)
+          ->where('driver_id', $record['driver_id'])
+          ->update([
+            'qualOne' => $record['qualOne'],
+            'qualTwo' => $record['qualTwo'],
+            'raceOne' => $record['raceOne'],
+            'raceOneGroup' => $record['raceOneGroup'],
+            'raceTwo' => $record['raceTwo'],
+            'raceTwoGroup' => $record['raceTwoGroup']
+          ]);
+      }
+
+      $race = Race::findOrFail($id);
+
+      event(new RaceUpdated($race));
+
+      DB::commit();
+      return $this->item($race, new RacesTransformer);
+    } catch (\Exception $e) {
+      DB::rollback();
+      return $this->response->errorInternal();
     }
-
-    $race = Race::findOrFail($id);
-
-    return response()->json($race);
   }
 }

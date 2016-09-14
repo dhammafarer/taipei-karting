@@ -113,6 +113,7 @@
     color: $tertiary-color;
     padding: 10px 10px;
     margin: 10px 0;
+    position: relative;
   }
 
   .Races__Toolbar {

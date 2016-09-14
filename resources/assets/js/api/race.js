@@ -31,7 +31,7 @@ export default {
   },
 
   updateRecords (id, data) {
-    return Vue.http.post('races/' + id + '/updateRecords', { records: data })
+    return Vue.http.post('races/' + id + '/update-records', { records: data })
       .then(response => response.json())
   }
 }

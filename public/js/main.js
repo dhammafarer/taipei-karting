@@ -35177,7 +35177,7 @@ exports.default = {
     });
   },
   updateRecords: function updateRecords(id, data) {
-    return _vue2.default.http.post('races/' + id + '/updateRecords', { records: data }).then(function (response) {
+    return _vue2.default.http.post('races/' + id + '/update-records', { records: data }).then(function (response) {
       return response.json();
     });
   }
@@ -36499,7 +36499,8 @@ exports.default = {
       setEditorView: _actions.setEditorView
     },
     getters: {
-      view: _getters.getEditorView
+      view: _getters.getEditorView,
+      race: _getters.getCurrentRace
     }
   },
   route: {
@@ -36509,7 +36510,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <section v-show=\"view === null\">\n    <div class=\"list-group\">\n      <a class=\"list-group-item\" @click=\"setEditorView('details')\">Details</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('drivers')\">Drivers</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualOne')\">1st Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualTwo')\">2nd Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceOne')\">1st Race</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceTwo')\">2nd Race</a>\n    </div>\n  </section>\n\n  <edit-details v-if=\"view === 'details'\"></edit-details>\n  <edit-drivers v-if=\"view === 'drivers'\"></edit-drivers>\n  <qual-one round=\"one\" v-if=\"view === 'qualOne'\"></qual-one>\n  <qual-two round=\"two\" v-if=\"view === 'qualTwo'\"></qual-two>\n  <race-one round=\"one\" v-if=\"view === 'raceOne'\"></race-one>\n  <race-two round=\"two\" v-if=\"view === 'raceTwo'\"></race-two>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div class=\"Races__Banner\">\n    <div class=\"Races__Title\">{{ race.name }}</div>\n    <span>Race Editor</span>\n    <div class=\"Races-Edit__Button\">\n      <button class=\"Btn\" v-link=\"{ name: 'races.show', params: { id: $route.params.id } }\">To Race</button>\n    </div>\n  </div>\n\n  <section v-show=\"view === null\">\n    <div class=\"list-group\">\n      <a class=\"list-group-item\" @click=\"setEditorView('details')\">Details</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('drivers')\">Drivers</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualOne')\">1st Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualTwo')\">2nd Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceOne')\">1st Race</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceTwo')\">2nd Race</a>\n    </div>\n  </section>\n\n  <edit-details v-if=\"view === 'details'\"></edit-details>\n  <edit-drivers v-if=\"view === 'drivers'\"></edit-drivers>\n  <qual-one round=\"one\" v-if=\"view === 'qualOne'\"></qual-one>\n  <qual-two round=\"two\" v-if=\"view === 'qualTwo'\"></qual-two>\n  <race-one round=\"one\" v-if=\"view === 'raceOne'\"></race-one>\n  <race-two round=\"two\" v-if=\"view === 'raceTwo'\"></race-two>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36771,8 +36772,6 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../vuex/races/actions":168,"./RacesDeleteModal.vue":147,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],152:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36801,14 +36800,21 @@ exports.default = {
   props: ['round'],
   data: function data() {
     return {
-      race: {}
+      race: {},
+      loading: false
     };
   },
 
   methods: {
     updateRecords: function updateRecords() {
-      this.updateRaceRecords(this.race.id, this.race.records);
-      this.$router.go({ name: 'races.show', params: { id: this.$route.params.id } });
+      var _this = this;
+
+      this.loading = true;
+      this.updateRaceRecords(this.race.id, this.race.records).then(function () {
+        return _this.$router.go({ name: 'races.show', params: { id: _this.$route.params.id } });
+      }).catch(function () {
+        return _this.loading = false;
+      });
     }
   },
   created: function created() {
@@ -36816,24 +36822,18 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"main\">\n  <h3>Qualifiers: Round {{ round | capitalize }}</h3>\n  <p v-if=\"!race.records.data.length\">No drivers selected</p>\n  <div v-else=\"\">\n    <div class=\"row\">\n      <div class=\"col-sm-3\">\n        <p><strong>Name</strong></p>\n      </div>\n      <div class=\"col-sm-3\">\n        <p><strong>Fastest Lap</strong></p>\n      </div>\n    </div>\n    <div class=\"row\" v-for=\"record in race.records.data\">\n      <div class=\"col-sm-3\">\n        <p>{{ record.driver.data.name }}</p>\n      </div>\n      <div class=\"col-sm-3\">\n        <div class=\"form-group\">\n          <input type=\"number\" class=\"form-control\" placeholder=\"00.000s\" v-if=\"round === 'one'\" v-model=\"record.qualOne\">\n          <input type=\"number\" class=\"form-control\" placeholder=\"00.000s\" v-if=\"round === 'two'\" v-model=\"record.qualTwo\">\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <button class=\"btn btn-primary\" @click=\"updateRecords\">\n    Save\n  </button>\n\n  <button class=\"btn btn-default\" v-link=\"{ name: 'races.show', params: { id: $route.params.id } }\">\n    Cancel\n  </button>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <p v-if=\"!race.records.data.length\">No drivers selected</p>\n\n  <div v-else=\"\">\n\n    <div class=\"Panel\">\n      <div v-if=\"round === 'one'\" class=\"Panel__Heading\">First Qualifier</div>\n      <div v-if=\"round === 'two'\" class=\"Panel__Heading\">Second Qualifier</div>\n      <table class=\"table\">\n        <tbody><tr>\n          <th>Name</th><th>Fastest Lap</th>\n        </tr>\n\n        <tr v-for=\"record in race.records.data\">\n          <td>{{ record.driver.data.name }}</td>\n\n          <td v-if=\"round === 'one'\">\n            <input class=\"form-field\" v-model=\"record.raceOne\" type=\"number\" min=\"1\" max=\"999\" placeholder=\"00.000s\">\n          </td>\n\n          <td v-if=\"round === 'two'\">\n            <input class=\"form-field\" v-model=\"record.raceTwo\" type=\"number\" min=\"1\" max=\"999\" placeholder=\"00.000s\">\n          </td>\n        </tr>\n      </tbody></table>\n    </div>\n\n  </div>\n\n  <button @click=\"updateRecords\" class=\"Btn Btn--submit\" :class=\"{ 'loading': loading }\">Save</button>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-089179d0", module.exports)
   } else {
     hotAPI.update("_v-089179d0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],153:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.race__results {\n  counter-reset: position;\n}\n.driver__name::before {\n  counter-increment: position;\n  content: counter(position);\n  margin-right: 5px;\n  text-align: center;\n  color: white;\n  background-color: grey;\n  padding: 2px 6px;\n  border-radius: 2px;\n}\n")
+},{"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],153:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36864,15 +36864,22 @@ exports.default = {
   props: ['round'],
   data: function data() {
     return {
-      race: {}
+      race: {},
+      loading: false
     };
   },
 
   methods: {
     byQualTime: _filters.byQualTime,
     updateRecords: function updateRecords() {
-      this.updateRaceRecords(this.race.id, this.race.records);
-      this.$router.go({ name: 'races.show', params: { id: this.$route.params.id } });
+      var _this = this;
+
+      this.loading = true;
+      this.updateRaceRecords(this.race.id, this.race.records).then(function () {
+        return _this.$router.go({ name: 'races.show', params: { id: _this.$route.params.id } });
+      }).catch(function () {
+        return _this.loading = false;
+      });
     }
   },
   created: function created() {
@@ -36880,24 +36887,20 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"race__results\">\n  <h3>Log Race Results</h3>\n\n  <p v-if=\"!race.records.length\">No drivers selected</p>\n\n  <div v-else=\"\">\n    <div class=\"row\">\n\n      <div class=\"header\">\n        <div class=\"col-sm-3\">\n          <p><strong>Name</strong></p>\n        </div>\n        <div class=\"col-sm-4\">\n          <p><strong>Race Group</strong></p>\n        </div>\n        <div class=\"col-sm-4\">\n          <p><strong>Final Position</strong></p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row\" v-for=\"record in race.records | orderBy byQualTime\">\n\n      <div class=\"col-sm-3\">\n        <p class=\"driver__name\">{{ record.driver.name }}</p>\n      </div>\n\n      <div v-if=\"round === 'one'\">\n        <div class=\"col-sm-4\">\n          <select v-if=\"round === 'one'\" v-model=\"record.raceOneGroup\">\n            <option disabled=\"\">Select Group</option>\n            <option>A</option>\n            <option>B</option>\n            <option>C</option>\n          </select>\n        </div>\n        <div class=\"col-sm-4\">\n          <input v-model=\"record.raceOne\" type=\"number\" placeholder=\"Position\">\n        </div>\n      </div>\n\n      <div v-if=\"round === 'two'\">\n        <div class=\"col-sm-4\">\n          <select v-model=\"record.raceTwoGroup\">\n            <option disabled=\"\">Select Group</option>\n            <option>A</option>\n            <option>B</option>\n            <option>C</option>\n          </select>\n        </div>\n        <div class=\"col-sm-4\">\n          <input v-model=\"record.raceTwo\" type=\"number\" placeholder=\"Position\">\n        </div>\n      </div>\n\n    </div><!-- row -->\n  </div>\n\n  <button class=\"btn btn-primary\" @click=\"updateRecords\">\n    Save\n  </button>\n\n  <button class=\"btn btn-default\" v-link=\"{ name: 'races.show', params: { id: $route.params.id } }\">\n    Cancel\n  </button>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Edit-Races\">\n  <p v-if=\"!race.records.data.length\">No drivers selected</p>\n\n  <div v-else=\"\">\n\n    <div class=\"Panel\">\n      <div v-if=\"round === 'one'\" class=\"Panel__Heading\">First Race Standings</div>\n      <div v-if=\"round === 'two'\" class=\"Panel__Heading\">Second Race Standings</div>\n      <table class=\"table\">\n        <tbody><tr>\n          <th>#</th><th>Name</th><th>Group</th><th>Position</th>\n        </tr>\n\n        <tr v-for=\"record in race.records.data\">\n          <td><span class=\"Edit-Races__Standing\"></span></td>\n\n          <td>{{ record.driver.data.name }}</td>\n\n          <td v-if=\"round === 'one'\">\n            <button @click=\"record.raceOneGroup = 'A'\" class=\"Btn\" :class=\"{ 'Btn--active': record.raceOneGroup === 'A' }\">A</button>\n            <button @click=\"record.raceOneGroup = 'B'\" class=\"Btn\" :class=\"{ 'Btn--active': record.raceOneGroup === 'B' }\">B</button>\n          </td>\n\n          <td v-if=\"round === 'two'\">\n            <button @click=\"record.raceTwoGroup = 'A'\" class=\"Btn\" :class=\"{ 'Btn--active': record.raceTwoGroup === 'A' }\">A</button>\n            <button @click=\"record.raceTwoGroup = 'B'\" class=\"Btn\" :class=\"{ 'Btn--active': record.raceTwoGroup === 'B' }\">B</button>\n          </td>\n\n          <td v-if=\"round === 'one'\">\n            <input class=\"form-field\" v-model=\"record.raceOne\" type=\"number\" min=\"1\" max=\"99\" placeholder=\"Pos\">\n          </td>\n\n          <td v-if=\"round === 'two'\">\n            <input class=\"form-field\" v-model=\"record.raceTwo\" type=\"number\" min=\"1\" max=\"99\" placeholder=\"Pos\">\n          </td>\n        </tr>\n      </tbody></table>\n    </div>\n\n  </div>\n\n  <button @click=\"updateRecords\" class=\"Btn Btn--submit\" :class=\"{ 'loading': loading }\">Save</button>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.race__results {\n  counter-reset: position;\n}\n.driver__name::before {\n  counter-increment: position;\n  content: counter(position);\n  margin-right: 5px;\n  text-align: center;\n  color: white;\n  background-color: grey;\n  padding: 2px 6px;\n  border-radius: 2px;\n}\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-5f828a54", module.exports)
   } else {
     hotAPI.update("_v-5f828a54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],154:[function(require,module,exports){
+},{"../filters":156,"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],154:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 8, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 13, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 17, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n\n/* line 21, stdin */\n.Races__Banner {\n  color: #565656;\n  padding: 10px 10px;\n  margin: 10px 0; }\n\n/* line 27, stdin */\n.Races__Toolbar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n/* line 33, stdin */\n.Races__Title {\n  font-weight: bold;\n  font-size: 1.6em; }\n\n/* line 38, stdin */\n.Races__Seasons, .Races__Search {\n  margin-top: 8px; }\n\n/* line 42, stdin */\n.floatUp-transition {\n  opacity: 1;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 47, stdin */\n.floatUp-enter, .floatUp-leave {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n  opacity: 0; }\n")
+var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 8, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 13, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 17, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n\n/* line 21, stdin */\n.Races__Banner {\n  color: #565656;\n  padding: 10px 10px;\n  margin: 10px 0;\n  position: relative; }\n\n/* line 28, stdin */\n.Races__Toolbar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n/* line 34, stdin */\n.Races__Title {\n  font-weight: bold;\n  font-size: 1.6em; }\n\n/* line 39, stdin */\n.Races__Seasons, .Races__Search {\n  margin-top: 8px; }\n\n/* line 43, stdin */\n.floatUp-transition {\n  opacity: 1;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 48, stdin */\n.floatUp-enter, .floatUp-leave {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n  opacity: 0; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36957,7 +36960,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 8, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 13, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 17, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n\n/* line 21, stdin */\n.Races__Banner {\n  color: #565656;\n  padding: 10px 10px;\n  margin: 10px 0; }\n\n/* line 27, stdin */\n.Races__Toolbar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n/* line 33, stdin */\n.Races__Title {\n  font-weight: bold;\n  font-size: 1.6em; }\n\n/* line 38, stdin */\n.Races__Seasons, .Races__Search {\n  margin-top: 8px; }\n\n/* line 42, stdin */\n.floatUp-transition {\n  opacity: 1;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 47, stdin */\n.floatUp-enter, .floatUp-leave {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n  opacity: 0; }\n"] = false
+    __vueify_insert__.cache["@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 8, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 13, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 17, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n\n/* line 21, stdin */\n.Races__Banner {\n  color: #565656;\n  padding: 10px 10px;\n  margin: 10px 0;\n  position: relative; }\n\n/* line 28, stdin */\n.Races__Toolbar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n/* line 34, stdin */\n.Races__Title {\n  font-weight: bold;\n  font-size: 1.6em; }\n\n/* line 39, stdin */\n.Races__Seasons, .Races__Search {\n  margin-top: 8px; }\n\n/* line 43, stdin */\n.floatUp-transition {\n  opacity: 1;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 48, stdin */\n.floatUp-enter, .floatUp-leave {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n  opacity: 0; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -37749,8 +37752,11 @@ var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_
 var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_ref9, id, data) {
   var dispatch = _ref9.dispatch;
 
-  return _race2.default.updateRecords(id, data).then(function (race) {
-    return dispatch(types.SET_CURRENT_RACE, race);
+  return _race2.default.updateRecords(id, data).catch(function (err) {
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
+  }).then(function (response) {
+    dispatch(types.REPLACE_RACE, response.data);
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Race data updated!', type: 'success' });
   });
 };
 

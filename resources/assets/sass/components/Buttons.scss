@@ -1,5 +1,6 @@
 .Btn {
   outline: none;
+  min-width: 40px;
   padding: 2px 4px;
   background-color: white;
   border: 2px solid $tertiary-color;
@@ -9,11 +10,17 @@
     background-color: $tertiary-color;
     color: white;
   }
+  &:hover {
+    background-color: darken(white, 10%);
+  }
 }
 
  .Btn--active {
   background-color: $tertiary-color;
   color: white;
+  &:hover {
+    background-color: darken($tertiary-color, 10%);
+  }
 }
 
 .Btn--large {
@@ -35,6 +42,9 @@
   border-color: $danger-color;
   background-color: $danger-color;
   color: white;
+  &:hover {
+    background-color: darken($danger-color, 10%);
+  }
 }
 
 .Btn--submit {
