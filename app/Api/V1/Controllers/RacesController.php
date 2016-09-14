@@ -105,23 +105,33 @@ class RacesController extends BaseController
 
   public function updateDrivers(Request $request, $id)
   {
-    $addedIds = $request->addedIds;
-    $removedIds = $request->removedIds;
+    DB::beginTransaction();
 
-    foreach($addedIds as $driverId) {
-      $record = new Record;
-      $record->race_id = $id;
-      $record->driver_id = $driverId;
-      $record->save();
+    try {
+      $addedIds = $request->addedIds;
+      $removedIds = $request->removedIds;
+
+      foreach($addedIds as $driverId) {
+        $record = new Record;
+        $record->race_id = $id;
+        $record->driver_id = $driverId;
+        $record->save();
+      }
+
+      foreach($removedIds as $driverId) {
+        Record::where('race_id', $id)->where('driver_id', $driverId)->delete();
+      }
+
+      $race = Race::findOrFail($id);
+
+      event(new RaceUpdated($race));
+
+      DB::commit();
+      return $this->item($race, new RacesTransformer);
+    } catch (\Exception $e) {
+      DB::rollback();
+      return $this->response->errorInternal();
     }
-
-    foreach($removedIds as $driverId) {
-      Record::where('race_id', $id)->where('driver_id', $driverId)->delete();
-    }
-
-    $race = Race::with('records.driver')->findOrFail($id);
-
-    return response()->json($race);
   }
 
   public function updateRecords(Request $request, $id)

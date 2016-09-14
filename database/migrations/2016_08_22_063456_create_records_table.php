@@ -18,7 +18,7 @@ class CreateRecordsTable extends Migration
             $table->integer('driver_id')->unsigned();
             $table->time('qualOne')->unsigned()->nullable();
             $table->time('qualTwo')->unsigned()->nullable();
-            $table->tinyInteger('raceOne')->unsigned();
+            $table->tinyInteger('raceOne')->unsigned()->nullable();
             $table->string('raceOneGroup')->nullable();
             $table->tinyInteger('raceTwo')->unsigned()->nullable();
             $table->string('raceTwoGroup')->nullable();

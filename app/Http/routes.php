@@ -34,12 +34,13 @@ $api->version('v1', ['middleware' => 'cors', 'namespace' => 'App\Api\V1\Controll
 
   //Restricted routes
   $api->group(['middleware' => 'api.auth'], function($api) {
-    $api->get('authenticated_user', 'AuthenticateController@autenticatedUser');
+    $api->get('authenticated-user', 'AuthenticateController@autenticatedUser');
     //Races
     $api->post('races', 'RacesController@store');
     $api->patch('races/{id}', 'RacesController@update');
     $api->delete('races/{id}', 'RacesController@destroy');
-    $api->post('races/{id}/update_drivers', 'RacesController@updateDrivers');
+    $api->post('races/{id}/update-drivers', 'RacesController@updateDrivers');
+    $api->post('races/{id}/update-records', 'RacesController@updateRecords');
     //Drivers
     $api->post('drivers', 'DriversController@store');
     $api->patch('drivers/{id}', 'DriversController@update');

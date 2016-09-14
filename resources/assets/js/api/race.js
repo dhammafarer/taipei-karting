@@ -26,7 +26,7 @@ export default {
   },
 
   updateDrivers (id, addedIds, removedIds) {
-    return Vue.http.post('races/' + id + '/updateDrivers', { addedIds: addedIds, removedIds: removedIds })
+    return Vue.http.post('races/' + id + '/update-drivers', { addedIds: addedIds, removedIds: removedIds })
       .then(response => response.json())
   },
 

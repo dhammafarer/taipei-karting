@@ -56,7 +56,12 @@ export const deleteRace = ({ dispatch }, data) => {
 
 export const updateRaceDrivers = ({ dispatch }, id, addedIds, removedIds) => {
   return race.updateDrivers(id, addedIds, removedIds)
-    .then(race => dispatch(types.SET_CURRENT_RACE, race))
+    .catch(err => dispatch(types.ADD_NOTIFICATION, {title: 'Error!', body: 'Something went wrong!', type: 'danger'})
+    )
+    .then(response => {
+      dispatch(types.REPLACE_RACE, response.data)
+      dispatch(types.ADD_NOTIFICATION, {title: 'Success!', body: 'Race data updated!', type: 'success'})
+    })
 }
 
 export const updateRaceRecords = ({ dispatch }, id, data) => {

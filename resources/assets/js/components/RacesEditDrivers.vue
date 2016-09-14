@@ -4,6 +4,7 @@
     <h4>Select Drivers</h4>
 
     <p v-if="!drivers.length" class="Message--no-data">No registered drivers.</p>
+
     <section v-else class="Drivers-list">
       <div class="Driver col-sm-3" v-for="driver in drivers">
         <div class="thumbnail"
@@ -27,14 +28,15 @@
 </template>
 
 <script>
-  import driver from '../api/driver'
   import { getCurrentRace } from '../vuex/races/getters'
+  import { getAllDrivers } from '../vuex/drivers/getters'
   import { updateRaceDrivers, setEditorView } from '../vuex/races/actions'
 
   export default {
     vuex: {
       getters: {
-        race: getCurrentRace
+        race: getCurrentRace,
+        drivers: getAllDrivers
       },
       actions: {
         updateRaceDrivers,
@@ -43,7 +45,6 @@
     },
     data () {
       return {
-        drivers: [],
         originalIds: [],
         selectedIds: []
       }
@@ -74,8 +75,6 @@
     created () {
       this.originalIds = this.race.records.data.map(record => record['driver_id'])
       this.selectedIds = this.originalIds.slice()
-
-      driver.fetchAll().then(response => this.$set('drivers', response.data) )
     }
   }
 </script>

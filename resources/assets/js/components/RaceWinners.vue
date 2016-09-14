@@ -1,6 +1,8 @@
 <template>
   <div class="Race__Winners">
-    <p>test</p>
+    <ul>
+      <li v-for="record in race.records.data">{{ record.driver.data.name }}</li>
+    </ul>
   </div>
 </template>
 

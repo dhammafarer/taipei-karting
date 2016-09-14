@@ -35172,7 +35172,7 @@ exports.default = {
     return _vue2.default.http.delete('races/' + id);
   },
   updateDrivers: function updateDrivers(id, addedIds, removedIds) {
-    return _vue2.default.http.post('races/' + id + '/updateDrivers', { addedIds: addedIds, removedIds: removedIds }).then(function (response) {
+    return _vue2.default.http.post('races/' + id + '/update-drivers', { addedIds: addedIds, removedIds: removedIds }).then(function (response) {
       return response.json();
     });
   },
@@ -36276,7 +36276,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race__Winners\">\n  <p>test</p>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race__Winners\">\n  <ul>\n    <li v-for=\"record in race.records.data\">{{ record.driver.data.name }}</li>\n  </ul>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36635,20 +36635,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _driver = require('../api/driver');
-
-var _driver2 = _interopRequireDefault(_driver);
-
 var _getters = require('../vuex/races/getters');
 
-var _actions = require('../vuex/races/actions');
+var _getters2 = require('../vuex/drivers/getters');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _actions = require('../vuex/races/actions');
 
 exports.default = {
   vuex: {
     getters: {
-      race: _getters.getCurrentRace
+      race: _getters.getCurrentRace,
+      drivers: _getters2.getAllDrivers
     },
     actions: {
       updateRaceDrivers: _actions.updateRaceDrivers,
@@ -36657,7 +36654,6 @@ exports.default = {
   },
   data: function data() {
     return {
-      drivers: [],
       originalIds: [],
       selectedIds: []
     };
@@ -36693,20 +36689,14 @@ exports.default = {
     }
   },
   created: function created() {
-    var _this4 = this;
-
     this.originalIds = this.race.records.data.map(function (record) {
       return record['driver_id'];
     });
     this.selectedIds = this.originalIds.slice();
-
-    _driver2.default.fetchAll().then(function (response) {
-      return _this4.$set('drivers', response.data);
-    });
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <h4>Select Drivers</h4>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n  <section v-else=\"\" class=\"Drivers-list\">\n    <div class=\"Driver col-sm-3\" v-for=\"driver in drivers\">\n      <div class=\"thumbnail\" @click=\"toggleSelect(driver)\">\n        <img class=\"Driver-photo\" :src=\"driver.photo | driverPhoto\" :class=\"{ 'Driver-photo--selected': selectedIds.indexOf(driver.id) > -1 }\">\n        <div class=\"caption text-center\">\n          <h4>{{ driver.name }}</h4>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"btn btn-primary\">Save</button>\n  <button @click=\"$router.go({ name: 'races.show', params: {id: $route.params.id} })\" class=\"btn btn-default\">Cancel</button>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <h4>Select Drivers</h4>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n\n  <section v-else=\"\" class=\"Drivers-list\">\n    <div class=\"Driver col-sm-3\" v-for=\"driver in drivers\">\n      <div class=\"thumbnail\" @click=\"toggleSelect(driver)\">\n        <img class=\"Driver-photo\" :src=\"driver.photo | driverPhoto\" :class=\"{ 'Driver-photo--selected': selectedIds.indexOf(driver.id) > -1 }\">\n        <div class=\"caption text-center\">\n          <h4>{{ driver.name }}</h4>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"btn btn-primary\">Save</button>\n  <button @click=\"$router.go({ name: 'races.show', params: {id: $route.params.id} })\" class=\"btn btn-default\">Cancel</button>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36721,7 +36711,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-82de8642", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver":122,"../vuex/races/actions":168,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],151:[function(require,module,exports){
+},{"../vuex/drivers/getters":162,"../vuex/races/actions":168,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],151:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Edit-menu {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: #EFEFEF;\n  box-shadow: -5px 0 10px 0 rgba(0, 0, 0, 0.5);\n  overflow-y: auto;\n  padding: 10px 0; }\n\n/* line 16, stdin */\n.Mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0, 0, 0, 0.5); }\n\n/* line 26, stdin */\n.Edit-menu__list {\n  z-index: 9999;\n  padding: 10px 0; }\n\n/* line 31, stdin */\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 100%; }\n\n/* line 36, stdin */\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0; }\n")
 'use strict';
@@ -37748,8 +37738,11 @@ var deleteRace = exports.deleteRace = function deleteRace(_ref7, data) {
 var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_ref8, id, addedIds, removedIds) {
   var dispatch = _ref8.dispatch;
 
-  return _race2.default.updateDrivers(id, addedIds, removedIds).then(function (race) {
-    return dispatch(types.SET_CURRENT_RACE, race);
+  return _race2.default.updateDrivers(id, addedIds, removedIds).catch(function (err) {
+    return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
+  }).then(function (response) {
+    dispatch(types.REPLACE_RACE, response.data);
+    dispatch(types.ADD_NOTIFICATION, { title: 'Success!', body: 'Race data updated!', type: 'success' });
   });
 };
 
