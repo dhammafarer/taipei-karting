@@ -1,0 +1,24 @@
+.Panel {
+  background-color: white;
+  border-radius: 0 0 4px 4px;
+  border-top: 2px solid $primary-color;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  margin: 4px auto;
+}
+
+.Panel__Heading {
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+.Panel__Title {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.Panel__Body {
+  padding: 10px;
+}

@@ -36,7 +36,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: 0 0 3px $primary-color;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
     &:hover .Race-Mask {
       background-color: rgba(0,0,0,.7);
     }

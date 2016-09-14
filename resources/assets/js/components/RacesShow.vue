@@ -49,14 +49,9 @@
 
       <div class="container">
 
-        <button class="pull-right btn btn-sm btn-default"
-          v-show="$route.name === 'races.edit'"
-          v-link="{ name: 'races.show', params: {id: race.id} }"
-          >
-          Back to Race
-        </button>
-
-        <router-view></router-view>
+        <div class="Race__Router">
+          <router-view></router-view>
+        </div>
 
         <section v-if="$route.name === 'races.show'">
           <race-overview></race-overview>

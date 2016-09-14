@@ -2,7 +2,6 @@
   <div v-if="groupReady(showGroup)" class="panel-body">Group {{ showGroup }}</div>
     <ul v-if="groupReady(showGroup)" class="list-group race__results">
       <li href="#" v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition" class="list-group-item">
-        <img :src="record.driver.data.photo | driverPhoto">
         <span class="label label-default">{{ record[this.raceGroup] | raceRecord }}</span>
         <span class="label label-primary">{{ record[showRace] | raceRecord }}</span> {{ record.driver.name }}
       </li>
@@ -46,8 +45,5 @@
   }
 </script>
 
-<style scoped>
-  .race__results img {
-    width: 15%;
-  }
+<style>
 </style>
