@@ -1,19 +1,32 @@
 let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-export function racePhoto (photo) {
-  let path = '/img/races/'
-  let defaultPhoto = 'race--default.jpg'
+let config = {
+  imgPath: '/img/',
+  racesPath: '/uploads/races/',
+  raceDefault: 'race--default.jpg',
+  driversPath: '/uploads/drivers/',
+  driverDefault: 'driver--default.jpg',
+  tbPrefix: 'tb_'
+}
 
-  if (!photo) return path + defaultPhoto
-  return path + photo
+export function racePhoto (photo) {
+  if (!photo) return config.imgPath + config.raceDefault
+  return config.racesPath + photo
+}
+
+export function raceThumb (photo) {
+  if (!photo) return config.imgPath + config.raceDefault
+  return config.racesPath + tbPrefix + photo
 }
 
 export function driverPhoto (photo) {
-  let path = '/img/drivers/'
-  let defaultPhoto = 'driver--default.jpg'
+  if (!photo) return config.imgPath + config.driverDefault
+  return config.driversPath + photo
+}
 
-  if (!photo) return path + defaultPhoto
-  return path + photo
+export function driverThumb (photo) {
+  if (!photo) return config.imgPath + config.driverDefault
+  return config.driversPath + tbPrefix + photo
 }
 
 export function monthYear (value) {

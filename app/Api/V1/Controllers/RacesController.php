@@ -3,6 +3,7 @@
 namespace App\Api\V1\Controllers;
 
 use DB;
+use Image;
 use App\Race;
 use App\Record;
 use App\Events\RaceUpdated;
@@ -15,6 +16,8 @@ use App\Api\V1\Transformers\RacesTransformer;
  */
 class RacesController extends BaseController
 {
+  protected $racesPath = '/uploads/races/';
+
   public function index()
   {
     $races = Race::all();
@@ -36,13 +39,7 @@ class RacesController extends BaseController
   public function store(Requests\StoreRaceRequest $request)
   {
     try {
-      $filename = '';
-
-      if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
-        $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/races/', $filename);
-      }
+      $filename = $this->savePhotoWithThumbnail($request);
 
       $race = Race::create([
         'name' => $request->name,
@@ -65,13 +62,7 @@ class RacesController extends BaseController
       $race = Race::findOrFail($id);
 
       // Check if the user has removed a photo
-      $filename = ($request->photo === '') ? '' : $request->photo;
-
-      if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
-        $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/races/', $filename);
-      }
+      $filename = ($request->photo === '') ? '' : $this->savePhotoWithThumbnail($request);
 
       $race->name = $request->name;
       $race->description = $request->description;
@@ -165,5 +156,23 @@ class RacesController extends BaseController
       DB::rollback();
       return $this->response->errorInternal();
     }
+  }
+
+  protected function savePhotoWithThumbnail($request)
+  {
+      if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
+        $filename = preg_replace('/[^-\w]+/i', '_', $request->name) . '_' . time();
+        $file->move(public_path() . $this->racesPath, $filename);
+
+        //generate a thumbnail with image/intervention
+        $thumbnail = Image::make(public_path() . $this->racesPath . $filename)
+            ->resize(200, null, function($constraint) {
+              $constraint->aspectRatio();
+            })
+            ->save(public_path() . $this->racesPath . 'tb_' . $filename);
+        return $filename;
+      }
+      return '';
   }
 }

@@ -37059,6 +37059,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.racePhoto = racePhoto;
+exports.raceThumb = raceThumb;
 exports.driverPhoto = driverPhoto;
 exports.monthYear = monthYear;
 exports.monthDay = monthDay;
@@ -37073,20 +37074,28 @@ exports.gridReady = gridReady;
 exports.raceComplete = raceComplete;
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function racePhoto(photo) {
-  var path = '/img/races/';
-  var defaultPhoto = 'race--default.jpg';
+var config = {
+  imgPath: '/img/',
+  racesPath: '/uploads/races/',
+  raceDefault: 'race--default.jpg',
+  driversPath: '/uploads/drivers/',
+  driverDefault: 'driver--default.jpg',
+  tbPrefix: 'tb_'
+};
 
-  if (!photo) return path + defaultPhoto;
-  return path + photo;
+function racePhoto(photo) {
+  if (!photo) return config.imgPath + config.raceDefault;
+  return config.racesPath + photo;
+}
+
+function raceThumb(photo) {
+  if (!photo) return config.imgPath + config.raceDefault;
+  return config.racesPath + tbPrefix + photo;
 }
 
 function driverPhoto(photo) {
-  var path = '/img/drivers/';
-  var defaultPhoto = 'driver--default.jpg';
-
-  if (!photo) return path + defaultPhoto;
-  return path + photo;
+  if (!photo) return config.imgPath + config.driverDefault;
+  return config.driversPath + photo;
 }
 
 function monthYear(value) {
@@ -37247,8 +37256,8 @@ var _filters = require('./filters');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
-//Vue.http.options.root = 'http://192.168.1.81:3000/api'
-_vue2.default.http.options.root = 'http://tika.app/api';
+_vue2.default.http.options.root = 'http://192.168.1.81:3000/api';
+//Vue.http.options.root = 'http://tika.app/api'
 
 _vue2.default.http.interceptors.push(function (request, next) {
   var token = localStorage.getItem('jwt');
