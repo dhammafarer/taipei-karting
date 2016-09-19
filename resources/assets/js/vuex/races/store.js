@@ -6,13 +6,12 @@ import {
   DELETE_RACE,
   SET_CURRENT_RACE,
   SET_CURRENT_RACE_ID,
-  CLEAR_CURRENT_RACE,
+  CLEAR_CURRENT_RACE_ID,
   SET_EDITOR_VIEW
 } from '../mutation-types'
 
 const state = {
   all: [],
-  current: { records: [] },
   currentId: null,
   editorView: null
 }
@@ -41,8 +40,8 @@ const mutations = {
     state.currentId = null
     state.currentId = parseInt(id)
   },
-  [CLEAR_CURRENT_RACE] (state) {
-    state.current = { records: [] }
+  [CLEAR_CURRENT_RACE_ID] (state) {
+    state.currentId = null
   },
   [SET_EDITOR_VIEW] (state, view) {
     state.editorView = view

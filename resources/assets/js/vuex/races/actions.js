@@ -26,6 +26,10 @@ export const updateCurrentRaceId = ({ dispatch }, id) => {
   dispatch(types.SET_CURRENT_RACE_ID, id)
 }
 
+export const clearCurrentRaceId = ({ dispatch }) => {
+  dispatch(types.CLEAR_CURRENT_RACE_ID)
+}
+
 export const setEditorView = ({ dispatch }, view) => {
   dispatch(types.SET_EDITOR_VIEW, view)
 }

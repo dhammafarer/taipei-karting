@@ -35502,7 +35502,7 @@ exports.default = {
   props: ['show'],
   data: function data() {
     return {
-      driver: {},
+      driver: { name: '', country: '', month: '', photo: '' },
       countries: _countries2.default,
       checking: false,
       formAttempted: false,
@@ -35678,7 +35678,7 @@ var _DriversDeleteModal2 = _interopRequireDefault(_DriversDeleteModal);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  name: 'DriversIndex',
+  name: 'DriversShow',
   components: {
     DriversEdit: _DriversEdit2.default,
     DriversEditModal: _DriversEditModal2.default,
@@ -35686,7 +35686,8 @@ exports.default = {
   },
   vuex: {
     actions: {
-      updateCurrentDriverId: _actions.updateCurrentDriverId
+      updateCurrentDriverId: _actions.updateCurrentDriverId,
+      clearCurrentDriverId: _actions.clearCurrentDriverId
     },
     getters: {
       driver: _getters.getCurrentDriver
@@ -35696,6 +35697,9 @@ exports.default = {
     return {
       showEdit: false
     };
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.clearCurrentDriverId();
   },
 
   route: {
@@ -36999,6 +37003,7 @@ exports.default = {
   vuex: {
     actions: {
       updateCurrentRaceId: _actions.updateCurrentRaceId,
+      clearCurrentRaceId: _actions.clearCurrentRaceId,
       setEditorView: _actions.setEditorView
     },
     getters: {
@@ -37033,6 +37038,10 @@ exports.default = {
       document.querySelector('html').style.overflow = 'hidden';
     }
   },
+  beforeDestroy: function beforeDestroy() {
+    this.clearCurrentRaceId();
+  },
+
   route: {
     data: function data(transition) {
       this.updateCurrentRaceId(transition.to.params.id);
@@ -37041,7 +37050,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Birthdays\">\n                <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                  <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                    <span class=\"icon-birthday\"></span>\n                    <img :src=\"driver.photo | driverPhoto\" :alt=\"driver.name\">\n                  </a>\n                </div>\n              </div>\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div><!-- Race Details -->\n\n\n            </div><!-- container -->\n\n          </div><!-- Race__Mask -->\n        </div><!-- Race__Cover-Photo -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Birthdays\">\n                <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                  <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                    <span class=\"icon-birthday\"></span>\n                    <img :src=\"driver.photo | driverThumb\" :alt=\"driver.name\">\n                  </a>\n                </div>\n              </div>\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div><!-- Race Details -->\n\n\n            </div><!-- container -->\n\n          </div><!-- Race__Mask -->\n        </div><!-- Race__Cover-Photo -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37061,6 +37070,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.racePhoto = racePhoto;
 exports.raceThumb = raceThumb;
 exports.driverPhoto = driverPhoto;
+exports.driverThumb = driverThumb;
 exports.monthYear = monthYear;
 exports.monthDay = monthDay;
 exports.tba = tba;
@@ -37090,12 +37100,17 @@ function racePhoto(photo) {
 
 function raceThumb(photo) {
   if (!photo) return config.imgPath + config.raceDefault;
-  return config.racesPath + tbPrefix + photo;
+  return config.racesPath + config.tbPrefix + photo;
 }
 
 function driverPhoto(photo) {
   if (!photo) return config.imgPath + config.driverDefault;
   return config.driversPath + photo;
+}
+
+function driverThumb(photo) {
+  if (!photo) return config.imgPath + config.driverDefault;
+  return config.driversPath + config.tbPrefix + photo;
 }
 
 function monthYear(value) {
@@ -37253,6 +37268,10 @@ var _App2 = _interopRequireDefault(_App);
 
 var _filters = require('./filters');
 
+var filters = _interopRequireWildcard(_filters);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
@@ -37292,12 +37311,14 @@ _router2.default.beforeEach(function (transition) {
   transition.next();
 });
 
-_vue2.default.filter('racePhoto', _filters.racePhoto);
-_vue2.default.filter('driverPhoto', _filters.driverPhoto);
-_vue2.default.filter('raceRecord', _filters.raceRecord);
-_vue2.default.filter('monthDay', _filters.monthDay);
-_vue2.default.filter('monthYear', _filters.monthYear);
-_vue2.default.filter('tba', _filters.tba);
+_vue2.default.filter('racePhoto', filters.racePhoto);
+_vue2.default.filter('raceThumb', filters.raceThumb);
+_vue2.default.filter('driverPhoto', filters.driverPhoto);
+_vue2.default.filter('driverThumb', filters.driverThumb);
+_vue2.default.filter('raceRecord', filters.raceRecord);
+_vue2.default.filter('monthDay', filters.monthDay);
+_vue2.default.filter('monthYear', filters.monthYear);
+_vue2.default.filter('tba', filters.tba);
 
 },{"./auth":124,"./components/App.vue":125,"./filters":156,"./router":158,"./vuex/store":171,"vue":118,"vue-resource":115}],158:[function(require,module,exports){
 'use strict';
@@ -37356,24 +37377,24 @@ router.map({
       }
     }
   },
-  '/drivers': {
-    name: 'drivers.index',
-    component: require('./components/DriversIndex.vue'),
-    subRoutes: {
-      '/create': {
-        name: 'drivers.create',
-        component: require('./components/DriversCreate.vue'),
-        auth: true
-      }
-    }
-  },
-  '/driver/:id': {
+  '/drivers/:id': {
     name: 'drivers.show',
     component: require('./components/DriversShow.vue'),
     subRoutes: {
       '/edit': {
         name: 'drivers.edit',
         component: require('./components/DriversEdit.vue'),
+        auth: true
+      }
+    }
+  },
+  '/drivers': {
+    name: 'drivers.index',
+    component: require('./components/DriversIndex.vue'),
+    subRoutes: {
+      'drivers/create': {
+        name: 'drivers.create',
+        component: require('./components/DriversCreate.vue'),
         auth: true
       }
     }
@@ -37434,7 +37455,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteDriver = exports.updateDriver = exports.createDriver = exports.updateCurrentDriverId = exports.clearCurrentDriver = exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
+exports.deleteDriver = exports.updateDriver = exports.createDriver = exports.clearCurrentDriverId = exports.updateCurrentDriverId = exports.clearCurrentDriver = exports.fetchCurrentDriver = exports.fetchAllDrivers = undefined;
 
 var _driver = require('../../api/driver');
 
@@ -37476,8 +37497,14 @@ var updateCurrentDriverId = exports.updateCurrentDriverId = function updateCurre
   dispatch(types.SET_CURRENT_DRIVER_ID, id);
 };
 
-var createDriver = exports.createDriver = function createDriver(_ref5, formData) {
+var clearCurrentDriverId = exports.clearCurrentDriverId = function clearCurrentDriverId(_ref5) {
   var dispatch = _ref5.dispatch;
+
+  dispatch(types.CLEAR_CURRENT_DRIVER_ID);
+};
+
+var createDriver = exports.createDriver = function createDriver(_ref6, formData) {
+  var dispatch = _ref6.dispatch;
 
   return _driver2.default.create(formData).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'The driver could not be saved.', type: 'danger' });
@@ -37487,8 +37514,8 @@ var createDriver = exports.createDriver = function createDriver(_ref5, formData)
   });
 };
 
-var updateDriver = exports.updateDriver = function updateDriver(_ref6, id, formData) {
-  var dispatch = _ref6.dispatch;
+var updateDriver = exports.updateDriver = function updateDriver(_ref7, id, formData) {
+  var dispatch = _ref7.dispatch;
 
   return _driver2.default.update(id, formData).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to update driver data.', type: 'danger' });
@@ -37498,8 +37525,8 @@ var updateDriver = exports.updateDriver = function updateDriver(_ref6, id, formD
   });
 };
 
-var deleteDriver = exports.deleteDriver = function deleteDriver(_ref7, data) {
-  var dispatch = _ref7.dispatch;
+var deleteDriver = exports.deleteDriver = function deleteDriver(_ref8, data) {
+  var dispatch = _ref8.dispatch;
 
   return _driver2.default.destroy(data.id).catch(function (err) {
     dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to delete driver.', type: 'danger' });
@@ -37551,10 +37578,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var driverObj = { name: '', country: '', month: '', photo: '' };
 var state = {
   all: [],
-  current: driverObj,
   currentId: null
 };
 
@@ -37564,16 +37589,17 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.REC
   state.all.push(driver);
 }), _defineProperty(_mutations, _mutationTypes.REPLACE_DRIVER, function (state, driver) {
   state.all[_ramda2.default.findIndex(_ramda2.default.propEq('id', driver.id), state.all)] = driver;
-  state.current = driver;
+  if (state.currentId === driver.id) {
+    state.currentId = null;
+    state.currentId = parseInt(driver.id);
+  }
 }), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_DRIVER_ID, function (state, id) {
   state.currentId = null;
   state.currentId = parseInt(id);
+}), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_DRIVER_ID, function (state) {
+  state.currentId = null;
 }), _defineProperty(_mutations, _mutationTypes.DELETE_DRIVER, function (state, driver) {
   state.all.splice(state.all.indexOf(driver), 1);
-}), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_DRIVER, function (state, driver) {
-  state.current = driver;
-}), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_DRIVER, function (state) {
-  state.current = driverObj;
 }), _mutations);
 
 exports.default = {
@@ -37591,17 +37617,16 @@ var RECEIVE_RACES = exports.RECEIVE_RACES = 'RECEIVE_RACES';
 var ADD_RACE = exports.ADD_RACE = 'ADD_RACE';
 var REPLACE_RACE = exports.REPLACE_RACE = 'REPLACE_RACE';
 var DELETE_RACE = exports.DELETE_RACE = 'DELETE_RACE';
-var SET_CURRENT_RACE = exports.SET_CURRENT_RACE = 'SET_CURRENT_RACE';
 var SET_CURRENT_RACE_ID = exports.SET_CURRENT_RACE_ID = 'SET_CURRENT_RACE_ID';
-var CLEAR_CURRENT_RACE = exports.CLEAR_CURRENT_RACE = 'CLEAR_CURRENT_RACE';
+var CLEAR_CURRENT_RACE_ID = exports.CLEAR_CURRENT_RACE_ID = 'CLEAR_CURRENT_RACE_ID';
 var SET_EDITOR_VIEW = exports.SET_EDITOR_VIEW = 'SET_EDITOR_VIEW';
 
 var RECEIVE_DRIVERS = exports.RECEIVE_DRIVERS = 'RECEIVE_DRIVERS';
 var ADD_DRIVER = exports.ADD_DRIVER = 'ADD_DRIVER';
 var REPLACE_DRIVER = exports.REPLACE_DRIVER = 'REPLACE_DRIVER';
 var DELETE_DRIVER = exports.DELETE_DRIVER = 'DELETE_DRIVER';
-var SET_CURRENT_DRIVER = exports.SET_CURRENT_DRIVER = 'SET_CURRENT_DRIVER';
 var SET_CURRENT_DRIVER_ID = exports.SET_CURRENT_DRIVER_ID = 'SET_CURRENT_DRIVER_ID';
+var CLEAR_CURRENT_DRIVER_ID = exports.CLEAR_CURRENT_DRIVER_ID = 'CLEAR_CURRENT_DRIVER_ID';
 var CLEAR_CURRENT_DRIVER = exports.CLEAR_CURRENT_DRIVER = 'CLEAR_CURRENT_DRIVER';
 
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
@@ -37691,7 +37716,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.socketRaceUpdated = exports.updateRaceRecords = exports.updateRaceDrivers = exports.deleteRace = exports.updateRace = exports.setEditorView = exports.updateCurrentRaceId = exports.createRace = exports.fetchCurrentRace = exports.fetchAllRaces = undefined;
+exports.socketRaceUpdated = exports.updateRaceRecords = exports.updateRaceDrivers = exports.deleteRace = exports.updateRace = exports.setEditorView = exports.clearCurrentRaceId = exports.updateCurrentRaceId = exports.createRace = exports.fetchCurrentRace = exports.fetchAllRaces = undefined;
 
 var _race = require('../../api/race');
 
@@ -37739,14 +37764,20 @@ var updateCurrentRaceId = exports.updateCurrentRaceId = function updateCurrentRa
   dispatch(types.SET_CURRENT_RACE_ID, id);
 };
 
-var setEditorView = exports.setEditorView = function setEditorView(_ref5, view) {
+var clearCurrentRaceId = exports.clearCurrentRaceId = function clearCurrentRaceId(_ref5) {
   var dispatch = _ref5.dispatch;
+
+  dispatch(types.CLEAR_CURRENT_RACE_ID);
+};
+
+var setEditorView = exports.setEditorView = function setEditorView(_ref6, view) {
+  var dispatch = _ref6.dispatch;
 
   dispatch(types.SET_EDITOR_VIEW, view);
 };
 
-var updateRace = exports.updateRace = function updateRace(_ref6, id, formData) {
-  var dispatch = _ref6.dispatch;
+var updateRace = exports.updateRace = function updateRace(_ref7, id, formData) {
+  var dispatch = _ref7.dispatch;
 
   return _race2.default.update(id, formData).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
@@ -37756,8 +37787,8 @@ var updateRace = exports.updateRace = function updateRace(_ref6, id, formData) {
   });
 };
 
-var deleteRace = exports.deleteRace = function deleteRace(_ref7, data) {
-  var dispatch = _ref7.dispatch;
+var deleteRace = exports.deleteRace = function deleteRace(_ref8, data) {
+  var dispatch = _ref8.dispatch;
 
   return _race2.default.destroy(data.id).catch(function (err) {
     dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Failed to delete race.', type: 'danger' });
@@ -37767,8 +37798,8 @@ var deleteRace = exports.deleteRace = function deleteRace(_ref7, data) {
   });
 };
 
-var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_ref8, id, addedIds, removedIds) {
-  var dispatch = _ref8.dispatch;
+var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_ref9, id, addedIds, removedIds) {
+  var dispatch = _ref9.dispatch;
 
   return _race2.default.updateDrivers(id, addedIds, removedIds).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
@@ -37778,8 +37809,8 @@ var updateRaceDrivers = exports.updateRaceDrivers = function updateRaceDrivers(_
   });
 };
 
-var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_ref9, id, data) {
-  var dispatch = _ref9.dispatch;
+var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_ref10, id, data) {
+  var dispatch = _ref10.dispatch;
 
   return _race2.default.updateRecords(id, data).catch(function (err) {
     return dispatch(types.ADD_NOTIFICATION, { title: 'Error!', body: 'Something went wrong!', type: 'danger' });
@@ -37790,8 +37821,8 @@ var updateRaceRecords = exports.updateRaceRecords = function updateRaceRecords(_
 };
 
 // Socket.io actions
-var socketRaceUpdated = exports.socketRaceUpdated = function socketRaceUpdated(_ref10, data) {
-  var dispatch = _ref10.dispatch;
+var socketRaceUpdated = exports.socketRaceUpdated = function socketRaceUpdated(_ref11, data) {
+  var dispatch = _ref11.dispatch;
 
   return _race2.default.fetch(data.race.id).then(function (response) {
     return dispatch(types.REPLACE_RACE, response.data);
@@ -37847,7 +37878,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var state = {
   all: [],
-  current: { records: [] },
   currentId: null,
   editorView: null
 };
@@ -37869,8 +37899,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, _mutationTypes.REC
 }), _defineProperty(_mutations, _mutationTypes.SET_CURRENT_RACE_ID, function (state, id) {
   state.currentId = null;
   state.currentId = parseInt(id);
-}), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_RACE, function (state) {
-  state.current = { records: [] };
+}), _defineProperty(_mutations, _mutationTypes.CLEAR_CURRENT_RACE_ID, function (state) {
+  state.currentId = null;
 }), _defineProperty(_mutations, _mutationTypes.SET_EDITOR_VIEW, function (state, view) {
   state.editorView = view;
 }), _mutations);

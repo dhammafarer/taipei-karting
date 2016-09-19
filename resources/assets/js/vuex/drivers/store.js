@@ -4,15 +4,12 @@ import {
   ADD_DRIVER,
   REPLACE_DRIVER,
   SET_CURRENT_DRIVER_ID,
-  DELETE_DRIVER,
-  SET_CURRENT_DRIVER,
-  CLEAR_CURRENT_DRIVER
+  CLEAR_CURRENT_DRIVER_ID,
+  DELETE_DRIVER
 } from '../mutation-types'
 
-const driverObj = { name: '', country: '', month: '', photo: '' }
 const state = {
   all: [],
-  current: driverObj,
   currentId: null,
 }
 
@@ -25,20 +22,20 @@ const mutations = {
   },
   [REPLACE_DRIVER] (state, driver) {
     state.all[R.findIndex(R.propEq('id', driver.id), state.all)] = driver
-    state.current = driver
+    if (state.currentId === driver.id) {
+      state.currentId = null
+      state.currentId = parseInt(driver.id)
+    }
   },
   [SET_CURRENT_DRIVER_ID] (state, id) {
     state.currentId = null
     state.currentId = parseInt(id)
   },
+  [CLEAR_CURRENT_DRIVER_ID] (state) {
+    state.currentId = null
+  },
   [DELETE_DRIVER] (state, driver) {
     state.all.splice(state.all.indexOf(driver), 1)
-  },
-  [SET_CURRENT_DRIVER] (state, driver) {
-    state.current = driver
-  },
-  [CLEAR_CURRENT_DRIVER] (state) {
-    state.current = driverObj
   }
 }
 

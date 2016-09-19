@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Controllers;
 
+use Image;
 use App\Driver;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -12,6 +13,8 @@ use App\Api\V1\Transformers\DriversTransformer;
  */
 class DriversController extends BaseController
 {
+  protected $uploadsPath = '/uploads/drivers/';
+
   public function index()
   {
     $drivers = Driver::all();
@@ -29,13 +32,7 @@ class DriversController extends BaseController
   public function store(Requests\StoreDriverRequest $request)
   {
     try {
-      $filename = '';
-
-      if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
-        $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/drivers/', $filename);
-      }
+      $filename = $this->savePhotoWithThumbnail($request);
 
       $driver = Driver::create([
         'name' => $request->name,
@@ -56,13 +53,7 @@ class DriversController extends BaseController
       $driver = Driver::findOrFail($id);
 
       // Check if the user has removed a photo
-      $filename = ($request->photo === '') ? '' : $request->photo;
-
-      if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
-        $filename = time() . '_' . preg_replace('/[^-\w]+/i', '_', $request->name);
-        $file->move(public_path() . '/img/drivers/', $filename);
-      }
+      $filename = ($request->photo === '') ? '' : $this->savePhotoWithThumbnail($request);
 
       $driver->name = $request->name;
       $driver->country = $request->country;
@@ -98,4 +89,21 @@ class DriversController extends BaseController
     return $this->response->error('This name has already been taken.', 500);
   }
 
+  protected function savePhotoWithThumbnail($request)
+  {
+      if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
+        $filename = preg_replace('/[^-\w]+/i', '_', $request->name) . '_' . time();
+        $file->move(public_path() . $this->uploadsPath, $filename);
+
+        //generate a thumbnail with image/intervention
+        $thumbnail = Image::make(public_path() . $this->uploadsPath . $filename)
+            ->resize(200, null, function($constraint) {
+              $constraint->aspectRatio();
+            })
+            ->save(public_path() . $this->uploadsPath . 'tb_' . $filename);
+        return $filename;
+      }
+      return '';
+  }
 }

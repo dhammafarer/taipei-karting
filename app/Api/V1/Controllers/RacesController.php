@@ -16,7 +16,7 @@ use App\Api\V1\Transformers\RacesTransformer;
  */
 class RacesController extends BaseController
 {
-  protected $racesPath = '/uploads/races/';
+  protected $uploadsPath = '/uploads/races/';
 
   public function index()
   {
@@ -163,14 +163,14 @@ class RacesController extends BaseController
       if ($request->hasFile('photo')) {
         $file = $request->file('photo');
         $filename = preg_replace('/[^-\w]+/i', '_', $request->name) . '_' . time();
-        $file->move(public_path() . $this->racesPath, $filename);
+        $file->move(public_path() . $this->uploadsPath, $filename);
 
         //generate a thumbnail with image/intervention
-        $thumbnail = Image::make(public_path() . $this->racesPath . $filename)
+        $thumbnail = Image::make(public_path() . $this->uploadsPath . $filename)
             ->resize(200, null, function($constraint) {
               $constraint->aspectRatio();
             })
-            ->save(public_path() . $this->racesPath . 'tb_' . $filename);
+            ->save(public_path() . $this->uploadsPath . 'tb_' . $filename);
         return $filename;
       }
       return '';

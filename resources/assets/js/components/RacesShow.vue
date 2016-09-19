@@ -15,7 +15,7 @@
                 <div class="Race__Birthday-driver" v-for="driver in birthdayDrivers">
                   <a href="#" v-link="{ name: 'drivers.show', params: { id: driver.id } }">
                     <span class="icon-birthday"></span>
-                    <img :src="driver.photo | driverPhoto" :alt="driver.name">
+                    <img :src="driver.photo | driverThumb" :alt="driver.name">
                   </a>
                 </div>
               </div>
@@ -64,7 +64,7 @@
   import RacesEditDropdown from './RacesEditDropdown.vue'
   import RacesDeleteModal from './RacesDeleteModal.vue'
   import RaceOverview from './RaceOverview.vue'
-  import { setEditorView, updateCurrentRaceId } from '../vuex/races/actions'
+  import { setEditorView, updateCurrentRaceId, clearCurrentRaceId } from '../vuex/races/actions'
   import { getCurrentRace } from '../vuex/races/getters'
   import { getAllDrivers } from '../vuex/drivers/getters'
 
@@ -78,6 +78,7 @@
     vuex: {
       actions: {
         updateCurrentRaceId,
+        clearCurrentRaceId,
         setEditorView
       },
       getters:{
@@ -107,6 +108,9 @@
         document.querySelector('html').style.overflow = 'hidden'
       }
     },
+    beforeDestroy () {
+      this.clearCurrentRaceId();
+    },
     route: {
       data (transition) {
         this.updateCurrentRaceId(transition.to.params.id)
@@ -115,6 +119,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-</style>

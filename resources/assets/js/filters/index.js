@@ -16,7 +16,7 @@ export function racePhoto (photo) {
 
 export function raceThumb (photo) {
   if (!photo) return config.imgPath + config.raceDefault
-  return config.racesPath + tbPrefix + photo
+  return config.racesPath + config.tbPrefix + photo
 }
 
 export function driverPhoto (photo) {
@@ -26,7 +26,7 @@ export function driverPhoto (photo) {
 
 export function driverThumb (photo) {
   if (!photo) return config.imgPath + config.driverDefault
-  return config.driversPath + tbPrefix + photo
+  return config.driversPath + config.tbPrefix + photo
 }
 
 export function monthYear (value) {

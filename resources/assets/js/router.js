@@ -38,18 +38,7 @@ router.map({
       }
     }
   },
-  '/drivers': {
-    name: 'drivers.index',
-    component: require('./components/DriversIndex.vue'),
-    subRoutes: {
-      '/create': {
-        name: 'drivers.create',
-        component: require('./components/DriversCreate.vue'),
-        auth: true
-      }
-    }
-  },
-  '/driver/:id': {
+  '/drivers/:id': {
     name: 'drivers.show',
     component: require('./components/DriversShow.vue'),
     subRoutes: {
@@ -60,6 +49,17 @@ router.map({
       }
     }
   },
+  '/drivers': {
+    name: 'drivers.index',
+    component: require('./components/DriversIndex.vue'),
+    subRoutes: {
+      'drivers/create': {
+        name: 'drivers.create',
+        component: require('./components/DriversCreate.vue'),
+        auth: true
+      }
+    }
+  }
 })
 
 export default router

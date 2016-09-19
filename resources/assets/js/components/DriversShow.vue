@@ -27,13 +27,13 @@
 
 <script>
   import { getCurrentDriver } from '../vuex/drivers/getters'
-  import { updateCurrentDriverId } from '../vuex/drivers/actions'
+  import { updateCurrentDriverId, clearCurrentDriverId } from '../vuex/drivers/actions'
   import DriversEdit from './DriversEdit.vue'
   import DriversEditModal from './DriversEditModal.vue'
   import DriversDeleteModal from './DriversDeleteModal.vue'
 
   export default {
-    name: 'DriversIndex',
+    name: 'DriversShow',
     components: {
       DriversEdit,
       DriversEditModal,
@@ -41,7 +41,8 @@
     },
     vuex: {
       actions: {
-        updateCurrentDriverId
+        updateCurrentDriverId,
+        clearCurrentDriverId
       },
       getters: {
         driver: getCurrentDriver
@@ -51,6 +52,9 @@
       return {
         showEdit: false,
       }
+    },
+    beforeDestroy () {
+      this.clearCurrentDriverId()
     },
     route: {
       data (transition) {

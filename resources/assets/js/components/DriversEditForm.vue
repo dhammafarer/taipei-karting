@@ -123,7 +123,7 @@
     props: ['show'],
     data () {
       return {
-        driver: {},
+        driver: { name: '', country: '', month: '', photo: '' },
         countries: countries,
         checking: false,
         formAttempted: false,
