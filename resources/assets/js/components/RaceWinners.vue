@@ -1,8 +1,27 @@
 <template>
-  <div class="Race__Winners">
-    <ul>
-      <li v-for="record in race.records.data">{{ record.driver.data.name }}</li>
-    </ul>
+  <div class="Race-Winners">
+    <div class="Panel">
+
+      <div class="Panel__Heading">
+        <div class="Panel__Title">
+          <span class="icon-trophy">Race Winner</span>
+        </div>
+      </div>
+
+      <div class="Panel__Body">
+
+          <div class="Race-Winners__Winner">
+            <div class="Race-Winners__Image">
+              <img class="img img-circle" :src="drivers[0].photo | driverPhoto" alt="Photo...">
+            </div>
+            <div class="Race-Winners__Body">
+              <div class="Race-Winners__Name">{{ drivers[0].name }}</div>
+              <div class="Race-Winners__Points">{{ drivers[0].total }} points</div>
+            </div>
+          </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,12 +35,8 @@
       }
     },
     computed: {
-      groupA () {
-        let driversOneA = this.race.records.data.filter(record => record.raceOneGroup === 'A').length
-        let driversTwoA = this.race.records.data.filter(record => record.raceTwoGroup === 'A').length
-        return { one: driversOneA, two: driversTwoA }
-      },
-      points () {
+      drivers () {
+        return rules.getDriversByPoints(this.race.records)
       }
     }
   }

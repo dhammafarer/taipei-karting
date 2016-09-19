@@ -5165,6 +5165,39 @@ button.close {
   top: 33%;
   right: 0; }
 
+.Race-Winners__Winner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+
+.Race-Winners__Image {
+  width: 33%;
+  text-align: center; }
+
+.Race-Winners__Image img {
+  margin: 5px auto;
+  height: 90px;
+  border: 2px solid #F7882F; }
+
+.Race-Winners__Body {
+  -ms-flex: 1;
+  flex: 1;
+  height: 100px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.Race-Winners__Name {
+  font-size: 1.2em;
+  color: #F7882F;
+  font-weight: bold; }
+
 .Edit-Races {
   counter-reset: position; }
 

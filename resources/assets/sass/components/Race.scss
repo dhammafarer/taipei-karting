@@ -106,3 +106,35 @@
   top: 33%;
   right: 0;
 }
+
+// Race-Winners
+.Race-Winners__Winner {
+  display: flex;
+  align-items: flex-start;
+}
+
+.Race-Winners__Image {
+  width: 33%;
+  text-align: center;
+}
+
+.Race-Winners__Image img {
+  margin: 5px auto;
+  height: 90px;
+  border: 2px solid $secondary-color;
+}
+
+.Race-Winners__Body {
+  flex: 1;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Race-Winners__Name {
+  font-size: 1.2em;
+  color: $secondary-color;
+  font-weight: bold;
+}

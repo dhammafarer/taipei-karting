@@ -17,11 +17,11 @@
             <td>{{ record.driver.data.name }}</td>
 
             <td v-if="round === 'one'">
-              <input class="form-field" v-model="record.raceOne" type="number" min="1" max="999" placeholder="00.000s">
+              <input class="form-field" v-model="record.qualOne" type="number" min="1" max="999" placeholder="00.000s">
             </td>
 
             <td v-if="round === 'two'">
-              <input class="form-field" v-model="record.raceTwo" type="number" min="1" max="999" placeholder="00.000s">
+              <input class="form-field" v-model="record.qualTwo" type="number" min="1" max="999" placeholder="00.000s">
             </td>
           </tr>
         </table>

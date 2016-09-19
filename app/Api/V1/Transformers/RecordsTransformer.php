@@ -20,9 +20,9 @@ class RecordsTransformer extends TransformerAbstract
             'driver_id'     => (int) $record->driver_id,
             'qualOne'       => $record->qualOne,
             'qualTwo'       => $record->qualTwo,
-            'raceOne'       => $record->raceOne,
+            'raceOne'       => (int) $record->raceOne,
             'raceOneGroup'  => $record->raceOneGroup,
-            'raceTwo'       => $record->raceTwo,
+            'raceTwo'       => (int) $record->raceTwo,
             'raceTwoGroup'  => $record->raceTwoGroup,
         ];
     }
