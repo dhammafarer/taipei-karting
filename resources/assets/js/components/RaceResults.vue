@@ -1,17 +1,32 @@
 <template>
-  <div v-if="groupReady(showGroup)" class="panel-body">Group {{ showGroup }}</div>
-    <ul v-if="groupReady(showGroup)" class="list-group race__results">
-      <li href="#" v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition" class="list-group-item">
-        <span class="label label-default">{{ record[this.raceGroup] | raceRecord }}</span>
-        <span class="label label-primary">{{ record[showRace] | raceRecord }}</span> {{ record.driver.name }}
-      </li>
-    </ul>
-  </div>
+  <div class="Race-Results" v-if="raceComplete(showRace, showGroup)">
+    <div class="Panel">
+
+      <section class="Panel__Heading">
+        <div class="Panel__Title">
+          <span class="icon-flag-checkered">{{ showRace === 'raceOne' ? '1st' : '2nd' }} Race Group {{ showGroup }}</span>
+        </div>
+      </section>
+
+      <section class="Panel__Body">
+
+        <ul v-if="groupReady(showGroup)" class="list-group">
+          <li href="#" v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition" class="list-group-item">
+            <span class="label label-primary">{{ record[showRace] | raceRecord }}</span>
+            <span>{{ record.driver.data.name }}</span>
+          </li>
+        </ul>
+
+      </section>
+
+    </div><!-- Panel -->
+  </div><!-- Race-Results -->
+
 </template>
 
 <script>
   import { getCurrentRace } from '../vuex/races/getters'
-  import { raceOnePosition, raceTwoPosition } from '../filters'
+  import { raceComplete, raceOnePosition, raceTwoPosition } from '../filters'
 
   export default {
     vuex: {
@@ -34,6 +49,7 @@
       }
     },
     methods: {
+      raceComplete,
       raceOnePosition,
       raceTwoPosition,
       groupReady (group) {
@@ -44,6 +60,3 @@
     }
   }
 </script>
-
-<style>
-</style>

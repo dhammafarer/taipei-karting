@@ -9,6 +9,9 @@ export default {
     let driversTwoA = records.data.filter(record => record.raceTwoGroup === 'A').length
 
     return records.data.map(record => {
+      record.raceOne = record.raceOne ? record.raceOne : 99
+      record.raceTwo = record.raceTwo ? record.raceTwo : 99
+
       let driver = record.driver.data
       let posOne = record.raceOneGroup === 'A' ? record.raceOne : record.raceOne + driversOneA
       let posTwo = record.raceTwoGroup === 'A' ? record.raceTwo : record.raceTwo + driversTwoA

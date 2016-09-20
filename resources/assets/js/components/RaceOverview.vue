@@ -3,11 +3,32 @@
     <div v-if="!race.records.data.length">Race data is not available.</div>
 
     <div v-else>
-      <div class="row">
-        <div class="col-sm-12">
+      <section class="row">
+        <div class="col-sm-6">
           <race-winners></race-winners>
         </div>
-      </div>
+      </section>
+
+      <section class="row">
+        <div class="col-sm-6">
+          <race-results show-race="raceOne" show-group="A"></race-results>
+        </div>
+
+        <div class="col-sm-6">
+          <race-results show-race="raceOne" show-group="B"></race-results>
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="col-sm-6">
+          <race-results show-race="raceTwo" show-group="A"></race-results>
+        </div>
+
+        <div class="col-sm-6">
+          <race-results show-race="raceTwo" show-group="B"></race-results>
+        </div>
+      </section>
+
   </div><!-- Race-Overview -->
 </template>
 

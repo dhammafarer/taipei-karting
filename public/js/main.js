@@ -36173,7 +36173,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n      <div class=\"row\">\n        <div class=\"col-sm-12\">\n          <race-winners></race-winners>\n        </div>\n      </div>\n  </div><!-- Race-Overview -->\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-winners></race-winners>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n\n\n  </div><!-- Race-Overview -->\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36185,8 +36185,6 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../filters":156,"../vuex/races/getters":169,"./QualifierResults.vue":140,"./RaceGrid.vue":142,"./RaceResults.vue":144,"./RaceWinners.vue":145,"vue":118,"vue-hot-reload-api":114}],144:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36218,6 +36216,7 @@ exports.default = {
     }
   },
   methods: {
+    raceComplete: _filters.raceComplete,
     raceOnePosition: _filters.raceOnePosition,
     raceTwoPosition: _filters.raceTwoPosition,
     groupReady: function groupReady(group) {
@@ -36230,22 +36229,18 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"groupReady(showGroup)\" class=\"panel-body\">Group {{ showGroup }}</div>\n  <ul v-if=\"groupReady(showGroup)\" class=\"list-group race__results\">\n    <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n      <span class=\"label label-default\">{{ record[this.raceGroup] | raceRecord }}</span>\n      <span class=\"label label-primary\">{{ record[showRace] | raceRecord }}</span> {{ record.driver.name }}\n    </li>\n  </ul>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Results\" v-if=\"raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-flag-checkered\">{{ showRace === 'raceOne' ? '1st' : '2nd' }} Race Group {{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <ul v-if=\"groupReady(showGroup)\" class=\"list-group\">\n        <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n          <span class=\"label label-primary\">{{ record[showRace] | raceRecord }}</span>\n          <span>{{ record.driver.data.name }}</span>\n        </li>\n      </ul>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Results -->\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-6a950016", module.exports)
   } else {
     hotAPI.update("_v-6a950016", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],145:[function(require,module,exports){
+},{"../filters":156,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114}],145:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36269,11 +36264,18 @@ exports.default = {
   computed: {
     drivers: function drivers() {
       return _raceRules2.default.getDriversByPoints(this.race.records);
+    },
+    racesComplete: function racesComplete() {
+      return this.race.records.data.some(function (r) {
+        return r.raceOne > 0;
+      }) && this.race.records.data.some(function (r) {
+        return r.raceTwo > 0;
+      });
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Race Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"racesComplete\" class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Race Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37434,6 +37436,9 @@ exports.default = {
     }).length;
 
     return records.data.map(function (record) {
+      record.raceOne = record.raceOne ? record.raceOne : 99;
+      record.raceTwo = record.raceTwo ? record.raceTwo : 99;
+
       var driver = record.driver.data;
       var posOne = record.raceOneGroup === 'A' ? record.raceOne : record.raceOne + driversOneA;
       var posTwo = record.raceTwoGroup === 'A' ? record.raceTwo : record.raceTwo + driversTwoA;
@@ -37627,7 +37632,6 @@ var REPLACE_DRIVER = exports.REPLACE_DRIVER = 'REPLACE_DRIVER';
 var DELETE_DRIVER = exports.DELETE_DRIVER = 'DELETE_DRIVER';
 var SET_CURRENT_DRIVER_ID = exports.SET_CURRENT_DRIVER_ID = 'SET_CURRENT_DRIVER_ID';
 var CLEAR_CURRENT_DRIVER_ID = exports.CLEAR_CURRENT_DRIVER_ID = 'CLEAR_CURRENT_DRIVER_ID';
-var CLEAR_CURRENT_DRIVER = exports.CLEAR_CURRENT_DRIVER = 'CLEAR_CURRENT_DRIVER';
 
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';

@@ -1,5 +1,5 @@
 <template>
-  <div class="Race-Winners">
+  <div v-if="racesComplete" class="Race-Winners">
     <div class="Panel">
 
       <div class="Panel__Heading">
@@ -37,6 +37,9 @@
     computed: {
       drivers () {
         return rules.getDriversByPoints(this.race.records)
+      },
+      racesComplete () {
+        return this.race.records.data.some(r => r.raceOne > 0) && this.race.records.data.some(r => r.raceTwo > 0)
       }
     }
   }

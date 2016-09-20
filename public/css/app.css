@@ -5199,6 +5199,10 @@ button.close {
   color: #F7882F;
   font-weight: bold; }
 
+.Race-Results__Group {
+  text-align: center;
+  padding-bottom: 5px; }
+
 .Edit-Races {
   counter-reset: position; }
 
