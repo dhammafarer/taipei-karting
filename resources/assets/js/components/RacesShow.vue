@@ -34,7 +34,7 @@
                   <span class="icon-location">{{ race.venue | capitalize | tba }}</span>
                 </div>
 
-                <div v-if="race.circuit" class="Race__Circuit" :style="{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }">
+                <div v-if="race.circuit" class="Race__Circuit" :style="{ backgroundImage: circuitPhoto }">
                   <span class="Race__Circuit-type">Track {{ race.circuit }}</span>
                 </div>
 
@@ -94,6 +94,9 @@
     computed: {
       racePhoto () {
         return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')'
+      },
+      circuitPhoto () {
+        return 'url(' + this.$options.filters.circuitPhoto(this.race.circuit) + ')'
       },
       birthdayDrivers () {
         let raceDate = new Date(this.race.date)

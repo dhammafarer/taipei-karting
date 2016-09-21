@@ -170,6 +170,7 @@
         formData.append('country', this.driver.country)
         formData.append('month', this.driver.month)
         if (this.validatePhoto()) formData.append('photo', photo, photo.name)
+        else formData.append('photo', this.driver.photo)
 
         if (this.$route.name === 'drivers.create') {
           this.createDriver(formData).then(() => this.$router.go({ name: 'drivers.index' }))

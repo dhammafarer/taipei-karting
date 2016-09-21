@@ -1,22 +1,38 @@
 <template>
-  <div class="grid" v-if="byGroup(showGroup)">
-    <h4><span class="label label-default">Group {{ showGroup }}</span></h4>
-    <div class="grid__positions">
-      <div class="grid__position"
-        v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace"
-        >
-        <div>
-          <p>{{ record.driver.name }}</p>
-          <img class="img img-circle" :src="record.driver.data.photo | driverPhoto">
+  <div class="Race-Grid" v-if="gridReady(showRace, showGroup) && !raceComplete(showRace, showGroup)">
+    <div class="Panel">
+
+      <section class="Panel__Heading">
+        <div class="Panel__Title">
+          <span>{{ showRace === 'raceOne' ? 'First' : '2nd' }} Race Grid</span> <span class="label label-primary">{{ showGroup }}</span>
         </div>
-      </div>
-    </div>
-  </div>
+      </section>
+
+      <section class="Panel__Body">
+
+        <div class="grid" v-if="byGroup(showGroup)">
+          <div class="grid__positions">
+            <div class="grid__position"
+              v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace"
+              >
+              <div>
+                <p>{{ record.driver.name }}</p>
+                <img class="img img-circle" :src="record.driver.data.photo | driverPhoto">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div><!-- Panel -->
+  </div><!-- Race-Grid -->
+
 </template>
 
 <script>
   import { getCurrentRace } from '../vuex/races/getters'
-  import { byQualTime, byQualTimeReverse } from '../filters'
+  import { gridReady, raceComplete, byQualTime, byQualTimeReverse } from '../filters'
 
   export default {
     vuex: {
@@ -39,6 +55,8 @@
       }
     },
     methods: {
+      raceComplete,
+      gridReady,
       byQualTime,
       byQualTimeReverse,
       byGroup (group) {

@@ -173,6 +173,6 @@ class RacesController extends BaseController
             ->save(public_path() . $this->uploadsPath . 'tb_' . $filename);
         return $filename;
       }
-      return '';
+      return $request->photo;
   }
 }

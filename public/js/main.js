@@ -35551,7 +35551,7 @@ exports.default = {
       formData.append('name', this.driver.name.trim());
       formData.append('country', this.driver.country);
       formData.append('month', this.driver.month);
-      if (this.validatePhoto()) formData.append('photo', photo, photo.name);
+      if (this.validatePhoto()) formData.append('photo', photo, photo.name);else formData.append('photo', this.driver.photo);
 
       if (this.$route.name === 'drivers.create') {
         this.createDriver(formData).then(function () {
@@ -36098,6 +36098,8 @@ exports.default = {
     }
   },
   methods: {
+    raceComplete: _filters.raceComplete,
+    gridReady: _filters.gridReady,
     byQualTime: _filters.byQualTime,
     byQualTimeReverse: _filters.byQualTimeReverse,
     byGroup: function byGroup(group) {
@@ -36110,7 +36112,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"grid\" v-if=\"byGroup(showGroup)\">\n  <h4><span class=\"label label-default\">Group {{ showGroup }}</span></h4>\n  <div class=\"grid__positions\">\n    <div class=\"grid__position\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace\">\n      <div>\n        <p>{{ record.driver.name }}</p>\n        <img class=\"img img-circle\" :src=\"record.driver.data.photo | driverPhoto\">\n      </div>\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Grid\" v-if=\"gridReady(showRace, showGroup) &amp;&amp; !raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span>{{ showRace === 'raceOne' ? 'First' : '2nd' }} Race Grid</span> <span class=\"label label-primary\">{{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <div class=\"grid\" v-if=\"byGroup(showGroup)\">\n        <div class=\"grid__positions\">\n          <div class=\"grid__position\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace\">\n            <div>\n              <p>{{ record.driver.name }}</p>\n              <img class=\"img img-circle\" :src=\"record.driver.data.photo | driverPhoto\">\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Grid -->\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36150,8 +36152,6 @@ var _QualifierResults2 = _interopRequireDefault(_QualifierResults);
 
 var _getters = require('../vuex/races/getters');
 
-var _filters = require('../filters');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -36166,14 +36166,10 @@ exports.default = {
     RaceResults: _RaceResults2.default,
     RaceGrid: _RaceGrid2.default,
     QualifierResults: _QualifierResults2.default
-  },
-  methods: {
-    raceComplete: _filters.raceComplete,
-    gridReady: _filters.gridReady
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-winners></race-winners>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n\n\n  </div><!-- Race-Overview -->\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n\n      <!-- Race-Winners -->\n      <section class=\"row\">\n        <div class=\"col-sm-12\">\n          <race-winners></race-winners>\n        </div>\n      </section>\n\n      <!-- Race-Grids -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <!-- Race-Results -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n  </div><!-- Race-Overview -->\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36184,7 +36180,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-17a967ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/getters":169,"./QualifierResults.vue":140,"./RaceGrid.vue":142,"./RaceResults.vue":144,"./RaceWinners.vue":145,"vue":118,"vue-hot-reload-api":114}],144:[function(require,module,exports){
+},{"../vuex/races/getters":169,"./QualifierResults.vue":140,"./RaceGrid.vue":142,"./RaceResults.vue":144,"./RaceWinners.vue":145,"vue":118,"vue-hot-reload-api":114}],144:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36229,7 +36225,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Results\" v-if=\"raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-flag-checkered\">{{ showRace === 'raceOne' ? '1st' : '2nd' }} Race Group {{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <ul v-if=\"groupReady(showGroup)\" class=\"list-group\">\n        <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n          <span class=\"label label-primary\">{{ record[showRace] | raceRecord }}</span>\n          <span>{{ record.driver.data.name }}</span>\n        </li>\n      </ul>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Results -->\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Results\" v-if=\"raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-flag-checkered\">{{ showRace === 'raceOne' ? 'First' : 'Second' }} Race</span>\n        <span class=\"label label-primary\">{{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <ul v-if=\"groupReady(showGroup)\" class=\"list-group\">\n        <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n          <span class=\"label label-primary\">{{ record[showRace] | raceRecord }}</span>\n          <img class=\"img\" :src=\"record.driver.data.country | countryFlag\" alt=\"\">\n          <span>{{ record.driver.data.name }}</span>\n        </li>\n      </ul>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Results -->\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36275,7 +36271,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"racesComplete\" class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Race Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"racesComplete\" class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Grand Prix Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37023,6 +37019,9 @@ exports.default = {
     racePhoto: function racePhoto() {
       return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')';
     },
+    circuitPhoto: function circuitPhoto() {
+      return 'url(' + this.$options.filters.circuitPhoto(this.race.circuit) + ')';
+    },
     birthdayDrivers: function birthdayDrivers() {
       var raceDate = new Date(this.race.date);
       var month = raceDate.getMonth() + 1;
@@ -37052,7 +37051,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Birthdays\">\n                <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                  <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                    <span class=\"icon-birthday\"></span>\n                    <img :src=\"driver.photo | driverThumb\" :alt=\"driver.name\">\n                  </a>\n                </div>\n              </div>\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: 'url(/img/circuits/Circuit--default.svg)' }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div><!-- Race Details -->\n\n\n            </div><!-- container -->\n\n          </div><!-- Race__Mask -->\n        </div><!-- Race__Cover-Photo -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: racePhoto }\">\n          <div class=\"Race__Mask\">\n            <div class=\"container\">\n\n              <div class=\"Race__Birthdays\">\n                <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                  <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                    <span class=\"icon-birthday\"></span>\n                    <img :src=\"driver.photo | driverThumb\" :alt=\"driver.name\">\n                  </a>\n                </div>\n              </div>\n\n              <div class=\"Race__Edit\">\n                <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n              </div>\n\n              <div class=\"col-sm-6 Race__Details\">\n\n                <span class=\"Race__Name\">{{ race.name }}</span>\n\n                <div class=\"Race__Date\">\n                  <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                  <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                  <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n                </div>\n\n                <div v-if=\"race.circuit\" class=\"Race__Circuit\" :style=\"{ backgroundImage: circuitPhoto }\">\n                  <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n                </div>\n\n              </div><!-- Race Details -->\n\n\n            </div><!-- container -->\n\n          </div><!-- Race__Mask -->\n        </div><!-- Race__Cover-Photo -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37071,8 +37070,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.racePhoto = racePhoto;
 exports.raceThumb = raceThumb;
+exports.circuitPhoto = circuitPhoto;
 exports.driverPhoto = driverPhoto;
 exports.driverThumb = driverThumb;
+exports.countryFlag = countryFlag;
 exports.monthYear = monthYear;
 exports.monthDay = monthDay;
 exports.tba = tba;
@@ -37090,8 +37091,12 @@ var config = {
   imgPath: '/img/',
   racesPath: '/uploads/races/',
   raceDefault: 'race--default.jpg',
+  circuitsPath: '/img/circuits/',
+  circuitDefault: 'circuit--default.svg',
   driversPath: '/uploads/drivers/',
   driverDefault: 'driver--default.jpg',
+  flagsPath: '/img/flags/24/',
+  flagDefault: '_United Nations.png',
   tbPrefix: 'tb_'
 };
 
@@ -37105,6 +37110,11 @@ function raceThumb(photo) {
   return config.racesPath + config.tbPrefix + photo;
 }
 
+function circuitPhoto(circuit) {
+  if (!circuit) return config.circuitsPath + config.circuitDefault;
+  return config.circuitsPath + 'Circuit--' + circuit + '.svg';
+}
+
 function driverPhoto(photo) {
   if (!photo) return config.imgPath + config.driverDefault;
   return config.driversPath + photo;
@@ -37113,6 +37123,11 @@ function driverPhoto(photo) {
 function driverThumb(photo) {
   if (!photo) return config.imgPath + config.driverDefault;
   return config.driversPath + config.tbPrefix + photo;
+}
+
+function countryFlag(country) {
+  if (!country) return config.flagsPath + config.flagDefault;
+  return config.flagsPath + country.toLowerCase() + '.png';
 }
 
 function monthYear(value) {
@@ -37223,13 +37238,10 @@ function raceTwoPosition(a, b) {
   return a > b;
 }
 
-function gridReady(race) {
+function gridReady(race, group) {
   var raceGroup = race + 'Group';
   return this.race.records.data.some(function (r) {
-    if (r[raceGroup]) {
-      return true;
-    }
-    return false;
+    return r[raceGroup] === group;
   });
 }
 
@@ -37315,8 +37327,10 @@ _router2.default.beforeEach(function (transition) {
 
 _vue2.default.filter('racePhoto', filters.racePhoto);
 _vue2.default.filter('raceThumb', filters.raceThumb);
+_vue2.default.filter('circuitPhoto', filters.circuitPhoto);
 _vue2.default.filter('driverPhoto', filters.driverPhoto);
 _vue2.default.filter('driverThumb', filters.driverThumb);
+_vue2.default.filter('countryFlag', filters.countryFlag);
 _vue2.default.filter('raceRecord', filters.raceRecord);
 _vue2.default.filter('monthDay', filters.monthDay);
 _vue2.default.filter('monthYear', filters.monthYear);

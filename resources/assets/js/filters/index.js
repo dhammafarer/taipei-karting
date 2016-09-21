@@ -4,8 +4,12 @@ let config = {
   imgPath: '/img/',
   racesPath: '/uploads/races/',
   raceDefault: 'race--default.jpg',
+  circuitsPath: '/img/circuits/',
+  circuitDefault: 'circuit--default.svg',
   driversPath: '/uploads/drivers/',
   driverDefault: 'driver--default.jpg',
+  flagsPath: '/img/flags/24/',
+  flagDefault: '_United Nations.png',
   tbPrefix: 'tb_'
 }
 
@@ -19,6 +23,11 @@ export function raceThumb (photo) {
   return config.racesPath + config.tbPrefix + photo
 }
 
+export function circuitPhoto (circuit) {
+  if (!circuit) return config.circuitsPath + config.circuitDefault
+  return config.circuitsPath + 'Circuit--' + circuit + '.svg'
+}
+
 export function driverPhoto (photo) {
   if (!photo) return config.imgPath + config.driverDefault
   return config.driversPath + photo
@@ -27,6 +36,11 @@ export function driverPhoto (photo) {
 export function driverThumb (photo) {
   if (!photo) return config.imgPath + config.driverDefault
   return config.driversPath + config.tbPrefix + photo
+}
+
+export function countryFlag (country) {
+  if (!country) return config.flagsPath + config.flagDefault
+  return config.flagsPath + country.toLowerCase() + '.png'
 }
 
 export function monthYear (value) {
@@ -137,14 +151,9 @@ export function raceTwoPosition (a, b) {
   return a > b
 }
 
-export function gridReady (race) {
+export function gridReady (race, group) {
   let raceGroup = race + 'Group'
-  return this.race.records.data.some((r) => {
-    if (r[raceGroup]) {
-      return true
-    }
-    return false
-  })
+  return this.race.records.data.some((r) => r[raceGroup] === group)
 }
 
 export function raceComplete (race, group) {

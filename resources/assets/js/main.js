@@ -48,8 +48,10 @@ router.beforeEach((transition) => {
 
 Vue.filter('racePhoto', filters.racePhoto)
 Vue.filter('raceThumb', filters.raceThumb)
+Vue.filter('circuitPhoto', filters.circuitPhoto)
 Vue.filter('driverPhoto', filters.driverPhoto)
 Vue.filter('driverThumb', filters.driverThumb)
+Vue.filter('countryFlag', filters.countryFlag)
 Vue.filter('raceRecord', filters.raceRecord)
 Vue.filter('monthDay', filters.monthDay)
 Vue.filter('monthYear', filters.monthYear)

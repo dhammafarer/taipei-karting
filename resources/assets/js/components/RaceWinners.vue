@@ -4,7 +4,7 @@
 
       <div class="Panel__Heading">
         <div class="Panel__Title">
-          <span class="icon-trophy">Race Winner</span>
+          <span class="icon-trophy">Grand Prix Winner</span>
         </div>
       </div>
 
