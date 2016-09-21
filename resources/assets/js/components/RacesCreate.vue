@@ -5,7 +5,6 @@
       <div class="Panel__Heading">
         <div class="Panel__Title">
           Create New Race
-          <span @click="cancel" class="Races-create__x pull-right">&times</span>
         </div>
       </div>
 
@@ -14,8 +13,8 @@
         <validator name="validation">
 
             <!-- Race Name -->
-            <div class="Floated-form" :class="{ 'has-error': $validation.name.invalid}">
-              <label v-if="race.name || $validation.name.invalid" transition="floatUp">
+            <div class="Floated-form" :class="{ 'has-error': $validation.name.invalid && (showErrors || $validation.name.dirty) }">
+              <label v-if="race.name || ($validation.name.invalid && (showErrors || $validation.name.dirty))" transition="floatUp">
                 Name
                 <span v-if="$validation.name.required"> is required</span>
                 <span v-else>
@@ -25,16 +24,14 @@
               </label>
               <input class="form-field" type="text" placeholder="Race name"
                 :class="{ 'has-input': race.name }"
-                initial="off"
-                detect-change="off"
                 v-model="race.name"
                 v-validate:name="{ required: true, minlength: 4, maxlength: 20 }"
               >
             </div>
 
             <!-- Race Description -->
-            <div class="Floated-form" :class="{ 'has-error': $validation.description.invalid }">
-              <label v-if="race.description || $validation.description.invalid" transition="floatUp">
+            <div class="Floated-form" :class="{ 'has-error': $validation.description.invalid && (showErrors || $validation.description.dirty)}">
+              <label v-if="race.description || ($validation.description.invalid && (showErrors || $validation.description.dirty))" transition="floatUp">
                 Description
                 <span v-if="$validation.description.required"> is required</span>
                 <span v-else>
@@ -43,8 +40,6 @@
               </label>
               <textarea class="form-field" rows="3" placeholder="Race description"
                 :class="{ 'has-input': race.description }"
-                initial="off"
-                detect-change="off"
                 v-model="race.description"
                 v-validate:description="{ required: true, maxlength: 60 }"
               >
@@ -79,15 +74,46 @@
 
             <!-- Race Venue -->
             <div class="Floated-form">
-              <label v-if="race.venu" transition="floatUp">
+              <label v-if="race.venue" transition="floatUp">
                 Venue
               </label>
               <select type="date" class="form-field"
+                :class="{ 'has-input': race.venue }"
                 v-model="race.venue"
               >
                 <option disabled value="">Venue</option>
                 <option value="zhongli">Zhongli</option>
                 <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Race Circuit -->
+            <div class="Floated-form">
+              <label v-if="race.circuit" transition="floatUp">
+                Circuit
+              </label>
+              <select type="date" class="form-field"
+                :class="{ 'has-input': race.circuit }"
+                v-model="race.circuit"
+              >
+                <option disabled value="">Circuit</option>
+                <option>A</option>
+                <option>B</option>
+              </select>
+            </div>
+
+            <!-- Race Weather -->
+            <div class="Floated-form">
+              <label v-if="race.weather" transition="floatUp">
+                Weather
+              </label>
+              <select type="date" class="form-field"
+                :class="{ 'has-input': race.weather }"
+                v-model="race.weather"
+              >
+                <option disabled value="">Weather</option>
+                <option value="clear">Clear</option>
+                <option value="rain">Rain</option>
               </select>
             </div>
 
@@ -117,12 +143,14 @@
 
 <script>
   import { createRace } from '../vuex/races/actions'
+  import { addNotification } from '../vuex/notifications/actions'
 
   export default {
     name: "RacesCreate",
     vuex: {
       actions: {
-        createRace
+        createRace,
+        addNotification
       }
     },
     computed: {
@@ -135,7 +163,7 @@
     },
     data () {
       return {
-        race: { name: '', description: '', venue: '', date:'', time:'', photo: '' },
+        race: { name: '', description: '', venue: '', circuit: '', weather: '', date:'', time:'', photo: '' },
         formAttempted: false,
         photoError: '',
         photoPreview: '',
@@ -173,6 +201,7 @@
       },
       saveRace () {
         if (this.formInvalid) {
+          this.addNotification({ title: 'Fail!', body: 'Your form contains errors.', type: 'danger' })
           this.formAttempted = true
           return false
         }
@@ -184,6 +213,8 @@
         formData.append('name', this.race.name)
         formData.append('description', this.race.description)
         formData.append('venue', this.race.venue)
+        formData.append('circuit', this.race.circuit)
+        formData.append('weather', this.race.weather)
         formData.append('date', this.race.date)
         formData.append('time', this.race.time)
         if (this.validatePhoto()) formData.append('photo', photo, photo.name)
@@ -200,10 +231,6 @@
 </script>
 
 <style>
-  .Races-create__x {
-    cursor: pointer;
-  }
-
   .Photo-preview {
     text-align: center;
   }

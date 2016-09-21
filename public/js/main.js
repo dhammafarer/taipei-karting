@@ -36334,7 +36334,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../filters":157,"../utilities/race-rules":161,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114}],147:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.Races-create__x {\n  cursor: pointer;\n}\n\n.Photo-preview {\n  text-align: center;\n}\n\n.Photo-preview img {\n  max-height: 200px;\n  max-width: 100%;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.Photo-preview {\n  text-align: center;\n}\n\n.Photo-preview img {\n  max-height: 200px;\n  max-width: 100%;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36343,11 +36343,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var _actions = require('../vuex/races/actions');
 
+var _actions2 = require('../vuex/notifications/actions');
+
 exports.default = {
   name: "RacesCreate",
   vuex: {
     actions: {
-      createRace: _actions.createRace
+      createRace: _actions.createRace,
+      addNotification: _actions2.addNotification
     }
   },
   computed: {
@@ -36360,7 +36363,7 @@ exports.default = {
   },
   data: function data() {
     return {
-      race: { name: '', description: '', venue: '', date: '', time: '', photo: '' },
+      race: { name: '', description: '', venue: '', circuit: '', weather: '', date: '', time: '', photo: '' },
       formAttempted: false,
       photoError: '',
       photoPreview: '',
@@ -36405,6 +36408,7 @@ exports.default = {
       var _this2 = this;
 
       if (this.formInvalid) {
+        this.addNotification({ title: 'Fail!', body: 'Your form contains errors.', type: 'danger' });
         this.formAttempted = true;
         return false;
       }
@@ -36416,6 +36420,8 @@ exports.default = {
       formData.append('name', this.race.name);
       formData.append('description', this.race.description);
       formData.append('venue', this.race.venue);
+      formData.append('circuit', this.race.circuit);
+      formData.append('weather', this.race.weather);
       formData.append('date', this.race.date);
       formData.append('time', this.race.time);
       if (this.validatePhoto()) formData.append('photo', photo, photo.name);
@@ -36432,13 +36438,13 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races-create\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        Create New Race\n        <span @click=\"cancel\" class=\"Races-create__x pull-right\">×</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n      <validator name=\"validation\">\n\n          <!-- Race Name -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': $validation.name.invalid}\">\n            <label v-if=\"race.name || $validation.name.invalid\" transition=\"floatUp\">\n              Name\n              <span v-if=\"$validation.name.required\"> is required</span>\n              <span v-else=\"\">\n                <span v-if=\"$validation.name.minlength\"> must be at least 4 characters</span>\n                <span v-if=\"$validation.name.maxlength\"> must be at most 20 characters</span>\n              </span>\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race name\" :class=\"{ 'has-input': race.name }\" initial=\"off\" detect-change=\"off\" v-model=\"race.name\" v-validate:name=\"{ required: true, minlength: 4, maxlength: 20 }\">\n          </div>\n\n          <!-- Race Description -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': $validation.description.invalid }\">\n            <label v-if=\"race.description || $validation.description.invalid\" transition=\"floatUp\">\n              Description\n              <span v-if=\"$validation.description.required\"> is required</span>\n              <span v-else=\"\">\n                <span v-if=\"$validation.description.maxlength\"> must be at most 60 characters</span>\n              </span>\n            </label>\n            <textarea class=\"form-field\" rows=\"3\" placeholder=\"Race description\" :class=\"{ 'has-input': race.description }\" initial=\"off\" detect-change=\"off\" v-model=\"race.description\" v-validate:description=\"{ required: true, maxlength: 60 }\">              </textarea>\n          </div>\n\n          <!-- Race Date -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.date\">\n              Date\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race date\" :class=\"{ 'has-input': race.date }\" onfocus=\"this.type = 'date'\" onblur=\"this.type = 'text'\" v-model=\"race.date\">\n          </div>\n\n          <!-- Race Time -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.time\">\n              Time\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race time\" :class=\"{ 'has-input': race.time }\" onfocus=\"this.type = 'time'\" onblur=\"this.type = 'text'\" v-model=\"race.time\">\n          </div>\n\n          <!-- Race Venue -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.venu\" transition=\"floatUp\">\n              Venue\n            </label>\n            <select type=\"date\" class=\"form-field\" v-model=\"race.venue\">\n              <option disabled=\"\" value=\"\">Venue</option>\n              <option value=\"zhongli\">Zhongli</option>\n              <option value=\"other\">Other</option>\n            </select>\n          </div>\n\n          <!-- Race Photo -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': photoError }\">\n            <label for=\"photo\">\n              Photo\n              <span>{{ photoError }}</span>\n            </label>\n            <input @change=\"validatePhoto\" class=\"form-field has-input\" type=\"file\" id=\"photo-upload\">\n          </div>\n\n          <!-- Photo Preview -->\n          <div class=\"Photo-preview\" v-if=\"photoPreview\">\n            <img :src=\"photoPreview\" alt=\"Photo preview...\">\n          </div>\n\n          <!-- Buttons -->\n          <button @click=\"saveRace\" class=\"Btn Btn--submit\" :class=\"{ 'loading': loading }\">Save</button>\n\n      </validator>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races-create\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        Create New Race\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n      <validator name=\"validation\">\n\n          <!-- Race Name -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': $validation.name.invalid &amp;&amp; (showErrors || $validation.name.dirty) }\">\n            <label v-if=\"race.name || ($validation.name.invalid &amp;&amp; (showErrors || $validation.name.dirty))\" transition=\"floatUp\">\n              Name\n              <span v-if=\"$validation.name.required\"> is required</span>\n              <span v-else=\"\">\n                <span v-if=\"$validation.name.minlength\"> must be at least 4 characters</span>\n                <span v-if=\"$validation.name.maxlength\"> must be at most 20 characters</span>\n              </span>\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race name\" :class=\"{ 'has-input': race.name }\" v-model=\"race.name\" v-validate:name=\"{ required: true, minlength: 4, maxlength: 20 }\">\n          </div>\n\n          <!-- Race Description -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': $validation.description.invalid &amp;&amp; (showErrors || $validation.description.dirty)}\">\n            <label v-if=\"race.description || ($validation.description.invalid &amp;&amp; (showErrors || $validation.description.dirty))\" transition=\"floatUp\">\n              Description\n              <span v-if=\"$validation.description.required\"> is required</span>\n              <span v-else=\"\">\n                <span v-if=\"$validation.description.maxlength\"> must be at most 60 characters</span>\n              </span>\n            </label>\n            <textarea class=\"form-field\" rows=\"3\" placeholder=\"Race description\" :class=\"{ 'has-input': race.description }\" v-model=\"race.description\" v-validate:description=\"{ required: true, maxlength: 60 }\">              </textarea>\n          </div>\n\n          <!-- Race Date -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.date\">\n              Date\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race date\" :class=\"{ 'has-input': race.date }\" onfocus=\"this.type = 'date'\" onblur=\"this.type = 'text'\" v-model=\"race.date\">\n          </div>\n\n          <!-- Race Time -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.time\">\n              Time\n            </label>\n            <input class=\"form-field\" type=\"text\" placeholder=\"Race time\" :class=\"{ 'has-input': race.time }\" onfocus=\"this.type = 'time'\" onblur=\"this.type = 'text'\" v-model=\"race.time\">\n          </div>\n\n          <!-- Race Venue -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.venue\" transition=\"floatUp\">\n              Venue\n            </label>\n            <select type=\"date\" class=\"form-field\" :class=\"{ 'has-input': race.venue }\" v-model=\"race.venue\">\n              <option disabled=\"\" value=\"\">Venue</option>\n              <option value=\"zhongli\">Zhongli</option>\n              <option value=\"other\">Other</option>\n            </select>\n          </div>\n\n          <!-- Race Circuit -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.circuit\" transition=\"floatUp\">\n              Circuit\n            </label>\n            <select type=\"date\" class=\"form-field\" :class=\"{ 'has-input': race.circuit }\" v-model=\"race.circuit\">\n              <option disabled=\"\" value=\"\">Circuit</option>\n              <option>A</option>\n              <option>B</option>\n            </select>\n          </div>\n\n          <!-- Race Weather -->\n          <div class=\"Floated-form\">\n            <label v-if=\"race.weather\" transition=\"floatUp\">\n              Weather\n            </label>\n            <select type=\"date\" class=\"form-field\" :class=\"{ 'has-input': race.weather }\" v-model=\"race.weather\">\n              <option disabled=\"\" value=\"\">Weather</option>\n              <option value=\"clear\">Clear</option>\n              <option value=\"rain\">Rain</option>\n            </select>\n          </div>\n\n          <!-- Race Photo -->\n          <div class=\"Floated-form\" :class=\"{ 'has-error': photoError }\">\n            <label for=\"photo\">\n              Photo\n              <span>{{ photoError }}</span>\n            </label>\n            <input @change=\"validatePhoto\" class=\"form-field has-input\" type=\"file\" id=\"photo-upload\">\n          </div>\n\n          <!-- Photo Preview -->\n          <div class=\"Photo-preview\" v-if=\"photoPreview\">\n            <img :src=\"photoPreview\" alt=\"Photo preview...\">\n          </div>\n\n          <!-- Buttons -->\n          <button @click=\"saveRace\" class=\"Btn Btn--submit\" :class=\"{ 'loading': loading }\">Save</button>\n\n      </validator>\n    </div>\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.Races-create__x {\n  cursor: pointer;\n}\n\n.Photo-preview {\n  text-align: center;\n}\n\n.Photo-preview img {\n  max-height: 200px;\n  max-width: 100%;\n}\n"] = false
+    __vueify_insert__.cache["\n.Photo-preview {\n  text-align: center;\n}\n\n.Photo-preview img {\n  max-height: 200px;\n  max-width: 100%;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -36447,7 +36453,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-316e72ee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],148:[function(require,module,exports){
+},{"../vuex/notifications/actions":166,"../vuex/races/actions":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],148:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
