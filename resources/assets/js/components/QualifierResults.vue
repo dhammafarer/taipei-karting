@@ -1,32 +1,39 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong>Qualifiers</strong>
-    </div>
-    <ul class="list-group">
-      <li href="#" v-for="record in race.records.data | orderBy qualTime" class="list-group-item">
-        <div class="row">
-          <div class="col-sm-4">
-            {{ record.driver.data.name }}
-          </div>
-          <div class="col-sm-4">
-            <span class="label"
-              :class="record.qualOne < record.qualTwo && record.qualOne ? 'label-success': 'label-default'"
-            >
-              {{ record.qualOne | raceRecord }}
-            </span>
-          </div>
-          <div class="col-sm-4">
-            <span class="label label-default"
-              :class="record.qualOne > record.qualTwo && record.qualTwo ? 'label-success': 'label-default'"
-            >
-              {{ record.qualTwo | raceRecord }}
-            </span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div><!-- panel -->
+  <div class="Qualifier-Results">
+
+    <div class="Panel">
+      <div class="Panel__Heading">
+        <div class="Panel__Title"><span class="icon-stopwatch">Qualifiers</span></div>
+      </div>
+      <div class="Panel__Body">
+        <table class="table table-striped">
+          <tr>
+            <th>Driver</th><th>First</th><th>Second</th>
+          </tr>
+
+          <tr href="#" v-for="record in race.records.data | orderBy qualTime">
+            <td>
+              {{ record.driver.data.name }}
+            </td>
+
+            <td>
+              <span class="Label" :class="record.qualOne < record.qualTwo && record.qualOne ? 'Label--secondary': 'Label--primary'">
+                {{ record.qualOne | raceRecord }}
+              </span>
+            </td>
+
+            <td>
+              <span class="Label" :class="record.qualOne > record.qualTwo && record.qualTwo ? 'Label--secondary': 'Label--primary'">
+                {{ record.qualTwo | raceRecord }}
+              </span>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div><!-- Panel -->
+
+  </div>
 </template>
 
 <script>

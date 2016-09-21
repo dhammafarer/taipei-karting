@@ -123,11 +123,7 @@
               </div>
             </div>
 
-            <!-- Buttons -->
-            <div class="col-sm-10 col-sm-offset-2">
-              <button @click="saveRace" class="btn btn-primary" :class="{ 'disabled': $validation.invalid }">Save</button>
-              <button @click="setEditorView(null)" class="btn btn-default">Cancel</button>
-            </div>
+            <button @click="saveRace" class="Btn Btn--submit" :class="{ 'loading': loading }">Save</button>
 
           </div>
         </validator>
@@ -163,7 +159,8 @@
       return {
         race: {},
         formAttempted: false,
-        photoError: ''
+        photoError: '',
+        loading: false
       }
     },
     methods: {

@@ -7,7 +7,7 @@
       </div>
 
       <div class="Panel__Body">
-        <table class="table">
+        <table class="table table-striped">
           <tr>
             <th>#</th><th>Driver</th><th>Total</th>
           </tr>

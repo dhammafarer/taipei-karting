@@ -18,7 +18,7 @@ class DriversTableSeeder extends Seeder
       DB::table('drivers')->truncate();
 
       $drivers = array(
-        ['name' => 'German',   'country' => 'VN', 'month'=> 5, 'photo' => 'German.jpg'],
+        ['name' => 'German',   'country' => 'VE', 'month'=> 5, 'photo' => 'German.jpg'],
         ['name' => 'Felipe',   'country' => 'ES', 'month'=> 7, 'photo' => 'Felipe.jpg'],
         ['name' => 'Fernando', 'country' => 'ES', 'month'=> 6, 'photo' => 'Fernando.jpg'],
         ['name' => 'Pawel',    'country' => 'PL', 'month'=> 6, 'photo' => 'Pawel.jpg'],

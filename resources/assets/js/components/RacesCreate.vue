@@ -153,8 +153,8 @@
           this.photoError = ' must be an image'
           return false
         }
-        if (photo && photo.size > 1024000) {
-          this.photoError = ' must be smaller than 1MB'
+        if (photo && photo.size > 2048000) {
+          this.photoError = ' must be smaller than 2MB'
           console.log(this.photoError)
           return false
         }

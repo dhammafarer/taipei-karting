@@ -57,6 +57,12 @@
         </div>
       </section>
 
+      <section class="row">
+        <div class="col-sm-12">
+          <qualifier-results></qualifier-results>
+        </div>
+      </section>
+
   </div><!-- Race-Overview -->
 </template>
 
