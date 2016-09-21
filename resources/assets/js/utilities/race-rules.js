@@ -1,5 +1,5 @@
 export default {
-  one: [ 20, 18, 16 ],
+  one: [ 20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ],
 
   two: [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ],
 
@@ -22,7 +22,10 @@ export default {
 
       return driver
     }).sort((a, b) => {
-          return a.total < b.total ? 1 : -1
-        })
+      if (a.total === b.total) {
+        return a.one < b.one ? 1 : -1
+      }
+      return a.total < b.total ? 1 : -1
+    })
   }
 }

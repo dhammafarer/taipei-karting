@@ -35237,7 +35237,7 @@ exports.default = {
   }
 };
 
-},{"../router":158,"vue":118}],125:[function(require,module,exports){
+},{"../router":159,"vue":118}],125:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nhtml {\n  overflow-y: scroll; }\n\n/* line 8, stdin */\nbody {\n  font-family: Montserrat, sans-serif;\n  background-color: #EFEFEF; }\n")
 'use strict';
@@ -35336,7 +35336,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-acafef9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../auth":124,"../vuex/drivers/actions":161,"../vuex/notifications/actions":165,"../vuex/races/actions":168,"../vuex/store":171,"./HeaderBar.vue":133,"./Notifications.vue":139,"babel-runtime/core-js/promise":4,"socket.io-client":102,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],126:[function(require,module,exports){
+},{"../auth":124,"../vuex/drivers/actions":162,"../vuex/notifications/actions":166,"../vuex/races/actions":169,"../vuex/store":172,"./HeaderBar.vue":133,"./Notifications.vue":139,"babel-runtime/core-js/promise":4,"socket.io-client":102,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],126:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35414,7 +35414,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f1927cd2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/actions":161,"../vuex/drivers/getters":162,"./Modal.vue":137,"vue":118,"vue-hot-reload-api":114}],128:[function(require,module,exports){
+},{"../vuex/drivers/actions":162,"../vuex/drivers/getters":163,"./Modal.vue":137,"vue":118,"vue-hot-reload-api":114}],128:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.modal-mask {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9998;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,.5);\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n\n.modal-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n")
 'use strict';
@@ -35588,7 +35588,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f25ca32e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../api/driver":122,"../utilities/countries":159,"../vuex/drivers/actions":161,"../vuex/drivers/getters":162,"babel-runtime/core-js/promise":4,"ramda":101,"vue":118,"vue-hot-reload-api":114}],130:[function(require,module,exports){
+},{"../api/driver":122,"../utilities/countries":160,"../vuex/drivers/actions":162,"../vuex/drivers/getters":163,"babel-runtime/core-js/promise":4,"ramda":101,"vue":118,"vue-hot-reload-api":114}],130:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35652,7 +35652,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-62eebc67", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/getters":162,"vue":118,"vue-hot-reload-api":114}],132:[function(require,module,exports){
+},{"../vuex/drivers/getters":163,"vue":118,"vue-hot-reload-api":114}],132:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35721,7 +35721,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-719d0d10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/actions":161,"../vuex/drivers/getters":162,"./DriversDeleteModal.vue":127,"./DriversEdit.vue":128,"./DriversEditModal.vue":130,"vue":118,"vue-hot-reload-api":114}],133:[function(require,module,exports){
+},{"../vuex/drivers/actions":162,"../vuex/drivers/getters":163,"./DriversDeleteModal.vue":127,"./DriversEdit.vue":128,"./DriversEditModal.vue":130,"vue":118,"vue-hot-reload-api":114}],133:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\nmain {\n  padding-top: 40px; }\n\n/* line 8, stdin */\n.Navigation {\n  position: relative;\n  width: 100%;\n  margin-bottom: 0;\n  z-index: 99; }\n\n/* line 15, stdin */\n.Navigation__Banner {\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n  text-transform: uppercase;\n  font-size: 24px;\n  font-family: \"Baloo Tamma\", serif;\n  letter-spacing: 3px;\n  color: white;\n  background-color: #6B7A8F; }\n\n/* line 27, stdin */\n.Navigation__List {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  background-color: #79879b;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  box-shadow: 0px 2px 2px #666; }\n\n/* line 41, stdin */\n.Navigation__List--fixed {\n  position: fixed;\n  top: 0;\n  left: 0; }\n\n/* line 47, stdin */\n.Navigation__List-item {\n  padding: 5px 0;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  border-bottom: 3px solid transparent;\n  color: #a5aebb;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n  /* line 55, stdin */\n  .Navigation__List-item.v-link-active {\n    border-bottom: 3px solid white; }\n  /* line 58, stdin */\n  .Navigation__List-item:hover .Navigation__Link {\n    color: white; }\n  /* line 61, stdin */\n  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item.v-link-active .Navigation__Icon {\n    color: white; }\n\n/* line 66, stdin */\n.Navigation__Link {\n  font-size: 1.4em; }\n\n/* line 70, stdin */\n.Navigation__Icon {\n  -webkit-transition: color .3s ease;\n  transition: color .3s ease;\n  color: #556172; }\n\n/* line 75, stdin */\n.Navigation__Text {\n  display: none; }\n")
 'use strict';
@@ -35848,7 +35848,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e8eedc46", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../auth":124,"../vuex/notifications/actions":165,"vue":118,"vue-hot-reload-api":114}],136:[function(require,module,exports){
+},{"../auth":124,"../vuex/notifications/actions":166,"vue":118,"vue-hot-reload-api":114}],136:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35956,7 +35956,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e123528a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/actions":165,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],139:[function(require,module,exports){
+},{"../vuex/notifications/actions":166,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],139:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Notifications {\n  position: fixed;\n  z-index: 9999;\n  top: 100px;\n  right: 20px;\n  width: 80%;\n}\n\n.fade-transition {\n  opacity: 1;\n  trantision: opacity .3s ease;\n}\n\n.fade-enter, .fade-leave {\n  opacity: 0;\n}\n\n.slideIn-transition {\n  opacity: 1;\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n\n.slideIn-enter, .slideIn-leave {\n  opacity: 0;\n  -webkit-transform: translateX(500px);\n          transform: translateX(500px);\n}\n")
 'use strict';
@@ -35999,7 +35999,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-b1145d10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/notifications/getters":166,"./NotificationCard.vue":138,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],140:[function(require,module,exports){
+},{"../vuex/notifications/getters":167,"./NotificationCard.vue":138,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],140:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36032,7 +36032,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-e2fa28e8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114}],141:[function(require,module,exports){
+},{"../filters":157,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114}],141:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Race-Card {\n  position: relative;\n  height: 100px;\n  border: 2px solid #565656;\n  border-radius: 4px;\n  margin-bottom: 8px;\n  cursor: pointer;\n  background-position: center center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }\n  /* line 15, stdin */\n  .Race-Card:hover .Race-Mask {\n    background-color: rgba(0, 0, 0, 0.7); }\n  /* line 18, stdin */\n  .Race-Card:hover .Race-Card__Details {\n    opacity: 1; }\n\n/* line 23, stdin */\n.Race-Mask {\n  background-color: rgba(0, 0, 0, 0.2);\n  height: 100%;\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 29, stdin */\n.Race-Card__Details {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  opacity: .9; }\n\n/* line 42, stdin */\n.Race-Card__Name {\n  color: white;\n  font-size: 1.8em;\n  font-family: \"Baloo Tamma\", serif;\n  text-align: center;\n  text-shadow: 0 0 2px #565656; }\n\n/* line 50, stdin */\n.Race-Card__Date {\n  margin-top: -5px;\n  background-color: #F7882F;\n  color: #565656;\n  padding: 0 6px;\n  border-radius: 4px; }\n")
 'use strict';
@@ -36065,6 +36065,45 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],142:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _raceRules = require('../utilities/race-rules');
+
+var _raceRules2 = _interopRequireDefault(_raceRules);
+
+var _getters = require('../vuex/races/getters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  vuex: {
+    getters: {
+      race: _getters.getCurrentRace
+    }
+  },
+  computed: {
+    drivers: function drivers() {
+      return _raceRules2.default.getDriversByPoints(this.race.records);
+    }
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Classification\">\n\n  <div class=\"Panel\">\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">Final Standings</div>\n    </div>\n\n    <div class=\"Panel__Body\">\n      <table class=\"table\">\n        <tbody><tr>\n          <th>#</th><th>Driver</th><th>Total</th>\n        </tr>\n\n        <tr v-for=\"driver in drivers\">\n          <td>\n            <span class=\"Label Label--primary\">{{ $index + 1 }}</span>\n          </td>\n          <td>\n            <img class=\"img\" :src=\"driver.country | countryFlag\" alt=\"\">\n            {{ driver.name }}\n          </td>\n          <td>\n            {{ driver.total }} pts\n          </td>\n        </tr>\n      </tbody></table>\n\n    </div>\n\n  </div><!-- Panel -->\n\n</div><!-- Race-Classification -->\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-c1e0d592", module.exports)
+  } else {
+    hotAPI.update("_v-c1e0d592", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../utilities/race-rules":161,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114}],143:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.grid {\n  width: 90%;\n  margin: auto;\n  margin-bottom: 60px;\n}\n.grid__positions {\n  counter-reset: position;\n}\n.grid__position::before {\n  counter-increment: position;\n  content: counter(position);\n  background-color: grey;\n  color: white;\n  text-align: center;\n  padding: 0 5px;\n  position:absolute;\n  left: 0%;\n}\n.grid__position {\n  width: 40%;\n  height: 1.3em;\n  text-align: center;\n  border-color: grey;\n  border-style: solid;\n  border-width: 1px 1px 0px 0px;\n  position: relative;\n  margin-bottom: 10%;\n}\n.grid__position:first-child {\n  margin-top: 0px;\n}\n.grid__position:nth-child(odd) {\n  margin-left: 50%;\n}\n.grid__position:last-child {\n}\n\n.grid__position div {\n  width: 100%;\n  position: absolute;\n  text-align: center;\n}\n.grid__position img {\n  width: 50%;\n  margin-top: 2%;\n}\n\n.grid__position p {\n  margin: 1px auto;\n}\n")
 'use strict';
@@ -36127,7 +36166,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-9d0b4052", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],143:[function(require,module,exports){
+},{"../filters":157,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],144:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36141,6 +36180,10 @@ var _RaceWinners2 = _interopRequireDefault(_RaceWinners);
 var _RaceResults = require('./RaceResults.vue');
 
 var _RaceResults2 = _interopRequireDefault(_RaceResults);
+
+var _RaceClassification = require('./RaceClassification.vue');
+
+var _RaceClassification2 = _interopRequireDefault(_RaceClassification);
 
 var _RaceGrid = require('./RaceGrid.vue');
 
@@ -36164,12 +36207,22 @@ exports.default = {
   components: {
     RaceWinners: _RaceWinners2.default,
     RaceResults: _RaceResults2.default,
+    RaceClassification: _RaceClassification2.default,
     RaceGrid: _RaceGrid2.default,
     QualifierResults: _QualifierResults2.default
+  },
+  computed: {
+    racesComplete: function racesComplete() {
+      return this.race.records.data.some(function (r) {
+        return r.raceOne > 0;
+      }) && this.race.records.data.some(function (r) {
+        return r.raceTwo > 0;
+      });
+    }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n\n      <!-- Race-Winners -->\n      <section class=\"row\">\n        <div class=\"col-sm-12\">\n          <race-winners></race-winners>\n        </div>\n      </section>\n\n      <!-- Race-Grids -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <!-- Race-Results -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n  </div><!-- Race-Overview -->\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"Race-Overview\">\n    <div v-if=\"!race.records.data.length\">Race data is not available.</div>\n\n    <div v-else=\"\">\n\n      <!-- Race-Winners -->\n      <section class=\"row\">\n        <div v-if=\"racesComplete\" class=\"col-sm-12\">\n          <race-winners></race-winners>\n        </div>\n\n        <div v-if=\"racesComplete\" class=\"col-sm-12\">\n          <race-classification></race-classification>\n        </div>\n      </section>\n\n      <!-- Race-Grids -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceOne\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"A\"></race-grid>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-grid show-race=\"raceTwo\" show-group=\"B\"></race-grid>\n        </div>\n      </section>\n\n      <!-- Race-Results -->\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceOne\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n      <section class=\"row\">\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"A\"></race-results>\n        </div>\n\n        <div class=\"col-sm-6\">\n          <race-results show-race=\"raceTwo\" show-group=\"B\"></race-results>\n        </div>\n      </section>\n\n  </div><!-- Race-Overview -->\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36180,7 +36233,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-17a967ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/getters":169,"./QualifierResults.vue":140,"./RaceGrid.vue":142,"./RaceResults.vue":144,"./RaceWinners.vue":145,"vue":118,"vue-hot-reload-api":114}],144:[function(require,module,exports){
+},{"../vuex/races/getters":170,"./QualifierResults.vue":140,"./RaceClassification.vue":142,"./RaceGrid.vue":143,"./RaceResults.vue":145,"./RaceWinners.vue":146,"vue":118,"vue-hot-reload-api":114}],145:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36236,7 +36289,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-6a950016", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114}],145:[function(require,module,exports){
+},{"../filters":157,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114}],146:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36246,6 +36299,10 @@ Object.defineProperty(exports, "__esModule", {
 var _raceRules = require('../utilities/race-rules');
 
 var _raceRules2 = _interopRequireDefault(_raceRules);
+
+var _filters = require('../filters');
+
+var _filters2 = _interopRequireDefault(_filters);
 
 var _getters = require('../vuex/races/getters');
 
@@ -36260,18 +36317,11 @@ exports.default = {
   computed: {
     drivers: function drivers() {
       return _raceRules2.default.getDriversByPoints(this.race.records);
-    },
-    racesComplete: function racesComplete() {
-      return this.race.records.data.some(function (r) {
-        return r.raceOne > 0;
-      }) && this.race.records.data.some(function (r) {
-        return r.raceTwo > 0;
-      });
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-if=\"racesComplete\" class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Grand Prix Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Winners\">\n  <div class=\"Panel\">\n\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-trophy\">Grand Prix Winner</span>\n      </div>\n    </div>\n\n    <div class=\"Panel__Body\">\n\n        <div class=\"Race-Winners__Winner\">\n          <div class=\"Race-Winners__Image\">\n            <img class=\"img img-circle\" :src=\"drivers[0].photo | driverPhoto\" alt=\"Photo...\">\n          </div>\n          <div class=\"Race-Winners__Body\">\n            <div class=\"Race-Winners__Name\">{{ drivers[0].name }}</div>\n            <div class=\"Race-Winners__Points\">{{ drivers[0].total }} points</div>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36282,7 +36332,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-521f0d13", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../utilities/race-rules":160,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114}],146:[function(require,module,exports){
+},{"../filters":157,"../utilities/race-rules":161,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114}],147:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Races-create__x {\n  cursor: pointer;\n}\n\n.Photo-preview {\n  text-align: center;\n}\n\n.Photo-preview img {\n  max-height: 200px;\n  max-width: 100%;\n}\n")
 'use strict';
@@ -36397,7 +36447,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-316e72ee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],147:[function(require,module,exports){
+},{"../vuex/races/actions":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],148:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36450,7 +36500,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7e2ab780", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"./Modal.vue":137,"vue":118,"vue-hot-reload-api":114}],148:[function(require,module,exports){
+},{"../vuex/races/actions":169,"../vuex/races/getters":170,"./Modal.vue":137,"vue":118,"vue-hot-reload-api":114}],149:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36516,7 +36566,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-8a7ad108", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"./RacesEditDetails.vue":149,"./RacesEditDrivers.vue":150,"./RacesEditQuals.vue":152,"./RacesEditRaces.vue":153,"vue":118,"vue-hot-reload-api":114}],149:[function(require,module,exports){
+},{"../vuex/races/actions":169,"../vuex/races/getters":170,"./RacesEditDetails.vue":150,"./RacesEditDrivers.vue":151,"./RacesEditQuals.vue":153,"./RacesEditRaces.vue":154,"vue":118,"vue-hot-reload-api":114}],150:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36622,7 +36672,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0cac2354", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],150:[function(require,module,exports){
+},{"../vuex/races/actions":169,"../vuex/races/getters":170,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],151:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.Driver {\n  cursor: pointer;\n}\n\n.Driver-photo {\n  opacity: .3;\n  width: 100%;\n  height: 100%;\n}\n\n.Driver-photo--selected, .Driver-photo:hover {\n  opacity: 1;\n  border: 4px solid darkgrey;\n}\n")
 'use strict';
@@ -36707,7 +36757,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-82de8642", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/getters":162,"../vuex/races/actions":168,"../vuex/races/getters":169,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],151:[function(require,module,exports){
+},{"../vuex/drivers/getters":163,"../vuex/races/actions":169,"../vuex/races/getters":170,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],152:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.Edit-menu {\n  position: fixed;\n  height: 100%;\n  top: 0;\n  right: 0;\n  z-index: 9997;\n  background-color: #EFEFEF;\n  box-shadow: -5px 0 10px 0 rgba(0, 0, 0, 0.5);\n  overflow-y: auto;\n  padding: 10px 0; }\n\n/* line 16, stdin */\n.Mask {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  z-index: 9995;\n  background-color: rgba(0, 0, 0, 0.5); }\n\n/* line 26, stdin */\n.Edit-menu__list {\n  z-index: 9999;\n  padding: 10px 0; }\n\n/* line 31, stdin */\n.slideFromRight-transition {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  width: 100%; }\n\n/* line 36, stdin */\n.slideFromRight-enter, .slideFromRight-leave {\n  opacity: 0;\n  width: 0; }\n")
 'use strict';
@@ -36771,7 +36821,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-57499b2d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"./RacesDeleteModal.vue":147,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],152:[function(require,module,exports){
+},{"../vuex/races/actions":169,"../vuex/races/getters":170,"./RacesDeleteModal.vue":148,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],153:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36833,7 +36883,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-089179d0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],153:[function(require,module,exports){
+},{"../vuex/races/actions":169,"../vuex/races/getters":170,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],154:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36898,7 +36948,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-5f828a54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../filters":156,"../vuex/races/actions":168,"../vuex/races/getters":169,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],154:[function(require,module,exports){
+},{"../filters":157,"../vuex/races/actions":169,"../vuex/races/getters":170,"babel-runtime/core-js/json/stringify":3,"vue":118,"vue-hot-reload-api":114}],155:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);\n/* line 4, stdin */\n.view {\n  max-height: 1000px;\n  -webkit-transition: max-height .3s ease-in;\n  transition: max-height .3s ease-in;\n  overflow: hidden; }\n  /* line 8, stdin */\n  .view.v-enter, .view.v-leave {\n    max-height: 0; }\n\n/* line 13, stdin */\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n/* line 17, stdin */\n.fade-enter, .fade-leave {\n  opacity: 0; }\n\n/* line 21, stdin */\n.Races__Banner {\n  color: #565656;\n  padding: 10px 10px;\n  margin: 10px 0;\n  position: relative; }\n\n/* line 28, stdin */\n.Races__Toolbar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n/* line 34, stdin */\n.Races__Title {\n  font-weight: bold;\n  font-size: 1.6em; }\n\n/* line 39, stdin */\n.Races__Seasons, .Races__Search {\n  margin-top: 8px; }\n\n/* line 43, stdin */\n.floatUp-transition {\n  opacity: 1;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease; }\n\n/* line 48, stdin */\n.floatUp-enter, .floatUp-leave {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n  opacity: 0; }\n")
 'use strict';
@@ -36969,7 +37019,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-416fdc60", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/getters":169,"./RaceCard.vue":141,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],155:[function(require,module,exports){
+},{"../vuex/races/getters":170,"./RaceCard.vue":141,"vue":118,"vue-hot-reload-api":114,"vueify/lib/insert-css":119}],156:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37067,7 +37117,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/getters":162,"../vuex/races/actions":168,"../vuex/races/getters":169,"./RaceOverview.vue":143,"./RacesDeleteModal.vue":147,"./RacesEditDropdown.vue":151,"vue":118,"vue-hot-reload-api":114}],156:[function(require,module,exports){
+},{"../vuex/drivers/getters":163,"../vuex/races/actions":169,"../vuex/races/getters":170,"./RaceOverview.vue":144,"./RacesDeleteModal.vue":148,"./RacesEditDropdown.vue":152,"vue":118,"vue-hot-reload-api":114}],157:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37258,7 +37308,7 @@ function raceComplete(race, group) {
   });
 }
 
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -37341,7 +37391,7 @@ _vue2.default.filter('monthDay', filters.monthDay);
 _vue2.default.filter('monthYear', filters.monthYear);
 _vue2.default.filter('tba', filters.tba);
 
-},{"./auth":124,"./components/App.vue":125,"./filters":156,"./router":158,"./vuex/store":171,"vue":118,"vue-resource":115}],158:[function(require,module,exports){
+},{"./auth":124,"./components/App.vue":125,"./filters":157,"./router":159,"./vuex/store":172,"vue":118,"vue-resource":115}],159:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37424,7 +37474,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/DriversCreate.vue":126,"./components/DriversEdit.vue":128,"./components/DriversIndex.vue":131,"./components/DriversShow.vue":132,"./components/HomePage.vue":134,"./components/LoginPage.vue":136,"./components/RacesCreate.vue":146,"./components/RacesEdit.vue":148,"./components/RacesIndex.vue":154,"./components/RacesShow.vue":155,"vue":118,"vue-router":116,"vue-validator":117}],159:[function(require,module,exports){
+},{"./components/DriversCreate.vue":126,"./components/DriversEdit.vue":128,"./components/DriversIndex.vue":131,"./components/DriversShow.vue":132,"./components/HomePage.vue":134,"./components/LoginPage.vue":136,"./components/RacesCreate.vue":147,"./components/RacesEdit.vue":149,"./components/RacesIndex.vue":155,"./components/RacesShow.vue":156,"vue":118,"vue-router":116,"vue-validator":117}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37432,14 +37482,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = [{ 'ccode': 'AF', 'cname': 'Afghanistan' }, { 'ccode': 'AX', 'cname': 'Aland Islands' }, { 'ccode': 'AL', 'cname': 'Albania' }, { 'ccode': 'DZ', 'cname': 'Algeria' }, { 'ccode': 'AS', 'cname': 'American Samoa' }, { 'ccode': 'AD', 'cname': 'Andorra' }, { 'ccode': 'AO', 'cname': 'Angola' }, { 'ccode': 'AI', 'cname': 'Anguilla' }, { 'ccode': 'AQ', 'cname': 'Antarctica' }, { 'ccode': 'AG', 'cname': 'Antigua And Barbuda' }, { 'ccode': 'AR', 'cname': 'Argentina' }, { 'ccode': 'AM', 'cname': 'Armenia' }, { 'ccode': 'AW', 'cname': 'Aruba' }, { 'ccode': 'AU', 'cname': 'Australia' }, { 'ccode': 'AT', 'cname': 'Austria' }, { 'ccode': 'AZ', 'cname': 'Azerbaijan' }, { 'ccode': 'BS', 'cname': 'Bahamas' }, { 'ccode': 'BH', 'cname': 'Bahrain' }, { 'ccode': 'BD', 'cname': 'Bangladesh' }, { 'ccode': 'BB', 'cname': 'Barbados' }, { 'ccode': 'BY', 'cname': 'Belarus' }, { 'ccode': 'BE', 'cname': 'Belgium' }, { 'ccode': 'BZ', 'cname': 'Belize' }, { 'ccode': 'BJ', 'cname': 'Benin' }, { 'ccode': 'BM', 'cname': 'Bermuda' }, { 'ccode': 'BT', 'cname': 'Bhutan' }, { 'ccode': 'BO', 'cname': 'Bolivia' }, { 'ccode': 'BA', 'cname': 'Bosnia And Herzegovina' }, { 'ccode': 'BW', 'cname': 'Botswana' }, { 'ccode': 'BV', 'cname': 'Bouvet Island' }, { 'ccode': 'BR', 'cname': 'Brazil' }, { 'ccode': 'IO', 'cname': 'British Indian Ocean Territory' }, { 'ccode': 'BN', 'cname': 'Brunei Darussalam' }, { 'ccode': 'BG', 'cname': 'Bulgaria' }, { 'ccode': 'BF', 'cname': 'Burkina Faso' }, { 'ccode': 'BI', 'cname': 'Burundi' }, { 'ccode': 'KH', 'cname': 'Cambodia' }, { 'ccode': 'CM', 'cname': 'Cameroon' }, { 'ccode': 'CA', 'cname': 'Canada' }, { 'ccode': 'CV', 'cname': 'Cape Verde' }, { 'ccode': 'KY', 'cname': 'Cayman Islands' }, { 'ccode': 'CF', 'cname': 'Central African Republic' }, { 'ccode': 'TD', 'cname': 'Chad' }, { 'ccode': 'CL', 'cname': 'Chile' }, { 'ccode': 'CN', 'cname': 'China' }, { 'ccode': 'CX', 'cname': 'Christmas Island' }, { 'ccode': 'CC', 'cname': 'Cocos (Keeling) Islands' }, { 'ccode': 'CO', 'cname': 'Colombia' }, { 'ccode': 'KM', 'cname': 'Comoros' }, { 'ccode': 'CG', 'cname': 'Congo' }, { 'ccode': 'CD', 'cname': 'Congo, Democratic Republic' }, { 'ccode': 'CK', 'cname': 'Cook Islands' }, { 'ccode': 'CR', 'cname': 'Costa Rica' }, { 'ccode': 'CI', 'cname': 'Cote D\'Ivoire' }, { 'ccode': 'HR', 'cname': 'Croatia' }, { 'ccode': 'CU', 'cname': 'Cuba' }, { 'ccode': 'CY', 'cname': 'Cyprus' }, { 'ccode': 'CZ', 'cname': 'Czech Republic' }, { 'ccode': 'DK', 'cname': 'Denmark' }, { 'ccode': 'DJ', 'cname': 'Djibouti' }, { 'ccode': 'DM', 'cname': 'Dominica' }, { 'ccode': 'DO', 'cname': 'Dominican Republic' }, { 'ccode': 'EC', 'cname': 'Ecuador' }, { 'ccode': 'EG', 'cname': 'Egypt' }, { 'ccode': 'SV', 'cname': 'El Salvador' }, { 'ccode': 'GQ', 'cname': 'Equatorial Guinea' }, { 'ccode': 'ER', 'cname': 'Eritrea' }, { 'ccode': 'EE', 'cname': 'Estonia' }, { 'ccode': 'ET', 'cname': 'Ethiopia' }, { 'ccode': 'FK', 'cname': 'Falkland Islands (Malvinas)' }, { 'ccode': 'FO', 'cname': 'Faroe Islands' }, { 'ccode': 'FJ', 'cname': 'Fiji' }, { 'ccode': 'FI', 'cname': 'Finland' }, { 'ccode': 'FR', 'cname': 'France' }, { 'ccode': 'GF', 'cname': 'French Guiana' }, { 'ccode': 'PF', 'cname': 'French Polynesia' }, { 'ccode': 'TF', 'cname': 'French Southern Territories' }, { 'ccode': 'GA', 'cname': 'Gabon' }, { 'ccode': 'GM', 'cname': 'Gambia' }, { 'ccode': 'GE', 'cname': 'Georgia' }, { 'ccode': 'DE', 'cname': 'Germany' }, { 'ccode': 'GH', 'cname': 'Ghana' }, { 'ccode': 'GI', 'cname': 'Gibraltar' }, { 'ccode': 'GR', 'cname': 'Greece' }, { 'ccode': 'GL', 'cname': 'Greenland' }, { 'ccode': 'GD', 'cname': 'Grenada' }, { 'ccode': 'GP', 'cname': 'Guadeloupe' }, { 'ccode': 'GU', 'cname': 'Guam' }, { 'ccode': 'GT', 'cname': 'Guatemala' }, { 'ccode': 'GG', 'cname': 'Guernsey' }, { 'ccode': 'GN', 'cname': 'Guinea' }, { 'ccode': 'GW', 'cname': 'Guinea-Bissau' }, { 'ccode': 'GY', 'cname': 'Guyana' }, { 'ccode': 'HT', 'cname': 'Haiti' }, { 'ccode': 'HM', 'cname': 'Heard Island & Mcdonald Islands' }, { 'ccode': 'VA', 'cname': 'Holy See (Vatican City State)' }, { 'ccode': 'HN', 'cname': 'Honduras' }, { 'ccode': 'HK', 'cname': 'Hong Kong' }, { 'ccode': 'HU', 'cname': 'Hungary' }, { 'ccode': 'IS', 'cname': 'Iceland' }, { 'ccode': 'IN', 'cname': 'India' }, { 'ccode': 'ID', 'cname': 'Indonesia' }, { 'ccode': 'IR', 'cname': 'Iran, Islamic Republic Of' }, { 'ccode': 'IQ', 'cname': 'Iraq' }, { 'ccode': 'IE', 'cname': 'Ireland' }, { 'ccode': 'IM', 'cname': 'Isle Of Man' }, { 'ccode': 'IL', 'cname': 'Israel' }, { 'ccode': 'IT', 'cname': 'Italy' }, { 'ccode': 'JM', 'cname': 'Jamaica' }, { 'ccode': 'JP', 'cname': 'Japan' }, { 'ccode': 'JE', 'cname': 'Jersey' }, { 'ccode': 'JO', 'cname': 'Jordan' }, { 'ccode': 'KZ', 'cname': 'Kazakhstan' }, { 'ccode': 'KE', 'cname': 'Kenya' }, { 'ccode': 'KI', 'cname': 'Kiribati' }, { 'ccode': 'KR', 'cname': 'Korea' }, { 'ccode': 'KW', 'cname': 'Kuwait' }, { 'ccode': 'KG', 'cname': 'Kyrgyzstan' }, { 'ccode': 'LA', 'cname': 'Lao People\'s Democratic Republic' }, { 'ccode': 'LV', 'cname': 'Latvia' }, { 'ccode': 'LB', 'cname': 'Lebanon' }, { 'ccode': 'LS', 'cname': 'Lesotho' }, { 'ccode': 'LR', 'cname': 'Liberia' }, { 'ccode': 'LY', 'cname': 'Libyan Arab Jamahiriya' }, { 'ccode': 'LI', 'cname': 'Liechtenstein' }, { 'ccode': 'LT', 'cname': 'Lithuania' }, { 'ccode': 'LU', 'cname': 'Luxembourg' }, { 'ccode': 'MO', 'cname': 'Macao' }, { 'ccode': 'MK', 'cname': 'Macedonia' }, { 'ccode': 'MG', 'cname': 'Madagascar' }, { 'ccode': 'MW', 'cname': 'Malawi' }, { 'ccode': 'MY', 'cname': 'Malaysia' }, { 'ccode': 'MV', 'cname': 'Maldives' }, { 'ccode': 'ML', 'cname': 'Mali' }, { 'ccode': 'MT', 'cname': 'Malta' }, { 'ccode': 'MH', 'cname': 'Marshall Islands' }, { 'ccode': 'MQ', 'cname': 'Martinique' }, { 'ccode': 'MR', 'cname': 'Mauritania' }, { 'ccode': 'MU', 'cname': 'Mauritius' }, { 'ccode': 'YT', 'cname': 'Mayotte' }, { 'ccode': 'MX', 'cname': 'Mexico' }, { 'ccode': 'FM', 'cname': 'Micronesia, Federated States Of' }, { 'ccode': 'MD', 'cname': 'Moldova' }, { 'ccode': 'MC', 'cname': 'Monaco' }, { 'ccode': 'MN', 'cname': 'Mongolia' }, { 'ccode': 'ME', 'cname': 'Montenegro' }, { 'ccode': 'MS', 'cname': 'Montserrat' }, { 'ccode': 'MA', 'cname': 'Morocco' }, { 'ccode': 'MZ', 'cname': 'Mozambique' }, { 'ccode': 'MM', 'cname': 'Myanmar' }, { 'ccode': 'NA', 'cname': 'Namibia' }, { 'ccode': 'NR', 'cname': 'Nauru' }, { 'ccode': 'NP', 'cname': 'Nepal' }, { 'ccode': 'NL', 'cname': 'Netherlands' }, { 'ccode': 'AN', 'cname': 'Netherlands Antilles' }, { 'ccode': 'NC', 'cname': 'New Caledonia' }, { 'ccode': 'NZ', 'cname': 'New Zealand' }, { 'ccode': 'NI', 'cname': 'Nicaragua' }, { 'ccode': 'NE', 'cname': 'Niger' }, { 'ccode': 'NG', 'cname': 'Nigeria' }, { 'ccode': 'NU', 'cname': 'Niue' }, { 'ccode': 'NF', 'cname': 'Norfolk Island' }, { 'ccode': 'MP', 'cname': 'Northern Mariana Islands' }, { 'ccode': 'NO', 'cname': 'Norway' }, { 'ccode': 'OM', 'cname': 'Oman' }, { 'ccode': 'PK', 'cname': 'Pakistan' }, { 'ccode': 'PW', 'cname': 'Palau' }, { 'ccode': 'PS', 'cname': 'Palestinian Territory, Occupied' }, { 'ccode': 'PA', 'cname': 'Panama' }, { 'ccode': 'PG', 'cname': 'Papua New Guinea' }, { 'ccode': 'PY', 'cname': 'Paraguay' }, { 'ccode': 'PE', 'cname': 'Peru' }, { 'ccode': 'PH', 'cname': 'Philippines' }, { 'ccode': 'PN', 'cname': 'Pitcairn' }, { 'ccode': 'PL', 'cname': 'Poland' }, { 'ccode': 'PT', 'cname': 'Portugal' }, { 'ccode': 'PR', 'cname': 'Puerto Rico' }, { 'ccode': 'QA', 'cname': 'Qatar' }, { 'ccode': 'RE', 'cname': 'Reunion' }, { 'ccode': 'RO', 'cname': 'Romania' }, { 'ccode': 'RU', 'cname': 'Russian Federation' }, { 'ccode': 'RW', 'cname': 'Rwanda' }, { 'ccode': 'BL', 'cname': 'Saint Barthelemy' }, { 'ccode': 'SH', 'cname': 'Saint Helena' }, { 'ccode': 'KN', 'cname': 'Saint Kitts And Nevis' }, { 'ccode': 'LC', 'cname': 'Saint Lucia' }, { 'ccode': 'MF', 'cname': 'Saint Martin' }, { 'ccode': 'PM', 'cname': 'Saint Pierre And Miquelon' }, { 'ccode': 'VC', 'cname': 'Saint Vincent And Grenadines' }, { 'ccode': 'WS', 'cname': 'Samoa' }, { 'ccode': 'SM', 'cname': 'San Marino' }, { 'ccode': 'ST', 'cname': 'Sao Tome And Principe' }, { 'ccode': 'SA', 'cname': 'Saudi Arabia' }, { 'ccode': 'SN', 'cname': 'Senegal' }, { 'ccode': 'RS', 'cname': 'Serbia' }, { 'ccode': 'SC', 'cname': 'Seychelles' }, { 'ccode': 'SL', 'cname': 'Sierra Leone' }, { 'ccode': 'SG', 'cname': 'Singapore' }, { 'ccode': 'SK', 'cname': 'Slovakia' }, { 'ccode': 'SI', 'cname': 'Slovenia' }, { 'ccode': 'SB', 'cname': 'Solomon Islands' }, { 'ccode': 'SO', 'cname': 'Somalia' }, { 'ccode': 'ZA', 'cname': 'South Africa' }, { 'ccode': 'GS', 'cname': 'South Georgia And Sandwich Isl.' }, { 'ccode': 'ES', 'cname': 'Spain' }, { 'ccode': 'LK', 'cname': 'Sri Lanka' }, { 'ccode': 'SD', 'cname': 'Sudan' }, { 'ccode': 'SR', 'cname': 'Suriname' }, { 'ccode': 'SJ', 'cname': 'Svalbard And Jan Mayen' }, { 'ccode': 'SZ', 'cname': 'Swaziland' }, { 'ccode': 'SE', 'cname': 'Sweden' }, { 'ccode': 'CH', 'cname': 'Switzerland' }, { 'ccode': 'SY', 'cname': 'Syrian Arab Republic' }, { 'ccode': 'TW', 'cname': 'Taiwan' }, { 'ccode': 'TJ', 'cname': 'Tajikistan' }, { 'ccode': 'TZ', 'cname': 'Tanzania' }, { 'ccode': 'TH', 'cname': 'Thailand' }, { 'ccode': 'TL', 'cname': 'Timor-Leste' }, { 'ccode': 'TG', 'cname': 'Togo' }, { 'ccode': 'TK', 'cname': 'Tokelau' }, { 'ccode': 'TO', 'cname': 'Tonga' }, { 'ccode': 'TT', 'cname': 'Trinidad And Tobago' }, { 'ccode': 'TN', 'cname': 'Tunisia' }, { 'ccode': 'TR', 'cname': 'Turkey' }, { 'ccode': 'TM', 'cname': 'Turkmenistan' }, { 'ccode': 'TC', 'cname': 'Turks And Caicos Islands' }, { 'ccode': 'TV', 'cname': 'Tuvalu' }, { 'ccode': 'UG', 'cname': 'Uganda' }, { 'ccode': 'UA', 'cname': 'Ukraine' }, { 'ccode': 'AE', 'cname': 'United Arab Emirates' }, { 'ccode': 'GB', 'cname': 'United Kingdom' }, { 'ccode': 'US', 'cname': 'United States' }, { 'ccode': 'UM', 'cname': 'United States Outlying Islands' }, { 'ccode': 'UY', 'cname': 'Uruguay' }, { 'ccode': 'UZ', 'cname': 'Uzbekistan' }, { 'ccode': 'VU', 'cname': 'Vanuatu' }, { 'ccode': 'VE', 'cname': 'Venezuela' }, { 'ccode': 'VN', 'cname': 'Viet Nam' }, { 'ccode': 'VG', 'cname': 'Virgin Islands, British' }, { 'ccode': 'VI', 'cname': 'Virgin Islands, U.S.' }, { 'ccode': 'WF', 'cname': 'Wallis And Futuna' }, { 'ccode': 'EH', 'cname': 'Western Sahara' }, { 'ccode': 'YE', 'cname': 'Yemen' }, { 'ccode': 'ZM', 'cname': 'Zambia' }, { 'ccode': 'ZW', 'cname': 'Zimbabwe' }];
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  one: [20, 18, 16],
+  one: [20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 
   two: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 
@@ -37468,12 +37518,15 @@ exports.default = {
 
       return driver;
     }).sort(function (a, b) {
+      if (a.total === b.total) {
+        return a.one < b.one ? 1 : -1;
+      }
       return a.total < b.total ? 1 : -1;
     });
   }
 };
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37560,7 +37613,7 @@ var deleteDriver = exports.deleteDriver = function deleteDriver(_ref8, data) {
   });
 };
 
-},{"../../api/driver":122,"../mutation-types":164}],162:[function(require,module,exports){
+},{"../../api/driver":122,"../mutation-types":165}],163:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37583,7 +37636,7 @@ function getCurrentDriver(state) {
   return _ramda2.default.find(_ramda2.default.propEq('id', state.drivers.currentId), state.drivers.all);
 }
 
-},{"ramda":101}],163:[function(require,module,exports){
+},{"ramda":101}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37631,7 +37684,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":164,"ramda":101}],164:[function(require,module,exports){
+},{"../mutation-types":165,"ramda":101}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37655,7 +37708,7 @@ var CLEAR_CURRENT_DRIVER_ID = exports.CLEAR_CURRENT_DRIVER_ID = 'CLEAR_CURRENT_D
 var ADD_NOTIFICATION = exports.ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 var REMOVE_NOTIFICATION = exports.REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 
-},{}],165:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37681,7 +37734,7 @@ var closeNotification = exports.closeNotification = function closeNotification(_
     dispatch(types.REMOVE_NOTIFICATION, notification);
 };
 
-},{"../mutation-types":164}],166:[function(require,module,exports){
+},{"../mutation-types":165}],167:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37699,7 +37752,7 @@ function getAllNotifications(state) {
   return state.notifications.all;
 }
 
-},{"ramda":101}],167:[function(require,module,exports){
+},{"ramda":101}],168:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37733,7 +37786,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":164,"ramda":101}],168:[function(require,module,exports){
+},{"../mutation-types":165,"ramda":101}],169:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37852,7 +37905,7 @@ var socketRaceUpdated = exports.socketRaceUpdated = function socketRaceUpdated(_
   });
 };
 
-},{"../../api/race":123,"../mutation-types":164}],169:[function(require,module,exports){
+},{"../../api/race":123,"../mutation-types":165}],170:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37880,7 +37933,7 @@ function getEditorView(state) {
   return state.races.editorView;
 }
 
-},{"ramda":101}],170:[function(require,module,exports){
+},{"ramda":101}],171:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37933,7 +37986,7 @@ exports.default = {
   mutations: mutations
 };
 
-},{"../mutation-types":164,"ramda":101}],171:[function(require,module,exports){
+},{"../mutation-types":165,"ramda":101}],172:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37973,6 +38026,6 @@ exports.default = new _vuex2.default.Store({
   }
 });
 
-},{"./drivers/store":163,"./notifications/store":167,"./races/store":170,"vue":118,"vuex":120}]},{},[157]);
+},{"./drivers/store":164,"./notifications/store":168,"./races/store":171,"vue":118,"vuex":120}]},{},[158]);
 
 //# sourceMappingURL=main.js.map

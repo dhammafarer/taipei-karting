@@ -6,8 +6,12 @@
 
       <!-- Race-Winners -->
       <section class="row">
-        <div class="col-sm-12">
+        <div v-if="racesComplete" class="col-sm-12">
           <race-winners></race-winners>
+        </div>
+
+        <div v-if="racesComplete" class="col-sm-12">
+          <race-classification></race-classification>
         </div>
       </section>
 
@@ -59,6 +63,7 @@
 <script>
   import RaceWinners from './RaceWinners.vue'
   import RaceResults from './RaceResults.vue'
+  import RaceClassification from './RaceClassification.vue'
   import RaceGrid from './RaceGrid.vue'
   import QualifierResults from './QualifierResults.vue'
   import { getCurrentRace } from '../vuex/races/getters'
@@ -73,8 +78,14 @@
     components: {
       RaceWinners,
       RaceResults,
+      RaceClassification,
       RaceGrid,
       QualifierResults
+    },
+    computed: {
+      racesComplete () {
+        return this.race.records.data.some(r => r.raceOne > 0) && this.race.records.data.some(r => r.raceTwo > 0)
+      }
     }
   }
 </script>
