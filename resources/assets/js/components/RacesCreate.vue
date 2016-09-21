@@ -1,15 +1,15 @@
 <template>
   <div class="Races-create">
-    <div class="panel panel-default">
+    <div class="Panel">
 
-      <div class="panel-heading">
-        <h3 class="panel-title">
+      <div class="Panel__Heading">
+        <div class="Panel__Title">
           Create New Race
           <span @click="cancel" class="Races-create__x pull-right">&times</span>
-        </h3>
+        </div>
       </div>
 
-      <div class="panel-body">
+      <div class="Panel__Body">
 
         <validator name="validation">
 

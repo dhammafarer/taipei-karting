@@ -5018,8 +5018,9 @@ button.close {
   background-color: white;
   border-radius: 0 0 4px 4px;
   border-top: 2px solid #6B7A8F;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  margin: 4px auto; }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  margin: 4px auto;
+  margin-bottom: 10px; }
 
 .Panel__Heading {
   position: relative;
@@ -5033,10 +5034,40 @@ button.close {
   text-align: center; }
 
 .Panel__Body {
-  padding: 10px; }
+  padding: 12px; }
+
+.Label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: white;
+  background-color: #565656;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em; }
+  .Label:empty {
+    display: none; }
+
+.Label--primary {
+  background-color: #6B7A8F; }
+
+.Label--secondary {
+  background-color: #F7882F; }
+
+.Label--tertiary {
+  background-color: #565656; }
+
+.Label--success {
+  background-color: #CAEBF2; }
+
+.Label--danger {
+  background-color: #FF3B3F; }
 
 .form-field {
-  border: 1px solid #565656;
+  border: 1px solid #898989;
   border-radius: 3px;
   padding: 7px;
   background-color: white;
@@ -5045,7 +5076,7 @@ button.close {
   width: 100%;
   transition: padding .3s ease; }
   .form-field:focus {
-    border-color: #F7882F; }
+    border-color: #CAEBF2; }
 
 .Floated-form {
   position: relative;
