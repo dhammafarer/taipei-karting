@@ -5,7 +5,7 @@
       <section class="Panel__Heading">
         <div class="Panel__Title">
           <span class="icon-flag-checkered">{{ showRace === 'raceOne' ? 'First' : 'Second' }} Race</span>
-          <span class="Label Label--primary">{{ showGroup }}</span>
+          <span v-if="secondGroup" class="Label Label--primary">{{ showGroup }}</span>
         </div>
       </section>
 
@@ -47,6 +47,9 @@
         if (this.showRace === 'raceTwo') {
           return this.raceTwoPosition
         }
+      },
+      secondGroup () {
+        return this.race.records.data.some(r => r[this.raceGroup] === 'B')
       }
     },
     methods: {

@@ -36262,6 +36262,13 @@ exports.default = {
       if (this.showRace === 'raceTwo') {
         return this.raceTwoPosition;
       }
+    },
+    secondGroup: function secondGroup() {
+      var _this = this;
+
+      return this.race.records.data.some(function (r) {
+        return r[_this.raceGroup] === 'B';
+      });
     }
   },
   methods: {
@@ -36269,16 +36276,16 @@ exports.default = {
     raceOnePosition: _filters.raceOnePosition,
     raceTwoPosition: _filters.raceTwoPosition,
     groupReady: function groupReady(group) {
-      var _this = this;
+      var _this2 = this;
 
       return this.race.records.data.some(function (r) {
-        return r[_this.raceGroup] === group;
+        return r[_this2.raceGroup] === group;
       });
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Results\" v-if=\"raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-flag-checkered\">{{ showRace === 'raceOne' ? 'First' : 'Second' }} Race</span>\n        <span class=\"Label Label--primary\">{{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <ul v-if=\"groupReady(showGroup)\" class=\"list-group\">\n        <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n          <span class=\"Label Label--tertiary\">{{ record[showRace] | raceRecord }}</span>\n          <img class=\"img\" :src=\"record.driver.data.country | countryFlag\" alt=\"\">\n          <span>{{ record.driver.data.name }}</span>\n        </li>\n      </ul>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Results -->\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Results\" v-if=\"raceComplete(showRace, showGroup)\">\n  <div class=\"Panel\">\n\n    <section class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">\n        <span class=\"icon-flag-checkered\">{{ showRace === 'raceOne' ? 'First' : 'Second' }} Race</span>\n        <span v-if=\"secondGroup\" class=\"Label Label--primary\">{{ showGroup }}</span>\n      </div>\n    </section>\n\n    <section class=\"Panel__Body\">\n\n      <ul v-if=\"groupReady(showGroup)\" class=\"list-group\">\n        <li href=\"#\" v-for=\"record in race.records.data | filterBy showGroup in raceGroup | orderBy byPosition\" class=\"list-group-item\">\n          <span class=\"Label Label--tertiary\">{{ record[showRace] | raceRecord }}</span>\n          <img class=\"img\" :src=\"record.driver.data.country | countryFlag\" alt=\"\">\n          <span>{{ record.driver.data.name }}</span>\n        </li>\n      </ul>\n\n    </section>\n\n  </div><!-- Panel -->\n</div><!-- Race-Results -->\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -37351,8 +37358,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
-_vue2.default.http.options.root = 'http://192.168.1.81:3000/api';
-//Vue.http.options.root = 'http://tika.app/api'
+//Vue.http.options.root = 'http://192.168.1.81:3000/api'
+_vue2.default.http.options.root = 'http://tika.app/api';
 
 _vue2.default.http.interceptors.push(function (request, next) {
   var token = localStorage.getItem('jwt');
