@@ -35324,7 +35324,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n  <notifications></notifications>\n\n  <header>\n    <header-bar></header-bar>\n  </header>\n\n  <main>\n    <div class=\"content\">\n      <router-view v-if=\"!loading\" transition-mode=\"out-in\" transition=\"fade\"></router-view>\n    </div>\n  </main>\n\n  <footer>\n    <footer-bar></footer-bar>\n  </footer>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"root\">\n\n  <header>\n    <header-bar></header-bar>\n  </header>\n\n  <main>\n    <div class=\"content\">\n      <notifications></notifications>\n      <router-view v-if=\"!loading\" transition-mode=\"out-in\" transition=\"fade\"></router-view>\n    </div>\n  </main>\n\n  <footer>\n    <footer-bar></footer-bar>\n  </footer>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -35634,7 +35634,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container\">\n    <h3>All drivers\n      <button class=\"btn btn-default\" v-link=\"{ name: 'drivers.create' }\">Create Driver</button>\n    </h3>\n\n    <div class=\"row\">\n      <router-view></router-view>\n    </div>\n\n    <div class=\"Driver col-sm-2\" v-for=\"driver in drivers\">\n      <div class=\"thumbnail\">\n        <a v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n          <img class=\"Driver-photo\" :src=\"driver.photo | driverPhoto\">\n        </a>\n        <div class=\"caption text-center\">\n          <h4>{{ driver.name }}</h4>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container\">\n    <h3>All drivers\n      <button class=\"btn btn-default\" v-link=\"{ name: 'drivers.create' }\">Create Driver</button>\n    </h3>\n\n    <div class=\"row\">\n      <router-view></router-view>\n    </div>\n\n    <div v-for=\"driver in drivers\" class=\"Media Driver-Card Driver-Card--selectable\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>{{ driver.name }}</h4>\n        <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n    </div>\n\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36723,7 +36723,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <h4>Select Drivers</h4>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n\n  <section v-else=\"\" class=\"Drivers-list\">\n    <div class=\"Driver col-sm-3\" v-for=\"driver in drivers\">\n      <div class=\"thumbnail\" @click=\"toggleSelect(driver)\">\n        <img class=\"Driver-photo\" :src=\"driver.photo | driverPhoto\" :class=\"{ 'Driver-photo--selected': selectedIds.indexOf(driver.id) > -1 }\">\n        <div class=\"caption text-center\">\n          <h4>{{ driver.name }}</h4>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"btn btn-primary\">Save</button>\n  <button @click=\"$router.go({ name: 'races.show', params: {id: $route.params.id} })\" class=\"btn btn-default\">Cancel</button>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <h4>Select Drivers</h4>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n\n  <section v-else=\"\" class=\"Drivers-list\">\n\n    <div class=\"Media Driver-Card Driver-Card--selectable\" v-for=\"driver in drivers\" @click=\"toggleSelect(driver)\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>\n          {{ driver.name }}\n        </h4>\n          <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n      <div class=\"Driver-Card__Mask\" transition=\"floatUp\" v-if=\"selectedIds.indexOf(driver.id) > -1\">\n        <p>\n          <span class=\"icon-ok\">Selected</span>\n        </p>\n      </div>\n    </div>\n\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"btn btn-primary\">Save</button>\n  <button @click=\"$router.go({ name: 'races.show', params: {id: $route.params.id} })\" class=\"btn btn-default\">Cancel</button>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

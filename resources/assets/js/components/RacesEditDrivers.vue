@@ -6,19 +6,24 @@
     <p v-if="!drivers.length" class="Message--no-data">No registered drivers.</p>
 
     <section v-else class="Drivers-list">
-      <div class="Driver col-sm-3" v-for="driver in drivers">
-        <div class="thumbnail"
-          @click="toggleSelect(driver)"
-        >
-          <img class="Driver-photo"
-           :src="driver.photo | driverPhoto"
-           :class="{ 'Driver-photo--selected': selectedIds.indexOf(driver.id) > -1 }"
-          >
-          <div class="caption text-center">
-            <h4>{{ driver.name }}</h4>
-          </div>
+
+      <div class="Media Driver-Card Driver-Card--selectable"
+        v-for="driver in drivers" @click="toggleSelect(driver)"
+      >
+        <img class="Media__Figure Driver-Card__Photo" :src="driver.photo | driverPhoto">
+        <div class="Media__Body Driver-Card__Info">
+          <h4>
+            {{ driver.name }}
+          </h4>
+            <img :src="driver.country | countryFlag" :alt="driver.country">
+        </div>
+        <div class="Driver-Card__Mask" transition="floatUp" v-if="selectedIds.indexOf(driver.id) > -1">
+          <p>
+            <span class="icon-ok">Selected</span>
+          </p>
         </div>
       </div>
+
     </section>
 
     <button @click="updateDrivers" class="btn btn-primary">Save</button>

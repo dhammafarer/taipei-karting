@@ -14,6 +14,7 @@
 // General Components
 @import './components/Buttons.scss';
 @import './components/Panels.scss';
+@import './components/Media.scss';
 @import './components/Labels.scss';
 @import './components/Modals.scss';
 @import './components/FloatedForms.scss';
@@ -27,3 +28,7 @@
 @import './components/Edit-Races.scss';
 @import './components/RaceCard.scss';
 @import './components/RaceGrid.scss';
+
+// Drivers
+@import './components/Drivers.scss';
+@import './components/DriverCard.scss';

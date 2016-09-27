@@ -9,18 +9,16 @@
         <router-view></router-view>
       </div>
 
-      <div class="Driver col-sm-2" v-for="driver in drivers">
-        <div class="thumbnail">
-          <a v-link="{ name: 'drivers.show', params: { id: driver.id } }">
-            <img class="Driver-photo"
-            :src="driver.photo | driverPhoto"
-            >
-          </a>
-          <div class="caption text-center">
-            <h4>{{ driver.name }}</h4>
-          </div>
+      <div v-for="driver in drivers" class="Media Driver-Card Driver-Card--selectable"
+        v-link="{ name: 'drivers.show', params: { id: driver.id } }"
+      >
+        <img class="Media__Figure Driver-Card__Photo" :src="driver.photo | driverPhoto">
+        <div class="Media__Body Driver-Card__Info">
+          <h4>{{ driver.name }}</h4>
+          <img :src="driver.country | countryFlag" :alt="driver.country">
         </div>
       </div>
+
     </div>
 
   </div>
