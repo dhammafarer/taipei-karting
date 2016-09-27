@@ -1,13 +1,15 @@
 <template>
   <div id="root">
-    <notifications></notifications>
 
     <header>
       <header-bar></header-bar>
     </header>
 
-    <main v-if="!loading">
-      <router-view transition-mode="out-in" transition="slideInOut"></router-view>
+    <main>
+      <div class="content">
+        <notifications></notifications>
+        <router-view v-if="!loading" transition-mode="out-in" transition="fade"></router-view>
+      </div>
     </main>
 
     <footer>
