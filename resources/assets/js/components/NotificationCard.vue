@@ -36,35 +36,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  @import 'resources/assets/sass/_variables.scss';
-
-  .Notification {
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: darkgrey;
-    opacity: .8;
-    color: white;
-    border-radius: 4px;
-    min-width: 250px;
-  }
-
-  .Notification--success {
-    background-color: $success-color;
-    color: darken($success-color, 50%);
-    border: 1px solid darken($success-color, 50%);
-  }
-
-  .Notification--danger {
-    background-color: $danger-color;
-    color: white;
-    border: 1px solid darken($danger-color, 30%);
-  }
-
-  .Notification__close-button {
-    outline: none;
-    background-color: transparent;
-    border: none;
-  }
-</style>

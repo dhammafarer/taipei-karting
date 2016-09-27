@@ -1,12 +1,19 @@
 <template>
   <div id="root">
     <notifications></notifications>
+
     <header>
       <header-bar></header-bar>
     </header>
+
     <main v-if="!loading">
       <router-view transition-mode="out-in" transition="slideInOut"></router-view>
     </main>
+
+    <footer>
+      <footer-bar></footer-bar>
+    </footer>
+
   </div>
 </template>
 
@@ -15,6 +22,7 @@
   import auth from '../auth'
   import store from '../vuex/store'
   import HeaderBar from './HeaderBar.vue'
+  import FooterBar from './FooterBar.vue'
   import Notifications from './Notifications.vue'
   import { fetchAllRaces, socketRaceUpdated } from '../vuex/races/actions'
   import { fetchAllDrivers } from '../vuex/drivers/actions'
@@ -24,6 +32,7 @@
     store: store,
     components: {
       HeaderBar,
+      FooterBar,
       Notifications
     },
     vuex: {
@@ -60,16 +69,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  @import 'resources/assets/sass/_variables.scss';
-
-  html {
-    overflow-y: scroll;
-  }
-
-  body {
-    font-family: $body-font;
-    background-color: $body-color;
-  }
-</style>

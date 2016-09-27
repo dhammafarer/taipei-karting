@@ -1,0 +1,56 @@
+.Grid {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.Grid__Positions {
+  counter-reset: position;
+}
+
+.Grid__Position::before {
+  counter-increment: position;
+  content: counter(position);
+  background-color: grey;
+  color: white;
+  text-align: center;
+  padding: 0 5px;
+  position:absolute;
+  left: 0%;
+}
+
+.Grid__Position {
+  width: 40%;
+  height: 1.3em;
+  text-align: center;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px 1px 0px 0px;
+  position: relative;
+  margin-bottom: 10%;
+}
+
+.Grid__Position:first-child {
+  margin-top: 0px;
+}
+
+.Grid__Position:nth-child(odd) {
+  margin-left: 50%;
+}
+
+.Grid__Position:last-child {
+}
+
+.Grid__Position div {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+.Grid__Position img {
+  width: 50%;
+  margin-top: 2%;
+}
+
+.Grid__Position p {
+  margin: 1px auto;
+}

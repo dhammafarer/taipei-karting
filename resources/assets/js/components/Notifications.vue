@@ -26,33 +26,3 @@
     }
   }
 </script>
-
-<style>
-  .Notifications {
-    position: fixed;
-    z-index: 9999;
-    top: 100px;
-    right: 20px;
-    width: 80%;
-  }
-
-  .fade-transition {
-    opacity: 1;
-    trantision: opacity .3s ease;
-  }
-
-  .fade-enter, .fade-leave {
-    opacity: 0;
-  }
-
-  .slideIn-transition {
-    opacity: 1;
-    transform: translateX(0);
-    transition: all .3s ease;
-  }
-
-  .slideIn-enter, .slideIn-leave {
-    opacity: 0;
-    transform: translateX(500px);
-  }
-</style>

@@ -47,3 +47,12 @@
     color: $primary-color;
   }
 }
+
+.Photo-preview {
+  text-align: center;
+}
+
+.Photo-preview img {
+  max-height: 200px;
+  max-width: 100%;
+}

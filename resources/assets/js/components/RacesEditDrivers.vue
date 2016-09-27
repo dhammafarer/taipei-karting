@@ -78,20 +78,3 @@
     }
   }
 </script>
-
-<style>
-  .Driver {
-    cursor: pointer;
-  }
-
-  .Driver-photo {
-    opacity: .3;
-    width: 100%;
-    height: 100%;
-  }
-
-  .Driver-photo--selected, .Driver-photo:hover {
-    opacity: 1;
-    border: 4px solid darkgrey;
-  }
-</style>

@@ -1,0 +1,70 @@
+.Navigation {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  z-index: 99;
+}
+
+.Navigation__Banner {
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-family: $title-font;
+  letter-spacing: 3px;
+  color: white;
+  background-color: $primary-color;
+}
+
+.Navigation__List {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: lighten($primary-color, 5%);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 2px 2px #666;
+}
+
+.Navigation__List--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.Navigation__List-item {
+  padding: 5px 0;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  color: lighten($primary-color, 20%);
+  transition: all .3s ease;
+  &.v-link-active {
+    border-bottom: 3px solid white;
+  }
+  &:hover .Navigation__Link {
+    color: white;
+  }
+  &:hover .Navigation__Icon, &.v-link-active .Navigation__Icon {
+    color: white;
+  }
+}
+
+.Navigation__Link {
+  font-size: 1.4em;
+}
+
+.Navigation__Icon {
+  transition: color .3s ease;
+  color: darken($primary-color, 10%);
+}
+
+.Navigation__Text {
+  display: none;
+}

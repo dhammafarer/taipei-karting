@@ -229,14 +229,3 @@
     },
   }
 </script>
-
-<style>
-  .Photo-preview {
-    text-align: center;
-  }
-
-  .Photo-preview img {
-    max-height: 200px;
-    max-width: 100%;
-  }
-</style>

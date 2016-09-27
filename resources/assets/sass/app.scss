@@ -1,12 +1,29 @@
-@import "./_variables.scss";
+// NPM
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Variables
+@import "./_variables.scss";
+
+// Transitions
+@import './components/Transitions.scss';
+
+// Base Components
+@import './components/Document.scss';
+@import './components/Navigation.scss';
 
 // General Components
 @import './components/Buttons.scss';
 @import './components/Panels.scss';
 @import './components/Labels.scss';
+@import './components/Modals.scss';
 @import './components/FloatedForms.scss';
+@import './components/NotificationCard.scss';
+@import './components/EditMenu.scss';
+
 
 // Races
 @import './components/Race.scss';
+@import './components/RacesIndex.scss';
 @import './components/Edit-Races.scss';
+@import './components/RaceCard.scss';
+@import './components/RaceGrid.scss';

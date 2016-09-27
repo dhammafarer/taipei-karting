@@ -1,0 +1,26 @@
+.Edit-menu {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 9997;
+  background-color: $body-color;
+  box-shadow: -5px 0 10px 0 rgba(0,0,0,.5);
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.Mask {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9995;
+  background-color: rgba(0,0,0,.5);
+}
+
+.Edit-menu__list {
+  z-index: 9999;
+  padding: 10px 0;
+}

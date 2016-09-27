@@ -1,0 +1,30 @@
+.view {
+  max-height: 1000px;
+  transition: max-height .3s ease-in;
+  overflow: hidden;
+  &.v-enter, &.v-leave {
+    max-height: 0;
+  }
+}
+
+.Races__Banner {
+  color: $tertiary-color;
+  padding: 10px 10px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.Races__Toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Races__Title {
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+.Races__Seasons, .Races__Search {
+  margin-top: 8px;
+}

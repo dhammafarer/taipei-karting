@@ -10,9 +10,9 @@
 
       <section class="Panel__Body">
 
-        <div class="grid" v-if="byGroup(showGroup)">
-          <div class="grid__positions">
-            <div class="grid__position"
+        <div class="Grid" v-if="byGroup(showGroup)">
+          <div class="Grid__Positions">
+            <div class="Grid__Position"
               v-for="record in race.records.data | filterBy showGroup in raceGroup | orderBy byRace"
               >
               <div>
@@ -67,56 +67,3 @@
     }
   }
 </script>
-
-<style>
-  .grid {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 60px;
-  }
-  .grid__positions {
-    counter-reset: position;
-  }
-  .grid__position::before {
-    counter-increment: position;
-    content: counter(position);
-    background-color: grey;
-    color: white;
-    text-align: center;
-    padding: 0 5px;
-    position:absolute;
-    left: 0%;
-  }
-  .grid__position {
-    width: 40%;
-    height: 1.3em;
-    text-align: center;
-    border-color: grey;
-    border-style: solid;
-    border-width: 1px 1px 0px 0px;
-    position: relative;
-    margin-bottom: 10%;
-  }
-  .grid__position:first-child {
-    margin-top: 0px;
-  }
-  .grid__position:nth-child(odd) {
-    margin-left: 50%;
-  }
-  .grid__position:last-child {
-  }
-
-  .grid__position div {
-    width: 100%;
-    position: absolute;
-    text-align: center;
-  }
-  .grid__position img {
-    width: 50%;
-    margin-top: 2%;
-  }
-
-  .grid__position p {
-    margin: 1px auto;
-  }
-</style>

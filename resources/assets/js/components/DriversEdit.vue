@@ -1,6 +1,6 @@
 <template>
-  <div class="modal-mask">
-    <div class="modal-container">
+  <div class="Modal__Mask">
+    <div class="Modal__Container">
       <div class="panel panel-default">
 
         <div class="panel-heading">
@@ -28,23 +28,3 @@
     props: ['show']
   }
 </script>
-
-<style>
-  .modal-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9998;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
-    transition: opacity .3s ease;
-  }
-
-  .modal-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-  }
-</style>

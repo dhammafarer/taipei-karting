@@ -35,23 +35,3 @@
     }
   }
 </script>
-
-<style>
-  .Modal {
-    display: inline-block;
-  }
-
-  .Modal__mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9998;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
-    transition: opacity .3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>

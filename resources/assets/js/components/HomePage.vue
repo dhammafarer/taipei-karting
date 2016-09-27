@@ -1,3 +1,5 @@
 <template>
-  Hello from home
+  <div>
+    Hello
+  </div>
 </template>

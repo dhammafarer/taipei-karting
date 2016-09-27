@@ -1,0 +1,39 @@
+.fade-transition {
+  opacity: 1;
+  trantision: opacity .3s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+
+.slideIn-transition {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all .3s ease;
+}
+
+.slideIn-enter, .slideIn-leave {
+  opacity: 0;
+  transform: translateX(500px);
+}
+
+.slideFromRight-transition {
+  transition: all .3s ease;
+  width: 100%;
+}
+
+.slideFromRight-enter, .slideFromRight-leave {
+  opacity: 0;
+  width: 0;
+}
+
+.floatUp-transition {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all .3s ease;
+}
+.floatUp-enter, .floatUp-leave {
+  transform: translateY(4px);
+  opacity: 0;
+}
