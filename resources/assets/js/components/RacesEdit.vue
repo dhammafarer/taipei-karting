@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="Races__Banner">
-      <div class="Races__Title">{{ race.name }}</div>
+      <div class="Races__Title">{{ race.name }} <span v-if="view">/ {{ view | capitalize }}</span></div>
       <span>Race Editor</span>
       <div class="Races-Edit__Button">
         <button class="Btn" v-link="{ name: 'races.show', params: { id: $route.params.id } }">To Race</button>

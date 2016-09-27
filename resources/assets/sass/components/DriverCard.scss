@@ -5,6 +5,10 @@
   margin-bottom: 10px;
   padding: 5px;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  transition: .3s ease;
+  &:hover {
+    background-color: darken(white, 2%);
+  }
 }
 
 .Driver-Card--selectable {
@@ -22,10 +26,10 @@
   align-items: center;
   flex-direction: column;
   height: 120px;
-
-  & button {
-    align-self: flex-end;
-  }
+  font-family: $body-font;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .Driver-Card__Mask {
@@ -38,7 +42,8 @@
   height: 100%;
   border-radius: 5px;
   color: $success-color;
-  font-size: 1.5em;
+  font-size: 3em;
+  letter-spacing: 3px;
   font-weight: bold;
   text-transform: uppercase;
   display: flex;

@@ -35631,10 +35631,31 @@ exports.default = {
     getters: {
       drivers: _getters.getAllDrivers
     }
+  },
+  data: function data() {
+    return {
+      search: false,
+      searchString: ''
+    };
+  },
+
+  computed: {
+    filteredDrivers: function filteredDrivers() {
+      var _this = this;
+
+      return this.drivers.filter(function (driver) {
+        return driver.name.toLowerCase().indexOf(_this.searchString.trim().toLowerCase()) > -1;
+      });
+    },
+    linkCreate: function linkCreate() {
+      var linkTo = this.$route.name === 'drivers.create' ? 'drivers.index' : 'drivers.create';
+
+      return { name: linkTo };
+    }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container\">\n    <h3>All drivers\n      <button class=\"btn btn-default\" v-link=\"{ name: 'drivers.create' }\">Create Driver</button>\n    </h3>\n\n    <div class=\"row\">\n      <router-view></router-view>\n    </div>\n\n    <div v-for=\"driver in drivers\" class=\"Media Driver-Card Driver-Card--selectable\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>{{ driver.name }}</h4>\n        <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n    </div>\n\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Drivers</div>\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'drivers.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n        </div>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <div v-for=\"driver in filteredDrivers\" class=\"Media Driver-Card Driver-Card--selectable\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>{{ driver.name }}</h4>\n        <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n    </div>\n\n    <div v-if=\"filteredDrivers.length === 0\">No races match these criteria.</div>\n\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36537,7 +36558,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div class=\"Races__Banner\">\n    <div class=\"Races__Title\">{{ race.name }}</div>\n    <span>Race Editor</span>\n    <div class=\"Races-Edit__Button\">\n      <button class=\"Btn\" v-link=\"{ name: 'races.show', params: { id: $route.params.id } }\">To Race</button>\n    </div>\n  </div>\n\n  <section v-show=\"view === null\">\n    <div class=\"list-group\">\n      <a class=\"list-group-item\" @click=\"setEditorView('details')\">Details</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('drivers')\">Drivers</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualOne')\">1st Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualTwo')\">2nd Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceOne')\">1st Race</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceTwo')\">2nd Race</a>\n    </div>\n  </section>\n\n  <edit-details v-if=\"view === 'details'\"></edit-details>\n  <edit-drivers v-if=\"view === 'drivers'\"></edit-drivers>\n  <qual-one round=\"one\" v-if=\"view === 'qualOne'\"></qual-one>\n  <qual-two round=\"two\" v-if=\"view === 'qualTwo'\"></qual-two>\n  <race-one round=\"one\" v-if=\"view === 'raceOne'\"></race-one>\n  <race-two round=\"two\" v-if=\"view === 'raceTwo'\"></race-two>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div class=\"Races__Banner\">\n    <div class=\"Races__Title\">{{ race.name }} <span v-if=\"view\">/ {{ view | capitalize }}</span></div>\n    <span>Race Editor</span>\n    <div class=\"Races-Edit__Button\">\n      <button class=\"Btn\" v-link=\"{ name: 'races.show', params: { id: $route.params.id } }\">To Race</button>\n    </div>\n  </div>\n\n  <section v-show=\"view === null\">\n    <div class=\"list-group\">\n      <a class=\"list-group-item\" @click=\"setEditorView('details')\">Details</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('drivers')\">Drivers</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualOne')\">1st Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('qualTwo')\">2nd Qual</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceOne')\">1st Race</a>\n      <a class=\"list-group-item\" @click=\"setEditorView('raceTwo')\">2nd Race</a>\n    </div>\n  </section>\n\n  <edit-details v-if=\"view === 'details'\"></edit-details>\n  <edit-drivers v-if=\"view === 'drivers'\"></edit-drivers>\n  <qual-one round=\"one\" v-if=\"view === 'qualOne'\"></qual-one>\n  <qual-two round=\"two\" v-if=\"view === 'qualTwo'\"></qual-two>\n  <race-one round=\"one\" v-if=\"view === 'raceOne'\"></race-one>\n  <race-two round=\"two\" v-if=\"view === 'raceTwo'\"></race-two>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -36682,7 +36703,8 @@ exports.default = {
   data: function data() {
     return {
       originalIds: [],
-      selectedIds: []
+      selectedIds: [],
+      loading: false
     };
   },
 
@@ -36710,7 +36732,10 @@ exports.default = {
     updateDrivers: function updateDrivers() {
       var _this3 = this;
 
+      this.loading = true;
       this.updateRaceDrivers(this.race.id, this.addedIds, this.removedIds).then(function () {
+        return _this3.loading = false;
+      }).then(function () {
         return _this3.$router.go({ name: 'races.show', params: { id: _this3.$route.params.id } });
       });
     }
@@ -36723,7 +36748,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <h4>Select Drivers</h4>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n\n  <section v-else=\"\" class=\"Drivers-list\">\n\n    <div class=\"Media Driver-Card Driver-Card--selectable\" v-for=\"driver in drivers\" @click=\"toggleSelect(driver)\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>\n          {{ driver.name }}\n        </h4>\n          <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n      <div class=\"Driver-Card__Mask\" transition=\"floatUp\" v-if=\"selectedIds.indexOf(driver.id) > -1\">\n        <p>\n          <span class=\"icon-ok\">Selected</span>\n        </p>\n      </div>\n    </div>\n\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"btn btn-primary\">Save</button>\n  <button @click=\"$router.go({ name: 'races.show', params: {id: $route.params.id} })\" class=\"btn btn-default\">Cancel</button>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n\n  <p v-if=\"!drivers.length\" class=\"Message--no-data\">No registered drivers.</p>\n\n  <section v-else=\"\" class=\"Drivers-list\">\n\n    <div class=\"Media Driver-Card Driver-Card--selectable\" v-for=\"driver in drivers\" @click=\"toggleSelect(driver)\">\n      <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n      <div class=\"Media__Body Driver-Card__Info\">\n        <h4>\n          {{ driver.name }}\n        </h4>\n          <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n      </div>\n      <div class=\"Driver-Card__Mask\" transition=\"floatUp\" v-if=\"selectedIds.indexOf(driver.id) > -1\">\n        <p>\n          <span class=\"icon-ok\"></span>\n        </p>\n      </div>\n    </div>\n\n  </section>\n\n  <button @click=\"updateDrivers\" class=\"Btn Btn--submit\" :class=\"{ 'loading': loading }\">Save</button>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

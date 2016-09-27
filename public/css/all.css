@@ -5593,7 +5593,10 @@ footer {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 5px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: .3s ease; }
+  .Driver-Card:hover {
+    background-color: #fafafa; }
 
 .Driver-Card--selectable {
   cursor: pointer; }
@@ -5611,10 +5614,11 @@ footer {
   align-items: center;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 120px; }
-  .Driver-Card__Info button {
-    -ms-flex-item-align: end;
-    align-self: flex-end; }
+  height: 120px;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
 
 .Driver-Card__Mask {
   position: absolute;
@@ -5626,7 +5630,8 @@ footer {
   height: 100%;
   border-radius: 5px;
   color: #CAEBF2;
-  font-size: 1.5em;
+  font-size: 3em;
+  letter-spacing: 3px;
   font-weight: bold;
   text-transform: uppercase;
   display: -ms-flexbox;

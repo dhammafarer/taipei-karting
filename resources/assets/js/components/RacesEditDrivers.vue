@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    <h4>Select Drivers</h4>
-
     <p v-if="!drivers.length" class="Message--no-data">No registered drivers.</p>
 
     <section v-else class="Drivers-list">
@@ -19,15 +17,14 @@
         </div>
         <div class="Driver-Card__Mask" transition="floatUp" v-if="selectedIds.indexOf(driver.id) > -1">
           <p>
-            <span class="icon-ok">Selected</span>
+            <span class="icon-ok"></span>
           </p>
         </div>
       </div>
 
     </section>
 
-    <button @click="updateDrivers" class="btn btn-primary">Save</button>
-    <button @click="$router.go({ name: 'races.show', params: {id: $route.params.id} })" class="btn btn-default">Cancel</button>
+    <button @click="updateDrivers" class="Btn Btn--submit" :class="{ 'loading': loading }">Save</button>
 
   </div>
 </template>
@@ -51,7 +48,8 @@
     data () {
       return {
         originalIds: [],
-        selectedIds: []
+        selectedIds: [],
+        loading: false
       }
     },
     computed: {
@@ -73,8 +71,10 @@
         else this.selectedIds.splice(index, 1)
       },
       updateDrivers () {
+        this.loading = true
         this.updateRaceDrivers(this.race.id, this.addedIds, this.removedIds)
-          .then(()=>this.$router.go({ name: 'races.show', params: {id: this.$route.params.id } }))
+          .then(() => this.loading = false)
+          .then(() => this.$router.go({ name: 'races.show', params: {id: this.$route.params.id } }))
       }
     },
     created () {
