@@ -37358,8 +37358,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
-//Vue.http.options.root = 'http://192.168.1.81:3000/api'
-_vue2.default.http.options.root = 'http://tika.app/api';
+//Vue.http.options.root = 'http://139.162.60.152/api'
+_vue2.default.http.options.root = 'http://localhost:3000/api';
 
 _vue2.default.http.interceptors.push(function (request, next) {
   var token = localStorage.getItem('jwt');
