@@ -16,7 +16,7 @@
             </div>
             <div class="Race-Winners__Body">
               <div class="Race-Winners__Name">{{ drivers[0].name }}</div>
-              <div class="Race-Winners__Points">{{ drivers[0].total }} points</div>
+              <div class="Race-Winners__Points">{{ drivers[0].points.total }} points</div>
             </div>
           </div>
 
@@ -37,7 +37,7 @@
     },
     computed: {
       drivers () {
-        return rules.getDriversByPoints(this.race.records)
+        return rules.getOneRaceClassification(this.race)
       }
     }
   }

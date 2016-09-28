@@ -21,7 +21,7 @@
               {{ driver.name }}
             </td>
             <td>
-              {{ driver.total }} pts
+              {{ driver.points.total }} pts
             </td>
           </tr>
         </table>
@@ -44,7 +44,7 @@
     },
     computed: {
       drivers () {
-        return rules.getDriversByPoints(this.race.records)
+        return rules.getOneRaceClassification(this.race)
       }
     }
   }
