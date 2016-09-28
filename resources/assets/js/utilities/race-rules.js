@@ -68,5 +68,17 @@ export default {
       driver.wins = own.filter(r => r.wins > 0)
       return driver
     }).filter(d => d)
+  },
+
+  filterClassification (drivers, races) {
+    return this.getDriversWithClassification(drivers, races).sort((a,b) => {
+      if (a.points.total === b.points.total) {
+        if (a.wins.length === b.wins.length) {
+          if (a.points.one === b.points.one) {
+            return a.races > b.races ? 1: -1
+          } return a.points.one < b.points.one ? 1 : -1
+        } else return a.wins.length < b.wins.length ? 1 : -1
+      } else return a.points.total < b.points.total ? 1 : -1
+    })
   }
 }

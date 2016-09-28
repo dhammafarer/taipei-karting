@@ -35778,13 +35778,8 @@ exports.default = {
     }
   },
   computed: {
-    driverRecords: function driverRecords() {
-      return _raceRules2.default.getDriversWithClassification(this.allDrivers, this.races);
-    },
     standings: function standings() {
-      return this.driverRecords.sort(function (a, b) {
-        return a.points.total < b.points.total ? 1 : -1;
-      });
+      return _raceRules2.default.filterClassification(this.allDrivers, this.races);
     }
   }
 };
@@ -37645,6 +37640,17 @@ exports.default = {
       return driver;
     }).filter(function (d) {
       return d;
+    });
+  },
+  filterClassification: function filterClassification(drivers, races) {
+    return this.getDriversWithClassification(drivers, races).sort(function (a, b) {
+      if (a.points.total === b.points.total) {
+        if (a.wins.length === b.wins.length) {
+          if (a.points.one === b.points.one) {
+            return a.races > b.races ? 1 : -1;
+          }return a.points.one < b.points.one ? 1 : -1;
+        } else return a.wins.length < b.wins.length ? 1 : -1;
+      } else return a.points.total < b.points.total ? 1 : -1;
     });
   }
 };

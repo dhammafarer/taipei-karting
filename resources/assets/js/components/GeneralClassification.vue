@@ -55,13 +55,8 @@
       }
     },
     computed: {
-      driverRecords () {
-        return rules.getDriversWithClassification(this.allDrivers, this.races)
-      },
       standings () {
-        return this.driverRecords.sort((a,b) => {
-          return a.points.total < b.points.total ? 1 : -1
-        })
+        return rules.filterClassification(this.allDrivers, this.races)
       }
     }
   }
