@@ -37575,11 +37575,12 @@ exports.default = {
 
       return driver;
     }).sort(function (a, b) {
-      if (a.total === b.total) {
-        return a.one < b.one ? 1 : -1;
+      if (a.points.total === b.points.total) {
+        return a.points.one < b.points.one ? 1 : -1;
       }
-      return a.total < b.total ? 1 : -1;
+      return a.points.total < b.points.total ? 1 : -1;
     });
+
     if (race.records.data.some(function (r) {
       return r.raceTwo > 0;
     })) classification[0].wins = race.id;
@@ -37617,6 +37618,7 @@ exports.default = {
       var own = recordsWithPoints.filter(function (r) {
         return r.id === driver.id;
       });
+      if (own.length === 0) return;
 
       driver.races = own.length;
       driver.points = {
@@ -37641,6 +37643,8 @@ exports.default = {
         return r.wins > 0;
       });
       return driver;
+    }).filter(function (d) {
+      return d;
     });
   }
 };

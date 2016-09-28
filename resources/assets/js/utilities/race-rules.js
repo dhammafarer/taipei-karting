@@ -23,11 +23,12 @@ export default {
 
       return driver
     }).sort((a, b) => {
-      if (a.total === b.total) {
-        return a.one < b.one ? 1 : -1
+      if (a.points.total === b.points.total) {
+        return a.points.one < b.points.one ? 1 : -1
       }
-      return a.total < b.total ? 1 : -1
+      return a.points.total < b.points.total ? 1 : -1
     })
+
     if (race.records.data.some(r => r.raceTwo > 0)) classification[0].wins = race.id
     return classification
   },
@@ -55,6 +56,7 @@ export default {
 
     return JSON.parse(JSON.stringify(drivers)).map(driver => {
       let own = recordsWithPoints.filter(r => r.id === driver.id)
+      if (own.length === 0) return
 
       driver.races = own.length
       driver.points = {
@@ -65,6 +67,6 @@ export default {
       driver.average = (driver.points.total / driver.races).toFixed(2)
       driver.wins = own.filter(r => r.wins > 0)
       return driver
-    })
+    }).filter(d => d)
   }
 }
