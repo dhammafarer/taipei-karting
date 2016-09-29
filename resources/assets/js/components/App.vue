@@ -62,7 +62,7 @@
         })
     },
     ready () {
-      let socket = io('http://192.168.10.10:5000')
+      let socket = io()
       socket.on('races-channel:App\\Events\\RaceUpdated', (data) => {
         this.socketRaceUpdated(data)
       })
