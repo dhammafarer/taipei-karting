@@ -62,10 +62,10 @@
         })
     },
     ready () {
-      //let socket = io()
-      //socket.on('races-channel:App\\Events\\RaceUpdated', (data) => {
-        //this.socketRaceUpdated(data)
-      //})
+      let socket = io()
+      socket.on('races-channel:App\\Events\\RaceUpdated', (data) => {
+        this.socketRaceUpdated(data)
+      })
 
       auth.checkAuth()
     }
