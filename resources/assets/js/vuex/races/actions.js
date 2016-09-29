@@ -81,5 +81,8 @@ export const updateRaceRecords = ({ dispatch }, id, data) => {
 // Socket.io actions
 export const socketRaceUpdated = ({ dispatch }, data) => {
   return race.fetch(data.race.id)
-    .then(response => dispatch(types.REPLACE_RACE, response.data))
+    .then(response => {
+      dispatch(types.REPLACE_RACE, response.data)
+      dispatch(types.ADD_NOTIFICATION, {title: 'Live!', body: 'Race data updated!', type: 'success'})
+    })
 }
