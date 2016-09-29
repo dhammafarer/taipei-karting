@@ -218,6 +218,7 @@
         formData.append('date', this.race.date)
         formData.append('time', this.race.time)
         if (this.validatePhoto()) formData.append('photo', photo, photo.name)
+        else formData.append('photo', this.race.photo)
 
         this.createRace(formData)
           .then(() => this.$router.go({ name: 'races.index' }))
