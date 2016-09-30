@@ -1,6 +1,6 @@
 <template>
   <div class="Races">
-    <div class="container">
+    <div class="container page">
 
       <section class="Races__Banner">
 

@@ -36,6 +36,7 @@
 <script>
   import rules from '../utilities/race-rules'
   import { getCurrentRace } from '../vuex/races/getters'
+
   export default {
     vuex: {
       getters: {

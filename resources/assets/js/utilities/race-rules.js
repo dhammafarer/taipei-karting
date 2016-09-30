@@ -1,3 +1,5 @@
+import R from 'ramda'
+
 export default {
   one: [ 20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ],
 
@@ -16,6 +18,10 @@ export default {
       let posOne = record.raceOneGroup === 'A' ? record.raceOne : record.raceOne + driversOneA
       let posTwo = record.raceTwoGroup === 'A' ? record.raceTwo : record.raceTwo + driversTwoA
 
+      driver.race = {
+        name: race.name,
+        date: race.date
+      }
       driver.points = {}
       driver.points.one = this.one.length >= posOne ? this.one[posOne - 1] : 0
       driver.points.two = this.two.length >= posTwo ? this.two[posTwo - 1] : 0
@@ -29,30 +35,15 @@ export default {
       return a.points.total < b.points.total ? 1 : -1
     })
 
-    if (race.records.data.some(r => r.raceTwo > 0)) classification[0].wins = race.id
+    if (race.records.data.some(r => r.raceTwo > 0)) {
+      classification[0].wins = race.id
+      classification.forEach((r, i) => r.standing = i + 1)
+    }
     return classification
   },
 
-  getMultipleRacesClassification (races) {
-    let withPoints = races.map((race) => {
-      return this.getOneRaceClassification(race.records)
-    })
-
-    return withPoints.slice(1).reduce(function (acc, curr) {
-      return acc.map(function (a) {
-
-        var current = curr.filter(function (c) {
-          return c.id === a.id
-        })
-
-        a.total = current.length > 0 ? a.total + current[0].total : a.total
-        return a
-      })
-    }, withPoints[0])
-  },
-
   getDriversWithClassification (drivers, races) {
-    let recordsWithPoints = races.map(race => this.getOneRaceClassification(race)).reduce((acc, curr) => acc.concat(curr))
+    let recordsWithPoints = this.getRecordsWithPoints(races)
 
     return JSON.parse(JSON.stringify(drivers)).map(driver => {
       let own = recordsWithPoints.filter(r => r.id === driver.id)
@@ -80,5 +71,19 @@ export default {
         } else return a.wins.length < b.wins.length ? 1 : -1
       } else return a.points.total < b.points.total ? 1 : -1
     })
+  },
+
+  getDriverStanding (id, drivers, races) {
+    let classification = this.filterClassification(drivers, races)
+    return R.findIndex(R.propEq('id', id), classification) + 1
+  },
+
+  getDriverHistory (id, races) {
+    let recordsWithPoints = this.getRecordsWithPoints(races)
+    return recordsWithPoints.filter(r => r.id === id)
+  },
+
+  getRecordsWithPoints (races) {
+    return races.map(race => this.getOneRaceClassification(race)).reduce((acc, curr) => acc.concat(curr))
   }
 }

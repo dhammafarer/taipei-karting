@@ -1,6 +1,6 @@
 <template>
   <div class="Home-Page">
-    <div class="container">
+    <div class="container page">
       <general-classification></general-classification>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="Drivers">
-    <div class="container">
+    <div class="container page">
 
       <section class="Races__Banner">
 
@@ -29,13 +29,15 @@
 
       <router-view transition transition-mode="out-in" class="view"></router-view>
 
-      <div v-for="driver in filteredDrivers" class="Media Driver-Card Driver-Card--selectable"
-        v-link="{ name: 'drivers.show', params: { id: driver.id } }"
-      >
-        <img class="Media__Figure Driver-Card__Photo" :src="driver.photo | driverPhoto">
-        <div class="Media__Body Driver-Card__Info">
-          <h4>{{ driver.name }}</h4>
-          <img :src="driver.country | countryFlag" :alt="driver.country">
+      <div v-for="driver in filteredDrivers" class="col-sm-6">
+        <div class="Media Driver-Card Driver-Card--selectable"
+          v-link="{ name: 'drivers.show', params: { id: driver.id } }"
+          >
+          <img class="Media__Figure Driver-Card__Photo" :src="driver.photo | driverPhoto">
+          <div class="Media__Body Driver-Card__Info">
+            <h4>{{ driver.name }}</h4>
+            <img :src="driver.country | countryFlag" :alt="driver.country">
+          </div>
         </div>
       </div>
 
@@ -65,6 +67,7 @@
       filteredDrivers () {
         return this.drivers
           .filter(driver => driver.name.toLowerCase().indexOf(this.searchString.trim().toLowerCase()) > -1)
+          .sort((a,b) => a.name > b.name ? 1 : -1)
       },
       linkCreate () {
         let linkTo = this.$route.name === 'drivers.create' ? 'drivers.index' : 'drivers.create'

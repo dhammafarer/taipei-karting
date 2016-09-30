@@ -1,24 +1,19 @@
 <template>
   <div class="Driver-Show">
-    <div class="container">
+
+
+    <div class="container page">
 
       <div class="row">
-
-        <button class="btn btn-default" @click="showEdit = true">Edit</button>
-        <drivers-delete-modal></drivers-delete-modal>
-        <drivers-edit-modal></drivers-edit-modal>
-
-        <div class="col-sm-1">
-          <img class="Driver-photo img img-thumbnail" :src="driver.photo | driverPhoto">
-        </div>
-        <div class="col-sm-2">
-          <h3>{{ driver.name }}</h3>
-          <p>{{ driver.country }}</p>
+        <div class="col-sm-9">
+          <driver-profile :driver="driver"></driver-profile>
         </div>
       </div>
 
-      <div v-if="showEdit">
-        <drivers-edit :show.sync="showEdit" :driver.sync="driver"></drivers-edit>
+      <div class="row">
+        <div class="col-sm-9">
+          <driver-history :driver="driver"></driver-profile>
+        </div>
       </div>
 
     </div>
@@ -28,16 +23,14 @@
 <script>
   import { getCurrentDriver } from '../vuex/drivers/getters'
   import { updateCurrentDriverId, clearCurrentDriverId } from '../vuex/drivers/actions'
-  import DriversEdit from './DriversEdit.vue'
-  import DriversEditModal from './DriversEditModal.vue'
-  import DriversDeleteModal from './DriversDeleteModal.vue'
+  import DriverProfile from './DriverProfile.vue'
+  import DriverHistory from './DriverHistory.vue'
 
   export default {
     name: 'DriversShow',
     components: {
-      DriversEdit,
-      DriversEditModal,
-      DriversDeleteModal
+      DriverProfile,
+      DriverHistory
     },
     vuex: {
       actions: {
@@ -46,11 +39,6 @@
       },
       getters: {
         driver: getCurrentDriver
-      }
-    },
-    data () {
-      return {
-        showEdit: false,
       }
     },
     beforeDestroy () {

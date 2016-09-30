@@ -51,8 +51,6 @@
         scrollTop: ''
       }
     },
-    computed: {
-    },
     methods: {
       logout () {
         auth.logout()
