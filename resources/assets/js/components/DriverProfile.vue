@@ -20,7 +20,7 @@
               </tr>
               <tr>
                 <td class="small">Country</td>
-                <td><img :src="driver.country | countryFlag"> {{ driver.country }}</td>
+                <td><img :src="driver.country | countryFlag"></td>
               </tr>
               <tr>
                 <td class="small">Standing</td>
@@ -52,18 +52,12 @@
   import DriversDeleteModal from './DriversDeleteModal.vue'
 
   export default {
-    vuex: {
-      getters: {
-        drivers: getAllDrivers,
-        races: getAllRaces
-      }
-    },
     components: {
       DriversEdit,
       DriversEditModal,
       DriversDeleteModal
     },
-    props: ['driver'],
+    props: ['driver', 'drivers', 'races'],
     data () {
       return {
         showEdit: false,

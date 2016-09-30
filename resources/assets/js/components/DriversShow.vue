@@ -1,18 +1,24 @@
 <template>
   <div class="Driver-Show">
 
-
-    <div class="container page">
+    <div v-if="$loadingRouteData">Loading...</div>
+    <div v-else class="container page">
 
       <div class="row">
         <div class="col-sm-9">
-          <driver-profile :driver="driver"></driver-profile>
+          <driver-profile :driver="driver" :drivers="drivers" :races="races"></driver-profile>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-9">
-          <driver-history :driver="driver"></driver-profile>
+          <driver-history-graph :driver="driver" :drivers="drivers" :races="races"></driver-history-graph>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9">
+          <driver-history :driver="driver" :drivers="drivers" :races="races"></driver-history>
         </div>
       </div>
 
@@ -21,16 +27,19 @@
 </template>
 
 <script>
-  import { getCurrentDriver } from '../vuex/drivers/getters'
   import { updateCurrentDriverId, clearCurrentDriverId } from '../vuex/drivers/actions'
+  import { getAllRaces } from '../vuex/races/getters'
+  import { getCurrentDriver, getAllDrivers } from '../vuex/drivers/getters'
   import DriverProfile from './DriverProfile.vue'
   import DriverHistory from './DriverHistory.vue'
+  import DriverHistoryGraph from './DriverHistoryGraph.vue'
 
   export default {
     name: 'DriversShow',
     components: {
       DriverProfile,
-      DriverHistory
+      DriverHistory,
+      DriverHistoryGraph
     },
     vuex: {
       actions: {
@@ -38,7 +47,9 @@
         clearCurrentDriverId
       },
       getters: {
-        driver: getCurrentDriver
+        driver: getCurrentDriver,
+        drivers: getAllDrivers,
+        races: getAllRaces
       }
     },
     beforeDestroy () {

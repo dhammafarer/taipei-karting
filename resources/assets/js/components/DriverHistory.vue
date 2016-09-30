@@ -11,7 +11,7 @@
       <div class="Panel__Body">
         <table class="table table-striped">
           <tr>
-            <th>#</th><th>Date</th><th>Race</th><th>Standing</th><th>Points</th>
+            <th>#</th><th>Date</th><th>Race</th><th>Pos</th><th>Pts</th>
           </tr>
 
           <tr v-for="record in history">
@@ -40,17 +40,9 @@
 
 <script>
   import rules from '../utilities/race-rules'
-  import { getAllRaces } from '../vuex/races/getters'
-  import { getAllDrivers } from '../vuex/drivers/getters'
 
   export default {
-    vuex: {
-      getters: {
-        drivers: getAllDrivers,
-        races: getAllRaces
-      }
-    },
-    props: ['driver'],
+    props: ['driver', 'drivers', 'races'],
     computed: {
       history () {
         return rules.getDriverHistory(this.driver.id, this.races)
