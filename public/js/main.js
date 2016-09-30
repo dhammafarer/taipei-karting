@@ -50248,7 +50248,7 @@ exports.default = {
     historyData: function historyData() {
       var records = _raceRules2.default.getDriverHistory(this.driver.id, this.races).sort(function (a, b) {
         return a.race.date > b.race.date ? 1 : -1;
-      });
+      }).slice(-6);
       var points = records.map(function (r) {
         return r.points.total;
       });
