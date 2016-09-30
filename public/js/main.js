@@ -50246,7 +50246,9 @@ exports.default = {
   props: ['driver', 'drivers', 'races'],
   computed: {
     historyData: function historyData() {
-      var records = _raceRules2.default.getDriverHistory(this.driver.id, this.races);
+      var records = _raceRules2.default.getDriverHistory(this.driver.id, this.races).sort(function (a, b) {
+        return a.race.date > b.race.date ? 1 : -1;
+      });
       var points = records.map(function (r) {
         return r.points.total;
       });
@@ -50263,18 +50265,18 @@ exports.default = {
     var data = {
       labels: this.historyData.labels,
       datasets: [{
-        label: "My First dataset",
+        label: "Points in GP",
         fill: false,
         lineTension: 0.1,
-        backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(247, 136, 47, .4)",
+        borderColor: "#F7882F",
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
-        pointBorderColor: "rgba(75,192,192,1)",
+        pointBorderColor: "orange",
         pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
+        pointBorderWidth: 3,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: "rgba(75,192,192,1)",
         pointHoverBorderColor: "rgba(220,220,220,1)",
@@ -50293,7 +50295,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-History-Graph\">\n\n  <div v-if=\"historyData.points.length > 2\" class=\"Panel\">\n    <div class=\"Panel__Heading\">\n      Recent Performance\n    </div>\n    <div class=\"Panel__Body\">\n      <canvas id=\"myChart\"></canvas>\n    </div>\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-History-Graph\">\n\n  <div v-if=\"historyData.points.length > 2\" class=\"Panel\">\n    <div class=\"Panel__Heading\">\n      <div class=\"Panel__Title\">Recent Performance</div>\n    </div>\n    <div class=\"Panel__Body\">\n      <canvas id=\"myChart\"></canvas>\n    </div>\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
