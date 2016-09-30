@@ -12,6 +12,7 @@
             </button>
             <button class="Btn Btn--large" :class="{ 'Btn--active': $route.name === 'drivers.create' }"
               v-link="linkCreate"
+              v-if="user.authenticated"
               >
               <span class="icon-plus"></span>
             </button>
@@ -29,7 +30,7 @@
 
       <router-view transition transition-mode="out-in" class="view"></router-view>
 
-      <div v-for="driver in filteredDrivers" class="col-sm-6">
+      <div v-for="driver in filteredDrivers" class="col-sm-6 col-lg-4">
         <div class="Media Driver-Card Driver-Card--selectable"
           v-link="{ name: 'drivers.show', params: { id: driver.id } }"
           >
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+  import auth from '../auth'
   import { getAllDrivers } from '../vuex/drivers/getters'
   export default {
     name: 'DriversIndex',
@@ -59,6 +61,7 @@
     },
     data () {
       return {
+        user: auth.user,
         search: false,
         searchString: ''
       }

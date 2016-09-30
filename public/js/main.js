@@ -50662,7 +50662,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _auth = require('../auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 var _getters = require('../vuex/drivers/getters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'DriversIndex',
@@ -50673,6 +50679,7 @@ exports.default = {
   },
   data: function data() {
     return {
+      user: _auth2.default.user,
       search: false,
       searchString: ''
     };
@@ -50696,7 +50703,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container page\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Drivers</div>\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'drivers.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n        </div>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <div v-for=\"driver in filteredDrivers\" class=\"col-sm-6\">\n      <div class=\"Media Driver-Card Driver-Card--selectable\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n        <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n        <div class=\"Media__Body Driver-Card__Info\">\n          <h4>{{ driver.name }}</h4>\n          <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n        </div>\n      </div>\n    </div>\n\n    <div v-if=\"filteredDrivers.length === 0\">No races match these criteria.</div>\n\n  </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Drivers\">\n  <div class=\"container page\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Drivers</div>\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'drivers.create' }\" v-link=\"linkCreate\" v-if=\"user.authenticated\">\n            <span class=\"icon-plus\"></span>\n          </button>\n        </div>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <div v-for=\"driver in filteredDrivers\" class=\"col-sm-6 col-lg-4\">\n      <div class=\"Media Driver-Card Driver-Card--selectable\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n        <img class=\"Media__Figure Driver-Card__Photo\" :src=\"driver.photo | driverPhoto\">\n        <div class=\"Media__Body Driver-Card__Info\">\n          <h4>{{ driver.name }}</h4>\n          <img :src=\"driver.country | countryFlag\" :alt=\"driver.country\">\n        </div>\n      </div>\n    </div>\n\n    <div v-if=\"filteredDrivers.length === 0\">No races match these criteria.</div>\n\n  </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -50707,7 +50714,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-62eebc67", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/getters":212,"vue":162,"vue-hot-reload-api":158}],179:[function(require,module,exports){
+},{"../auth":168,"../vuex/drivers/getters":212,"vue":162,"vue-hot-reload-api":158}],179:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -52051,6 +52058,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _auth = require('../auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 var _getters = require('../vuex/races/getters');
 
 var _RaceCard = require('./RaceCard.vue');
@@ -52069,6 +52080,7 @@ exports.default = {
   },
   data: function data() {
     return {
+      user: _auth2.default.user,
       seasons: false,
       search: false,
       searchString: '',
@@ -52098,7 +52110,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container page\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races {{ seasonYear }}</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-show=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2017' }\" @click=\"seasonYear = '2017'\">2017</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in filteredRaces\" :race=\"race\"></race-card>\n\n    <div v-if=\"filteredRaces.length === 0\">No races match these criteria.</div>\n\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Races\">\n  <div class=\"container page\">\n\n    <section class=\"Races__Banner\">\n\n      <div class=\"Races__Toolbar\">\n        <div class=\"Races__Title\">Races {{ seasonYear }}</div>\n\n        <div class=\"Races__Buttons\">\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': seasons }\" @click=\"seasons = !seasons\">\n            <span class=\"icon-calendar\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': search }\" @click=\"search = !search\">\n            <span class=\"icon-search\"></span>\n          </button>\n          <button class=\"Btn Btn--large\" :class=\"{ 'Btn--active': $route.name === 'races.create' }\" v-link=\"linkCreate\" v-if=\"user.authenticated\">\n            <span class=\"icon-plus\"></span>\n          </button>\n\n        </div>\n      </div>\n\n      <div class=\"Races__Seasons\" v-show=\"seasons\">\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '' }\" @click=\"seasonYear = ''\">All</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2017' }\" @click=\"seasonYear = '2017'\">2017</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2016' }\" @click=\"seasonYear = '2016'\">2016</button>\n        <button class=\"Btn\" :class=\"{ 'Btn--active': seasonYear === '2015' }\" @click=\"seasonYear = '2015'\">2015</button>\n      </div>\n\n      <div class=\"Races__Search Floated-form\" v-show=\"search\">\n        <label transition=\"floatUp\" v-show=\"searchString\">Search Name</label>\n        <input type=\"text\" class=\"form-field\" placeholder=\"Search Name\" :class=\"{'has-input': searchString}\" v-model=\"searchString\">\n      </div>\n\n    </section>\n\n    <router-view transition=\"\" transition-mode=\"out-in\" class=\"view\"></router-view>\n\n    <race-card v-for=\"race in filteredRaces\" :race=\"race\"></race-card>\n\n    <div v-if=\"filteredRaces.length === 0\">No races match these criteria.</div>\n\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -52109,7 +52121,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-416fdc60", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/races/getters":219,"./RaceCard.vue":190,"vue":162,"vue-hot-reload-api":158}],205:[function(require,module,exports){
+},{"../auth":168,"../vuex/races/getters":219,"./RaceCard.vue":190,"vue":162,"vue-hot-reload-api":158}],205:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

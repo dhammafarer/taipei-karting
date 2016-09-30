@@ -16,6 +16,7 @@
             </button>
             <button class="Btn Btn--large" :class="{ 'Btn--active': $route.name === 'races.create' }"
               v-link="linkCreate"
+              v-if="user.authenticated"
               >
               <span class="icon-plus"></span>
             </button>
@@ -51,6 +52,7 @@
 </template>
 
 <script>
+  import auth from '../auth'
   import { getAllRaces } from '../vuex/races/getters'
   import RaceCard from './RaceCard.vue'
 
@@ -64,6 +66,7 @@
     },
     data () {
       return {
+        user: auth.user,
         seasons: false,
         search: false,
         searchString: '',
