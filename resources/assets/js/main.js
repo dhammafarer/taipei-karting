@@ -7,7 +7,8 @@ import App from './components/App.vue'
 import * as filters from './filters'
 
 Vue.use(VueResource)
-Vue.http.options.root = 'http://tika.com/api'
+//Vue.http.options.root = 'http://tika.com/api'
+Vue.http.options.root = 'http://139.162.60.152/api'
 //Vue.http.options.root = 'http://localhost:3000/api'
 
 Vue.http.interceptors.push((request, next) => {
