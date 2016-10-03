@@ -9,7 +9,7 @@
       <div class="Panel__Body">
         <table class="table table-striped">
           <tr>
-            <th>#</th><th>Driver</th><th class="text-center">Pts</th><th class="text-center">Races</th><th class="text-center hidden-xs">Avg</th><th class="text-center">Wins</th>
+            <th>#</th><th>Driver</th><th class="text-center">Pts</th><th class="text-center">Races</th><th class="text-center hidden-xs">Avg</th><th class="text-center hidden-xs">Wins</th>
           </tr>
 
           <tr v-for="driver in standings">
@@ -29,7 +29,7 @@
             <td class="text-center hidden-xs">
               {{ driver.average }}
             </td>
-            <td class="text-center">
+            <td class="text-center hidden-xs">
               {{ driver.wins.length }}
             </td>
           </tr>

@@ -6,7 +6,7 @@
         <div class="Panel__Title">Recent Performance</div>
       </div>
       <div class="Panel__Body">
-        <canvas height="100px" id="myChart"></canvas>
+        <canvas id="myChart"></canvas>
       </div>
     </div>
 
