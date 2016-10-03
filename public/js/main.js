@@ -51155,14 +51155,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
   props: ['race'],
+  data: function data() {
+    return {
+      full: false
+    };
+  },
+
   computed: {
     racePhoto: function racePhoto() {
       return 'url(' + this.$options.filters.racePhoto(this.race.photo) + ')';
+    },
+    raceThumb: function raceThumb() {
+      return 'url(' + this.$options.filters.raceThumb(this.race.photo) + ')';
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\" :style=\"{ backgroundImage: racePhoto }\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Date\">{{ race.date | monthYear }}</span>\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\">\n  <div class=\"Race-Card__Photo\" v-link=\"{ name: 'races.show', params: { id: race.id } }\" :style=\"{ backgroundImage: full === true ? racePhoto : raceThumb }\" :class=\"{ 'blur': !full }\">\n  </div>\n  <img @load=\"full = true\" style=\"display: none\" :src=\"race.photo | racePhoto\" alt=\"\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Date\">{{ race.date | monthYear }}</span>\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
