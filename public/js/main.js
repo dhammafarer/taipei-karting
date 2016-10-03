@@ -51171,7 +51171,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\">\n  <div class=\"Race-Card__Photo\" v-link=\"{ name: 'races.show', params: { id: race.id } }\" :style=\"{ backgroundImage: full === true ? racePhoto : raceThumb }\" :class=\"{ 'blur': !full }\">\n  </div>\n  <img @load=\"full = true\" style=\"display: none\" :src=\"race.photo | racePhoto\" alt=\"\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Date\">{{ race.date | monthYear }}</span>\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n    </div>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Race-Card\" v-link=\"{ name: 'races.show', params: { id: race.id } }\">\n  <div class=\"Race-Card__Photo\" :style=\"{ backgroundImage: full === true ? racePhoto : raceThumb }\" :class=\"{ 'blur': !full }\">\n  </div>\n  <img @load=\"full = true\" style=\"display: none\" :src=\"race.photo | racePhoto\" alt=\"\">\n  <div class=\"Race-Mask\">\n    <div class=\"Race-Card__Details\">\n      <span class=\"Race-Card__Date\">{{ race.date | monthYear }}</span>\n      <span class=\"Race-Card__Name\">{{ race.name }}</span>\n    </div>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

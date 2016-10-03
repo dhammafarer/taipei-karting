@@ -1,6 +1,6 @@
 <template>
-  <div class="Race-Card">
-    <div class="Race-Card__Photo" v-link="{ name: 'races.show', params: { id: race.id } }"
+  <div class="Race-Card" v-link="{ name: 'races.show', params: { id: race.id } }">
+    <div class="Race-Card__Photo"
       :style="{ backgroundImage: full === true ? racePhoto : raceThumb }"
       :class="{ 'blur': !full }"
     >
