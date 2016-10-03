@@ -5352,12 +5352,8 @@ footer {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 2; }
-
-.Race__Details {
+  z-index: 2;
   height: 400px;
-  text-align: center;
-  color: white;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -5366,6 +5362,11 @@ footer {
   align-items: center;
   -ms-flex-direction: column;
   flex-direction: column;
+  text-align: center; }
+
+.Race__Details {
+  text-align: center;
+  color: white;
   overflow: hidden; }
 
 .Race__Name {
@@ -5375,9 +5376,6 @@ footer {
   line-height: 1em; }
 
 .Race__Circuit {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%; }
 
 .Race__Circuit-photo {
@@ -5399,9 +5397,11 @@ footer {
   padding: 3px 5px; }
 
 .Race__Edit {
+  width: 100%;
   position: absolute;
-  top: 15px;
-  right: 5%;
+  right: 0;
+  top: 10px;
+  text-align: center;
   z-index: 3; }
 
 .Race__Date {
@@ -5419,11 +5419,7 @@ footer {
     margin-right: 0; }
 
 .Race__Birthdays {
-  padding-top: 10px;
-  padding-left: 10%;
-  position: absolute;
-  top: 0;
-  left: 0; }
+  margin: 20px 0 30px 0; }
 
 .Race__Birthday-driver {
   display: inline-block;
@@ -5443,6 +5439,8 @@ footer {
     background-color: white;
     color: #565656;
     font-size: .9em; }
+  .Race__Birthday-driver:first-child {
+    margin-left: -15px; }
 
 .Races-Edit__Button {
   position: absolute;

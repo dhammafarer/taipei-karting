@@ -57,6 +57,7 @@
                   pointHitRadius: 10,
                   data: this.historyData.points,
                   spanGaps: false,
+                  scaleSteps: 1
               }
           ]
       }

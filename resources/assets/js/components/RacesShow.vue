@@ -18,7 +18,11 @@
         <div class="Race__Mask">
           <div class="container">
 
-            <div class="Race__Birthdays">
+            <div class="Race__Edit" v-if="user.authenticated">
+              <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
+            </div>
+
+            <div class="Race__Birthdays" v-if="birthdayDrivers.length > 0">
               <div class="Race__Birthday-driver" v-for="driver in birthdayDrivers">
                 <a href="#" v-link="{ name: 'drivers.show', params: { id: driver.id } }">
                   <span class="icon-birthday"></span>
@@ -27,11 +31,7 @@
               </div>
             </div>
 
-            <div class="Race__Edit">
-              <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
-            </div>
-
-            <div class="col-sm-6 Race__Details">
+            <div class="Race__Details">
 
               <span class="Race__Name">{{ race.name }}</span>
 
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+  import auth from '../auth'
   import RacesEditDropdown from './RacesEditDropdown.vue'
   import RacesDeleteModal from './RacesDeleteModal.vue'
   import RaceOverview from './RaceOverview.vue'
@@ -96,6 +97,7 @@
     },
     data () {
       return {
+        user: auth.user,
         full: false,
         menu: false
       }

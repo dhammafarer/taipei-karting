@@ -32,16 +32,17 @@
   width: 100%;
   background-color: rgba(0,0,0,.2);
   z-index: 2;
-}
-
-.Race__Details {
   height: 400px;
-  text-align: center;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+}
+
+.Race__Details {
+  text-align: center;
+  color: white;
   overflow: hidden;
 }
 
@@ -53,9 +54,6 @@
 }
 
 .Race__Circuit {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
 }
 
@@ -80,9 +78,11 @@
 }
 
 .Race__Edit {
+  width: 100%;
   position: absolute;
-  top: 15px;
-  right: 5%;
+  right: 0;
+  top: 10px;
+  text-align: center;
   z-index: 3;
 }
 
@@ -102,11 +102,7 @@
 }
 
 .Race__Birthdays {
-  padding-top: 10px;
-  padding-left: 10%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin: 20px 0 30px 0;
 }
 
 .Race__Birthday-driver {
@@ -128,6 +124,9 @@
     background-color: white;
     color: $tertiary-color;
     font-size: .9em;
+  }
+  &:first-child {
+    margin-left: -15px;
   }
 }
 

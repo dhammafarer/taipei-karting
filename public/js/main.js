@@ -50284,7 +50284,8 @@ exports.default = {
         pointRadius: 1,
         pointHitRadius: 10,
         data: this.historyData.points,
-        spanGaps: false
+        spanGaps: false,
+        scaleSteps: 1
       }]
     };
 
@@ -52137,6 +52138,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _auth = require('../auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 var _RacesEditDropdown = require('./RacesEditDropdown.vue');
 
 var _RacesEditDropdown2 = _interopRequireDefault(_RacesEditDropdown);
@@ -52177,6 +52182,7 @@ exports.default = {
   },
   data: function data() {
     return {
+      user: _auth2.default.user,
       full: false,
       menu: false
     };
@@ -52221,7 +52227,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: full === true ? racePhoto : raceThumb }\" :class=\"{ 'blur': !full }\">\n        </div>\n        <img @load=\"full = true\" style=\"display: none\" :src=\"race.photo | racePhoto\">\n\n        <div class=\"Race__Mask\">\n          <div class=\"container\">\n\n            <div class=\"Race__Birthdays\">\n              <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                  <span class=\"icon-birthday\"></span>\n                  <img :src=\"driver.photo | driverThumb\" :alt=\"driver.name\">\n                </a>\n              </div>\n            </div>\n\n            <div class=\"Race__Edit\">\n              <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n            </div>\n\n            <div class=\"col-sm-6 Race__Details\">\n\n              <span class=\"Race__Name\">{{ race.name }}</span>\n\n              <div class=\"Race__Date\">\n                <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n              </div>\n\n            </div><!-- Race Details -->\n\n            <div class=\"Race__Circuit\" v-if=\"race.circuit\">\n              <div class=\"Race__Circuit-photo\" :style=\"{ backgroundImage: circuitPhoto }\">\n                <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n              </div>\n            </div>\n\n\n          </div><!-- container -->\n\n        </div><!-- Race__Mask -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div>\n    <div v-if=\"$loadingRouteData\">Loading...</div>\n\n    <div v-else=\"\" class=\"Race\">\n\n      <races-edit-dropdown :menu.sync=\"menu\"></races-edit-dropdown>\n\n      <section v-if=\"$route.name === 'races.show'\" class=\"Race__Cover\">\n\n        <div class=\"Race__Cover-photo\" :style=\"{ backgroundImage: full === true ? racePhoto : raceThumb }\" :class=\"{ 'blur': !full }\">\n        </div>\n        <img @load=\"full = true\" style=\"display: none\" :src=\"race.photo | racePhoto\">\n\n        <div class=\"Race__Mask\">\n          <div class=\"container\">\n\n            <div class=\"Race__Edit\" v-if=\"user.authenticated\">\n              <button class=\"Btn Btn--reverse\" @click=\"openMenu\">Edit Race</button>\n            </div>\n\n            <div class=\"Race__Birthdays\" v-if=\"birthdayDrivers.length > 0\">\n              <div class=\"Race__Birthday-driver\" v-for=\"driver in birthdayDrivers\">\n                <a href=\"#\" v-link=\"{ name: 'drivers.show', params: { id: driver.id } }\">\n                  <span class=\"icon-birthday\"></span>\n                  <img :src=\"driver.photo | driverThumb\" :alt=\"driver.name\">\n                </a>\n              </div>\n            </div>\n\n            <div class=\"Race__Details\">\n\n              <span class=\"Race__Name\">{{ race.name }}</span>\n\n              <div class=\"Race__Date\">\n                <span class=\"icon-calendar\">{{ race.date | monthDay | tba }}</span>\n                <span class=\"icon-clock\">{{ race.time | tba }}</span>\n                <span class=\"icon-location\">{{ race.venue | capitalize | tba }}</span>\n              </div>\n\n            </div><!-- Race Details -->\n\n            <div class=\"Race__Circuit\" v-if=\"race.circuit\">\n              <div class=\"Race__Circuit-photo\" :style=\"{ backgroundImage: circuitPhoto }\">\n                <span class=\"Race__Circuit-type\">Track {{ race.circuit }}</span>\n              </div>\n            </div>\n\n\n          </div><!-- container -->\n\n        </div><!-- Race__Mask -->\n      </section>\n\n      <div class=\"container\">\n\n        <div class=\"Race__Router\">\n          <router-view></router-view>\n        </div>\n\n        <section v-if=\"$route.name === 'races.show'\">\n          <race-overview></race-overview>\n        </section>\n      </div>\n  </div>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -52232,7 +52238,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-471352ef", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/drivers/getters":212,"../vuex/races/actions":218,"../vuex/races/getters":219,"./RaceOverview.vue":193,"./RacesDeleteModal.vue":197,"./RacesEditDropdown.vue":201,"vue":162,"vue-hot-reload-api":158}],206:[function(require,module,exports){
+},{"../auth":168,"../vuex/drivers/getters":212,"../vuex/races/actions":218,"../vuex/races/getters":219,"./RaceOverview.vue":193,"./RacesDeleteModal.vue":197,"./RacesEditDropdown.vue":201,"vue":162,"vue-hot-reload-api":158}],206:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
