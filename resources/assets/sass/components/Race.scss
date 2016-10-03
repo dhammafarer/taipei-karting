@@ -6,28 +6,46 @@
   margin-top: 20px;
 }
 
-.Race__Cover-photo {
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  background-color: #999;
-  z-index: 1;
+.Race__Cover {
+  position: relative;
+  color: white;
 }
-.Race__Mask {
-  background-color: rgba(0,0,0,.3);
+
+.Race__Cover-photo {
   width: 100%;
+  height: 400px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+  transition: all .3s ease;
+  &.blur {
+    filter: blur(15px);
+  }
+}
+
+.Race__Mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.2);
+  z-index: 2;
 }
 
 .Race__Details {
-  width: 90%;
-  margin: 40px auto 10px auto;
+  height: 400px;
   text-align: center;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .Race__Name {
-  color: white;
   text-align: center;
   font-size: 4em;
   font-family: $title-font;
@@ -35,10 +53,17 @@
 }
 
 .Race__Circuit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.Race__Circuit-photo {
   position: relative;
-  height: 150px;
-  max-width: 300px;
   margin: 0 auto;
+  height: 150px;
+  width: 220px;
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -47,7 +72,7 @@
 .Race__Circuit-type {
   position: absolute;
   top: 20%;
-  right: 12%;
+  right: 0;
   background-color: rgba(0,0,0,.4);
   border: 1px solid $tertiary-color;
   border-radius: 4px;
@@ -77,7 +102,11 @@
 }
 
 .Race__Birthdays {
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-left: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .Race__Birthday-driver {
