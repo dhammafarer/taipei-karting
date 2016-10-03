@@ -16,12 +16,8 @@
         <img @load="full = true" style="display: none" :src="race.photo | racePhoto">
 
         <div class="Race__Mask">
-          <div class="container">
 
-            <div class="Race__Edit" v-if="user.authenticated">
-              <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
-            </div>
-
+          <div class="Race__Toolbar">
             <div class="Race__Birthdays" v-if="birthdayDrivers.length > 0">
               <div class="Race__Birthday-driver" v-for="driver in birthdayDrivers">
                 <a href="#" v-link="{ name: 'drivers.show', params: { id: driver.id } }">
@@ -31,39 +27,45 @@
               </div>
             </div>
 
-            <div class="Race__Details">
+            <div class="Race__Edit" v-if="user.authenticated">
+              <button class="Btn Btn--reverse" @click="openMenu">Edit Race</button>
+            </div>
+          </div>
 
-              <span class="Race__Name">{{ race.name }}</span>
+          <div class="Race__Details">
 
-              <div class="Race__Date">
-                <span class="icon-calendar">{{ race.date | monthDay | tba }}</span>
-                <span class="icon-clock">{{ race.time | tba }}</span>
-                <span class="icon-location">{{ race.venue | capitalize | tba }}</span>
-              </div>
+            <span class="Race__Name">{{ race.name }}</span>
 
-            </div><!-- Race Details -->
-
-            <div class="Race__Circuit" v-if="race.circuit">
-              <div class="Race__Circuit-photo" :style="{ backgroundImage: circuitPhoto }">
-                <span class="Race__Circuit-type">Track {{ race.circuit }}</span>
-              </div>
+            <div class="Race__Date">
+              <span class="icon-calendar">{{ race.date | monthDay | tba }}</span>
+              <span class="icon-clock">{{ race.time | tba }}</span>
+              <span class="icon-location">{{ race.venue | capitalize | tba }}</span>
             </div>
 
+          </div><!-- Race Details -->
 
-          </div><!-- container -->
+          <div class="Race__Circuit" v-if="race.circuit">
+            <div class="Race__Circuit-photo" :style="{ backgroundImage: circuitPhoto }">
+              <span class="Race__Circuit-type">Track {{ race.circuit }}</span>
+            </div>
+          </div>
 
         </div><!-- Race__Mask -->
       </section>
 
       <div class="container">
 
-        <div class="Race__Router">
-          <router-view></router-view>
-        </div>
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="Race__Router">
+              <router-view></router-view>
+            </div>
 
-        <section v-if="$route.name === 'races.show'">
-          <race-overview></race-overview>
-        </section>
+            <section v-if="$route.name === 'races.show'">
+              <race-overview></race-overview>
+            </section>
+          </div>
+        </div>
       </div>
   </div>
 </template>

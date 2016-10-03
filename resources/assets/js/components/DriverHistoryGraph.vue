@@ -6,7 +6,7 @@
         <div class="Panel__Title">Recent Performance</div>
       </div>
       <div class="Panel__Body">
-        <canvas id="myChart"></canvas>
+        <canvas height="100px" id="myChart"></canvas>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       historyData () {
         let records = rules.getDriverHistory(this.driver.id, this.races)
           .sort((a,b) => a.race.date > b.race.date ? 1: -1)
-          .slice(-6)
+          //.slice(-6)
         let points = records.map(r => r.points.total)
         let labels = records.map(r => r.race.name)
         return {

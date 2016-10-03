@@ -2,50 +2,61 @@
   <div class="Races">
     <div class="container page">
 
-      <section class="Races__Banner">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <section class="Races__Banner">
 
-        <div class="Races__Toolbar">
-          <div class="Races__Title">Races {{ seasonYear }}</div>
+            <div class="Races__Toolbar">
+              <div class="Races__Title">Races {{ seasonYear }}</div>
 
-          <div class="Races__Buttons">
-            <button class="Btn Btn--large" :class="{ 'Btn--active': seasons }" @click="seasons = !seasons">
-              <span class="icon-calendar"></span>
-            </button>
-            <button class="Btn Btn--large" :class="{ 'Btn--active': search }" @click="search = !search">
-              <span class="icon-search"></span>
-            </button>
-            <button class="Btn Btn--large" :class="{ 'Btn--active': $route.name === 'races.create' }"
-              v-link="linkCreate"
-              v-if="user.authenticated"
+              <div class="Races__Buttons">
+                <button class="Btn Btn--large" :class="{ 'Btn--active': seasons }" @click="seasons = !seasons">
+                  <span class="icon-calendar"></span>
+                </button>
+                <button class="Btn Btn--large" :class="{ 'Btn--active': search }" @click="search = !search">
+                  <span class="icon-search"></span>
+                </button>
+                <button class="Btn Btn--large" :class="{ 'Btn--active': $route.name === 'races.create' }"
+                  v-link="linkCreate"
+                  v-if="user.authenticated"
+                  >
+                  <span class="icon-plus"></span>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="Races__Seasons" v-show="seasons">
+              <button class="Btn" :class="{ 'Btn--active': seasonYear === '' }" @click="seasonYear = ''">All</button>
+              <button class="Btn" :class="{ 'Btn--active': seasonYear === '2017' }" @click="seasonYear = '2017'">2017</button>
+              <button class="Btn" :class="{ 'Btn--active': seasonYear === '2016' }" @click="seasonYear = '2016'">2016</button>
+              <button class="Btn" :class="{ 'Btn--active': seasonYear === '2015' }" @click="seasonYear = '2015'">2015</button>
+            </div>
+
+            <div class="Races__Search Floated-form" v-show="search">
+              <label transition="floatUp" v-show="searchString">Search Name</label>
+              <input type="text" class="form-field" placeholder="Search Name"
+              :class="{'has-input': searchString}"
+              v-model="searchString"
               >
-              <span class="icon-plus"></span>
-            </button>
+            </div>
 
-          </div>
+          </section>
+
+          <router-view transition transition-mode="out-in" class="view"></router-view>
+
+          <section class="row">
+            <div class="col-sm-4" v-for="race in filteredRaces">
+              <race-card :race="race"></race-card>
+            </div>
+
+            <div class="col-sm-12">
+              <div v-if="filteredRaces.length === 0">No races match these criteria.</div>
+            </div>
+          </section>
+
         </div>
-
-        <div class="Races__Seasons" v-show="seasons">
-          <button class="Btn" :class="{ 'Btn--active': seasonYear === '' }" @click="seasonYear = ''">All</button>
-          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2017' }" @click="seasonYear = '2017'">2017</button>
-          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2016' }" @click="seasonYear = '2016'">2016</button>
-          <button class="Btn" :class="{ 'Btn--active': seasonYear === '2015' }" @click="seasonYear = '2015'">2015</button>
-        </div>
-
-        <div class="Races__Search Floated-form" v-show="search">
-          <label transition="floatUp" v-show="searchString">Search Name</label>
-          <input type="text" class="form-field" placeholder="Search Name"
-            :class="{'has-input': searchString}"
-            v-model="searchString"
-          >
-        </div>
-
-      </section>
-
-      <router-view transition transition-mode="out-in" class="view"></router-view>
-
-      <race-card v-for="race in filteredRaces" :race="race"></race-card>
-
-      <div v-if="filteredRaces.length === 0">No races match these criteria.</div>
+      </div>
 
     </div>
   </div>

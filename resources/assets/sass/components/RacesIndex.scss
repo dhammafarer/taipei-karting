@@ -26,5 +26,10 @@
 }
 
 .Races__Seasons, .Races__Search {
+  display: flex;
+  justify-content: center;
   margin-top: 8px;
+  & button {
+    margin-left: 4px;
+  }
 }

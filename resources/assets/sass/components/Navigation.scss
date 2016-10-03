@@ -50,14 +50,16 @@
   }
   &:hover .Navigation__Link {
     color: white;
+    text-decoration: none;
   }
-  &:hover .Navigation__Icon, &.v-link-active .Navigation__Icon {
+  &:hover .Navigation__Icon, &:hover .Navigation__Text, &.v-link-active .Navigation__Text, &.v-link-active .Navigation__Icon {
     color: white;
   }
 }
 
 .Navigation__Link {
   font-size: 1.4em;
+  outline: 0;
 }
 
 .Navigation__Icon {
@@ -66,5 +68,8 @@
 }
 
 .Navigation__Text {
-  display: none;
+  font-size: .8em;
+  transition: color .3s ease;
+  color: darken($primary-color, 10%);
+  text-decoration: none;
 }

@@ -24,9 +24,7 @@
         <div class="col-sm-6">
           <race-grid show-race="raceOne" show-group="B"></race-grid>
         </div>
-      </section>
 
-      <section class="row">
         <div class="col-sm-6">
           <race-grid show-race="raceTwo" show-group="A"></race-grid>
         </div>
@@ -36,8 +34,6 @@
         </div>
       </section>
 
-      <!-- Race-Results -->
-      <section class="row">
         <div class="col-sm-6">
           <race-results show-race="raceOne" show-group="A"></race-results>
         </div>
@@ -45,9 +41,7 @@
         <div class="col-sm-6">
           <race-results show-race="raceOne" show-group="B"></race-results>
         </div>
-      </section>
 
-      <section class="row">
         <div class="col-sm-6">
           <race-results show-race="raceTwo" show-group="A"></race-results>
         </div>

@@ -9,31 +9,31 @@
         <li v-link="{ name: 'home', exact: true }" class="Navigation__List-item">
           <a class="Navigation__Link" href="#">
             <span class="Navigation__Icon icon-home" title="Home"></span>
-            <span class="Navigation__Text">Home</span>
+            <span class="Navigation__Text hidden-xs">Home</span>
           </a>
         </li>
         <li v-link="{ name: 'races.index' }" class="Navigation__List-item">
           <a class="Navigation__Link" href="#">
             <span class="Navigation__Icon icon-gauge" title="Races"></span>
-            <span class="Navigation__Text">Races</span>
+            <span class="Navigation__Text hidden-xs">Races</span>
           </a>
         </li>
         <li v-link="{ name: 'drivers.index' }" class="Navigation__List-item">
           <a class="Navigation__Link" href="#">
             <span class="Navigation__Icon icon-helmet" title="Drivers"></span>
-            <span class="Navigation__Text">Drivers</span>
+            <span class="Navigation__Text hidden-xs">Drivers</span>
           </a>
         </li>
         <li v-link="{ name: 'login' }" class="Navigation__List-item" v-if="!user.authenticated">
           <a class="Navigation__Link" href="#">
             <span class="Navigation__Icon icon-login" title="Login"></span>
-            <span class="Navigation__Text">Login</span>
+            <span class="Navigation__Text hidden-xs">Login</span>
           </a>
         </li>
         <li @click="logout" class="Navigation__List-item" v-if="user.authenticated">
           <a class="Navigation__Link" href="#">
             <span class="Navigation__Icon icon-logout" title="Logout"></span>
-            <span class="Navigation__Text">Logout</span>
+            <span class="Navigation__Text hidden-xs">Logout</span>
           </a>
         </li>
       </ul>
