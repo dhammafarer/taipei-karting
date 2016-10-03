@@ -17,5 +17,5 @@ elixir(function(mix) {
       .sass([ 'app.scss', '../../../node_modules/font-awesome/scss/font-awesome.scss' ])
       .styles(['../../../public/css/app.css', 'fontello/fontello.css'])
       .copy( 'resources/assets/fonts/fontello', 'public/font' )
-      .browserSync({ proxy: 'tika.app' });
+      .browserSync({ proxy: 'tika.com' });
 });
