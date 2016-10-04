@@ -5,6 +5,33 @@
 .Race__Router {
   margin-top: 20px;
 }
+.Race__Next, .Race__Prev {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,.2);
+  width: 10%;
+  z-index: 3;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .3s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  & span {
+    color: white;
+    font-weight: bold;
+  }
+}
+.Race__Prev {
+  left: 0;
+}
+.Race__Next {
+  right: 0;
+}
 
 .Race__Cover {
   position: relative;

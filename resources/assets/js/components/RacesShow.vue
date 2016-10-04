@@ -4,6 +4,13 @@
 
     <div v-else class="Race">
 
+      <div @click="prevRace" class="Race__Prev">
+        <span>&lt</span>
+      </div>
+      <div @click="nextRace" class="Race__Next">
+        <span>&gt</span>
+      </div>
+
       <races-edit-dropdown :menu.sync="menu"></races-edit-dropdown>
 
       <section v-if="$route.name === 'races.show'" class="Race__Cover">
@@ -72,11 +79,12 @@
 
 <script>
   import auth from '../auth'
+  import R from 'ramda'
   import RacesEditDropdown from './RacesEditDropdown.vue'
   import RacesDeleteModal from './RacesDeleteModal.vue'
   import RaceOverview from './RaceOverview.vue'
   import { setEditorView, updateCurrentRaceId, clearCurrentRaceId } from '../vuex/races/actions'
-  import { getCurrentRace } from '../vuex/races/getters'
+  import { getCurrentRace, getAllRaces } from '../vuex/races/getters'
   import { getAllDrivers } from '../vuex/drivers/getters'
 
   export default {
@@ -94,6 +102,7 @@
       },
       getters:{
         race: getCurrentRace,
+        races: getAllRaces,
         drivers: getAllDrivers
       }
     },
@@ -119,12 +128,31 @@
         let month = raceDate.getMonth() + 1
         let drivers = this.race.records.data.map(record => record.driver.data)
         return drivers.filter(driver => driver.month === month.toString())
+      },
+      currentIndex () {
+        return R.findIndex(R.propEq('id', this.race.id))(this.races)
+      },
+      prevIndex () {
+        let index = this.currentIndex
+        return index - 1 >= 0 ? index - 1 : index
+      },
+      nextIndex () {
+        let index = this.currentIndex
+        return index + 1 < this.races.length ? index + 1 : index
       }
     },
     methods: {
       openMenu () {
         this.menu = true
         document.querySelector('html').style.overflow = 'hidden'
+      },
+      prevRace () {
+        let id = this.races[this.prevIndex].id
+        return this.$router.go({name: 'races.show', params:{id: id} })
+      },
+      nextRace () {
+        let id = this.races[this.nextIndex].id
+        return this.$router.go({name: 'races.show', params:{id: id} })
       }
     },
     beforeDestroy () {
@@ -134,7 +162,8 @@
       data (transition) {
         this.updateCurrentRaceId(transition.to.params.id)
         transition.next()
-      }
+      },
+      canReuse: false
     }
   }
 </script>
