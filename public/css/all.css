@@ -4992,6 +4992,8 @@ footer {
   width: 100%;
   margin-bottom: 0;
   z-index: 99; }
+  .Navigation a {
+    text-decoration: none; }
 
 .Navigation__Banner {
   padding: 10px;
@@ -5035,14 +5037,13 @@ footer {
   .Navigation__List-item.v-link-active {
     border-bottom: 3px solid white; }
   .Navigation__List-item:hover .Navigation__Link {
-    color: white;
-    text-decoration: none; }
-  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item:hover .Navigation__Text, .Navigation__List-item.v-link-active .Navigation__Text, .Navigation__List-item.v-link-active .Navigation__Icon {
     color: white; }
+  .Navigation__List-item:hover .Navigation__Icon, .Navigation__List-item:hover .Navigation__Text, .Navigation__List-item.v-link-active .Navigation__Text, .Navigation__List-item.v-link-active .Navigation__Icon {
+    color: white;
+    outline: none; }
 
 .Navigation__Link {
-  font-size: 1.4em;
-  outline: 0; }
+  font-size: 1.4em; }
 
 .Navigation__Icon {
   transition: color .3s ease;
