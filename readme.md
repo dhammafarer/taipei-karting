@@ -8,6 +8,6 @@ SPA frontend built with Vue 1.0, Vue-Router and Vuex for state management. API b
 Live race progress tracking and notifiations with WebSockets and Redis.
 
 ## Screenshots
-![race-index](https://github.com/dhammafarer/taipei-karting/screenshots/race-index.jpeg)
-![race-page](https://github.com/dhammafarer/taipei-karting/screenshots/race-page.jpeg)
-![driver-record](https://github.com/dhammafarer/taipei-karting/screenshots/driver-record.jpeg)
+![race-index](https://github.com/dhammafarer/taipei-karting/screenshots/race-index.jpg)
+![race-page](https://github.com/dhammafarer/taipei-karting/screenshots/race-page.jpg)
+![driver-record](https://github.com/dhammafarer/taipei-karting/screenshots/driver-record.jpg)
